@@ -1,0 +1,1 @@
+# plugins-wt-smart-coupons-for-woocommerce
