@@ -85,7 +85,7 @@ if( ! class_exists('Wt_Smart_Coupon') ) {
 			if ( defined( 'WEBTOFFEE_SMARTCOUPON_VERSION' ) ) {
 				$this->version = WEBTOFFEE_SMARTCOUPON_VERSION;
 			} else {
-				$this->version = '1.8.2';
+				$this->version = '1.8.3';
 			}
 			$this->plugin_name = WT_SC_PLUGIN_NAME;
 	

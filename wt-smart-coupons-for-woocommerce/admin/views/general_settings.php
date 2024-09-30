@@ -24,7 +24,8 @@ $wt_sc_admin_view_path=plugin_dir_path(WT_SMARTCOUPON_FILE_NAME).'admin/views/';
     <div class="nav-tab-wrapper wp-clearfix wt-sc-tab-head">
         <?php
         $tab_head_arr=array( 
-            'wt-sc-help'        =>  __('Help guide', 'wt-smart-coupons-for-woocommerce')
+            'wt-sc-help'        =>  esc_html__( 'Help guide', 'wt-smart-coupons-for-woocommerce' ),
+            'wbte-sc-develop'   =>  esc_html__( 'Develop', 'wt-smart-coupons-for-woocommerce' )
         );
         if(isset($_GET['debug']))
         {
@@ -37,8 +38,9 @@ $wt_sc_admin_view_path=plugin_dir_path(WT_SMARTCOUPON_FILE_NAME).'admin/views/';
         
         <?php
         //inside the settings form
-        $setting_views_a=array(       
-            'wt-sc-help'=>'admin-help.php',        
+        $setting_views_a = array(       
+            'wt-sc-help'        => 'admin-help.php',    
+            'wbte-sc-develop'   => '_admin-develop.php' 
         );
 
         //outside the settings form

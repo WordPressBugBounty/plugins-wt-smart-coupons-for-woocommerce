@@ -143,7 +143,7 @@ if( ! class_exists('Wt_Smart_Coupon_Admin') ) {
          * @since 1.0.0
          */
         public function process_shop_coupon_meta($post_id, $post) {
-            if (!current_user_can('manage_woocommerce')) 
+            if ( !class_exists( 'Wt_Smart_Coupon_Security_Helper' ) || !method_exists( 'Wt_Smart_Coupon_Security_Helper', 'check_user_has_capability' ) || !Wt_Smart_Coupon_Security_Helper::check_user_has_capability() ) 
             {
                 wp_die(__('You do not have sufficient permission to perform this operation', 'wt-smart-coupons-for-woocommerce'));
             }
@@ -356,7 +356,7 @@ if( ! class_exists('Wt_Smart_Coupon_Admin') ) {
     
         function check_product_type() {
 
-            if ( check_ajax_referer( 'wt_smart_coupons_nonce', 'security' ) && current_user_can('manage_woocommerce')) {
+            if ( check_ajax_referer( 'wt_smart_coupons_nonce', 'security' ) && class_exists( 'Wt_Smart_Coupon_Security_Helper ') && method_exists( 'Wt_Smart_Coupon_Security_Helper', 'check_user_has_capability' ) && Wt_Smart_Coupon_Security_Helper::check_user_has_capability() ) {
                 
                 $product_id = isset( $_POST['product']) ? Wt_Smart_Coupon_Security_Helper::sanitize_item($_POST['product'],'int') : '';
                 if( '' == $product_id  )  {

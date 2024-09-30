@@ -224,7 +224,7 @@ class Wt_Smart_Coupon_Checkout_Options_Admin extends Wt_Smart_Coupon_Checkout_Op
 	 *  @param $post     object     post object
 	 */
 	public function process_shop_coupon_meta( $post_id, $post ) {
-		if ( ! current_user_can( 'manage_woocommerce' ) ) {
+		if ( !class_exists( 'Wt_Smart_Coupon_Security_Helper' ) || !method_exists( 'Wt_Smart_Coupon_Security_Helper', 'check_user_has_capability' ) || !Wt_Smart_Coupon_Security_Helper::check_user_has_capability() ) {
 			wp_die( __( 'You do not have sufficient permission to perform this operation', 'wt-smart-coupons-for-woocommerce' ) );
 		}
 

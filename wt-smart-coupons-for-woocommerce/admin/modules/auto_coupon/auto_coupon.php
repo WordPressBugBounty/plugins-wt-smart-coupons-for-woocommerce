@@ -548,7 +548,7 @@ class Wt_Smart_Coupon_Auto_Coupon_Admin extends Wt_Smart_Coupon_Auto_Coupon_Comm
             $nonce = ( isset( $_REQUEST['_wpnonce'] ) ? sanitize_key( wp_unslash( $_REQUEST['_wpnonce'] ) ) : '' );
             $nonce = ( is_array( $nonce ) ? reset( $nonce ) : $nonce );
 
-            if ( ! $nonce || ! wp_verify_nonce( $nonce, 'wt_smart_coupons_admin_nonce' ) || ! current_user_can( 'manage_woocommerce' ) ) {
+            if ( ! $nonce || ! wp_verify_nonce( $nonce, 'wt_smart_coupons_admin_nonce' ) || !class_exists( 'Wt_Smart_Coupon_Security_Helper' ) || !method_exists( 'Wt_Smart_Coupon_Security_Helper', 'check_user_has_capability' ) || ! Wt_Smart_Coupon_Security_Helper::check_user_has_capability() ) {
                 return;
             }
 
@@ -612,7 +612,7 @@ class Wt_Smart_Coupon_Auto_Coupon_Admin extends Wt_Smart_Coupon_Auto_Coupon_Comm
         // Nonce verification.
         $nonce = ( isset( $_REQUEST['_wpnonce'] ) ? sanitize_key( wp_unslash( $_REQUEST['_wpnonce'] ) ) : '' );
         $nonce = ( is_array( $nonce ) ? reset( $nonce ) : $nonce );
-        if ( ! $nonce || ! wp_verify_nonce( $nonce, 'wt_smart_coupons_admin_nonce' ) || ! current_user_can( 'manage_woocommerce' ) ) {
+        if ( ! $nonce || ! wp_verify_nonce( $nonce, 'wt_smart_coupons_admin_nonce' ) || !class_exists( 'Wt_Smart_Coupon_Security_Helper' ) || !method_exists( 'Wt_Smart_Coupon_Security_Helper', 'check_user_has_capability' ) || !Wt_Smart_Coupon_Security_Helper::check_user_has_capability() ) {
             
             echo wp_json_encode( array( 'status' => false, 'msg' => __( 'Unauthorized', 'wt-smart-coupons-for-woocommerce' ) ) );
             exit();

@@ -192,6 +192,32 @@ if(!class_exists('Wt_Security_Helper'))
 	    	}
 	    	return $is_allowed;
 		}
+
+		/**
+		 * Checks if the user has capability.
+		 * Default capability is 'manage_woocommrece'. 
+		 * By using filter 'wbte_sc_alter_user_capabilities_checking_list' we can alter the capability list.
+		 * @since 1.8.3
+		 * 
+		 * @return bool true if user has capability else false.
+		 */
+		public static function check_user_has_capability(){
+
+			$capabilities = array( 'manage_woocommerce' );
+			$capabilities = apply_filters( 'wbte_sc_alter_user_capabilities_checking_list', $capabilities );
+			$capabilities = ( isset( $capabilities ) && is_array( $capabilities ) ) ? $capabilities : array();
+			$is_allowed   = false;
+
+			foreach( $capabilities as $capability ) 
+	    	{
+	    		if( current_user_can( $capability ) )  
+	    		{
+	    			$is_allowed = true;
+	    			break;
+	    		}
+	    	}
+	    	return $is_allowed;
+		}
 		
 	}
 }

@@ -25,7 +25,15 @@
 					$('.coupon_amount_field').hide(); /* hide coupon amount field */
 					$('._wt_sc_bogo_apply_frequency_field').show(); /* Show `Coupon apply frequency` option */
 
-					$('._wt_product_condition_field, .wt_sc_coupon_category_restriction_fields').hide();
+					$( '.wt_sc_coupon_category_restriction_fields' ).hide();
+
+					$( '._wt_product_condition_field [name="_wt_product_condition"][value="or"]' ).attr( 'disabled', true );
+
+					/** To add 'premium' tag after product condition radio button 'Any from below selection' */
+					if( 0 === $( '._wt_product_condition_field [name="_wt_product_condition"][value="or"]' ).closest( 'label' ).next( 'span' ).length ){
+						$( '._wt_product_condition_field [name="_wt_product_condition"][value="or"]' ).closest( 'label' ).after( '<span> ' + wt_sc_giveaway_params.msgs.premium + '</span>' );
+					}
+
 					$('._wt_product_condition_field [name="_wt_product_condition"][value="and"]').trigger('click');
 					
 					$('._wt_category_condition_field [name="_wt_category_condition"][value="and"]').trigger('click');	
@@ -42,7 +50,12 @@
 					$('.coupon_amount_field').show(); /* hide coupon amount field */
 					$('._wt_sc_bogo_apply_frequency_field').hide(); /* Hide `Coupon apply frequency` option */
 
-					$('._wt_product_condition_field, .wt_sc_coupon_category_restriction_fields').show();
+					$( '.wt_sc_coupon_category_restriction_fields' ).show();
+
+					/** To remove 'premium' tag after product condition radio button 'Any from below selection' */
+					$( '._wt_product_condition_field [name="_wt_product_condition"][value="or"]' ).closest( 'label' ).next( 'span' ).remove();
+
+					$( '._wt_product_condition_field [name="_wt_product_condition"][value="or"]' ).attr( 'disabled', false );
 
 					$('[name="_wt_free_product_ids[]"] option:gt(0)').remove();
 					

@@ -66,7 +66,7 @@ class Wt_Smart_Coupon_Giveaway_Product_Admin extends Wt_Smart_Coupon_Giveaway_Pr
     public function process_shop_coupon_meta_give_away($post_id, $post)
     {
 
-        if(!current_user_can('manage_woocommerce')) 
+        if( !class_exists( 'Wt_Smart_Coupon_Security_Helper' ) || !method_exists( 'Wt_Smart_Coupon_Security_Helper', 'check_user_has_capability' ) || !Wt_Smart_Coupon_Security_Helper::check_user_has_capability() ) 
         {
             wp_die(__('You do not have sufficient permission to perform this operation', 'wt-smart-coupons-for-woocommerce'));
         }
@@ -183,6 +183,7 @@ class Wt_Smart_Coupon_Giveaway_Product_Admin extends Wt_Smart_Coupon_Giveaway_Pr
             $script_parameters=array(
                 'bogo_coupon_type'=>self::$bogo_coupon_type_name,
                 'msgs'=>array(  
+                    'premium' => esc_html__( '(premium)', 'wt-smart-coupons-for-woocommerce' ),
                 )
             );
             wp_localize_script($this->module_id.'_coupon_edit', 'wt_sc_giveaway_params', $script_parameters);
@@ -245,7 +246,7 @@ class Wt_Smart_Coupon_Giveaway_Product_Admin extends Wt_Smart_Coupon_Giveaway_Pr
     public function wt_products_and_variations_no_parent()
     {
         check_ajax_referer( 'search-products', 'security' );
-        if (!current_user_can('manage_woocommerce')) 
+        if ( !class_exists( 'Wt_Smart_Coupon_Security_Helper' ) || !method_exists( 'Wt_Smart_Coupon_Security_Helper', 'check_user_has_capability' ) || !Wt_Smart_Coupon_Security_Helper::check_user_has_capability() ) 
         {
             wp_die(__('You do not have sufficient permission to perform this operation', 'wt-smart-coupons-for-woocommerce'));
         }
