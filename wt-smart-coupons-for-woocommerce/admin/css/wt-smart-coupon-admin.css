@@ -330,7 +330,7 @@ ul.wt_sub_tab li:last-child {
   font-size: 13px;
 }
 
-.wt_sc_upgrade_pro_main{ float:left; width:100%; height:auto; padding:25px 17px; text-align:center; box-sizing:border-box; background: #fff; border-radius: 11px 11px 0px 0px; border-bottom: dashed 1px #000; display: flex; gap: 10px;}
+.wt_sc_upgrade_pro_main{ float:left; width:100%; height:auto; padding:25px 17px; text-align:center; box-sizing:border-box; background: #fff; border-radius: 11px 11px 0px 0px; border-bottom: dashed 1px #000; display: flex; gap: 10px; position: relative; }
 .wt_sc_upgrade_pro_main_hd{ font-weight:600; font-size:17px; line-height:30px; color:#000000; text-align: left;}
 .wt_sc_upgrade_pro_content{ float:left; width: 100%; padding:24px 15px 50px 15px; background: linear-gradient(#fff, #F1FFF4); box-sizing:border-box;}
 .wt_sc_upgrade_pro_content_head{ text-align:left; font-size:17px; font-weight:700; padding-left:13px; margin:0; color: #0263D5; }

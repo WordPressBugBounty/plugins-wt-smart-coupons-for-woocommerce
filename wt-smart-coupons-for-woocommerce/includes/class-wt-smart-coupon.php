@@ -85,7 +85,7 @@ if( ! class_exists('Wt_Smart_Coupon') ) {
 			if ( defined( 'WEBTOFFEE_SMARTCOUPON_VERSION' ) ) {
 				$this->version = WEBTOFFEE_SMARTCOUPON_VERSION;
 			} else {
-				$this->version = '1.8.3';
+				$this->version = '1.8.4';
 			}
 			$this->plugin_name = WT_SC_PLUGIN_NAME;
 	
@@ -196,6 +196,11 @@ if( ! class_exists('Wt_Smart_Coupon') ) {
 			 * This file is responsible for handling all the block related operations of the plugin.
 			 */
 			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'blocks/wt-sc-blocks.php';
+
+			/**
+			 * Includes the Black Friday and Cyber Monday CTA banners for 2024
+			 */
+			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/modules/banner/class-wt-bfcm-twenty-twenty-four.php';
 
 			
 			$this->loader = new Wt_Smart_Coupon_Loader();
@@ -396,6 +401,13 @@ if( ! class_exists('Wt_Smart_Coupon') ) {
 			 * 	@since 1.7.0
 			 */
 			$this->loader->add_action( 'plugins_loaded', $this->plugin_admin, 'register_tooltips', 11 );
+
+			/**
+			 *  Set screens to show promotional banner 
+			 * 
+			 *  @since 1.8.4
+			 */
+			$this->loader->add_filter( "wt_bfcm_banner_screens", $this->plugin_admin, "wt_bfcm_banner_screens" );
 		}
 	
 		/**

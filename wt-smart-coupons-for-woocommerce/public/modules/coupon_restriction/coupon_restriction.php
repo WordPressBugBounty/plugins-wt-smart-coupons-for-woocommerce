@@ -613,6 +613,7 @@ class Wt_Smart_Coupon_Restriction_Public extends Wt_Smart_Coupon_Restriction
                          */
                         if('or'==$wt_category_condition) 
                         {
+                            $valid_cats = 0;
                             foreach($coupon_categories as $category_id) /* loop through the coupon categories */
                             {
                                 if(in_array($category_id, $items_to_check) && isset($categories_data[$category_id])) /* coupon category found, category min/max data available in meta value array */ 
@@ -622,15 +623,35 @@ class Wt_Smart_Coupon_Restriction_Public extends Wt_Smart_Coupon_Restriction
                                         /* prepare term name for error message */
                                         $this->prepare_term_name_for_validation_error_message($category_id, $items_to_check_name);
 
-                                        $this->individual_min_max_quantity_validation($coupon_code, $category_id, $categories_data, $items_to_check_qty, $items_to_check_name, $valid);
+                                        $valid = true;
+
+                                        $this->individual_min_max_quantity_validation($coupon_code, $category_id, $categories_data, $items_to_check_qty, $items_to_check_name, $valid, false);
 
 
-                                        if(!$valid)
+                                        if( $valid )
                                         {
-                                           break;
+                                            $valid_cats++;
+                                            $this->set_applicable_count_by_qty( 'category', $coupon_code, $category_id, $items_to_check_qty, $categories_data ); 
                                         }
+                                    }else{
+                                        $this->set_applicable_count_by_qty( 'category', $coupon_code, $category_id, $items_to_check_qty, $categories_data ); 
                                     }
-                                    $this->set_applicable_count_by_qty('category', $coupon_code, $category_id, $items_to_check_qty, $categories_data);          
+                                             
+                                }
+                            }
+
+                            if( 'yes' === $use_individual_min_max ) /* individual quantity validation enabled */
+                            {
+                                if( 0 === $valid_cats ) /* no products have valid quantity */
+                                {
+                                    if( "" !== ( $msg = $this->get_individual_min_max_quantity_validation_message('', '', $coupon_code ) ) )
+                                    {   
+                                        throw new Exception( $msg, 112 );
+                                    }
+                                    $valid = false;
+                                }else
+                                {
+                                    $valid = true;
                                 }
                             }
 
@@ -886,6 +907,7 @@ class Wt_Smart_Coupon_Restriction_Public extends Wt_Smart_Coupon_Restriction
      *  @since    1.4.1
      *  @since    1.4.4     [Bug fix] When multiple coupons with same product restriction and different quantitiy restriction occurs,
      *                       items in disqualified array is checked for individual coupon code instead of one single array to avoid the product quantity eligibility issues.
+     *  @since   1.8.4     Check if the product category is in the disqualified array.
      * 
      */
     public function exclude_disqualified_products($valid, $product, $coupon, $values)
@@ -898,8 +920,10 @@ class Wt_Smart_Coupon_Restriction_Public extends Wt_Smart_Coupon_Restriction
             
             $product_id = ($product->get_parent_id()>0 ? $product->get_parent_id() : $product->get_id());
             $variation_id = ($product->get_parent_id()>0 ? $product->get_id() : 0);
+
+            $product_cat_ids = Wt_Smart_Coupon_Common::get_product_cat_ids( $product_id );
             
-            if(in_array($product_id, $disqualified_products) || in_array($variation_id, $disqualified_products))
+            if( in_array($product_id, $disqualified_products, true ) || in_array( $variation_id, $disqualified_products, true ) || !empty( array_intersect( $product_cat_ids, $disqualified_products ) ) )
             {
                 $valid = false;
             }

@@ -134,7 +134,12 @@ if( ! class_exists('Wt_Smart_Coupon_Admin') ) {
          */
         public function upgrade_to_pro_meta_box()
         {
-            add_meta_box( "wt-sc-upgrade-to-pro", __( "Upgrade your coupon campaigns with enhanced features", 'wt-smart-coupons-for-woocommerce' ), array( $this, "upgrade_to_pro_meta_box_html" ), "shop_coupon", "side", "core", null );
+            if( self::is_bfcm_season() ){
+                add_meta_box( "wt-sc-upgrade-to-pro", " ", array( $this, "upgrade_to_pro_meta_box_html" ), "shop_coupon", "side", "core", null );
+            }else{
+                add_meta_box( "wt-sc-upgrade-to-pro", __( "Upgrade your coupon campaigns with enhanced features", 'wt-smart-coupons-for-woocommerce' ), array( $this, "upgrade_to_pro_meta_box_html" ), "shop_coupon", "side", "core", null );
+            }
+            
         }
     
     
@@ -890,6 +895,39 @@ if( ! class_exists('Wt_Smart_Coupon_Admin') ) {
         public static function get_tooltips( $key, $base_id = '' ) {
             $arr = ( "" !== $base_id && isset( self::$tooltip_arr[ $base_id ] ) ? self::$tooltip_arr[ $base_id ] : self::$tooltip_arr['main'] );
             return ( isset( $arr[ $key ] ) ? $arr[ $key ] : '' );
+        }
+
+        /**
+         *  Screens to show Black Friday and Cyber Monday Banner.
+         * 
+         *  @since 1.8.4
+         *  @param array $screen_ids Array of screen ids.
+         *  @return array            Array of screen ids.
+         */
+        public function wt_bfcm_banner_screens( $screen_ids ) {
+            $screen_ids[] = 'toplevel_page_wt-smart-coupon-for-woo';
+            $screen_ids[] = 'smart-coupons_page_premium_upgrade';
+            return $screen_ids;
+        }
+
+        /**
+         * To Check if the current date is on or between the start and end date of black friday and cyber monday banner for 2024.
+         * 
+         * @since 1.8.4
+         */
+        public static function is_bfcm_season() {
+            
+            $start_date = new DateTime( '25-NOV-2024, 12:00 AM', new DateTimeZone( 'Asia/Kolkata' ) ); // Start date.
+            $current_date = new DateTime( 'now', new DateTimeZone( 'Asia/Kolkata' ) ); // Current date.
+            $end_date = new DateTime( '02-DEC-2024, 11:59 PM', new DateTimeZone( 'Asia/Kolkata' ) ); // End date.
+
+            /**
+             * Check if the date is on or between the start and end date of black friday and cyber monday banner for 2024.
+             */
+            if ( $current_date < $start_date  || $current_date >= $end_date) {
+                return false;
+            }
+            return true;
         }
     }
 }

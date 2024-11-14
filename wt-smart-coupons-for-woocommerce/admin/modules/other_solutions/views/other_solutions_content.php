@@ -33,9 +33,9 @@ if ( ! defined( 'WPINC' ) ) {
                     'description'   => __('Create and manage advanced gift cards for WooCommerce stores. Enable your customers to buy, redeem, and share gift cards from your store.', 'wt-smart-coupons-for-woocommerce'),
                     'image_url'     => 'giftcards_plugin.png',
                     'premium_url'   => 'https://www.webtoffee.com/product/woocommerce-gift-cards/?utm_source=other_solution_page&utm_medium=free_plugin&utm_campaign=WooCommerce_Gift_Cards',
-                    'basic_url'     => '',
+                    'basic_url'     => 'https://wordpress.org/plugins/wt-gift-cards-woocommerce/',
                     'pro_plugin'    => 'wt-woocommerce-gift-cards/wt-woocommerce-gift-cards.php',
-                    'basic_plugin'  => '', 
+                    'basic_plugin'  => 'wt-gift-cards-woocommerce/wt-gift-cards-woocommerce.php', 
                 ),
                 'smart_coupons_plugin' => array(
                     'title'         => __('Smart Coupons for WooCommerce', 'wt-smart-coupons-for-woocommerce'),

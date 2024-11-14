@@ -1,44 +1,41 @@
 === Smart Coupons For WooCommerce - Create WooCommerce Coupons, BOGO Coupons, Discount Rules, URL Coupons ===
 Contributors: WebToffee
-Version: 1.8.3
+Version: 1.8.4
 Donate link:https://www.webtoffee.com/plugins/
 Tags: WooCommerce coupons, discounts, BOGO, smart coupons, advanced coupons
 Requires at least: 3.3
-Tested up to: 6.6
+Tested up to: 6.7
 Requires PHP: 5.6
-Stable tag: 1.8.3
+Stable tag: 1.8.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Create advanced WooCommerce coupons and discounts with auto-apply coupons, BOGO discounts, giveaway products, discount rules, free shipping, and more.
+Create advanced WooCommerce coupons and smart discounts with auto-apply coupons, BOGO discounts, giveaway products, discount rules, free shipping, bulk coupons, and more.
 
 == Description ==
 
-= ADVANCED WOOCOMMERCE COUPONS PLUGIN =
+Smart Coupons for WooCommerce Coupons adds advanced options to default WooCommerce Coupons that let you create BOGO deals, a variety of coupon restrictions, enable auto-apply of coupons, giveaway offers, easy coupon code management, and more.
 
-Smart Coupons for WooCommerce Coupons adds advanced options to default WooCommerce Coupons that let you create BOGO deals, a variety of coupon restrictions, enable auto-apply of coupons, giveaway offers, easy coupon management, and more.
+###Advanced WooCommerce Coupons and Discount Rules Plugin###
+
+The success of every online store depends hugely on how well they market their products. Even if your store sells higher quality products at a reasonable price, improper marketing will keep your sales always on the downside. Thus coming up with the most appropriate marketing strategies from time to time is necessary to keep your store on the move. This WooCommerce smart coupon plugin is an essential tool for it.
 
 **See how the plugin works: <a rel="nofollow" href="https://tastewp.com/new?pre-installed-plugin-slug=woocommerce&pre-installed-plugin-slug=wt-smart-coupons-for-woocommerce&redirect=admin.php%3Fpage%3Dwt-smart-coupon-for-woo&ni=true">Try out demo</a>** 
 
-= WooCommerce BOGO deals =
+####WooCommerce BOGO Coupons####
 
-The free plugin Smart Coupons for WooCommerce is a go-to plugin for setting up WooCommerce BOGO coupons. Quantity based discounts being an imperative strategy for promoting sales, you can use this WooCommerce BOGO coupon plugin for offering various price based or percentage discounts. 
+The free plugin Smart Coupons for WooCommerce is a go-to coupon code plugin for setting up advanced WooCommerce BOGO coupons and discount rules. Quantity based discounts being an imperative strategy for promoting sales, you can use this WooCommerce BOGO coupon plugin for offering various price based or percentage discounts. 
 
 Another peculiarity of this WooCommerce BOGO coupon plugin is that it will allow you to offer full and partial discounts. You can choose specific products for which a BOGO coupon must be applied as well as those that are free.
 
 In fact, you can choose to apply the WooCommerce BOGO coupon repeatedly for Buy 2 Get 1, Buy 4 Get 2, and so on. As and when the cart meets the BOGO coupon criteria, the coupon will automatically be applied.
 
-##New Updates##
-* <strong> WooCommerce BOGO deals</strong>: Offer different types of BOGO discounts in WooCommerce such as Buy One Get One, Buy 2 Get 1 for 50% off, Buy 2 Get 2, Buy 2 Get 1 for $100 off, Schedule a begin and end dates for the BOGO offer, Exclude products from applying BOGO and many more.
-* <strong>Full or partial discounts</strong>: BOGO with percentage (%) or price discount on the second item, after spending a certain amount and also for specific products.
-* <strong> WooCommerce Block compatibility </strong>: Compatible with WooCommerce Cart Block and Checkout Block for WordPress Block themes.
 
-
-###Major Features: Smart Coupons For WooCommerce Coupons###
+###Major Features: Smart Coupons For WooCommerce Coupon Plugin###
 
 * <strong>Auto-apply of coupons</strong>: Create smart coupons that can be [applied automatically](https://www.webtoffee.com/how-to-auto-apply-coupon-on-checkout-in-woocommerce/) when a product is added to the cart.
 
-* <strong>View coupons from My-Account page</strong>: Make the WooCommerce discount coupons available in the user’s account so that they can view applicable coupons from My Account > My Coupon.
+* <strong>View coupons codes from My-Account page</strong>: Make the WooCommerce discount coupons available in the user’s account so that they can view applicable coupons from My Account > My Coupon.
 
 * <strong>Apply coupon restrictions</strong>: Restrict coupon usage on the basis of products, categories, and user roles.
 
@@ -48,13 +45,13 @@ In fact, you can choose to apply the WooCommerce BOGO coupon repeatedly for Buy 
 
 * <strong>Giveaway coupons</strong>: Embed [giveaway products](https://www.webtoffee.com/how-to-offer-giveaway-in-woocommerce/) to coupons.
 
-* <strong>Categorize coupons</strong>: Organize your WooCommerce coupons using coupon categories.
+* <strong>Categorize WooCommerce coupon codes</strong>: Organize your WooCommerce coupons using coupon categories.
 
 * <strong>Coupon customization</strong>: Customize coupon appearance with categorized coupon styling options for expired, used, and active coupons.
 
 * <strong>Create duplicate coupons</strong>: Easily duplicate coupons using the same parameters as existing ones.
 
-* <strong>Create coupon URLs</strong>: Generate coupon URLs to make promoting coupons easy.
+* <strong>Create coupon URLs</strong>: URL coupons feature helps you generate a unique URL to any coupon in your WooCommerce store.
 
 * <strong>Offer ‘seasonal discount offer’</strong>: Allow to [set a start date and an end date](https://www.webtoffee.com/how-to-offer-seasonal-discounts-in-woocommerce/) for coupons so that you can offer ‘seasonal discounts’.
 
@@ -66,26 +63,10 @@ In fact, you can choose to apply the WooCommerce BOGO coupon repeatedly for Buy 
 ###Smart Coupons For WooCommerce Coupons - User Guide###
 To get more details on how to set up this WooCommerce Smart Coupons plugin, please read [Smart Coupons for WooCommerce user guide](https://www.webtoffee.com/smart-coupons-for-woocommerce-userguide/ "Smart Coupons for WooCommerce user guide").
 
+###WOOCOMMERCE SMART COUPONS AND DISCOUNT RULES PLUGIN-PREMIUM VERSION FEATURES###
 
-### NEED FOR THE WOOCOMMERCE SMART COUPONS PLUGIN ###
-
-The success of every online store depends hugely on how well they market their products. Even if your store sells higher quality products at a reasonable price, improper marketing will keep your sales always on the downside. Thus coming up with the most appropriate marketing strategies from time to time is necessary to keep your store on the move. This WooCommerce smart coupon plugin is an essential tool for it.
-
-If you are looking for the smartest way to market your products you should go for an advanced coupons plugin such as Smart Coupons for WooCommerce.
-
-People always love getting more than what they pay for. Hence, coupons without a doubt help your store to improve sales by establishing a new customer base. Coupons can also be used to retain your existing customers. This, in turn, arises the need for an effective coupon management system which you can accomplish by adding a WooCommerce smart coupons plugin to your store.
-
-### HOW CREATING ADVANCED COUPONS USING SMART COUPONS BENEFITS YOUR WOOCOMMERCE STORE ###
-
-<strong>Easily apply coupons</strong>: Each Coupon has a coupon code associated with it. Usually, Customers are required to enter this code in the allowed field for applying a coupon to their purchase. However, this task can be made shorter by smart coupons as it displays all the coupons available for the customer on the Cart & My Account page to easily apply them.
-
-<strong>Absolute self-management of everything related to coupons</strong>: Everything related to coupons will be managed automatically. The issuing of product coupons, coupon removal, etc., will be managed on its own thereby reducing the workload of the store admin.
-
-<strong>Promote specific payment or shipping methods</strong>: Provide coupons based on payment or shipping methods that are most suitable for your business needs. This could also give room for partnership options with the respective vendor from a business perspective.
-
-<strong>Duplicate coupons</strong>: If new coupons having configurations similar to any of the existing coupons need to be created, you can simply duplicate them instead of creating them from scratch.
-
-##PREMIUM VERSION FEATURES##
+The following video explains the setup and workflow of the Smart Coupons for WooCommerce plugin.
+[youtube https://youtu.be/GJo-1pprTUU?si=7SPLbZa0XPZBmy6Z]
 
 * Smart Coupon for WooCommerce is an advanced [WooCommerce coupon plugin](https://www.webtoffee.com/product/smart-coupons-for-woocommerce/) that provides extensive options to set up discounts in WooCommerce.
 * Configure the coupons with **extensive usage restrictions and checkout options**
@@ -104,45 +85,36 @@ People always love getting more than what they pay for. Hence, coupons without a
 * Provision to use **combo coupon** for purchase.
 * **Coupon shortcodes** for displaying all available coupons for individual users. You may use the shortcode [wt_sc_user_available_coupons] for this purpose.
 
-
 For a complete list of advanced WooCommerce coupon features and details, please visit [Smart Coupons for WooCommerce](https://www.webtoffee.com/product/smart-coupons-for-woocommerce/).
 
 
-###URL coupons###
+### HOW CREATING ADVANCED COUPONS USING SMART COUPONS BENEFITS YOUR WOOCOMMERCE STORE? ###
 
-Smart coupons for WooCommerce plugin come with a URL coupons feature that helps you add a unique URL to any coupon in your WooCommerce store. Clicking this URL ensures that the underlying coupon is applied as per its respective configuration eg: allow discounts, giveaway free product, etc. 
+<strong>Easily apply coupons</strong>: Each Coupon has a coupon code associated with it. Usually, Customers are required to enter this code in the allowed field for applying a coupon to their purchase. However, this task can be made shorter by smart coupons as it displays all the coupons available for the customer on the Cart & My Account page to easily apply them.
 
-Usage: {site_url}/?wt_coupon={coupon_code}
+<strong>Absolute self-management of everything related to coupons</strong>: Everything related to coupons will be managed automatically. The issuing of product coupons, coupon removal, etc., will be managed on its own thereby reducing the workload of the store admin.
 
-eg: https://www.example.com/cart/?wt_coupon=flat30
+<strong>Promote specific payment or shipping methods</strong>: Provide coupons based on payment or shipping methods that are most suitable for your business needs. This could also give room for partnership options with the respective vendor from a business perspective.
 
-A URL coupon that offers a flat 30% discount at www.webtoffee.com, coupon_code = FLAT30, site_url (preferably cart page) = https://www.example.com/cart
-
-### URL Coupons for WooCommerce Add-on ###
-URL coupons for WooCommerce is a paid add-on that adds advanced URL coupon features to both the free and pro versions of the Smart Coupons for WooCommerce plugin. 
-
-The following video explains the setup and workflow of the URL coupons for WooCommerce add-on.
-[youtube https://www.youtube.com/watch?v=80JyXvalx6E]
-
-<strong>Major features - URL Coupons for WooCommerce </strong>
-
-
-* Pass coupon via a link that will redirect to the cart/checkout page with products added to it.
-* Ability to create customized URLs with personalized text. For example, www.mystore.com/happybirthday.
-* Embed URL coupon in a QRCode
-
-For a complete list of features and details, please visit [URL Coupons for WooCommerce](https://www.webtoffee.com/product/url-coupons-for-woocommerce/)
+<strong>Duplicate coupons</strong>: If new coupons having configurations similar to any of the existing coupons need to be created, you can simply duplicate them instead of creating them from scratch.
 
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
+=== Minimum Requirements ===
 
-e.g.
+WordPress version 3.3 or higher
+PHP version5.6 or higher
 
-1. Upload `wt-smart-coupon.php` to the `/wp-content/plugins/` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Place `<?php do_action('plugin_name_hook'); ?>` in your templates
+=== Steps to install the plugin ===
+
+Step 1: Log in to your WordPress dashboard.
+Step 2: Navigate to Plugins and select Add New.
+Step 3: In the search bar, type “Smart Coupons for WooCommerce” and click Search Plugins.
+Step 4: Once you find the Smart Coupons for WooCommerce plugin by WebToffee, click on “Install Now”.
+Step 5: After installation, click “Activate” to activate the plugin.
+
+
 
 
 
@@ -202,6 +174,11 @@ Yes. You can create coupons that get applied as per the purchase amount of a cus
 
 
 == Changelog ==
+
+= 1.8.4 - 2024-11-14 =
+* [Fix] - Validation error in category restriction.
+* [Compatibility] - Tested OK with WordPress 6.7
+* [Compatibility] - Tested OK with WooCommerce 9.4
 
 = 1.8.3 - 2024-09-26 =
 * [Add] - Filter hook to alter user capability check.
@@ -555,7 +532,7 @@ Yes. You can create coupons that get applied as per the purchase amount of a cus
 
 == Upgrade Notice ==
 
-= 1.8.3 =
-* [Add] - Filter hook to alter user capability check.
-* [Compatibility] - Tested OK with WordPress 6.6
-* [Compatibility] - Tested OK with WooCommerce 9.3
+= 1.8.4 =
+* [Fix] - Validation error in category restriction.
+* [Compatibility] - Tested OK with WordPress 6.7
+* [Compatibility] - Tested OK with WooCommerce 9.4

@@ -7,6 +7,12 @@ $custom_tick = '<img src="'. esc_url( WT_SMARTCOUPON_MAIN_URL ) .'admin/images/t
 <div class="wt_smart_coupon_pro_features">
     <div class="wt_smart_coupon_premium">
         <div class="wt_sc_upgrade_pro_main">
+            <?php 
+                if( class_exists( 'Wt_Smart_Coupon_Admin' ) && method_exists( 'Wt_Smart_Coupon_Admin', 'is_bfcm_season' ) && Wt_Smart_Coupon_Admin::is_bfcm_season() ) {
+                    echo '<img style="position: absolute; top: -20px; right: 20px; " src="'. esc_url( WT_SMARTCOUPON_MAIN_URL . 'admin/modules/banner/assets/images/bfcm_tag.svg' ) .'">';
+                }
+            ?>
+            
             <span><img src="<?php echo esc_url( WT_SMARTCOUPON_MAIN_URL . 'admin/images/upgrade_box_icon.svg' ); ?>"></span>
             <div class="wt_sc_upgrade_pro_main_hd"><?php _e( 'Upgrade your coupon campaigns with enhanced features', 'wt-smart-coupons-for-woocommerce' ); ?></div>
         </div>
