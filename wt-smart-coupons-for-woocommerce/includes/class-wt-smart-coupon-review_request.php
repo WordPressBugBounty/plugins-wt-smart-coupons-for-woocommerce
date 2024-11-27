@@ -55,23 +55,34 @@ class Wt_Smart_Coupon_Review_Request
         register_activation_hook(WT_SMARTCOUPON_FILE_NAME , array($this, 'on_activate'));
         register_deactivation_hook(WT_SMARTCOUPON_FILE_NAME, array($this, 'on_deactivate'));
 
-        if($this->check_condition()) /* checks the banner is active now */
-        {
-            $this->banner_message = sprintf(__("Hey, we at %sWebToffee%s would like to thank you for using our Smart Coupon for WooCommerce plugin. %s We would really appreciate if you could take a moment to drop a quick review that will inspire us to keep going.", 'wt-smart-coupons-for-woocommerce'), '<b>', '</b>', '<br />');
+        add_action( 'admin_init', array( $this, 'init' ) );
+    }
 
-            if($this->created_count > $this->required_created_count)
+    /**
+     * Show review banner when conditions are met.
+     * Moved from __construct to init to avoid issues with translating text before init.
+     * 
+     * @since 1.8.5
+     */
+    public function init()
+    {
+        if( $this->check_condition() ) /* checks the banner is active now */
+        {
+            $this->banner_message = sprintf( __( "Hey, we at %sWebToffee%s would like to thank you for using our Smart Coupon for WooCommerce plugin. %s We would really appreciate if you could take a moment to drop a quick review that will inspire us to keep going.", 'wt-smart-coupons-for-woocommerce' ), '<b>', '</b>', '<br />' );
+
+            if( $this->created_count > $this->required_created_count )
             {
-                $this->banner_message = sprintf(__('%s Wow%s, you have created more than %s coupons with our %s Smart Coupon for WooCommerce plugin! %s That’s awesome! We’d love it if you take a moment to rate us and help spread the word.', 'wt-smart-coupons-for-woocommerce'), '<span>', '</span>', '<b>'.absint($this->required_created_count).'</b>', '<b>', '</b><br />');
+                $this->banner_message = sprintf( __( '%s Wow%s, you have created more than %s coupons with our %s Smart Coupon for WooCommerce plugin! %s That’s awesome! We’d love it if you take a moment to rate us and help spread the word.', 'wt-smart-coupons-for-woocommerce' ), '<span>', '</span>', '<b>'.absint( $this->required_created_count ).'</b>', '<b>', '</b><br />' );
             }
 
             /* button texts */
-            $this->later_btn_text   = __("Remind me later", 'wt-smart-coupons-for-woocommerce');
-            $this->never_btn_text   = __("Not interested", 'wt-smart-coupons-for-woocommerce');
-            $this->review_btn_text  = __("Rate us now", 'wt-smart-coupons-for-woocommerce');
+            $this->later_btn_text   = __( "Remind me later", 'wt-smart-coupons-for-woocommerce' );
+            $this->never_btn_text   = __( "Not interested", 'wt-smart-coupons-for-woocommerce' );
+            $this->review_btn_text  = __( "Rate us now", 'wt-smart-coupons-for-woocommerce' );
 
-            add_action('admin_notices', array($this, 'show_banner')); /* show banner */
-            add_action('admin_print_footer_scripts', array($this, 'add_banner_scripts')); /* add banner scripts */
-            add_action('wp_ajax_' . $this->ajax_action_name, array($this, 'process_user_action')); /* process banner user action */
+            add_action( 'admin_notices', array( $this, 'show_banner' ) ); /* show banner */
+            add_action( 'admin_print_footer_scripts', array( $this, 'add_banner_scripts' ) ); /* add banner scripts */
+            add_action( 'wp_ajax_' . $this->ajax_action_name, array( $this, 'process_user_action' ) ); /* process banner user action */
         }
     }
 
@@ -143,7 +154,7 @@ class Wt_Smart_Coupon_Review_Request
             </p>
             <p>
                 <a class="button button-primary" data-type="review"><?php echo esc_html($this->review_btn_text); ?></a>
-                <a class="button button-secondary" style="color:#333; border-color:#ccc; background:#efefef;" data-type="later"><?php echo esc_html($this->later_btn_text); ?></a>
+                <a class="button button-secondary" style="color:#333; border-color:#ccc; background:#efefef; position:relative; z-index:1;" data-type="later"><?php echo esc_html( $this->later_btn_text ); ?></a>
             </p>
             <div class="wt-smart-coupon-review-footer" style="position:absolute;right:0px; bottom:0px;">
                 <span class="wt-smart-coupon-footer-icon" style="position:absolute;right:0px; bottom:0px;">

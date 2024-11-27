@@ -85,7 +85,7 @@ if( ! class_exists('Wt_Smart_Coupon') ) {
 			if ( defined( 'WEBTOFFEE_SMARTCOUPON_VERSION' ) ) {
 				$this->version = WEBTOFFEE_SMARTCOUPON_VERSION;
 			} else {
-				$this->version = '1.8.4';
+				$this->version = '1.8.5';
 			}
 			$this->plugin_name = WT_SC_PLUGIN_NAME;
 	
@@ -219,7 +219,7 @@ if( ! class_exists('Wt_Smart_Coupon') ) {
 	
 			$plugin_i18n = new Wt_Smart_Coupon_i18n();
 	
-			$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
+			$this->loader->add_action( 'init', $plugin_i18n, 'load_plugin_textdomain' );
 	
 		}
 
@@ -400,7 +400,7 @@ if( ! class_exists('Wt_Smart_Coupon') ) {
 			 * 	
 			 * 	@since 1.7.0
 			 */
-			$this->loader->add_action( 'plugins_loaded', $this->plugin_admin, 'register_tooltips', 11 );
+			$this->loader->add_action( 'init', $this->plugin_admin, 'register_tooltips', 11 );
 
 			/**
 			 *  Set screens to show promotional banner 

@@ -1,12 +1,12 @@
 === Smart Coupons For WooCommerce - Create WooCommerce Coupons, BOGO Coupons, Discount Rules, URL Coupons ===
 Contributors: WebToffee
-Version: 1.8.4
+Version: 1.8.5
 Donate link:https://www.webtoffee.com/plugins/
 Tags: WooCommerce coupons, discounts, BOGO, smart coupons, advanced coupons
 Requires at least: 3.3
 Tested up to: 6.7
 Requires PHP: 5.6
-Stable tag: 1.8.4
+Stable tag: 1.8.5
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -174,6 +174,9 @@ Yes. You can create coupons that get applied as per the purchase amount of a cus
 
 
 == Changelog ==
+
+= 1.8.5 - 2024-11-27 =
+* [Fix] - Resolved early loading issue for translations.
 
 = 1.8.4 - 2024-11-14 =
 * [Fix] - Validation error in category restriction.
@@ -532,7 +535,5 @@ Yes. You can create coupons that get applied as per the purchase amount of a cus
 
 == Upgrade Notice ==
 
-= 1.8.4 =
-* [Fix] - Validation error in category restriction.
-* [Compatibility] - Tested OK with WordPress 6.7
-* [Compatibility] - Tested OK with WooCommerce 9.4
+= 1.8.5 =
+* [Fix] - Resolved early loading issue for translations.

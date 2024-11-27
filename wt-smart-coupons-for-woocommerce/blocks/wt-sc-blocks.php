@@ -40,7 +40,7 @@ if ( ! class_exists( 'Wt_Sc_Free_Blocks' ) ) {
 			/**
 			 * 	Init the blocks
 			 */
-			add_action( 'woocommerce_blocks_loaded', array( $this, 'init' ) );
+			add_action( 'init', array( $this, 'init' ) );
 
 			/**
 			 * 	REST API POST data for modules.

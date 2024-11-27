@@ -45,6 +45,15 @@ if( ! class_exists ( 'WT_smart_Coupon_Start_Date' ) ) {
                     ),
                 )
             );
+
+            ?>
+            <script type="text/javascript">
+                jQuery( document ).ready( function(){
+                    /* Move start date just above expiry date */
+                    jQuery( '._wt_coupon_start_date_field' ).insertBefore( '.expiry_date_field' );
+                } );
+            </script>
+            <?php
         }
 
 
