@@ -1,12 +1,12 @@
 === Smart Coupons For WooCommerce - Create WooCommerce Coupons, BOGO Coupons, Discount Rules, URL Coupons ===
 Contributors: WebToffee
-Version: 1.8.5
+Version: 2.0.0
 Donate link:https://www.webtoffee.com/plugins/
 Tags: WooCommerce coupons, discounts, BOGO, smart coupons, advanced coupons
 Requires at least: 3.3
 Tested up to: 6.7
 Requires PHP: 5.6
-Stable tag: 1.8.5
+Stable tag: 2.0.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -158,22 +158,26 @@ Yes. You can create coupons that get applied as per the purchase amount of a cus
 == Screenshots ==
 
 1. View coupons from My Account
-2. BOGO discount applied in cart (same product)
+2. BOGO discount applied in cart
 3. Specific product discount (storewide)
 4. Price based discount (subtotal amount)
 5. Quantity based discount (Buy 2 get 20% off)
 6. Shipping method based coupon
-7. Various coupon layouts
-8. URL Coupon
-9. Set up 'Seasonal Discount' with start and end date
-10. Group coupon based on category
-11. Shipping/Payment/User role-based coupons
-12. Giveaway free product for purchase
-13. Coupons list
-14. Coupon edit window
+7. Manage BOGO offers from a single dashboard
+8. Configuring WooCommerce buy one get one offers
+9. Various coupon layouts
+10. Set up 'Seasonal Discount' with start and end date
+11. Group coupon based on category
+12. Shipping/Payment/User role-based coupons
+13. Giveaway free product for purchase
+14. Coupons list
+15. Coupon edit window
 
 
 == Changelog ==
+
+= 2.0.0 - 2025-01-06 =
+* [New] Added a separate module for BOGO configuration with enhanced customization options.
 
 = 1.8.5 - 2024-11-27 =
 * [Fix] - Resolved early loading issue for translations.
@@ -535,5 +539,5 @@ Yes. You can create coupons that get applied as per the purchase amount of a cus
 
 == Upgrade Notice ==
 
-= 1.8.5 =
-* [Fix] - Resolved early loading issue for translations.
+= 2.0.0 =
+* [New] Added a separate module for BOGO configuration with enhanced customization options.

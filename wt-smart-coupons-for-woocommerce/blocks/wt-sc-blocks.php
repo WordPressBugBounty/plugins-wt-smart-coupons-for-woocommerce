@@ -188,7 +188,7 @@ if ( ! class_exists( 'Wt_Sc_Free_Blocks' ) ) {
 	     */
 		public function register_checkout_blocks( $integration_registry ) {
 		    
-		    if ( ! empty( $this->registered_blocks ) ) { // Blocks available
+		    if ( ! empty( $this->registered_blocks ) && class_exists( 'Wt_Sc_Free_Blocks_Integration' ) ) { // Blocks available.
 		        $wt_sc_blocks_integration = new Wt_Sc_Free_Blocks_Integration();
 		        $wt_sc_blocks_integration->registered_blocks = $this->registered_blocks;
 		        $wt_sc_blocks_integration->editor_script_handles = $this->editor_script_handles;

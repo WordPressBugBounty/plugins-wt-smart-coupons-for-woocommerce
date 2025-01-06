@@ -68,11 +68,11 @@ class Wt_Smart_Coupon_Review_Request
     {
         if( $this->check_condition() ) /* checks the banner is active now */
         {
-            $this->banner_message = sprintf( __( "Hey, we at %sWebToffee%s would like to thank you for using our Smart Coupon for WooCommerce plugin. %s We would really appreciate if you could take a moment to drop a quick review that will inspire us to keep going.", 'wt-smart-coupons-for-woocommerce' ), '<b>', '</b>', '<br />' );
+            $this->banner_message = sprintf( __( "Hey, we at %s WebToffee %s would like to thank you for using our Smart Coupon for WooCommerce plugin. %s We would really appreciate if you could take a moment to drop a quick review that will inspire us to keep going.", 'wt-smart-coupons-for-woocommerce' ), '<b>', '</b>', '<br />' );
 
             if( $this->created_count > $this->required_created_count )
             {
-                $this->banner_message = sprintf( __( '%s Wow%s, you have created more than %s coupons with our %s Smart Coupon for WooCommerce plugin! %s That’s awesome! We’d love it if you take a moment to rate us and help spread the word.', 'wt-smart-coupons-for-woocommerce' ), '<span>', '</span>', '<b>'.absint( $this->required_created_count ).'</b>', '<b>', '</b><br />' );
+                $this->banner_message = sprintf( __( '%s Wow %s, you have created more than %s coupons with our %s Smart Coupon for WooCommerce plugin! %s That’s awesome! We’d love it if you take a moment to rate us and help spread the word.', 'wt-smart-coupons-for-woocommerce' ), '<span>', '</span>', '<b>'.absint( $this->required_created_count ).'</b>', '<b>', '</b><br />' );
             }
 
             /* button texts */

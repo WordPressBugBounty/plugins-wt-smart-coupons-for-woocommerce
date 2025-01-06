@@ -15,60 +15,21 @@
  * Plugin Name:       Smart Coupons For WooCommerce Coupons 
  * Plugin URI:        
  * Description:       Smart Coupons For WooCommerce Coupons plugin adds advanced coupon features to your store to strengthen your marketing efforts and boost sales.
- * Version:           1.8.5
+ * Version:           2.0.0
  * Author:            WebToffee
  * Author URI:        https://www.webtoffee.com/
  * License:           GPLv3
  * License URI:       https://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain:       wt-smart-coupons-for-woocommerce
  * Domain Path:       /languages
- * WC tested up to:   9.4
+ * WC tested up to:   9.5
  */
 // If this file is called directly, abort.
 if (!defined('WPINC')) {
     die;
 }
 
-/**
-*   @since 1.3.5
-*   Check pro version is there
-*/
-include_once(ABSPATH.'wp-admin/includes/plugin.php');
-if(is_plugin_active('wt-smart-coupon-pro/wt-smart-coupon-pro.php'))
-{
-    return;
-}
-
-/**
- * Currently plugin version.
- * Start at version 1.0.0 and use SemVer - https://semver.org
- * Rename this for your plugin and update it as you release new versions.
- */
-
-if (!defined('WEBTOFFEE_SMARTCOUPON_VERSION')) {
-    define('WEBTOFFEE_SMARTCOUPON_VERSION', '1.8.5');
-}
-
-if (!defined('WT_SMARTCOUPON_FILE_NAME')) {
-    define('WT_SMARTCOUPON_FILE_NAME', __FILE__);
-}
-
-if (!defined('WT_SMARTCOUPON_BASE_NAME')) {
-    define('WT_SMARTCOUPON_BASE_NAME', plugin_basename(__FILE__));
-}
-
-if (!defined('WT_SMARTCOUPON_MAIN_PATH')) {
-    define('WT_SMARTCOUPON_MAIN_PATH', plugin_dir_path(__FILE__));
-}
-
-if (!defined('WT_SMARTCOUPON_MAIN_URL')) {
-    define('WT_SMARTCOUPON_MAIN_URL', plugin_dir_url(__FILE__));
-}
-
-
-if (!defined('WT_SMARTCOUPON_INSTALLED_VERSION')) { 
-    define('WT_SMARTCOUPON_INSTALLED_VERSION', 'BASIC');
-}
+include_once ABSPATH.'wp-admin/includes/plugin.php';
 
 /**
  *  @since 1.3.9
@@ -114,23 +75,61 @@ function wt_sc_plugin_screen_update_notice_js()
 }
 add_action('in_plugin_update_message-wt-smart-coupons-for-woocommerce/wt-smart-coupon.php', 'wt_sc_update_message', 10, 2 );
 
-
-
-/** @since 1.3.5 */
-if (!defined('WT_SC_PLUGIN_NAME'))
-{
-    define('WT_SC_PLUGIN_NAME', 'wt-smart-coupon-for-woo');
-    define('WT_SC_PLUGIN_ID', 'wt_smart_coupon_for_woo');
-    define('WT_SC_SETTINGS_FIELD', WT_SC_PLUGIN_NAME); /* option name to store settings */
-}
-
 /**
- * Check if WooCommerce is active
+ * Check if WooCommerce is active, if not then return
  */
-if(!in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) && !array_key_exists( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_site_option( 'active_sitewide_plugins', array() ) ) ) ) 
+if( !in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) && !array_key_exists( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_site_option( 'active_sitewide_plugins', array() ) ) ) ) 
 { 
 	return;
 }
+
+/**
+ * Check if Smart Coupons Pro is active, if yes then return
+ */
+if( in_array( 'wt-smart-coupon-pro/wt-smart-coupon-pro.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) && array_key_exists( 'wt-smart-coupon-pro/wt-smart-coupon-pro.php', apply_filters( 'active_plugins', get_site_option( 'active_sitewide_plugins', array() ) ) ) ) 
+{ 
+	return;
+}
+
+/**
+ * Currently plugin version.
+ * Start at version 1.0.0 and use SemVer - https://semver.org
+ * Rename this for your plugin and update it as you release new versions.
+ */
+
+ if ( !defined( 'WEBTOFFEE_SMARTCOUPON_VERSION' ) ) {
+    define( 'WEBTOFFEE_SMARTCOUPON_VERSION', '2.0.0' );
+}
+
+if ( !defined( 'WT_SMARTCOUPON_FILE_NAME' ) ) {
+    define( 'WT_SMARTCOUPON_FILE_NAME', __FILE__ ); 
+}
+
+if ( !defined( 'WT_SMARTCOUPON_BASE_NAME' ) ) {
+    define( 'WT_SMARTCOUPON_BASE_NAME', plugin_basename( __FILE__ ) );
+}
+
+if ( !defined( 'WT_SMARTCOUPON_MAIN_PATH' ) ) {
+    define( 'WT_SMARTCOUPON_MAIN_PATH', plugin_dir_path( __FILE__ ) ); 
+}
+
+if ( !defined( 'WT_SMARTCOUPON_MAIN_URL' ) ) {
+    define( 'WT_SMARTCOUPON_MAIN_URL', plugin_dir_url( __FILE__ ) ); 
+}
+
+
+if ( !defined('WT_SMARTCOUPON_INSTALLED_VERSION' ) ) { 
+    define( 'WT_SMARTCOUPON_INSTALLED_VERSION', 'BASIC' );
+}
+
+/** @since 1.3.5 */
+if ( !defined( 'WT_SC_PLUGIN_NAME' ) )
+{
+    define( 'WT_SC_PLUGIN_NAME', 'wt-smart-coupon-for-woo' );
+    define( 'WT_SC_PLUGIN_ID', 'wt_smart_coupon_for_woo' );
+    define( 'WT_SC_SETTINGS_FIELD', WT_SC_PLUGIN_NAME ); /* option name to store settings */
+}
+
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-wt-smart-coupon-activator.php
@@ -182,7 +181,6 @@ function run_wt_smart_coupon()
 }
 
 include 'admin/class-wt-duplicate-coupon.php';
-include 'admin/exclude-product/class-wt-exclude-product-for-coupon.php';
 include 'admin/coupon-start-date/class-wt-smart-coupon-start-date.php'; 
 
 include 'public/class-myaccount-smart-coupon.php';

@@ -85,7 +85,7 @@ if( ! class_exists('Wt_Smart_Coupon') ) {
 			if ( defined( 'WEBTOFFEE_SMARTCOUPON_VERSION' ) ) {
 				$this->version = WEBTOFFEE_SMARTCOUPON_VERSION;
 			} else {
-				$this->version = '1.8.5';
+				$this->version = '2.0.0';
 			}
 			$this->plugin_name = WT_SC_PLUGIN_NAME;
 	
@@ -196,11 +196,6 @@ if( ! class_exists('Wt_Smart_Coupon') ) {
 			 * This file is responsible for handling all the block related operations of the plugin.
 			 */
 			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'blocks/wt-sc-blocks.php';
-
-			/**
-			 * Includes the Black Friday and Cyber Monday CTA banners for 2024
-			 */
-			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/modules/banner/class-wt-bfcm-twenty-twenty-four.php';
 
 			
 			$this->loader = new Wt_Smart_Coupon_Loader();
@@ -403,11 +398,25 @@ if( ! class_exists('Wt_Smart_Coupon') ) {
 			$this->loader->add_action( 'init', $this->plugin_admin, 'register_tooltips', 11 );
 
 			/**
-			 *  Set screens to show promotional banner 
+			 *  Include Design System file.
 			 * 
-			 *  @since 1.8.4
+			 * 	@since 2.0.0
 			 */
-			$this->loader->add_filter( "wt_bfcm_banner_screens", $this->plugin_admin, "wt_bfcm_banner_screens" );
+			$this->loader->add_action( "admin_init", $this->plugin_admin, "include_design_system" );
+
+			/**
+			 *  Trigger after activation hook if not triggered
+			 * 
+			 *  @since 2.0.0
+			 */
+			$this->loader->add_action( 'admin_init', $this->plugin_admin, 'check_and_trigger_activation_action_hook' );
+
+			/**
+			 *  Delete coupon in lookup table that doesn't exist in post table..
+			 * 
+			 * 	@since 2.0.0
+			 */
+			$this->loader->add_action( "after_wt_smart_coupon_for_woocommerce_is_activated", $this->plugin_admin, "delete_coupon_from_lookup_table" );
 		}
 	
 		/**
@@ -684,7 +693,7 @@ if( ! class_exists('Wt_Smart_Coupon') ) {
 	        if(!self::is_table_exists($table_name))
 	        {
 	        	deactivate_plugins(WT_SMARTCOUPON_BASE_NAME);
-	        	wp_die(sprintf(__("An error occurred while activating %sSmart Coupons For WooCommerce Coupons%s: Unable to create database table. %s", "wt-smart-coupons-for-woocommerce"), '<b>', '</b>', $table_name), "", array('link_url' => admin_url('plugins.php'), 'link_text' => __('Go to plugins page', 'wt-smart-coupons-for-woocommerce') ));
+	        	wp_die( sprintf( __( "An error occurred while activating %s Smart Coupons For WooCommerce Coupons %s: Unable to create database table. %s", "wt-smart-coupons-for-woocommerce" ), '<b>', '</b>', $table_name ), "", array( 'link_url' => admin_url( 'plugins.php' ), 'link_text' => __( 'Go to plugins page', 'wt-smart-coupons-for-woocommerce' ) ) );
 	        }
 	    }
 

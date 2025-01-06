@@ -41,9 +41,7 @@ if( !class_exists('Wt_Smart_Coupon_Activator') )  {
 			}
 			if( defined('WT_SMARTCOUPON_INSTALLED_VERSION') && WT_SMARTCOUPON_INSTALLED_VERSION == 'PREMIUM' ) {
 				
-				deactivate_plugins( WT_SMARTCOUPON_BASE_NAME );
-				wp_die(__("Oops! PREMIUM Version of this Plugin Installed. Please deactivate the PREMIUM Version before activating BASIC.", 'wt-smart-coupons-for-woocommerce'), "", array('back_link' => 1));
-				
+				return;
 			}
 			
 			update_option( 'woocommerce_enable_coupons', 'yes' );
@@ -54,7 +52,8 @@ if( !class_exists('Wt_Smart_Coupon_Activator') )  {
 		     */
 			Wt_Smart_Coupon::install_tables();
 
-			do_action('after_wt_smart_coupon_for_wocommerce_is_activated');
+			do_action( 'after_wt_smart_coupon_for_woocommerce_is_activated' );
+			update_option( 'wbte_sc_basic_activation_hook_version', WEBTOFFEE_SMARTCOUPON_VERSION );
 
 			self::migrate();
 		}

@@ -204,8 +204,7 @@ class Wt_Smart_Coupon_Giveaway_Product_Admin extends Wt_Smart_Coupon_Giveaway_Pr
                         'once'      => __('Apply once', 'wt-smart-coupons-for-woocommerce'),
                         'repeat'    => __('Apply repeatedly', 'wt-smart-coupons-for-woocommerce'),
                     ),
-                'description' => sprintf(__('%sApply once:%s If cart is eligible or conditions are met, coupon applies once. ie: If you set the coupon to offer Buy 2 Get 1, you get one free product. Moving more items to the cart will not make it eligible to get more free products.', 'wt-smart-coupons-for-woocommerce'), '<b>', '</b>').'<br />'.sprintf(__('%sApply repeatedly:%s The coupon applies repeatedly whenever the cart is eligible or if conditions are met. ie: If you set the coupon to offer Buy 2 Get 1 then the coupon works repeatedly for Buy 4 Get 2 and so on.', 'wt-smart-coupons-for-woocommerce'), '<b>', '</b>'),
-                //'desc_tip'    => true,
+                'description' => sprintf( __( '%s Apply once: %s If cart is eligible or conditions are met, coupon applies once. ie: If you set the coupon to offer Buy 2 Get 1, you get one free product. Moving more items to the cart will not make it eligible to get more free products.', 'wt-smart-coupons-for-woocommerce' ), '<b>', '</b>' ).'<br />'.sprintf( __( '%s Apply repeatedly: %s The coupon applies repeatedly whenever the cart is eligible or if conditions are met. ie: If you set the coupon to offer Buy 2 Get 1 then the coupon works repeatedly for Buy 4 Get 2 and so on.', 'wt-smart-coupons-for-woocommerce' ), '<b>', '</b>' ),
             )
         );
         echo '</div>';

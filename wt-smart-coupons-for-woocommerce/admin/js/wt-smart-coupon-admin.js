@@ -170,6 +170,21 @@
 		$(".wt-sc-tips").tipTip({'attribute': 'data-wt-sc-tip'});
 	});
 	
+	/** Show the old BOGO disabled notice if the coupon type chosen is old BOGO, after the new BOGO is activated. */
+	$( document ).ready( function() {
+		if( WTSmartCouponAdminOBJ.is_new_bogo_activated ){
+			const notice_elm = '<div class="notice notice-info notice-alt inline wbte_sc_old_bogo_disabled_notice"><p>'+ WTSmartCouponAdminOBJ.msgs.old_bogo_disabled +'</p></div>'
+			$( '#discount_type' ).on( 'change', function () {
+				if( 'wt_sc_bogo' === $( this ).val() ){
+					if( 0 === $( '.wbte_sc_old_bogo_disabled_notice' ).length ){
+						$( '#misc-publishing-actions' ).append( notice_elm );
+					}
+				}else{
+					$( '.wbte_sc_old_bogo_disabled_notice' ).remove();
+				}
+			});
+		}
+	} );
 	
 
 })( jQuery );

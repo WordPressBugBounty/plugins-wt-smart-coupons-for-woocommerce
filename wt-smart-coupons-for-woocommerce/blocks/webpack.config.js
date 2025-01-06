@@ -14,6 +14,8 @@ module.exports = {
   mode: 'development',
   entry: {
   	'giveaway-product/frontend': path.resolve(process.cwd(), 'src/giveaway-product', 'frontend.js'),
+
+	'bogo/frontend': path.resolve(process.cwd(), 'src/bogo', 'frontend.js'),
   	
   	'auto-coupon/frontend': path.resolve(process.cwd(), 'src/auto-coupon', 'frontend.js'),
   	

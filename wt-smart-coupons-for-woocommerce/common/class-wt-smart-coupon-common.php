@@ -47,6 +47,8 @@ if( ! class_exists ( 'Wt_Smart_Coupon_Common' ) ) {
             'checkout_options', /** @since 1.4.6 */
             'coupon_style', /** @since 1.4.7 */
             'auto_coupon', /** @since 1.7.0 */
+            'exclude-product', /** @since 2.0.0 */
+            'bogo', /** @since 2.0.0 */
         );
 
         public static $existing_modules=array();
@@ -737,6 +739,20 @@ if( ! class_exists ( 'Wt_Smart_Coupon_Common' ) ) {
                     $wpdb->delete( $lookup_tb, array( 'coupon_id' => $post_id ), array( '%d' ) );
                 }
             }
+        }
+
+        /**
+         * Get the list of BOGO restricted pages.
+         * Restricted pages can be altered using the filter `wbte_sc_bogo_coupon_type_restricted_pages`.
+         * 
+         * @since 2.0.0
+         * 
+         * @return array Array of BOGO restricted pages.
+         */
+        public static function bogo_restricted_pages(){
+            $restricted_pages = array( 'wt-smart-coupon-generate' );
+
+		    return apply_filters( 'wbte_sc_bogo_coupon_type_restricted_pages', $restricted_pages );
         }
     }
 }

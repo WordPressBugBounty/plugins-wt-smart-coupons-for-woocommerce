@@ -72,6 +72,28 @@ class Wt_Smart_Coupon_Giveaway_Product
      */
     public function add_bogo_coupon_type($discount_types)
     {
+
+        $restricted_pages = ( class_exists( 'Wt_Smart_Coupon_Common' ) && method_exists( 'Wt_Smart_Coupon_Common', 'bogo_restricted_pages' ) ) ?Wt_Smart_Coupon_Common::bogo_restricted_pages() : array();
+
+        if( //If new BOGO is activated, then stop adding old BOGO type in coupon editing pages.
+            class_exists( 'Wbte_Smart_Coupon_Bogo_Common' ) 
+            && method_exists( 'Wbte_Smart_Coupon_Bogo_Common', 'is_new_bogo_activated' ) 
+            && Wbte_Smart_Coupon_Bogo_Common::is_new_bogo_activated() 
+            && ( 
+                ( isset( $_GET['page'] ) 
+                    && in_array( sanitize_text_field( $_GET['page'] ), $restricted_pages, true ) 
+                )
+                || ( isset( $_GET['post_type'] ) 
+                    && 'shop_coupon' === sanitize_text_field( $_GET['post_type'] ) 
+                    && isset( $_SERVER['REQUEST_URI'] ) 
+                    && strpos( esc_url_raw( $_SERVER['REQUEST_URI'] ), 'post-new.php' ) !== false 
+                ) 
+            ) 
+        ){
+            
+            return $discount_types;
+        }
+        
         $discount_types[self::$bogo_coupon_type_name] = __('BOGO (Buy X Get X/Y) offer', 'wt-smart-coupons-for-woocommerce');
         return $discount_types;
     }

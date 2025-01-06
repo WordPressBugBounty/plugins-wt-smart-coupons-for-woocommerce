@@ -1,113 +1,31 @@
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "react":
-/*!************************!*\
-  !*** external "React" ***!
-  \************************/
-/***/ ((module) => {
+/***/ "./src/giveaway-product/frontend.js":
+/*!******************************************************!*\
+  !*** ./src/giveaway-product/frontend.js + 5 modules ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-module.exports = window["React"];
-
-/***/ }),
-
-/***/ "@wordpress/components":
-/*!************************************!*\
-  !*** external ["wp","components"] ***!
-  \************************************/
-/***/ ((module) => {
-
-module.exports = window["wp"]["components"];
-
-/***/ }),
-
-/***/ "@wordpress/data":
-/*!******************************!*\
-  !*** external ["wp","data"] ***!
-  \******************************/
-/***/ ((module) => {
-
-module.exports = window["wp"]["data"];
-
-/***/ }),
-
-/***/ "@wordpress/element":
-/*!*********************************!*\
-  !*** external ["wp","element"] ***!
-  \*********************************/
-/***/ ((module) => {
-
-module.exports = window["wp"]["element"];
-
-/***/ }),
-
-/***/ "./src/giveaway-product/block.json":
-/*!*****************************************!*\
-  !*** ./src/giveaway-product/block.json ***!
-  \*****************************************/
-/***/ ((module) => {
-
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"wt-sc-blocks/giveaway-product","version":"1.0.0","title":"Giveaway product","category":"woocommerce","keywords":["Giveaway","WooCommerce"],"icon":"","description":"Giveaway coupon related operations.","parent":["woocommerce/cart-items-block"],"attributes":{"lock":{"type":"object","default":{"remove":true,"move":true}}},"textdomain":"wt-smart-coupons-for-woocommerce"}');
+eval("// ESM COMPAT FLAG\n__webpack_require__.r(__webpack_exports__);\n\n;// CONCATENATED MODULE: external \"React\"\nconst external_React_namespaceObject = window[\"React\"];\n;// CONCATENATED MODULE: ./src/giveaway-product/block.json\nconst block_namespaceObject = /*#__PURE__*/JSON.parse('{\"$schema\":\"https://schemas.wp.org/trunk/block.json\",\"apiVersion\":2,\"name\":\"wt-sc-blocks/giveaway-product\",\"version\":\"1.0.0\",\"title\":\"Giveaway product\",\"category\":\"woocommerce\",\"keywords\":[\"Giveaway\",\"WooCommerce\"],\"icon\":\"\",\"description\":\"Giveaway coupon related operations.\",\"parent\":[\"woocommerce/cart-items-block\"],\"attributes\":{\"lock\":{\"type\":\"object\",\"default\":{\"remove\":true,\"move\":true}}},\"textdomain\":\"wt-smart-coupons-for-woocommerce\"}');\n;// CONCATENATED MODULE: external [\"wp\",\"components\"]\nconst external_wp_components_namespaceObject = window[\"wp\"][\"components\"];\n;// CONCATENATED MODULE: external [\"wp\",\"element\"]\nconst external_wp_element_namespaceObject = window[\"wp\"][\"element\"];\n;// CONCATENATED MODULE: external [\"wp\",\"data\"]\nconst external_wp_data_namespaceObject = window[\"wp\"][\"data\"];\n;// CONCATENATED MODULE: ./src/giveaway-product/frontend.js\n\n\n\n\n\nconst {\n  registerCheckoutFilters,\n  registerCheckoutBlock,\n  extensionCartUpdate\n} = window.wc.blocksCheckout;\n\n// Declare some global variables.\nvar wbte_giveaway_eligible_message_timeout = null;\nvar wbte_giveaway_products_timeout = null;\nvar wbte_cart_obj = null;\nvar wbte_isFirefox = typeof InstallTrigger !== 'undefined';\n\n/**\n *  Register checkout filter to alter cart and show notices\n */\nconst updateDataToCart = (defaultValue, extensions, args) => {\n  wbte_cart_obj = args?.cart;\n\n  // Add giveaway item text to cart item.\n  const cartitem_giveaway_text = args?.cart?.extensions?.wt_sc_blocks?.cartitem_giveaway_text;\n  const cart_item_key = args?.cartItem?.key;\n  if (cart_item_key && cartitem_giveaway_text && cartitem_giveaway_text[cart_item_key]) {\n    args.cartItem.short_description = cartitem_giveaway_text[cart_item_key];\n    args.cartItem.quantity_limits.maximum = args.cartItem.quantity;\n    args.cartItem.quantity_limits.minimum = args.cartItem.quantity;\n  }\n\n  //Show giveaway available message.\n  const {\n    createInfoNotice,\n    removeNotice,\n    removeAllNotices\n  } = (0,external_wp_data_namespaceObject.useDispatch)('core/notices');\n  const context = 'wc/cart';\n  const msg_id = 'wbte-giveaway-eligible-msg';\n  const giveaway_eligible_message = args?.cart?.extensions?.wt_sc_blocks?.giveaway_eligible_message;\n  clearTimeout(wbte_giveaway_eligible_message_timeout);\n  wbte_giveaway_eligible_message_timeout = setTimeout(function () {\n    if (giveaway_eligible_message) {\n      createInfoNotice(giveaway_eligible_message, {\n        id: msg_id,\n        type: 'default',\n        isDismissible: false,\n        context\n      });\n    } else {\n      removeNotice(msg_id, context);\n    }\n  }, 10);\n  return defaultValue;\n};\nregisterCheckoutFilters('wt-sc-blocks-update-cart', {\n  itemName: updateDataToCart\n});\nconst modifyCartItemClass = (defaultValue, extensions, args) => {\n  // Add custom CSS class to giveaway cart item.\n  const cartitem_giveaway_text = args?.cart?.extensions?.wt_sc_blocks?.cartitem_giveaway_text;\n  const cart_item_key = args?.cartItem?.key;\n  if (cart_item_key && cartitem_giveaway_text && cartitem_giveaway_text[cart_item_key]) {\n    return 'wbte-giveaway-cart-item';\n  }\n  return defaultValue;\n};\nregisterCheckoutFilters('wt-sc-blocks-modify-cart-item-class', {\n  cartItemClass: modifyCartItemClass\n});\ndocument.addEventListener('wbte_sc_checkout_value_updated', function (e) {\n  extensionCartUpdate({\n    namespace: 'wbte-sc-blocks-update-checkout',\n    data: {}\n  });\n});\n\n// Webkit browsers (other than Firefox) requires an extra refresh to show the giveaway products\nif (!wbte_isFirefox && \"1\" === WTSmartCouponOBJ.is_cart) {\n  setTimeout(function () {\n    if (wbte_cart_obj) {\n      let html = wbte_cart_obj?.extensions?.wt_sc_blocks?.giveaway_products_html;\n      let temp_elm = document.createElement(\"div\");\n      temp_elm.innerHTML = html;\n      let text = temp_elm.textContent || temp_elm.innerText || \"\";\n\n      // Only do the refresh when giveaway product HTML exists.\n      if (text.trim()) {\n        extensionCartUpdate({\n          namespace: 'wbte-sc-blocks-update-checkout',\n          data: {}\n        });\n      }\n    }\n  }, 100);\n}\n\n/** \n *  Giveaway products block\n */\nconst Block = ({\n  children,\n  checkoutExtensionData,\n  cart\n}) => {\n  const [productsHtml, setProductsHtml] = (0,external_wp_element_namespaceObject.useState)('');\n  if (wbte_cart_obj) {\n    clearTimeout(wbte_giveaway_products_timeout);\n    wbte_giveaway_products_timeout = setTimeout(function () {\n      const giveaway_products_html = wbte_cart_obj?.extensions?.wt_sc_blocks?.giveaway_products_html;\n      setProductsHtml(giveaway_products_html);\n    }, 10);\n  }\n  return (0,external_React_namespaceObject.createElement)(\"div\", {\n    dangerouslySetInnerHTML: {\n      __html: productsHtml\n    }\n  });\n};\nregisterCheckoutBlock({\n  metadata: block_namespaceObject,\n  component: Block\n});\n\n//# sourceURL=webpack://wt-sc-blocks/./src/giveaway-product/frontend.js_+_5_modules?");
 
 /***/ })
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
-/******/ 	var __webpack_module_cache__ = {};
-/******/ 	
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
-/******/ 		if (cachedModule !== undefined) {
-/******/ 			return cachedModule.exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
-/******/ 			exports: {}
-/******/ 		};
-/******/ 	
-/******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/ 	
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
+/******/ 	// The require scope
+/******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = (exports, definition) => {
-/******/ 			for(var key in definition) {
-/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
-/******/ 			}
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -120,148 +38,12 @@ module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json
 /******/ 	})();
 /******/ 	
 /************************************************************************/
-var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
-(() => {
-/*!******************************************!*\
-  !*** ./src/giveaway-product/frontend.js ***!
-  \******************************************/
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./block.json */ "./src/giveaway-product/block.json");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__);
-
-
-
-
-
-const {
-  registerCheckoutFilters,
-  registerCheckoutBlock,
-  extensionCartUpdate
-} = window.wc.blocksCheckout;
-
-// Declare some global variables.
-var wbte_giveaway_eligible_message_timeout = null;
-var wbte_giveaway_products_timeout = null;
-var wbte_cart_obj = null;
-var wbte_isFirefox = typeof InstallTrigger !== 'undefined';
-
-/**
- *  Register checkout filter to alter cart and show notices
- */
-const updateDataToCart = (defaultValue, extensions, args) => {
-  wbte_cart_obj = args?.cart;
-
-  // Add giveaway item text to cart item.
-  const cartitem_giveaway_text = args?.cart?.extensions?.wt_sc_blocks?.cartitem_giveaway_text;
-  const cart_item_key = args?.cartItem?.key;
-  if (cart_item_key && cartitem_giveaway_text && cartitem_giveaway_text[cart_item_key]) {
-    args.cartItem.short_description = cartitem_giveaway_text[cart_item_key];
-    args.cartItem.quantity_limits.maximum = args.cartItem.quantity;
-    args.cartItem.quantity_limits.minimum = args.cartItem.quantity;
-  }
-
-  //Show giveaway available message.
-  const {
-    createInfoNotice,
-    removeNotice,
-    removeAllNotices
-  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useDispatch)('core/notices');
-  const context = 'wc/cart';
-  const msg_id = 'wbte-giveaway-eligible-msg';
-  const giveaway_eligible_message = args?.cart?.extensions?.wt_sc_blocks?.giveaway_eligible_message;
-  clearTimeout(wbte_giveaway_eligible_message_timeout);
-  wbte_giveaway_eligible_message_timeout = setTimeout(function () {
-    if (giveaway_eligible_message) {
-      createInfoNotice(giveaway_eligible_message, {
-        id: msg_id,
-        type: 'default',
-        isDismissible: false,
-        context
-      });
-    } else {
-      removeNotice(msg_id, context);
-    }
-  }, 10);
-  return defaultValue;
-};
-registerCheckoutFilters('wt-sc-blocks-update-cart', {
-  itemName: updateDataToCart
-});
-const modifyCartItemClass = (defaultValue, extensions, args) => {
-  // Add custom CSS class to giveaway cart item.
-  const cartitem_giveaway_text = args?.cart?.extensions?.wt_sc_blocks?.cartitem_giveaway_text;
-  const cart_item_key = args?.cartItem?.key;
-  if (cart_item_key && cartitem_giveaway_text && cartitem_giveaway_text[cart_item_key]) {
-    return 'wbte-giveaway-cart-item';
-  }
-  return defaultValue;
-};
-registerCheckoutFilters('wt-sc-blocks-modify-cart-item-class', {
-  cartItemClass: modifyCartItemClass
-});
-document.addEventListener('wbte_sc_checkout_value_updated', function (e) {
-  extensionCartUpdate({
-    namespace: 'wbte-sc-blocks-update-checkout',
-    data: {}
-  });
-});
-
-// Webkit browsers (other than Firefox) requires an extra refresh to show the giveaway products
-if (!wbte_isFirefox && "1" === WTSmartCouponOBJ.is_cart) {
-  setTimeout(function () {
-    if (wbte_cart_obj) {
-      let html = wbte_cart_obj?.extensions?.wt_sc_blocks?.giveaway_products_html;
-      let temp_elm = document.createElement("div");
-      temp_elm.innerHTML = html;
-      let text = temp_elm.textContent || temp_elm.innerText || "";
-
-      // Only do the refresh when giveaway product HTML exists.
-      if (text.trim()) {
-        extensionCartUpdate({
-          namespace: 'wbte-sc-blocks-update-checkout',
-          data: {}
-        });
-      }
-    }
-  }, 100);
-}
-
-/** 
- *  Giveaway products block
- */
-const Block = ({
-  children,
-  checkoutExtensionData,
-  cart
-}) => {
-  const [productsHtml, setProductsHtml] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)('');
-  if (wbte_cart_obj) {
-    clearTimeout(wbte_giveaway_products_timeout);
-    wbte_giveaway_products_timeout = setTimeout(function () {
-      const giveaway_products_html = wbte_cart_obj?.extensions?.wt_sc_blocks?.giveaway_products_html;
-      setProductsHtml(giveaway_products_html);
-    }, 10);
-  }
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    dangerouslySetInnerHTML: {
-      __html: productsHtml
-    }
-  });
-};
-registerCheckoutBlock({
-  metadata: _block_json__WEBPACK_IMPORTED_MODULE_1__,
-  component: Block
-});
-})();
-
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	var __webpack_exports__ = {};
+/******/ 	__webpack_modules__["./src/giveaway-product/frontend.js"](0, __webpack_exports__, __webpack_require__);
+/******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=frontend.js.map

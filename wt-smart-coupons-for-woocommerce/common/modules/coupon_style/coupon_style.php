@@ -331,6 +331,19 @@ class Wt_Smart_Coupon_Style
                 //Code
                 $find_replace['[wt_sc_coupon_code]'] = esc_html($coupon->get_code());
 
+                // For BOGO coupon type show description instead of code, if description is empty or customer used below filter hook, then show BOGO type.
+                if( 'email_coupon' !== $coupon_type && class_exists( 'Wbte_Smart_Coupon_Bogo_Common' ) && method_exists( 'Wbte_Smart_Coupon_Bogo_Common', 'is_bogo' ) && Wbte_Smart_Coupon_Bogo_Common::is_bogo( $coupon_id ) ){
+                    $bogo_description = $coupon->get_description();
+
+                    if( apply_filters( 'wbte_sc_bogo_type_instead_description', false, $coupon_id ) || empty( $bogo_description ) ){
+                        $find_replace['[wt_sc_coupon_code]'] = esc_html__( 'Buy X Get X/Y', 'wt-smart-coupons-for-woocommerce' );
+                    }
+                    else{
+                        $find_replace['[wt_sc_coupon_code]'] = esc_html( $bogo_description );
+                    }
+                    
+                }
+
                 //Coupon type
                 $find_replace['[wt_sc_coupon_type]'] = esc_html($coupon_data['coupon_type']);
 
@@ -355,7 +368,7 @@ class Wt_Smart_Coupon_Style
 
 
             /** @since 1.6.0    Add coupon code for attribute. */
-            $find_replace['[wt_sc_coupon_code_attr]'] = esc_attr($find_replace['[wt_sc_coupon_code]']);
+            $find_replace['[wt_sc_coupon_code_attr]'] = esc_attr( $coupon->get_code() );
 
 
             /* filter to alter/add placeholder values */

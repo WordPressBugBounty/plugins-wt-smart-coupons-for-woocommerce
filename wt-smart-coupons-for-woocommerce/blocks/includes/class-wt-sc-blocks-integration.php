@@ -2,6 +2,10 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+if ( !interface_exists( '\Automattic\WooCommerce\Blocks\Integrations\IntegrationInterface' ) ) {
+    return;
+}
+
 use Automattic\WooCommerce\Blocks\Integrations\IntegrationInterface;
 
 /**

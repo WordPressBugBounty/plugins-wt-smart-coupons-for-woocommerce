@@ -115,9 +115,16 @@ class Wt_Smart_Coupon_Auto_Coupon_Admin extends Wt_Smart_Coupon_Auto_Coupon_Comm
      * 
      *  @since 1.4.1
      *  @since 1.7.0    Priority updating added.
+     *  @since 2.0.0    Meta data added.
+     * 
+     *  @param int     $post_id    Post ID.
+     *  @param WP_Post $post       Post object.
+     *  @param array   $meta_data  Meta data.
      */
-    public function process_shop_coupon_meta( $post_id, $post ) {
-        if ( isset( $_POST['_wt_make_auto_coupon'] ) && "" !== sanitize_text_field( $_POST['_wt_make_auto_coupon'] ) ) {
+    public function process_shop_coupon_meta( $post_id, $post, $meta_data = array() ) {
+
+        $meta_data = empty( $meta_data ) ? $_POST : $meta_data;
+        if ( isset( $meta_data['_wt_make_auto_coupon'] ) && "" !== sanitize_text_field( $meta_data['_wt_make_auto_coupon'] ) ) {
             update_post_meta( $post_id, '_wt_make_auto_coupon', true );
 
             $priority  = absint( get_post_meta( $post_id, '_wbte_sc_auto_coupon_priority', true ) );

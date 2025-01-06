@@ -55,6 +55,8 @@ if( ! class_exists('Wt_Smart_Coupon_Public') ) {
             'auto_coupon',
             'url_coupon',
             'checkout_options', /** @since 1.4.6 */
+            'exclude-product', /** @since 2.0.0 */
+            'bogo', /** @since 2.0.0 */
         );
 
         public static $existing_modules=array();
@@ -1067,6 +1069,21 @@ if( ! class_exists('Wt_Smart_Coupon_Public') ) {
             WC()->session->set( 'chosen_shipping_methods', $chosen_shipping_methods );
 
             exit();
+        }
+
+         /**
+         *  Determines whether the current request is for an administrative interface page.
+         * 
+         *  @since 2.0.0
+         *  @return boolean   Is admin or not
+         */
+        public static function is_admin(){
+            /**
+             *  Hook to bypass is_admin check
+             *  Example scenario: When scripts using admin ajax on frontend.
+             *  @param  bool     Is admin or not, Default: true
+             */
+            return is_admin() && apply_filters( 'wt_sc_bypass_is_admin_check', true );
         }
     }
 }

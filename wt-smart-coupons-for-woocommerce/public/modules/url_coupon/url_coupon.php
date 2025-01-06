@@ -80,7 +80,7 @@ class Wt_Smart_Coupon_Url_Coupon_Public
                 set_transient('wt_smart_url_coupon_pending_coupon', $coupon_code, 1800);
                 
                 $shop_page_url  = get_page_link(get_option('woocommerce_shop_page_id'));               
-                $new_message    = sprintf(__('Oops your cart is empty! Add %sproducts%s to your cart to avail the offer.', 'wt-smart-coupons-for-woocommerce'), '<a href="'.esc_attr($shop_page_url).'">', '</a>');
+                $new_message    = sprintf( __( 'Oops your cart is empty! Add %s products %s to your cart to avail the offer.', 'wt-smart-coupons-for-woocommerce' ), '<a href="' . esc_url( $shop_page_url ) . '">', '</a>' );
                 $new_message = apply_filters('wt_smart_coupon_url_coupon_message', $new_message);               
                 wc_add_notice($new_message, 'error');
             }

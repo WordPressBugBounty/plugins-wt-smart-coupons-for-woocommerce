@@ -206,7 +206,7 @@ function wt_sc_change_url_coupon_message($msg){
 		return __("You got a coupon","wt-smart-coupons-for-woocommerce");
 	}else{
 		$shop_page_url  = get_page_link(get_option("woocommerce_shop_page_id"));               
-		return sprintf(__("Your cart is empty! Add %sproducts%s to avail the offer.", "wt-smart-coupons-for-woocommerce"), \'<a href="\'.esc_attr($shop_page_url).\'">\', \'</a>\');
+		return sprintf( __( "Your cart is empty! Add %s products %s to avail the offer.", "wt-smart-coupons-for-woocommerce" ), \'<a href="\'.esc_url( $shop_page_url ).\'">\', \'</a>\' );
 	}
 }',
 		),

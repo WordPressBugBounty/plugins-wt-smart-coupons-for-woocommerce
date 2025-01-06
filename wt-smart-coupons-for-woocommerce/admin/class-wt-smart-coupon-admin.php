@@ -46,6 +46,8 @@ if( ! class_exists('Wt_Smart_Coupon_Admin') ) {
             'other_solutions',
             'checkout_options', /** @since 1.4.6 */
             'coupon_style', /** @since 1.4.7 */
+            'exclude-product', /** @since 2.0.0 */
+            'bogo', /** @since 2.0.0 */
         );
 
         public static $existing_modules = array();
@@ -97,6 +99,7 @@ if( ! class_exists('Wt_Smart_Coupon_Admin') ) {
          */
         public static function premium_features_sidebar()
         {
+            $premium_url = esc_url( 'https://www.webtoffee.com/product/smart-coupons-for-woocommerce/?utm_source=free_plugin_sidebar&utm_medium=smart_coupons_basic&utm_campaign=smart_coupons' );
             include WT_SMARTCOUPON_MAIN_PATH.'/admin/views/_premium_features_sidebar.php';
         }
 
@@ -134,12 +137,7 @@ if( ! class_exists('Wt_Smart_Coupon_Admin') ) {
          */
         public function upgrade_to_pro_meta_box()
         {
-            if( self::is_bfcm_season() ){
-                add_meta_box( "wt-sc-upgrade-to-pro", " ", array( $this, "upgrade_to_pro_meta_box_html" ), "shop_coupon", "side", "core", null );
-            }else{
-                add_meta_box( "wt-sc-upgrade-to-pro", __( "Upgrade your coupon campaigns with enhanced features", 'wt-smart-coupons-for-woocommerce' ), array( $this, "upgrade_to_pro_meta_box_html" ), "shop_coupon", "side", "core", null );
-            }
-            
+            add_meta_box( "wt-sc-upgrade-to-pro", __( "Upgrade your coupon campaigns with enhanced features", 'wt-smart-coupons-for-woocommerce' ), array( $this, "upgrade_to_pro_meta_box_html" ), "shop_coupon", "side", "core", null );
         }
     
     
@@ -234,7 +232,11 @@ if( ! class_exists('Wt_Smart_Coupon_Admin') ) {
                         'please_wait'=>__("Please wait...", 'wt-smart-coupons-for-woocommerce'),
                         'are_you_sure'=>__("Are you sure?", 'wt-smart-coupons-for-woocommerce'),
                         'are_you_sure_to_delete'=>__("Are you sure you want to delete?", 'wt-smart-coupons-for-woocommerce'),
-                    )
+                        'old_bogo_disabled' => __( "Old BOGO module is disabled", 'wt-smart-coupons-for-woocommerce' ),
+                        ),
+                    'is_new_bogo_activated' => class_exists( 'Wbte_Smart_Coupon_Bogo_Common' ) 
+                        && method_exists( 'Wbte_Smart_Coupon_Bogo_Common', 'is_new_bogo_activated' ) 
+                        && Wbte_Smart_Coupon_Bogo_Common::is_new_bogo_activated(),
                 );
                 
                 $script_parameters['ajaxurl'] = admin_url( 'admin-ajax.php' );
@@ -671,7 +673,7 @@ if( ! class_exists('Wt_Smart_Coupon_Admin') ) {
                     <?php  
                     if(0 === absint( get_option( 'wt_sc_bulk_plugin_text_close', 0) ) )
                     {
-                        $bulk_plugin_text = '<div style="width:calc(100% - 30px); line-height:48px; padding:10px 10px 10px 10px; background:#E3E3FF; border-left:solid 3px #5454A5; margin-bottom:10px; box-shadow:0px 2px 2px #ccc;" class="wt_sc_bulk_plugin_text"><span><img src="'.esc_url(WT_SMARTCOUPON_MAIN_URL . 'admin/images/idea_bulb_purple.svg').'" style="width:16px;"></span>&nbsp;<span style="font-size:13px;"><span style="color:#5454A5; font-size:15px; font-weight:500;">'.__('Did you know?', 'wt-smart-coupons-for-woocommerce').'</span>&ensp;' . __('You can easily create bulk coupons within a few clicks.', 'wt-smart-coupons-for-woocommerce') . ' ' .sprintf(__('Get %s WooCommerce Coupon Generator%s plugin.', 'wt-smart-coupons-for-woocommerce'), '<a href="'. esc_attr('https://www.webtoffee.com/product/woocommerce-coupon-generator/?utm_source=free_plugin_add_coupon_menu&utm_medium=smart_coupon_basic&utm_campaign=Coupon_Generator&utm_content=' . WEBTOFFEE_SMARTCOUPON_VERSION) .'" target="_blank"><b>', '</b></a>') . '&ensp;<a style="height:25px; margin-top:10px; background:#5454A5; color:#fff; border:none;" class="button button-secondary" href="'. esc_attr('https://www.webtoffee.com/product/woocommerce-coupon-generator/?utm_source=free_plugin_add_coupon_menu&utm_medium=smart_coupon_basic&utm_campaign=Coupon_Generator&utm_content=' . WEBTOFFEE_SMARTCOUPON_VERSION) .'" target="_blank">' . __("Check out plugin", "wt-smart-coupons-for-woocommerce") . '<span class="dashicons dashicons-arrow-right-alt" style="margin-top:8px;font-size:14px;"></span> </a>&ensp;<button type="button" style="height:25px; margin-top:10px; background:#E3E3FF; color:#5454A5; border:1px solid #5454A5;" class="button button-secondary wt_sc_bulk_plugin_text_close">' . __("Maybe later", "wt-smart-coupons-for-woocommerce") . ' </button><span style="line-height:48px; float:right; color:#505050;cursor:pointer;" class="dashicons dashicons-no-alt wt_sc_bulk_plugin_text_close"></span></span></div>';
+                        $bulk_plugin_text = '<div style="width:calc(100% - 30px); line-height:48px; padding:10px 10px 10px 10px; background:#E3E3FF; border-left:solid 3px #5454A5; margin-bottom:10px; box-shadow:0px 2px 2px #ccc;" class="wt_sc_bulk_plugin_text"><span><img src="' . esc_url( WT_SMARTCOUPON_MAIN_URL . 'admin/images/idea_bulb_purple.svg' ) . '" style="width:16px;"></span>&nbsp;<span style="font-size:13px;"><span style="color:#5454A5; font-size:15px; font-weight:500;">' . esc_html__( 'Did you know?', 'wt-smart-coupons-for-woocommerce' ) . '</span>&ensp;' . esc_html__( 'You can easily create bulk coupons within a few clicks.', 'wt-smart-coupons-for-woocommerce' ) . ' ' . sprintf( esc_html__( 'Get %s WooCommerce Coupon Generator %s plugin.', 'wt-smart-coupons-for-woocommerce' ), '<a href="' . esc_url( 'https://www.webtoffee.com/product/woocommerce-coupon-generator/?utm_source=free_plugin_add_coupon_menu&utm_medium=smart_coupon_basic&utm_campaign=Coupon_Generator&utm_content=' . WEBTOFFEE_SMARTCOUPON_VERSION ) . '" target="_blank"><b>', '</b></a>' ) . '&ensp;<a style="height:25px; margin-top:10px; background:#5454A5; color:#fff; border:none;" class="button button-secondary" href="' . esc_url( 'https://www.webtoffee.com/product/woocommerce-coupon-generator/?utm_source=free_plugin_add_coupon_menu&utm_medium=smart_coupon_basic&utm_campaign=Coupon_Generator&utm_content=' . WEBTOFFEE_SMARTCOUPON_VERSION ) . '" target="_blank">' . esc_html__( "Check out plugin", "wt-smart-coupons-for-woocommerce" ) . '<span class="dashicons dashicons-arrow-right-alt" style="margin-top:8px;font-size:14px;"></span> </a>&ensp;<button type="button" style="height:25px; margin-top:10px; background:#E3E3FF; color:#5454A5; border:1px solid #5454A5;" class="button button-secondary wt_sc_bulk_plugin_text_close">' . esc_html__( "Maybe later", "wt-smart-coupons-for-woocommerce" ) . ' </button><span style="line-height:48px; float:right; color:#505050;cursor:pointer;" class="dashicons dashicons-no-alt wt_sc_bulk_plugin_text_close"></span></span></div>';
                     ?>
                         jQuery('.page-title-action.wt_sc_plugin_settings_btn').after('<?php echo wp_kses_post($bulk_plugin_text); ?>');
                         jQuery('.wt_sc_bulk_plugin_text').css({'box-shadow': '0px 2px 2px #ccc'});
@@ -898,36 +900,115 @@ if( ! class_exists('Wt_Smart_Coupon_Admin') ) {
         }
 
         /**
-         *  Screens to show Black Friday and Cyber Monday Banner.
-         * 
-         *  @since 1.8.4
-         *  @param array $screen_ids Array of screen ids.
-         *  @return array            Array of screen ids.
+         * 	Load the design system files and initiate it.
+         * 	
+         *  @since    2.0.0
          */
-        public function wt_bfcm_banner_screens( $screen_ids ) {
-            $screen_ids[] = 'toplevel_page_wt-smart-coupon-for-woo';
-            $screen_ids[] = 'smart-coupons_page_premium_upgrade';
-            return $screen_ids;
+        public function include_design_system() {
+            
+            include_once plugin_dir_path( __FILE__ ) . 'wt-ds/class-wbte-ds.php';
+            
+            if( class_exists( 'Wbte\Sc\Ds\Wbte_Ds' ) ){
+
+                // Just initiate it. This is to load the CSS and JS.
+                Wbte\Sc\Ds\Wbte_Ds::get_instance( WEBTOFFEE_SMARTCOUPON_VERSION );
+            }
         }
 
         /**
-         * To Check if the current date is on or between the start and end date of black friday and cyber monday banner for 2024.
+         * Get WC_DateTime object for a date
          * 
-         * @since 1.8.4
+         * @since 2.0.0
+         * 
+         * @param mixed $value The date value to convert to WC_DateTime.
+         * @return WC_DateTime The WC_DateTime object.
          */
-        public static function is_bfcm_season() {
-            
-            $start_date = new DateTime( '25-NOV-2024, 12:00 AM', new DateTimeZone( 'Asia/Kolkata' ) ); // Start date.
-            $current_date = new DateTime( 'now', new DateTimeZone( 'Asia/Kolkata' ) ); // Current date.
-            $end_date = new DateTime( '02-DEC-2024, 11:59 PM', new DateTimeZone( 'Asia/Kolkata' ) ); // End date.
-
-            /**
-             * Check if the date is on or between the start and end date of black friday and cyber monday banner for 2024.
-             */
-            if ( $current_date < $start_date  || $current_date >= $end_date) {
-                return false;
+        public static function wt_sc_get_date_prop( $value )
+        {
+            if ( is_int( $value ) ) {
+                $timestamp = $value;
+            } else {
+                if ( 1 === preg_match( '/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(Z|((-|\+)\d{2}:\d{2}))$/', $value, $date_bits ) ) {
+                    $offset    = ! empty( $date_bits[7] ) ? iso8601_timezone_to_offset( $date_bits[7] ) : wc_timezone_offset();
+                    $timestamp = gmmktime( $date_bits[4], $date_bits[5], $date_bits[6], $date_bits[2], $date_bits[3], $date_bits[1] ) - $offset;
+                } else {
+                    $timestamp = wc_string_to_timestamp( get_gmt_from_date( gmdate( 'Y-m-d H:i:s', wc_string_to_timestamp( $value ) ) ) );
+                }
             }
-            return true;
+            $datetime = new WC_DateTime( "@{$timestamp}", new DateTimeZone( 'UTC' ) );
+
+			// Set local timezone or offset.
+            if ( get_option( 'timezone_string' ) ) {
+                $datetime->setTimezone( new DateTimeZone( wc_timezone_string() ) );
+            } else {
+                $datetime->set_utc_offset( wc_timezone_offset() );
+            }
+            
+            return $datetime;
+        }
+
+        /**
+         *  Trigger 'after_wt_smart_coupon_for_woocommerce_is_activated' hook by comparing version in option
+         *  
+         *  @since 2.0.0
+         */
+        public static function check_and_trigger_activation_action_hook(){
+            
+            if( !get_option( 'wbte_sc_basic_activation_hook_version' ) || version_compare( get_option( 'wbte_sc_basic_activation_hook_version' ), WEBTOFFEE_SMARTCOUPON_VERSION, '<' ) ){
+                do_action( 'after_wt_smart_coupon_for_woocommerce_is_activated' );
+                update_option( 'wbte_sc_basic_activation_hook_version', WEBTOFFEE_SMARTCOUPON_VERSION );		
+            }
+        }
+
+        /**
+         *  Delete non-existing coupons from the lookup table.
+         * 
+         *  @since 2.0.0
+         */
+        public function delete_coupon_from_lookup_table(){
+
+            if( !get_option( 'wbte_sc_basic_removed_non_existing_coupons_lookup_tb' ) ){
+
+                $lookup_tb = Wt_Smart_Coupon::get_lookup_table_name();
+
+                if ( Wt_Smart_Coupon::is_table_exists( $lookup_tb ) ) {
+
+                    global $wpdb;
+                    
+                    $lookup_table_coupon_ids = $wpdb->get_col( "SELECT coupon_id FROM $lookup_tb" );
+            
+                    if ( ! empty( $lookup_table_coupon_ids ) ) {
+                        
+                        $placeholders = implode( ',', array_fill( 0, count( $lookup_table_coupon_ids ), '%d' ) );
+            
+                        // Query to find existing coupon IDs in wp_posts.
+                        $existing_coupon_ids = $wpdb->get_col(
+                            $wpdb->prepare(
+                                "SELECT ID FROM {$wpdb->posts} WHERE post_type = 'shop_coupon' AND ID IN ($placeholders)",
+                                $lookup_table_coupon_ids
+                            )
+                        );
+            
+                        // Calculate IDs to remove (in custom table but not in wp_posts).
+                        $ids_to_remove = array_diff( $lookup_table_coupon_ids, $existing_coupon_ids );
+            
+                        // Remove invalid coupon IDs from the custom table.
+                        if ( ! empty( $ids_to_remove ) ) {
+                            $placeholders = implode( ',', array_fill( 0, count( $ids_to_remove ), '%d' ) );
+            
+                            $wpdb->query(
+                                $wpdb->prepare(
+                                    "DELETE FROM $lookup_tb WHERE coupon_id IN ($placeholders)",
+                                    $ids_to_remove
+                                )
+                            );
+                        }
+                    }
+
+                    update_option( 'wbte_sc_basic_removed_non_existing_coupons_lookup_tb', 1 );
+                }
+            }
+           
         }
     }
 }

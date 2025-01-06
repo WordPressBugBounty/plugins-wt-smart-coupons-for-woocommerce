@@ -5,8 +5,8 @@ if ( ! defined( 'WPINC' ) ) {
 ?>
 <style>
 /* hide default sidebar */
-.wt-sc-tab-container, .wt-sc-tab-head{ width:68%; }
-.wt_smart_coupon_admin_form_right_box{ width:calc(32% - 25px); }
+.wt-sc-tab-container, .wt-sc-tab-head{ width: 73%; }
+.wt_smart_coupon_admin_form_right_box{ width:calc(27% - 25px); }
 
 .wt_smcpn_upgrade_to_premium_hd_block{ float:left; width:100%; padding:25px; box-sizing:border-box; background:rgba(233, 245, 255, 0.67); }
 .wt_smcpn_upgrade_to_premium_hd_block img{ float:left; width:40px; margin-right:10px; }
@@ -54,7 +54,7 @@ html[dir="rtl"] .wt_smcpn_settings_left{ float:right; }
 
         }else
         {
-            jQuery('.wt-sc-tab-container, .wt-sc-tab-head').css({'width': '68%', });
+            jQuery('.wt-sc-tab-container, .wt-sc-tab-head').css({'width': '73%', });
             jQuery('.wt-sc-tab-container').css({'background': '#fff', });
             jQuery('.wt_smart_coupon_pro_features').show(); 
         }

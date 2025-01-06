@@ -11,21 +11,8 @@ if (!defined('WPINC')) {
 $custom_tick = '<img src="'. esc_url( WT_SMARTCOUPON_MAIN_URL ) .'admin/images/tick.svg" alt="'. __( "Tick", "wt-smart-coupons-for-woocommerce" ) .'" style="margin-right:9.5px;">';
 ?>
 <style type="text/css">
-
-    <?php 
-    if( class_exists( 'Wt_Smart_Coupon_Admin' ) && method_exists( 'Wt_Smart_Coupon_Admin', 'is_bfcm_season' ) && Wt_Smart_Coupon_Admin::is_bfcm_season() ) {
-        ?>
-        #wt-sc-upgrade-to-pro .postbox-header{  height:66px; background:url( <?php echo esc_attr( WT_SMARTCOUPON_MAIN_URL . "admin/modules/banner/assets/images/bfcm-doc-settings-coupon.svg" ) ?> ) no-repeat 18px 0 #E0F9E6; }
-        #poststuff .inside{ margin: 0; }
-        .wt-sc-metabox-pro-features_head_div{ height: 80px; border-bottom: 1px solid #c3c4c7; margin-left: -20px; margin-right: -20px; display: flex; align-items: center; padding-left: 25px; justify-content: center; }
-        .wt-sc-metabox-pro-features_head_div img{ width: 55px; }
-        .wt-sc-metabox-pro-features_head_div h2{ font-weight: 600 !important; font-size: 13px !important; }
-        <?php
-    }else{
-        echo '#wt-sc-upgrade-to-pro .postbox-header{  height:80px; background:url(' . esc_attr( WT_SMARTCOUPON_MAIN_URL . "admin/images/upgrade_box_icon.svg" ) . ') no-repeat 18px 18px #fff; padding-left:65px; margin-bottom:18px; background-size: 45px 45px; }';
-    }
-    ?>
     
+    #wt-sc-upgrade-to-pro .postbox-header{  height:80px; background:url( <?php echo esc_attr( WT_SMARTCOUPON_MAIN_URL . 'admin/images/upgrade_box_icon.svg' ); ?> ) no-repeat 18px 18px #fff; padding-left:65px; margin-bottom:18px; background-size: 45px 45px; }
     #wt-sc-upgrade-to-pro .postbox-header h2{ color:#000; font-size:14px; font-weight: 600;}
     #wt-sc-upgrade-to-pro .postbox-header .handle-actions{ display:none; }
     #wt-sc-upgrade-to-pro .inside{ background:#fff;  padding:0px 20px; padding-bottom:30px; border-radius:15px;}
@@ -41,20 +28,6 @@ $custom_tick = '<img src="'. esc_url( WT_SMARTCOUPON_MAIN_URL ) .'admin/images/t
     #wt-sc-upgrade-to-pro .wt-sc-pro-features-view-all{ color:#007FFF; text-decoration-line: underline; text-align:center; cursor: pointer;}
     #wt-sc-upgrade-to-pro .wt-sc-pro-features-view-less{ color:#007FFF; text-decoration-line: underline; text-align:center; display:none; cursor: pointer;}
 </style>
-
-<?php 
-
-if( class_exists( 'Wt_Smart_Coupon_Admin' ) && method_exists( 'Wt_Smart_Coupon_Admin', 'is_bfcm_season' ) && Wt_Smart_Coupon_Admin::is_bfcm_season() ) {
-    ?>
-    <div class="wt-sc-metabox-pro-features_head_div">
-        <img src=" <?php echo esc_url( WT_SMARTCOUPON_MAIN_URL ) .'admin/images/upgrade_box_icon.svg' ?>" alt="<?php esc_attr_e( "upgrade box icon", "wt-smart-coupons-for-woocommerce" ) ?>">
-        <h2><?php esc_html_e( 'Upgrade your coupon campaigns with enhanced features
-    ', 'wt-smart-coupons-for-woocommerce' ) ?></h2>
-    </div>
-    <?php
-}
-
-?>
 
 <ul class="wt-sc-metabox-pro-features">
     <li class="wt-sc-metabox-pro-features-heading"><?php _e( 'Smart Coupons Premium features:', 'wt-smart-coupons-for-woocommerce' );?></li>

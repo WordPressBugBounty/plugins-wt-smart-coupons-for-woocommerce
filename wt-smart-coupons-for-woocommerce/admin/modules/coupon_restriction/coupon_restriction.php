@@ -209,7 +209,7 @@ class Wt_Smart_Coupon_Restriction_Admin extends Wt_Smart_Coupon_Restriction
                         'or' => __('Any from below selection', 'wt-smart-coupons-for-woocommerce'),
                         'and' => __('All from below selection', 'wt-smart-coupons-for-woocommerce')
                     ),
-                'description' => sprintf(__('%sAny:%s Applies coupon if any of the products from the below is available in the cart.', 'wt-smart-coupons-for-woocommerce'), '<b>', '</b>').'<br />'.sprintf(__('%sAll:%s Applies coupon if the cart contains all of the listed products.', 'wt-smart-coupons-for-woocommerce'), '<b>', '</b>'),
+                'description' => sprintf( __( '%s Any: %s Applies coupon if any of the products from the below is available in the cart.', 'wt-smart-coupons-for-woocommerce' ), '<b>', '</b>' ).'<br />'.sprintf( __( '%s All: %s Applies coupon if the cart contains all of the listed products.', 'wt-smart-coupons-for-woocommerce' ), '<b>', '</b>' ),
             )
         );
 
@@ -229,7 +229,7 @@ class Wt_Smart_Coupon_Restriction_Admin extends Wt_Smart_Coupon_Restriction
                         'or' => __('Any from below selection', 'wt-smart-coupons-for-woocommerce'),
                         'and' => __('All from below selection', 'wt-smart-coupons-for-woocommerce')
                     ),
-                'description' => sprintf(__('%sAny:%s Applies coupon if the eligible quantity of products from any of the below selected categories are available in the cart.', 'wt-smart-coupons-for-woocommerce'), '<b>', '</b>').'<br />'.sprintf(__('%sAll:%s Applies coupon if the cart contains the eligible quantity of products from all of the below listed categories.', 'wt-smart-coupons-for-woocommerce'), '<b>', '</b>'),
+                'description' => sprintf( __( '%s Any: %s Applies coupon if the eligible quantity of products from any of the below selected categories are available in the cart.', 'wt-smart-coupons-for-woocommerce' ), '<b>', '</b>' ).'<br />'.sprintf( __( '%s All: %s Applies coupon if the cart contains the eligible quantity of products from all of the below listed categories.', 'wt-smart-coupons-for-woocommerce' ), '<b>', '</b>' ),
             )
         );
 
