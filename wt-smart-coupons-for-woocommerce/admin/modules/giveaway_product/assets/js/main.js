@@ -50,7 +50,9 @@
 					$('.coupon_amount_field').show(); /* hide coupon amount field */
 					$('._wt_sc_bogo_apply_frequency_field').hide(); /* Hide `Coupon apply frequency` option */
 
-					$( '.wt_sc_coupon_category_restriction_fields' ).show();
+					if( $('.wt_enable_product_category_restriction').is(':checked') ){
+						$( '.wt_sc_coupon_category_restriction_fields' ).show();
+					}
 
 					/** To remove 'premium' tag after product condition radio button 'Any from below selection' */
 					$( '._wt_product_condition_field [name="_wt_product_condition"][value="or"]' ).closest( 'label' ).next( 'span' ).remove();

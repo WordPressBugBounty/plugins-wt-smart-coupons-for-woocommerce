@@ -97,6 +97,23 @@ jQuery(function ($) {
     
     });
 
+    $( document.body ).on( 'payment_method_selected', 
+        function() {
+            let wt_sc_is_already_fired = 0;
+            jQuery( document ).on( "updated_checkout", 
+                function(){
+                    if( 1 === wt_sc_is_already_fired ){
+                        wt_sc_is_already_fired = 0;
+                    }else
+                    {
+                        wt_sc_is_already_fired = 1;
+                        $( 'form.checkout' ).trigger( 'update' );
+                    }
+                }
+            );
+        }
+    );
+
     var wbte_set_block_checkout_values = function() {
 
         let payment_method = '';

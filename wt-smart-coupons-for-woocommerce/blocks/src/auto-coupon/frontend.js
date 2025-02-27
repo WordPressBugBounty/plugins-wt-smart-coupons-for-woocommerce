@@ -36,7 +36,7 @@ jQuery(document).ready(function(){
 const updateDataToCart = ( defaultValue, extensions, args ) => {
 
     // Take auto coupon list from args.
-    const applied_auto_coupon_list = args?.cart?.extensions?.wt_sc_blocks?.applied_auto_coupon_list;
+    let applied_auto_coupon_list = args?.cart?.extensions?.wt_sc_blocks?.applied_auto_coupon_list;
 
     // Set a timer to avoid multiple function call.
     clearTimeout(wbte_auto_coupon_close_remove_timeout);
@@ -77,11 +77,12 @@ const updateDataToCart = ( defaultValue, extensions, args ) => {
 
         // Remove the close button for auto coupons
         if ( Array.isArray( applied_auto_coupon_list ) ) {    
+            applied_auto_coupon_list = applied_auto_coupon_list.map(String);
             jQuery('.wc-block-components-totals-discount__coupon-list-item').each( function() {
                 var coupon_code = jQuery(this).find('.wc-block-components-chip__text').text().trim();
                 
                 // This is an auto coupon.
-                if( -1 !== jQuery.inArray( coupon_code, applied_auto_coupon_list ) ){
+                if( applied_auto_coupon_list.includes( coupon_code ) ){
                     jQuery(this).find('.wc-block-components-chip__remove').remove();
                 }
 

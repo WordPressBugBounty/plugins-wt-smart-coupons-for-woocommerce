@@ -88,3 +88,31 @@ const options = {
 };
 
 registerCheckoutBlock( options );
+
+/**
+ * In WooCommerce, there is an option to set up specific payments only for specific shipping methods. For example, COD is only for 'free shipping'; if the user selected a shipping method other than 'free shipping,' the 'COD' will be removed, but it's not updating the session, which affects the coupon validation check.
+ Another scenario is that WooCommerce has an option set to a specific shipping method only for a specific postal code or address. When there is a change in these shipping method changes, it can also affect a change in the payment method (as mentioned in the first scenario).
+ The below code is that it will update the session whenever there is a change in the payment method. 
+ */
+
+/** Track previous payment method */
+let prev_payment_method = null;
+
+/** Subscribe to payment method changes */
+wp.data.subscribe( () => {
+    const currentPaymentMethod = wp.data.select( 'wc/store/payment' ).getActivePaymentMethod();
+    
+    /** Only proceed if payment method has changed */
+    if ( currentPaymentMethod && prev_payment_method !== currentPaymentMethod ) {
+        /** Update previous payment method */
+        prev_payment_method = currentPaymentMethod;
+        
+        /** Update cart with new payment method */
+        wp.data.dispatch( 'wc/store/cart' ).applyExtensionCartUpdate( {
+            namespace: 'wbte-sc-blocks-update-cart-payment-session',
+            data: {
+                payment_method: currentPaymentMethod,
+            },
+        } );
+    }
+} );

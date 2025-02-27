@@ -52,6 +52,13 @@ if( !class_exists('Wt_Smart_Coupon_Activator') )  {
 		     */
 			Wt_Smart_Coupon::install_tables();
 
+			$is_existing_user = get_option( 'wt-smart-coupon-for-woo' );
+			if ( ! $is_existing_user ) {
+				
+				//Activate new BOGO as default.
+				update_option( 'wbte_sc_new_bogo_actvated', true );
+			}
+
 			do_action( 'after_wt_smart_coupon_for_woocommerce_is_activated' );
 			update_option( 'wbte_sc_basic_activation_hook_version', WEBTOFFEE_SMARTCOUPON_VERSION );
 

@@ -11,6 +11,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 require_once plugin_dir_path( __FILE__ ) . '---wbte-header.php';
+
+$trash_icon = '<span style="height: 24px;"  class="wbte_sc_bogo_edit_trash">' . wp_kses_post( $ds_obj->render_html( array( 'html' => '{{wbte-ds-icon-trash}}' ) ) ) . '</span>';
 ?>
 
 <form id="wbte_sc_bogo_coupon_save" method="POST">

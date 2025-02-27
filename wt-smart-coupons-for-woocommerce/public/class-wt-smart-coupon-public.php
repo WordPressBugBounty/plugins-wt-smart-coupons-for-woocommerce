@@ -150,7 +150,7 @@ if( ! class_exists('Wt_Smart_Coupon_Public') ) {
             );
 
             if ( ! is_null( WC()->session ) ) {
-                $params['shipping_method']  = is_array( WC()->session->get( 'chosen_shipping_methods' ) ) ? array_map( 'esc_html', WC()->session->get( 'chosen_shipping_methods' ) ) : array();
+                $params['shipping_method']  = is_array( WC()->session->get( 'chosen_shipping_methods' ) ) ? WC()->session->get( 'chosen_shipping_methods' ) : array();
                 $params['payment_method']   = esc_html( WC()->session->get( 'chosen_payment_method' ) );
             }
 

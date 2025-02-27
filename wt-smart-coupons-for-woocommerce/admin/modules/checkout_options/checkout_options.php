@@ -147,7 +147,10 @@ class Wt_Smart_Coupon_Checkout_Options_Admin extends Wt_Smart_Coupon_Checkout_Op
 				<label for="_wt_sc_user_roles"><?php _e( 'Applicable Roles', 'wt-smart-coupons-for-woocommerce' ); ?></label>
 				<select id="_wt_sc_user_roles" name="_wt_sc_user_roles[]" style="width:50%;"  class="wc-enhanced-select" multiple="multiple" data-placeholder="<?php esc_attr_e( 'Any role', 'wt-smart-coupons-for-woocommerce' ); ?>">
 					<?php
-					$available_roles = array_reverse( get_editable_roles() );
+					$available_roles = wp_roles()->roles;
+					$available_roles['wbte_sc_guest'] = array(
+						'name' => __( 'Guest', 'wt-smart-coupons-for-woocommerce' )
+					);
 
 					if ( ! empty( $available_roles ) ) {
 						$user_roles = self::get_processed_coupon_meta_value( $post_id, '_wt_sc_user_roles' );

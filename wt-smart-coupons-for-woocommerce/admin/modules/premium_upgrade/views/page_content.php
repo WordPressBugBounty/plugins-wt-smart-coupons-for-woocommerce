@@ -44,7 +44,7 @@ $image_path = esc_url( WT_SMARTCOUPON_MAIN_URL . 'admin/modules/premium_upgrade/
 .wbte_sc_upg_to_pro_yt_btn{ align-items: center; cursor: pointer; gap: 10px; justify-content: center; }
 .wbte_sc_upg_to_pro_play_btn{ border-radius: 50px; background-color: #E5EDFF; width: 25px; height: 25px; display: flex; justify-content: center; align-items: center; color: #3171FB; }
 .wbte_sc_upg_to_pro_play_btn .dashicons{ margin-left: 3px; }
-.wbte_sc_upg_to_pro_large_box_content{ width: 66%; }
+.wbte_sc_upg_to_pro_large_box_content{ width: 60%; }
 .wbte_sc_upg_to_pro_plugin_image{ position: absolute; bottom: 0; right: 0; border-bottom-right-radius: 20px; }
 .wbte_sc_upg_to_pro_premium_crown_img{ top: -25px; right: -28px; position: absolute; }
 .wbte_sc_upg_to_pro_premium_features{ padding: 50px; display: flex; flex-direction: column; position: relative; top: 50%; transform: translateY(-50%); }
@@ -77,7 +77,7 @@ $image_path = esc_url( WT_SMARTCOUPON_MAIN_URL . 'admin/modules/premium_upgrade/
 
 <?php
 	$cards_row = array(
-		'sc_gdpr'                     => array(
+		'sc_automation'                     => array(
 			'small_box' => array(
 				'title'           => __( 'Smart Coupons for WooCommerce', 'wt-smart-coupons-for-woocommerce' ),
 				'subhead'         => __( 'Get advanced WooCommerce coupon features to make irresistible coupon campaigns and discounts', 'wt-smart-coupons-for-woocommerce' ),
@@ -102,25 +102,23 @@ $image_path = esc_url( WT_SMARTCOUPON_MAIN_URL . 'admin/modules/premium_upgrade/
 				'border_color'    => '#FFB803',
 			),
 			'large_box' => array(
-				'title'           => __( 'GDPR Cookie Consent Plugin (CCPA Ready)', 'wt-smart-coupons-for-woocommerce' ),
-				'subhead'         => __( 'Ensure your WooCommerce store complies with GDPR, CCPA and other cookie laws', 'wt-smart-coupons-for-woocommerce' ),
+				'title'           => __( 'WebToffee WooCommerce Marketing Automation App', 'wt-smart-coupons-for-woocommerce' ),
+				'subhead'         => __( 'Streamline your eCommerce marketing with automation. Create dynamic popups, web campaigns, and marketing emails all in one place.', 'wt-smart-coupons-for-woocommerce' ),
 				'features'        => array(
-					__( 'Show a cookie consent banner with Accept/Reject buttons', 'wt-smart-coupons-for-woocommerce' ),
-					__( 'Obtain implicit and explicit consent', 'wt-smart-coupons-for-woocommerce' ),
-					__( 'Scan your website to identify cookies', 'wt-smart-coupons-for-woocommerce' ),
+					__( 'Dynamic Popups: Exit-intent, cart abandonment, and lead generation', 'wt-smart-coupons-for-woocommerce' ),
+					__( 'Email Marketing Automation: Welcome emails, cart recovery, win-back promotions, and thank-you emails', 'wt-smart-coupons-for-woocommerce' ),
 				),
 				'hidded_features' => array(
-					__( 'Ensure compliance with GDPR, CCPA, and US State laws', 'wt-smart-coupons-for-woocommerce' ),
-					__( 'Automatically block third-party cookies', 'wt-smart-coupons-for-woocommerce' ),
-					__( 'Integration with Google Consent Mode v2 and IAB TCF', 'wt-smart-coupons-for-woocommerce' ),
-					__( 'Show cookie notice based on Geo IP', 'wt-smart-coupons-for-woocommerce' ),
-					__( 'Obtain granular consent based on cookie categories', 'wt-smart-coupons-for-woocommerce' ),
+					__( 'Email Customizer for personalized messaging', 'wt-smart-coupons-for-woocommerce' ),
+					__( 'Pre-built Templates to save time', 'wt-smart-coupons-for-woocommerce' ),
+					__( 'In-depth Analytics to track and optimize your performance', 'wt-smart-coupons-for-woocommerce' ),
 				),
-				'plugin_url'      => 'https://www.webtoffee.com/product/gdpr-cookie-consent/?utm_source=free_plugin_smart&utm_medium=smart_coupon&utm_campaign=GDPR&utm_content=',
+				'plugin_url'      => 'https://www.webtoffee.com/ecommerce-marketing-automation/?utm_source=free_plugin_premium_upgrade_page&utm_medium=smart_coupons_basic&utm_campaign=EMA&utm_content=',
 				'video_url'       => '',
-				'icon_name'       => 'gdpr_icon.svg',
-				'image_name'      => 'gdpr_image.svg',
-				'special_tag'     => __( 'OUR FLAGSHIP PLUGIN 🔥', 'wt-smart-coupons-for-woocommerce' ),
+				'icon_name'       => 'marketing_automation_icon.svg',
+				'image_name'      => 'marketing_automation_image.svg',
+				'special_tag'     => __( 'INTRODUCING 🔥', 'wt-smart-coupons-for-woocommerce' ),
+				'has_rating'      => false,
 			),
 		),
 		'recomendation_premium_point' => array(
@@ -143,7 +141,7 @@ $image_path = esc_url( WT_SMARTCOUPON_MAIN_URL . 'admin/modules/premium_upgrade/
 				'plugin_url'      => 'https://www.webtoffee.com/product/woocommerce-product-recommendations/?utm_source=free_plugin_premium_upgrade_page&utm_medium=smart_coupons_basic&utm_campaign=Product_Recommendations&utm_content=',
 				'video_url'       => 'https://www.youtube.com/embed/_-5SESD3Ez0?si=qYn7zu902DsFRmE2',
 				'icon_name'       => 'recomendation_icon.svg',
-				'image_name'      => 'recomendation_image.svg',
+				'image_name'      => 'recomendation_image.png',
 			),
 		),
 		'generator_giftcard'          => array(
@@ -287,7 +285,7 @@ $image_path = esc_url( WT_SMARTCOUPON_MAIN_URL . 'admin/modules/premium_upgrade/
 					} else {
 						?>
 						<div class="wbte_sc_upg_to_pro_premium_features">
-							<p><?php esc_html_e( 'Try with Confidence', 'wt-smart-coupons-for-woocommerce' ); ?></p>
+							<p style="margin-top: 0px;"><?php esc_html_e( 'Try with Confidence', 'wt-smart-coupons-for-woocommerce' ); ?></p>
 							<div>
 								<img src="<?php echo esc_attr( esc_url( "{$image_path}money_icon.svg" ) ); ?>" alt="<?php esc_attr_e( 'Money back', 'wt-smart-coupons-for-woocommerce' ); ?>">
 								<p><?php esc_html_e( '30 Day Money Back Guarantee', 'wt-smart-coupons-for-woocommerce' ); ?></p>
@@ -306,7 +304,7 @@ $image_path = esc_url( WT_SMARTCOUPON_MAIN_URL . 'admin/modules/premium_upgrade/
 					?>
 					
 				</div>
-				<div class="wbte_sc_upg_to_pro_flex_row_right" style="background:url(<?php echo esc_attr( esc_url( $image_path . $cards_row_value['large_box']['image_name'] ) ); ?>), white; background-position: bottom 0px right 0px; background-repeat: no-repeat;">
+				<div class="wbte_sc_upg_to_pro_flex_row_right" style="background:url(<?php echo esc_attr( esc_url( $image_path . $cards_row_value['large_box']['image_name'] ) ); ?>), white; background-position: center right; background-repeat: no-repeat; background-size: 35% auto;">
 					<div class="wbte_sc_upg_to_pro_large_box wbte_sc_upg_to_box">
 						<?php
 						if ( isset( $cards_row_value['large_box']['special_tag'] ) ) {
@@ -322,10 +320,13 @@ $image_path = esc_url( WT_SMARTCOUPON_MAIN_URL . 'admin/modules/premium_upgrade/
 								<img class="wbte_sc_upg_to_pro_icon" src="<?php echo esc_attr( esc_url( $image_path . $cards_row_value['large_box']['icon_name'] ) ); ?>" alt="<?php esc_attr_e( 'Plugin icon', 'wt-smart-coupons-for-woocommerce' ); ?>">
 								<div class="wbte_sc_upg_to_pro_head">
 									<p class="wbte_sc_upg_to_pro_head_title"><?php echo esc_html( $cards_row_value['large_box']['title'] ); ?></p>
-									<div class="wbte_sc_upg_to_pro_head_rating">
-										<img src="<?php echo esc_attr( esc_url( "{$image_path}5_star.svg" ) ); ?>" alt="<?php esc_attr_e( 'Star rating', 'wt-smart-coupons-for-woocommerce' ); ?>">
+									<?php if ( ! isset( $cards_row_value['large_box']['has_rating'] ) || $cards_row_value['large_box']['has_rating'] ) : 
+										?>
+										<div class="wbte_sc_upg_to_pro_head_rating">
+											<img src="<?php echo esc_attr( esc_url( "{$image_path}5_star.svg" ) ); ?>" alt="<?php esc_attr_e( 'Star rating', 'wt-smart-coupons-for-woocommerce' ); ?>">
 										<p>&nbsp;<?php esc_html_e( '4.8', 'wt-smart-coupons-for-woocommerce' ); ?></p>
 									</div>
+									<?php endif; ?>
 								</div>
 							</div>
 							<p class="wbte_sc_upg_to_pro_subhead"><?php echo esc_html( $cards_row_value['large_box']['subhead'] ); ?></p>

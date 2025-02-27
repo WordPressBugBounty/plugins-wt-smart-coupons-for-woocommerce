@@ -234,7 +234,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<?php
 					}
 					?>
-					<button class="wbte_choose_free_product" prod-id="<?php echo esc_attr( $product_id ); ?>" type="button"><?php esc_html_e( 'Choose Product', 'wt-smart-coupons-for-woocommerce' ); ?></button>
+					<button class="wbte_choose_free_product" prod-id="<?php echo esc_attr( $product_id ); ?>" type="button"><?php esc_html_e( 'Choose product', 'wt-smart-coupons-for-woocommerce' ); ?></button>
 				</li>
 				<?php
 			}

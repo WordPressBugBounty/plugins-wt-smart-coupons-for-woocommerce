@@ -190,6 +190,11 @@ class Wbte_Smart_Coupon_Bogo_Common {
 				'default' => '',
 				'type'    => 'float',
 			),
+			'free_shipping'                             => array(
+				'default' => 'no',
+				'type'    => 'text_arr',
+				'save_as' => 'text',
+			),
 			// Step 3.
 			'wbte_sc_bogo_apply_offer'                  => array(
 				'default' => 'wbte_sc_bogo_apply_once',

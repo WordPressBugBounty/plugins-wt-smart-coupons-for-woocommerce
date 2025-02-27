@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<tbody>
 					<tr>
 						<th colspan="2">
-							<div class="wbte_sc_bogo_customer_gets_container">
+							<div class="wbte_sc_bogo_edit_custom_drop_down_head">
 								<div class="wbte_sc_bogo_customer_gets_select_btn wbte_sc_bogo_edit_custom_drop_down_btn ">
 									<p><?php esc_html_e( 'Specific product(s)', 'wt-smart-coupons-for-woocommerce' ); ?></p>
 									<span class="dashicons dashicons-arrow-down-alt2"></span>
@@ -61,6 +61,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 													),
 												),
 											),
+											'class' => array('wbte_sc_bogo_customer_gets_dropdown'),
 										)
 									);
 									?>
@@ -190,6 +191,49 @@ if ( ! defined( 'ABSPATH' ) ) {
 								<div class="wbte_sc_bogo_icon_input_symbol">
 									<?php echo esc_html( get_woocommerce_currency_symbol() ); ?>
 								</div>
+							</div>
+						</td>
+					</tr>
+					<tr valign="top">
+						<th>
+							<label for="free_shipping"><?php esc_html_e( 'Include free shipping', 'wt-smart-coupons-for-woocommerce' ); ?></label>
+						</th>
+						<td>
+							<?php
+							echo $ds_obj->get_component(
+								'checkbox normal',
+								array(
+									'values' => array(
+										'name'  => 'free_shipping',
+										'id'    => 'free_shipping',
+										'value' => 'yes',
+										'is_checked' => esc_attr( 'yes' === self::get_coupon_meta_value( $coupon_id, 'free_shipping' ) ),
+										'label' => esc_html__( 'Combine free shipping with the offer', 'wt-smart-coupons-for-woocommerce' ),
+									),
+								)
+							);
+
+							$shipping_zones_url = admin_url( 'admin.php?page=wc-settings&tab=shipping' );
+
+							$free_shipping_enabled = false;
+
+							$shipping_zones = WC_Shipping_Zones::get_zones();
+    						$shipping_zones[] = WC_Shipping_Zones::get_zone( 0 );
+							foreach ( $shipping_zones as $zone ) {
+								$zone_object = is_array( $zone ) ? new WC_Shipping_Zone( $zone['id'] ) : $zone;
+								$shipping_methods = $zone_object->get_shipping_methods();
+						
+								foreach ( $shipping_methods as $method ) {
+									if ( 'free_shipping' === $method->id && 'yes' === $method->enabled ) {
+										$free_shipping_enabled = true;
+										break;
+									}
+								}
+							}
+							?>
+							<div class="wbte_sc_bogo_free_shipping_warning" data-free-shipp-enabled = "<?php echo esc_attr( $free_shipping_enabled ); ?>">
+								<img src="<?php echo esc_url( $admin_img_path ); ?>exclamation_red_filled.svg" alt="<?php esc_attr_e( 'Caution', 'wt-smart-coupons-for-woocommerce' ); ?>">
+								<p><?php echo sprintf( esc_html__( 'Enable free shipping in WooCommerce %s shipping zones %s to use this option!', 'wt-smart-coupons-for-woocommerce' ), '<a href="' . esc_url( $shipping_zones_url ) . '" target="_blank">', '</a>' ); ?></p>
 							</div>
 						</td>
 					</tr>

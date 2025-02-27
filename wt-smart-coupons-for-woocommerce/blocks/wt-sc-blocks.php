@@ -241,6 +241,20 @@ if ( ! class_exists( 'Wt_Sc_Free_Blocks' ) ) {
 				      'callback'  => function( $data ) {},
 				    )
 			    );
+
+				woocommerce_store_api_register_update_callback(
+                    array(
+                        'namespace' => 'wbte-sc-blocks-update-cart-payment-session',
+                        'callback'  => function( $data ) {
+
+                            if( isset( $data['payment_method'] ) ) {
+                                $payment_method = wc_clean( wp_unslash( $data['payment_method'] ) );
+                                WC()->session->set( 'chosen_payment_method', $payment_method );
+                            }
+                            
+                        },
+                    )
+                );
 	        }
 	    }
 

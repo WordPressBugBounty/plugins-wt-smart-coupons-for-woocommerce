@@ -48,6 +48,7 @@ if( ! class_exists('Wt_Smart_Coupon_Admin') ) {
             'coupon_style', /** @since 1.4.7 */
             'exclude-product', /** @since 2.0.0 */
             'bogo', /** @since 2.0.0 */
+            'giftcard-banner', /** @since 2.1.0 */
         );
 
         public static $existing_modules = array();
@@ -233,6 +234,8 @@ if( ! class_exists('Wt_Smart_Coupon_Admin') ) {
                         'are_you_sure'=>__("Are you sure?", 'wt-smart-coupons-for-woocommerce'),
                         'are_you_sure_to_delete'=>__("Are you sure you want to delete?", 'wt-smart-coupons-for-woocommerce'),
                         'old_bogo_disabled' => __( "Old BOGO module is disabled", 'wt-smart-coupons-for-woocommerce' ),
+                        'switch_new_bogo' => __( "Switch to our new BOGO module for the latest features", 'wt-smart-coupons-for-woocommerce' ),
+                        'update_now' => __( "Update now", 'wt-smart-coupons-for-woocommerce' ),
                         ),
                     'is_new_bogo_activated' => class_exists( 'Wbte_Smart_Coupon_Bogo_Common' ) 
                         && method_exists( 'Wbte_Smart_Coupon_Bogo_Common', 'is_new_bogo_activated' ) 
@@ -279,7 +282,6 @@ if( ! class_exists('Wt_Smart_Coupon_Admin') ) {
                 }
             }
             $out['premium-upgrade'] = '<a target="_blank" href="https://www.webtoffee.com/product/smart-coupons-for-woocommerce/?utm_source=free_plugin_listing&utm_medium=smart_coupons_basic&utm_campaign=smart_coupons&utm_content='.WEBTOFFEE_SMARTCOUPON_VERSION.'" style="color: #3db634; font-weight: 500;">' . esc_html__('Premium Upgrade', 'wt-smart-coupons-for-woocommerce') . '</a>';
-            $out['review']='<a target="_blank" href="https://wordpress.org/support/plugin/wt-smart-coupons-for-woocommerce/reviews/?rate=5#new-post">' . esc_html__('Review', 'wt-smart-coupons-for-woocommerce') . '</a>';
             return $out;
         }
 

@@ -15,14 +15,15 @@
  * Plugin Name:       Smart Coupons For WooCommerce Coupons 
  * Plugin URI:        
  * Description:       Smart Coupons For WooCommerce Coupons plugin adds advanced coupon features to your store to strengthen your marketing efforts and boost sales.
- * Version:           2.0.0
+ * Version:           2.1.0
  * Author:            WebToffee
  * Author URI:        https://www.webtoffee.com/
  * License:           GPLv3
  * License URI:       https://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain:       wt-smart-coupons-for-woocommerce
  * Domain Path:       /languages
- * WC tested up to:   9.5
+ * WC tested up to:   9.7
+ * Requires Plugins:  woocommerce
  */
 // If this file is called directly, abort.
 if (!defined('WPINC')) {
@@ -84,9 +85,40 @@ if( !in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 }
 
 /**
+ *  Declare compatibility with custom order tables for WooCommerce.
+ * 
+ *  @since 1.4.5
+ *  
+ */
+add_action(
+	'before_woocommerce_init',
+	function () {
+		if ( class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
+			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+		}
+	}
+);
+
+if ( !defined( 'WT_SMARTCOUPON_BASIC_BASE_NAME' ) ) {
+    define( 'WT_SMARTCOUPON_BASIC_BASE_NAME', plugin_basename( __FILE__ ) );
+}
+
+/**
+ *  Add review link to plugin action links, moved from function add_plugin_links_wt_smartcoupon in class-wt-smart-coupon-admin.php, if Smart Coupons Pro is active then also add review link
+ * 
+ *  @since 2.1.0
+ */
+add_filter( 'plugin_action_links_' . WT_SMARTCOUPON_BASIC_BASE_NAME, 'wbte_sc_add_plugin_links_wt_smartcoupon' );
+
+function wbte_sc_add_plugin_links_wt_smartcoupon( $links ) {
+    $links['review'] = '<a target="_blank" href="' . esc_url( 'https://wordpress.org/support/plugin/wt-smart-coupons-for-woocommerce/reviews/?rate=5#new-post' ) . '">' . esc_html__( 'Review', 'wt-smart-coupons-for-woocommerce' ) . '</a>';
+    return $links;
+}
+
+/**
  * Check if Smart Coupons Pro is active, if yes then return
  */
-if( in_array( 'wt-smart-coupon-pro/wt-smart-coupon-pro.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) && array_key_exists( 'wt-smart-coupon-pro/wt-smart-coupon-pro.php', apply_filters( 'active_plugins', get_site_option( 'active_sitewide_plugins', array() ) ) ) ) 
+if( in_array( 'wt-smart-coupon-pro/wt-smart-coupon-pro.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) || array_key_exists( 'wt-smart-coupon-pro/wt-smart-coupon-pro.php', apply_filters( 'active_plugins', get_site_option( 'active_sitewide_plugins', array() ) ) ) ) 
 { 
 	return;
 }
@@ -98,7 +130,7 @@ if( in_array( 'wt-smart-coupon-pro/wt-smart-coupon-pro.php', apply_filters( 'act
  */
 
  if ( !defined( 'WEBTOFFEE_SMARTCOUPON_VERSION' ) ) {
-    define( 'WEBTOFFEE_SMARTCOUPON_VERSION', '2.0.0' );
+    define( 'WEBTOFFEE_SMARTCOUPON_VERSION', '2.1.0' );
 }
 
 if ( !defined( 'WT_SMARTCOUPON_FILE_NAME' ) ) {
@@ -184,21 +216,5 @@ include 'admin/class-wt-duplicate-coupon.php';
 include 'admin/coupon-start-date/class-wt-smart-coupon-start-date.php'; 
 
 include 'public/class-myaccount-smart-coupon.php';
-
-
-/**
- *  Declare compatibility with custom order tables for WooCommerce.
- * 
- *  @since 1.4.5
- *  
- */
-add_action(
-	'before_woocommerce_init',
-	function () {
-		if ( class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
-			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
-		}
-	}
-);
 
 run_wt_smart_coupon();

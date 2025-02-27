@@ -143,6 +143,9 @@ class Wt_Smart_Coupon_Checkout_Options_Public extends Wt_Smart_Coupon_Checkout_O
         {
             $user = wp_get_current_user();
             $current_user_roles = (array) $user->roles; //take all roles of current user
+            if( 0 === $user->ID ) {
+                $current_user_roles[] = 'wbte_sc_guest';
+            }
 
             if(empty(array_intersect($user_roles, $current_user_roles)))
             {              

@@ -716,10 +716,11 @@ class Wt_Smart_Coupon_Auto_Coupon_Public extends Wt_Smart_Coupon_Auto_Coupon_Com
      *  Hooked into: woocommerce_thankyou
      *  
      *  @since  1.8.1
-     *  @param  int       $arg         Order id
      */
-    public function unset_unnecessary_sessions( $order_id ){
+    public function unset_unnecessary_sessions(){
         WC()->session->__unset( 'wbte_sc_auto_applied_coupons_fetched' );
+        WC()->session->__unset( 'wbte_sc_applied_individual_coupon' );
+        WC()->session->__unset( 'auto_applied_coupons' );
     }
 }
 Wt_Smart_Coupon_Auto_Coupon_Public::get_instance();

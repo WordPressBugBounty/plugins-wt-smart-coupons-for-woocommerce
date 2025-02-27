@@ -99,6 +99,8 @@ class Wbte_Smart_Coupon_Bogo_Admin extends Wbte_Smart_Coupon_Bogo_Common {
 		add_filter( 'woocommerce_order_item_get_code', array( $this, 'bogo_title_instead_code_on_order_detail_page' ) );
 
 		add_action( 'wbte_sc_bogo_new_coupon_created', array( $this, 'delete_bogo_ids_transient' ), 10, 2 );
+
+		add_filter( 'admin_footer_text', array( $this, 'review_request' ) );
 	}
 
 	/**
@@ -131,7 +133,7 @@ class Wbte_Smart_Coupon_Bogo_Admin extends Wbte_Smart_Coupon_Bogo_Common {
 					'submenu',
 					WT_SC_PLUGIN_NAME,
 					__( 'BOGO', 'wt-smart-coupons-for-woocommerce' ),
-					__( 'BOGO<sup>beta</sup>', 'wt-smart-coupons-for-woocommerce' ),
+					__( 'BOGO', 'wt-smart-coupons-for-woocommerce' ),
 					'manage_woocommerce',
 					$this->module_id,
 					array( $this, 'bogo_page_content' ),
@@ -178,6 +180,8 @@ class Wbte_Smart_Coupon_Bogo_Admin extends Wbte_Smart_Coupon_Bogo_Common {
 				$timezone_string = timezone_name_from_abbr( '', $gmt_offset * 3600, 0 );
 			}
 
+			$admin_img_path = WT_SMARTCOUPON_MAIN_URL . 'admin/images/';
+
 			wp_localize_script(
 				$this->module_id,
 				'wbte_sc_bogo_params',
@@ -196,6 +200,13 @@ class Wbte_Smart_Coupon_Bogo_Admin extends Wbte_Smart_Coupon_Bogo_Common {
 						'currency_symbol'  => get_woocommerce_currency_symbol(),
 						'selected'         => __( 'selected', 'wt-smart-coupons-for-woocommerce' ),
 						'continue_confirm' => __( 'Are you sure you want to disable the old BOGO coupons?', 'wt-smart-coupons-for-woocommerce' ),
+						'success_copy' => sprintf(
+							// Translators: 1: Success tick icon.
+							__( "Code '{coupon_code}' copied %s", 'wt-smart-coupons-for-woocommerce' ),
+							wp_kses_post( '<img class="wbte_sc_bogo_code_copy" src="' . esc_url( "{$admin_img_path}success_icon.svg" ) . '" alt="' . esc_attr__( 'success', 'wt-smart-coupons-for-woocommerce' ) . '" />' ),
+						),
+						'coupon_copy_tooltip' => __( 'Copy coupon code for admin use', 'wt-smart-coupons-for-woocommerce' ),
+						'failed_copy' => __( 'Failed to copy', 'wt-smart-coupons-for-woocommerce' ),
 					),
 					'summary_text'       => array(
 						// Step 1.
@@ -218,73 +229,85 @@ class Wbte_Smart_Coupon_Bogo_Admin extends Wbte_Smart_Coupon_Bogo_Common {
 							wp_kses_post( '</span>' ),
 						),
 						// Step 2.
-						'spends_between_any'      => sprintf(
-							// Translators: 1: span opening 2: span closing 3:min spend 4: max spend.
-							__( 'Customer %s Spends %s between %s and %s on any products', 'wt-smart-coupons-for-woocommerce' ),
-							wp_kses_post( '<span>' ),
-							wp_kses_post( '</span>' ),
-							wp_kses_post( '<span class="wbte_sc_bogo_step2_summary_min"></span>' ),
-							wp_kses_post( '<span class="wbte_sc_bogo_step2_summary_max"></span>' )
+						'spends_between_any'        => sprintf(
+							// Translators: 1: span opening 2: span closing 3:span opening 4:span closing 5:span opening 6:span closing.
+							__( 'Customer %s Spends %s between %s {min} %s and %s {max} %s on any products', 'wt-smart-coupons-for-woocommerce' ),
+							'<span>',
+							'</span>',
+							'<span>',
+							'</span>',
+							'<span>',
+							'</span>'
 						),
-						'spends_between_selected' => sprintf(
-							// Translators: 1: span opening 2: span closing 3:min spend 4: max spend 5: span opening 6: span closing.
-							__( 'Customer %s Spends %s between %s and %s on %s Selected product(s) %s', 'wt-smart-coupons-for-woocommerce' ),
-							wp_kses_post( '<span>' ),
-							wp_kses_post( '</span>' ),
-							wp_kses_post( '<span class="wbte_sc_bogo_step2_summary_min"></span>' ),
-							wp_kses_post( '<span class="wbte_sc_bogo_step2_summary_max"></span>' ),
-							wp_kses_post( '<span>' ),
-							wp_kses_post( '</span>' ),
+						'spends_between_selected'   => sprintf(
+							// Translators: 1: span opening 2: span closing 3:span opening 4:span closing 5:span opening 6:span closing 7:span opening 8:span closing.
+							__( 'Customer %s Spends %s between %s {min} %s and %s {max} %s on %s Selected product(s) %s', 'wt-smart-coupons-for-woocommerce' ),
+							'<span>',
+							'</span>',
+							'<span>',
+							'</span>',
+							'<span>',
+							'</span>',
+							'<span>',
+							'</span>',
 						),
-						'spends_atleast_any'      => sprintf(
-							// Translators: 1: span opening 2: span closing 3: min spend .
-							__( 'Customer %s Spends %s at least %s on any products', 'wt-smart-coupons-for-woocommerce' ),
-							wp_kses_post( '<span>' ),
-							wp_kses_post( '</span>' ),
-							wp_kses_post( '<span class="wbte_sc_bogo_step2_summary_min"></span>' )
+						'spends_atleast_any'        => sprintf(
+							// Translators: 1: span opening 2: span closing 3: span opening 4: span closing 5: span opening 6: span closing.
+							__( 'Customer %s Spends %s at least %s {min} %s on any products', 'wt-smart-coupons-for-woocommerce' ),
+							'<span>',
+							'</span>',
+							'<span>',
+							'</span>'
 						),
-						'spends_atleast_selected' => sprintf(
-							// Translators: 1: span opening 2: span closing 3: min spend 4: span opening 5: span closing .
-							__( 'Customer %s Spends %s at least %s on %s Selected product(s) %s', 'wt-smart-coupons-for-woocommerce' ),
-							wp_kses_post( '<span>' ),
-							wp_kses_post( '</span>' ),
-							wp_kses_post( '<span class="wbte_sc_bogo_step2_summary_min"></span>' ),
-							wp_kses_post( '<span>' ),
-							wp_kses_post( '</span>' ),
+						'spends_atleast_selected'   => sprintf(
+							// Translators: 1: span opening 2: span closing 3: span opening 4: span closing 5: span opening 6: span closing.
+							__( 'Customer %s Spends %s at least %s {min} %s on %s Selected product(s) %s', 'wt-smart-coupons-for-woocommerce' ),
+							'<span>',
+							'</span>',
+							'<span>',
+							'</span>',
+							'<span>',
+							'</span>'
 						),
-						'buys_between_any'        => sprintf(
-							// Translators: 1: span opening 2: span closing 3: min qty 4: max qty .
-							__( 'Customer %s Buys %s between %s and %s quantities of any products', 'wt-smart-coupons-for-woocommerce' ),
-							wp_kses_post( '<span>' ),
-							wp_kses_post( '</span>' ),
-							wp_kses_post( '<span class="wbte_sc_bogo_step2_summary_min"></span>' ),
-							wp_kses_post( '<span class="wbte_sc_bogo_step2_summary_max"></span>' )
+						'buys_between_any'          => sprintf(
+							// Translators: 1: span opening 2: span closing 3: span opening 4: span closing 5: span opening 6: span closing.
+							__( 'Customer %s Buys %s between %s {min} %s and %s {max} %s quantities of any products', 'wt-smart-coupons-for-woocommerce' ),
+							'<span>',
+							'</span>',
+							'<span>',
+							'</span>',
+							'<span>',
+							'</span>'
 						),
-						'buys_between_selected'   => sprintf(
-							// Translators: 1: span opening 2: span closing 3: min qty 4: max qty 5: span opening 6: span closing.
-							__( 'Customer %s Buys %s between %s and %s quantities of %s Selected product(s) %s', 'wt-smart-coupons-for-woocommerce' ),
-							wp_kses_post( '<span>' ),
-							wp_kses_post( '</span>' ),
-							wp_kses_post( '<span class="wbte_sc_bogo_step2_summary_min"></span>' ),
-							wp_kses_post( '<span class="wbte_sc_bogo_step2_summary_max"></span>' ),
-							wp_kses_post( '<span>' ),
-							wp_kses_post( '</span>' ),
+						'buys_between_selected'     => sprintf(
+							// Translators: 1: span opening 2: span closing 3: span opening 4: span closing 5: span opening 6: span closing 7: span opening 8: span closing.
+							__( 'Customer %s Buys %s between %s {min} %s and %s {max} %s quantities of %s Selected product(s) %s', 'wt-smart-coupons-for-woocommerce' ),
+							'<span>',
+							'</span>',
+							'<span>',
+							'</span>',
+							'<span>',
+							'</span>',
+							'<span>',
+							'</span>',
 						),
-						'buys_atleast_any'        => sprintf(
-							// Translators: 1: span opening 2: span closing 3: min qty .
-							__( 'Customer %s Buys %s at least %s quantities of any products', 'wt-smart-coupons-for-woocommerce' ),
-							wp_kses_post( '<span>' ),
-							wp_kses_post( '</span>' ),
-							wp_kses_post( '<span class="wbte_sc_bogo_step2_summary_min"></span>' )
+						'buys_atleast_any'          => sprintf(
+							// Translators: 1: span opening 2: span closing 3: span opening 4: span closing 
+							__( 'Customer %s Buys %s at least %s {min} %s quantities of any products', 'wt-smart-coupons-for-woocommerce' ),
+							'<span>',
+							'</span>',
+							'<span>',
+							'</span>'
 						),
-						'buys_atleast_selected'   => sprintf(
-							// Translators: 1: span opening 2: span closing 3: min qty 4: span opening 5: span closing .
-							__( 'Customer %s Buys %s at least %s quantities of %s Selected product(s) %s', 'wt-smart-coupons-for-woocommerce' ),
-							wp_kses_post( '<span>' ),
-							wp_kses_post( '</span>' ),
-							wp_kses_post( '<span class="wbte_sc_bogo_step2_summary_min"></span>' ),
-							wp_kses_post( '<span>' ),
-							wp_kses_post( '</span>' ),
+						'buys_atleast_selected'     => sprintf(
+							// Translators: 1: span opening 2: span closing 3: span opening 4: span closing 5: span opening 6: span closing.
+							__( 'Customer %s Buys %s at least %s {min} %s quantities of %s Selected product(s) %s', 'wt-smart-coupons-for-woocommerce' ),
+							'<span>',
+							'</span>',
+							'<span>',
+							'</span>',
+							'<span>',
+							'</span>'
 						),
 						// Step 3.
 						'once_buys'               => sprintf(
@@ -412,8 +435,15 @@ class Wbte_Smart_Coupon_Bogo_Admin extends Wbte_Smart_Coupon_Bogo_Common {
 				?>
 				<style type="text/css">
 					li.toplevel_page_wt-smart-coupon-for-woo ul.wp-submenu li a[href="<?php echo esc_url( $settings_page_url ); ?>"]{ position:relative; }
-					a.toplevel_page_wt-smart-coupon-for-woo::after, li.toplevel_page_wt-smart-coupon-for-woo ul.wp-submenu li a[href="<?php echo esc_url( $settings_page_url ); ?>"]::after{ content: "."; position:absolute; right:10px; color:#d63638; font-size:45px; font-weight:bold; margin-top:-5px; top:0px; line-height:0px; }  
-					li.toplevel_page_wt-smart-coupon-for-woo ul.wp-submenu li a[href="<?php echo esc_url( $settings_page_url ); ?>"]::after{ right:70px; }
+					a.toplevel_page_wt-smart-coupon-for-woo::after, li.toplevel_page_wt-smart-coupon-for-woo ul.wp-submenu li a[href="<?php echo esc_url( $settings_page_url ); ?>"]::after{ content: "."; position:absolute; color:#d63638; font-size:45px; font-weight:bold; margin-top:-5px; top:0px; line-height:0px; }  
+
+					<?php if ( is_rtl() ) { ?>
+						a.toplevel_page_wt-smart-coupon-for-woo::after, li.toplevel_page_wt-smart-coupon-for-woo ul.wp-submenu li a[href="<?php echo esc_url( $settings_page_url ); ?>"]::after{ left: 10px; } 
+						li.toplevel_page_wt-smart-coupon-for-woo ul.wp-submenu li a[href="<?php echo esc_url( $settings_page_url ); ?>"]::after{ left: 10px; }
+					<?php } else { ?>
+						a.toplevel_page_wt-smart-coupon-for-woo::after, li.toplevel_page_wt-smart-coupon-for-woo ul.wp-submenu li a[href="<?php echo esc_url( $settings_page_url ); ?>"]::after{ right: 10px; } 
+						li.toplevel_page_wt-smart-coupon-for-woo ul.wp-submenu li a[href="<?php echo esc_url( $settings_page_url ); ?>"]::after{ left: 55px; }
+					<?php } ?>
 				</style>
 				<?php
 			}
@@ -456,6 +486,8 @@ class Wbte_Smart_Coupon_Bogo_Admin extends Wbte_Smart_Coupon_Bogo_Common {
 		add_action( 'wp_ajax_wbte_sc_bogo_restore_multiple', array( $this, 'bogo_coupon_multiple_restore' ) );
 
 		add_action( 'wp_ajax_wbte_sc_bogo_perm_dlt_multiple', array( $this, 'bogo_coupon_multiple_dlt_permenantly' ) );
+
+		add_action( 'wp_ajax_wbte_sc_get_auto_offer_code', array( $this, 'get_auto_offer_code' ) );
 	}
 
 	/**
@@ -601,28 +633,34 @@ class Wbte_Smart_Coupon_Bogo_Admin extends Wbte_Smart_Coupon_Bogo_Common {
 				++$counter;
 			}
 
-			$coupon = new WC_Coupon();
-			$coupon->set_code( $c_title );
-			$coupon->set_description( sanitize_textarea_field( $result['wbte_sc_bogo_campaign_description'] ) );
-			$coupon->set_discount_type( self::$bogo_coupon_type_name );
-			$coupon->save();
-			$coupon_id = $coupon->get_id();
+			$post_data = array(
+				'post_title'   => $c_title,
+				'post_type'    => 'shop_coupon',
+				'post_status'  => 'draft',
+				'post_excerpt' => isset( $result['wbte_sc_bogo_campaign_description'] ) ? sanitize_textarea_field( $result['wbte_sc_bogo_campaign_description'] ) : ''
+			);
 
-			if ( $coupon_id ) {
+			$coupon_id = wp_insert_post( $post_data );
+
+			if ( $coupon_id && ! is_wp_error( $coupon_id ) ) {
+
+				$coupon = new WC_Coupon( $coupon_id );
+				$coupon->set_code( $c_title );
+				$coupon->set_discount_type( self::$bogo_coupon_type_name );
+				if ( is_null( $coupon->get_date_created() ) ) {
+					$coupon->set_date_created( current_time( 'mysql' ) );
+				}
+				$coupon->save();
+
 				add_post_meta( $coupon_id, 'wbte_sc_bogo_coupon_name', $result['wbte_sc_bogo_coupon_name'] );
 				Wt_Smart_Coupon_Auto_Coupon_Admin::get_instance()->process_shop_coupon_meta( $coupon_id, get_post( $coupon_id ), array( '_wt_make_auto_coupon' => 'yes' ) );
-
-				$post_data = array(
-					'ID'          => $coupon_id,
-					'post_status' => 'draft',
-				);
-				wp_update_post( $post_data );
 
 				foreach ( $predefined_settings[ $result['wbte_sc_bogo_campaign_selected_default'] ] as $key => $value ) {
 					update_post_meta( $coupon_id, $key, $value );
 				}
 
 				$skip_arr = array( 'wbte_sc_bogo_type', 'wbte_sc_bogo_coupon_name', 'wbte_sc_bogo_campaign_description' );
+				
 				foreach ( self::$meta_arr as $meta_key => $meta_info ) {
 					if ( in_array( $meta_key, $skip_arr, true ) || array_key_exists( $meta_key, $predefined_settings[ $result['wbte_sc_bogo_campaign_selected_default'] ] ) ) {
 						continue;
@@ -1466,6 +1504,68 @@ class Wbte_Smart_Coupon_Bogo_Admin extends Wbte_Smart_Coupon_Bogo_Common {
 		if ( ! empty( $coupon_id ) ) {
 			delete_transient( 'wbte_sc_bogo_coupon_ids' );
 		}
+	}
+
+	/**
+	 * Ajax function to get auto offer code.
+	 *
+	 * @since 2.1.0
+	 */
+	public static function get_auto_offer_code() {
+
+		check_ajax_referer( 'wbte_sc_bogo_admin_nonce', '_wpnonce' );
+
+		$return = array(
+			'status' => false,
+			'coupon_code' => ''
+		);
+		if ( isset( $_POST['coupon_name'], $_POST['coupon_id'] ) ) {
+
+			$current_coupon_code = get_the_title( absint( $_POST['coupon_id'] ) );
+			$coupon_code = self::slugify_coupon_code( sanitize_text_field( $_POST['coupon_name'] ) );
+
+			$c_title = $coupon_code;
+			$counter = 1;
+
+			while ( post_exists( $c_title ) ) {
+				if ( $current_coupon_code === $c_title ) {
+					break;
+				}
+				$c_title = "{$coupon_code}{$counter}";
+				++$counter;
+			}
+			$coupon_code = $c_title;
+			$return = array(
+				'status' => true,
+				'coupon_code' => $coupon_code
+			);
+		}
+		echo wp_json_encode( $return );
+		die();
+	}
+
+	/**
+	 * To change WordPress footer text to review request link in BOGO page.
+	 * If the current page is BOGO edit page, then return empty span, this span will be hidden using css.
+	 *
+	 * @since 2.1.0
+	 * @param  string $footer_text  Current footer text.
+	 * @return string               Modified footer text.
+	 */
+	public function review_request( $footer_text ) {
+		if ( isset( $_GET['page'] ) && sanitize_text_field( wp_unslash( $_GET['page'] ) ) === self::$bogo_page_name && ! isset( $_GET['wbte_bogo_id'] ) ) {
+
+			$review_url = 'https://wordpress.org/support/plugin/wt-smart-coupons-for-woocommerce/reviews?rate=5#new-post';
+			
+			$footer_text = wp_kses_post(
+				// Translators: 1: Opening italics tag, 2: Opening a tag, 3: Closing a tag, 4: Closing italics tag.
+				sprintf( __( '%s If you like Smart Coupons please leave us a %s ★★★★★ %s rating. A huge thanks in advance! %s', 'wt-smart-coupons-for-woocommerce-pro' ), '<i class="wbte_sc_bogo_review_request">', '<a href="'. esc_url( $review_url ) .'" target="_blank">', '</a>', '</i>' )
+			);
+		}
+		if ( isset( $_GET['page'] ) && sanitize_text_field( wp_unslash( $_GET['page'] ) ) === self::$bogo_page_name && isset( $_GET['wbte_bogo_id'] ) ) {
+			$footer_text = '<span class="wbte_sc_bogo_edit_footer"></span>';
+		}
+		return $footer_text;
 	}
 }
 Wbte_Smart_Coupon_Bogo_Admin::get_instance();

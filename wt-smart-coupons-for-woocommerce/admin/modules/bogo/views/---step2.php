@@ -102,12 +102,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<tbody>
 					<tr>
 						<th colspan="2">
-							<div class="wbte_sc_bogo_edit_add_div">
+							<div class="wbte_sc_bogo_edit_custom_drop_down_head">
 								<p><?php esc_html_e( 'Customer buys', 'wt-smart-coupons-for-woocommerce' ); ?>
 									<span class="wbte_sc_bogo_edit_add_button wbte_sc_bogo_edit_add_customer_buys"><?php esc_html_e( '+ Add', 'wt-smart-coupons-for-woocommerce' ); ?></span>
 								</p>
 								<div class="wbte_sc_bogo_edit_customer_buys_select wbte_sc_bogo_edit_custom_drop_down">
-									<p class="wbte_sc_bogo_edit_products_row_btn"><?php esc_html_e( 'Product restriction', 'wt-smart-coupons-for-woocommerce' ); ?></p>
+									<p data-row="wbte_sc_bogo_edit_products_row"><?php esc_html_e( 'Product restriction', 'wt-smart-coupons-for-woocommerce' ); ?></p>
 									<p class="wbte_sc_bogo_disabled_drop_down_btn"><?php esc_html_e( 'Category restriction', 'wt-smart-coupons-for-woocommerce' ); ?>
 										<img src="<?php echo esc_url( $admin_img_path . 'prem_crown_2.svg' ); ?>" alt="<?php esc_attr_e( 'premium', 'wt-smart-coupons-for-woocommerce' ); ?>" />
 									</p>
@@ -120,19 +120,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 						$excluded_products   = array_filter( explode( ',', self::get_coupon_meta_value( $coupon_id, 'wbte_sc_bogo_exclude_product_ids' ) ) );
 					?>
 					<!-- Product restriction -->
-					<tr class="<?php echo ( empty( $specific_products ) && empty( $excluded_products ) ) ? 'wbte_sc_bogo_conditional_hidden ' : ' '; ?> wbte_sc_bogo_edit_products_row">
+					<tr class="<?php echo ( empty( $specific_products ) && empty( $excluded_products ) ) ? 'wbte_sc_bogo_conditional_hidden ' : ' '; ?> wbte_sc_bogo_edit_products_row" data-row="wbte_sc_bogo_edit_products_row">
 						<td colspan="2">
 							<div class="wbte_sc_bogo_edit_products_tab">
-								<div class="wbte_sc_bogo_edit_prod_restriction_tab_head">
+								<div class="wbte_sc_bogo_edit_custom_drop_down_head">
 									<div class="wbte_sc_bogo_product_restriction_select_btn wbte_sc_bogo_edit_custom_drop_down_btn">
 										<p><?php ! empty( $excluded_products ) ? esc_html_e( 'Any product(s) except', 'wt-smart-coupons-for-woocommerce' ) : esc_html_e( 'Specific product(s) only', 'wt-smart-coupons-for-woocommerce' ); ?></p>
 										<span class="dashicons dashicons-arrow-down-alt2"></span>
 									</div>
-									<div class="wbte_sc_bogo_product_restriction_select_option wbte_sc_bogo_edit_custom_drop_down">
-										<p class="wbte_sc_bogo_edit_specific_prod_btn wbte_sc_bogo_prod_cat_restriction_sub_btn"><?php esc_html_e( 'Specific product(s) only', 'wt-smart-coupons-for-woocommerce' ); ?></p>
-										<p class="wbte_sc_bogo_edit_excluded_prod_btn wbte_sc_bogo_prod_cat_restriction_sub_btn"><?php esc_html_e( 'Any product(s) except', 'wt-smart-coupons-for-woocommerce' ); ?></p>
+									<div class="wbte_sc_bogo_edit_custom_drop_down">
+										<p data-group="wbte_sc_prod_row" data-val="specific" class="wbte_sc_bogo_edit_specific_prod_btn wbte_sc_bogo_prod_cat_restriction_sub_btn wbte_sc_bogo_excl_sel_icn wbte_sc_bogo_edit_custom_drop_down_sub_btn"><?php esc_html_e( 'Specific product(s) only', 'wt-smart-coupons-for-woocommerce' ); ?></p>
+										<p data-group="wbte_sc_prod_row" data-val="excluded" class="wbte_sc_bogo_edit_excluded_prod_btn wbte_sc_bogo_prod_cat_restriction_sub_btn wbte_sc_bogo_excl_sel_icn wbte_sc_bogo_edit_custom_drop_down_sub_btn"><?php esc_html_e( 'Any product(s) except', 'wt-smart-coupons-for-woocommerce' ); ?></p>
 									</div>
-									<span style="height: 24px;"  class="wbte_sc_bogo_edit_trash"><?php echo wp_kses_post( $ds_obj->render_html( array( 'html' => '{{wbte-ds-icon-trash}}' ) ) ); ?></span>
+									<input type="hidden" value="<?php echo ! empty( $excluded_products ) ? 'exclude' : 'specific'; ?>">
 								</div>
 
 								<div class="wbte_sc_bogo_edit_specific_products_row <?php echo ! empty( $excluded_products ) ? 'wbte_sc_bogo_conditional_hidden ' : ' '; ?>">
@@ -176,6 +176,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 									?>
 									</select>
 								</div>
+								<?php echo wp_kses_post( $trash_icon ); ?>
 							</div>
 						</td>
 					</tr>
@@ -184,114 +185,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 					</tr>
 				</tbody>
 			</table>
-			<!-- Additonal conditions -->
-			<table class="wbte_sc_bogo_edit_table wbte_sc_bogo_additional_fields_table">
-				<tbody>
-					<tr>
-						<th colspan="2">
-							<div class="wbte_sc_bogo_edit_add_div">
-								<p><?php esc_html_e( 'Optional conditions', 'wt-smart-coupons-for-woocommerce' ); ?>
-									<span class="wbte_sc_bogo_edit_add_button wbte_sc_bogo_edit_addition_conditions"><?php esc_html_e( '+ Add', 'wt-smart-coupons-for-woocommerce' ); ?></span>
-								</p>
-								<div class="wbte_sc_bogo_edit_additional_condition_select wbte_sc_bogo_edit_custom_drop_down">
-									<p class="wbte_sc_bogo_edit_custom_select_head"><?php esc_html_e( 'Additional', 'wt-smart-coupons-for-woocommerce' ); ?></p>
-									<p class="wbte_sc_bogo_qty_row wbte_sc_bogo_qty_row_to_hide"><?php esc_html_e( 'Total quantity', 'wt-smart-coupons-for-woocommerce' ); ?></p>
-									<p class="wbte_sc_bogo_each_qty_row wbte_sc_bogo_each_qty_row_to_hide"><?php esc_html_e( 'Quantity of each product', 'wt-smart-coupons-for-woocommerce' ); ?></p>
-									<p class="wbte_sc_bogo_per_coupon_row"><?php esc_html_e( 'Usage limit per offer', 'wt-smart-coupons-for-woocommerce' ); ?></p>
-									<p class="wbte_sc_bogo_per_user_row"><?php esc_html_e( 'Usage limit per user', 'wt-smart-coupons-for-woocommerce' ); ?></p>
-									<p class="wbte_sc_bogo_email_row"><?php esc_html_e( 'Allowed emails', 'wt-smart-coupons-for-woocommerce' ); ?></p>
-								</div>
-							</div>
-						</th>
-					</tr>
-					<tr class="<?php echo ( 0 >= self::get_coupon_meta_value( $coupon_id, '_wbte_sc_bogo_min_qty_add' ) && empty( self::get_coupon_meta_value( $coupon_id, '_wbte_sc_bogo_max_qty_add' ) ) ) ? ' wbte_sc_bogo_conditional_hidden ' : ' '; ?> wbte_sc_bogo_qty_row wbte_sc_bogo_qty_row_to_hide">
-						<td colspan="2">
-							<div class="wbte_sc_bogo_additional_fields wbte_sc_bogo_qty_field">
-								<span style="height: 24px;"  class="wbte_sc_bogo_edit_trash"><?php echo wp_kses_post( $ds_obj->render_html( array( 'html' => '{{wbte-ds-icon-trash}}' ) ) ); ?></span>
-								<div class="wbte_sc_bogo_additional_flex">
-									<p><?php esc_html_e( 'Minimum quantity', 'wt-smart-coupons-for-woocommerce' ); ?></p>
-									<input type="text" name="_wbte_sc_bogo_min_qty_add" id="_wbte_sc_bogo_min_qty_add" class="wbte_sc_bogo_edit_input wbte_sc_bogo_input_only_number" value="<?php echo esc_attr( self::get_coupon_meta_value( $coupon_id, '_wbte_sc_bogo_min_qty_add' ) ); ?>">
-								</div>
-								<br>
-								<div class="wbte_sc_bogo_additional_flex">
-									<p><?php esc_html_e( 'Maximum quantity', 'wt-smart-coupons-for-woocommerce' ); ?></p>
-									<input type="text" name="_wbte_sc_bogo_max_qty_add" id="_wbte_sc_bogo_max_qty_add" placeholder="<?php esc_attr_e( 'Optional', 'wt-smart-coupons-for-woocommerce' ); ?>" class="wbte_sc_bogo_edit_input wbte_sc_bogo_input_only_number" value="<?php echo esc_attr( self::get_coupon_meta_value( $coupon_id, '_wbte_sc_bogo_max_qty_add' ) ); ?>">
-								</div>
-							</div>
-						</td>
-					</tr>
-					<tr class="<?php echo empty( self::get_coupon_meta_value( $coupon_id, '_wbte_sc_min_qty_each' ) ) && empty( self::get_coupon_meta_value( $coupon_id, '_wbte_sc_max_qty_each' ) ) ? ' wbte_sc_bogo_conditional_hidden ' : ' '; ?> wbte_sc_bogo_each_qty_row wbte_sc_bogo_each_qty_row_to_hide">
-						<td colspan="2">
-							<div class="wbte_sc_bogo_additional_fields wbte_sc_bogo_qty_field">
-								<span style="height: 24px;"  class="wbte_sc_bogo_edit_trash"><?php echo wp_kses_post( $ds_obj->render_html( array( 'html' => '{{wbte-ds-icon-trash}}' ) ) ); ?></span>
-								<div class="wbte_sc_bogo_additional_flex">
-									<p><?php esc_html_e( 'Min quantity of each item', 'wt-smart-coupons-for-woocommerce' ); ?></p>
-									<input type="text" name="_wbte_sc_min_qty_each" id="_wbte_sc_min_qty_each" class="wbte_sc_bogo_edit_input wbte_sc_bogo_input_only_number" value="<?php echo esc_attr( self::get_coupon_meta_value( $coupon_id, '_wbte_sc_min_qty_each' ) ); ?>">
-								</div>
-								<br>
-								<div class="wbte_sc_bogo_additional_flex">
-									<p><?php esc_html_e( 'Max quantity of each item', 'wt-smart-coupons-for-woocommerce' ); ?></p>
-									<input type="text" name="_wbte_sc_max_qty_each" id="_wbte_sc_max_qty_each" placeholder=<?php esc_attr_e( 'Optional', 'wt-smart-coupons-for-woocommerce' ) ?> class="wbte_sc_bogo_edit_input wbte_sc_bogo_input_only_number" value="<?php echo esc_attr( self::get_coupon_meta_value( $coupon_id, '_wbte_sc_max_qty_each' ) ); ?>">
-								</div>
-							</div>
-						</td>
-					</tr>
-					<tr class="<?php echo empty( self::get_coupon_meta_value( $coupon_id, 'usage_limit' ) ) ? ' wbte_sc_bogo_conditional_hidden ' : ' '; ?> wbte_sc_bogo_per_coupon_row">
-						<td colspan="2">
-							<div class="wbte_sc_bogo_additional_fields">
-								<span style="height: 24px;"  class="wbte_sc_bogo_edit_trash"><?php echo wp_kses_post( $ds_obj->render_html( array( 'html' => '{{wbte-ds-icon-trash}}' ) ) ); ?></span>
-								<div class="wbte_sc_bogo_additional_flex">
-									<p>
-                                        <?php 
-                                        esc_html_e( 'Usage limit per offer', 'wt-smart-coupons-for-woocommerce' ); 
-                                        echo ' ';
-                                        echo wp_kses_post( wc_help_tip( __( 'The total number of times this offer can be used in the store, including multiple redemptions by the same user', 'wt-smart-coupons-for-woocommerce' ) ) );
-                                        ?>
-									</p>
-									<input type="text" name="usage_limit" id="usage_limit" class="wbte_sc_bogo_edit_input wbte_sc_bogo_input_only_number" value="<?php echo esc_attr( self::get_coupon_meta_value( $coupon_id, 'usage_limit' ) ); ?>">
-								</div>
-							</div>
-						</td>
-					</tr>
-					<tr class="<?php echo empty( self::get_coupon_meta_value( $coupon_id, 'usage_limit_per_user' ) ) ? ' wbte_sc_bogo_conditional_hidden ' : ' '; ?> wbte_sc_bogo_per_user_row">
-						<td colspan="2">
-							<div class="wbte_sc_bogo_additional_fields">
-								<span style="height: 24px;"  class="wbte_sc_bogo_edit_trash"><?php echo wp_kses_post( $ds_obj->render_html( array( 'html' => '{{wbte-ds-icon-trash}}' ) ) ); ?></span>
-								<div class="wbte_sc_bogo_additional_flex">
-									<p>
-                                        <?php 
-                                        esc_html_e( 'Usage limit per user', 'wt-smart-coupons-for-woocommerce' ); 
-                                        echo ' ';
-                                        echo wp_kses_post( wc_help_tip( __( 'The maximum number of times a single user can redeem this offer. It must be less than the overall usage limit per offer', 'wt-smart-coupons-for-woocommerce' ) ) );
-                                        ?>
-									</p>
-									<input type="text" name="usage_limit_per_user" id="usage_limit_per_user" class="wbte_sc_bogo_edit_input wbte_sc_bogo_input_only_number" value="<?php echo esc_attr( self::get_coupon_meta_value( $coupon_id, 'usage_limit_per_user' ) ); ?>">
-								</div>
-							</div>
-						</td>
-					</tr>
-					<tr class="<?php echo empty( $coupon->get_email_restrictions( 'edit' ) ) ? ' wbte_sc_bogo_conditional_hidden ' : ' '; ?> wbte_sc_bogo_email_row">
-						<td colspan="2">
-							<div class="wbte_sc_bogo_additional_fields wbte_sc_bogo_email_flex">
-								<span style="height: 24px;"  class="wbte_sc_bogo_edit_trash"><?php echo wp_kses_post( $ds_obj->render_html( array( 'html' => '{{wbte-ds-icon-trash}}' ) ) ); ?></span>
-								<label for="customer_email"><?php esc_html_e( 'Allowed emails', 'wt-smart-coupons-for-woocommerce' ); ?></label>
-								<?php echo wp_kses_post( wc_help_tip( __( 'The BOGO deal is only valid for recipients of the selected emails.', 'wt-smart-coupons-for-woocommerce' ) ) ); ?>
-								<div>
-									<select style="width: 333px; height: 55px;" name="wbte_sc_bogo_emails[]" multiple="multiple" class="wbte_sc_bogo_email_search" data-placeholder="<?php echo esc_attr( 'mail@example.com' ); ?>">
-									<?php
-										$emails = $coupon->get_email_restrictions( 'edit' );
-									foreach ( $emails as $email ) {
-										echo '<option value="' . esc_attr( $email ) . '" selected="selected">' . esc_html( $email ) . '</option>';
-									}
-									?>
-									</select>
-									<p class="wbte_sc_bogo_email_field_caption"><?php echo wp_kses_post( __( 'Offer won’t be auto-applied for guest users when email restriction is enabled.', 'wt-smart-coupons-for-woocommerce' ) ); ?></p>
-								</div>
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
+			<!-- Optional conditions -->
+			<?php include_once '----step2-optional-conditions.php'; ?>
+			
 		</div>
 		<div class="wbte_sc_bogo_step_short_description wbte_sc_bogo_step2_short_description">
 			<!-- Values will assign from js -->

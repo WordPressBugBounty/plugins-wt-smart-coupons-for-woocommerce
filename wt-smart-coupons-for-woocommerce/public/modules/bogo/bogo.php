@@ -303,6 +303,8 @@ class Wbte_Smart_Coupon_Bogo_Public extends Wbte_Smart_Coupon_Bogo_Common {
 			}
 		}
 
+		$cart_amount = apply_filters( 'wbte_sc_bogo_alter_cart_amount_for_validation', $cart_amount, $coupon_id );
+
 		// Amount checks.
 		self::check_coupon_min_max_condition( self::get_coupon_meta_value( $coupon_id, '_wbte_sc_bogo_min_amount' ), $cart_amount, 'min', false );
 		self::check_coupon_min_max_condition( self::get_coupon_meta_value( $coupon_id, '_wbte_sc_bogo_max_amount' ), $cart_amount, 'max', false );
@@ -622,6 +624,11 @@ class Wbte_Smart_Coupon_Bogo_Public extends Wbte_Smart_Coupon_Bogo_Common {
 	 */
 	public static function process_specific_product_giveaway( $coupon_id, $when_applied = true ) {
 
+		$cart = self::get_cart_object();
+		if ( is_null( $cart ) || $cart->is_empty() ) {
+			return;
+		}
+
 		$customer_gets = self::get_coupon_meta_value( $coupon_id, 'wbte_sc_bogo_customer_gets' );
 		if ( 'specific_product' !== $customer_gets ) {
 			return;
@@ -629,6 +636,7 @@ class Wbte_Smart_Coupon_Bogo_Public extends Wbte_Smart_Coupon_Bogo_Common {
 
 		$coupon_code   = wc_get_coupon_code_by_id( $coupon_id );
 		$free_products = self::get_giveaway_products( $coupon_id );
+		$free_products = self::unset_no_discount_product_from_free_products( $free_products, $coupon_id );
 		if ( ! empty( $free_products ) ) {
 			$free_products_qty = self::get_bogo_eligible_qty( $coupon_id );
 			$bogo_product_condition = self::get_coupon_meta_value( $coupon_id, 'wbte_sc_bogo_gets_product_condition' );
@@ -640,14 +648,11 @@ class Wbte_Smart_Coupon_Bogo_Public extends Wbte_Smart_Coupon_Bogo_Common {
 						$item_price = self::get_product_price( $_product );
 						$discount   = self::$bogo_discount_amount_for_products[ $coupon_id ][ $item_id ] ?? self::get_available_discount_for_giveaway_product( $coupon_id, $_product );
 
-						if ( 0 < $discount ) {
-
-							if ( self::is_auto_add_only_full_discount() && ( $discount < $item_price ) ) {
-								break;
-							}
-
-							$item_added = self::add_item_to_cart( $item_id, $free_products_qty, $coupon_code );
+						// If auto add only full discount is enabled and discount is not 100% discount, then skip adding the product.
+						if ( self::is_auto_add_only_full_discount() && $discount  !== $item_price ) {
+							continue;
 						}
+						$item_added = self::add_item_to_cart( $item_id, $free_products_qty, $coupon_code );
 					}
 				} else {
 					if ( 'all' === $bogo_product_condition ) {
@@ -656,7 +661,7 @@ class Wbte_Smart_Coupon_Bogo_Public extends Wbte_Smart_Coupon_Bogo_Common {
 							$item_price = self::get_product_price( wc_get_product( $item_id ) );
 							$discount   = self::$bogo_discount_amount_for_products[ $coupon_id ][ $item_id ] ?? self::get_available_discount_for_giveaway_product( $coupon_id, $_product );
 
-							if ( ( 0 < $discount ) && self::is_auto_add_product( $item_id, $coupon_id ) && ! ( self::is_auto_add_only_full_discount() && ( $discount < $item_price ) ) ) {
+							if ( self::is_auto_add_product( $item_id, $coupon_id ) && ! ( self::is_auto_add_only_full_discount() && ( $discount < $item_price ) ) ) {
 								$item_added = self::add_item_to_cart( $item_id, $free_products_qty, $coupon_code );
 							}
 						}
@@ -677,11 +682,29 @@ class Wbte_Smart_Coupon_Bogo_Public extends Wbte_Smart_Coupon_Bogo_Common {
 				}
 
 				$free_prod_qty_in_cart = self::get_coupon_giveaway_count_in_cart( $coupon_code, true );
-				if ( 'all' === $bogo_product_condition ){
+				if ( 'all' === $bogo_product_condition || 1 === count( $free_products ) ){
 					$free_products_qty *= count( $free_products );
+
+					$cart_items     = $cart->get_cart();
+					if( $free_products_qty < $free_prod_qty_in_cart ){ //giveaway qty reduced, so remove the free items from cart.
+						self::reduce_free_product_qty( $coupon_code, $free_prod_qty_in_cart - $free_products_qty );
+						return;
+					}
+					foreach ( $cart_items as $cart_item_key => $cart_item ) {
+						if ( self::is_a_free_item( $cart_item, $coupon_code ) ) {
+							$free_qty_ratio =  $cart_item['quantity'] / $free_prod_qty_in_cart;
+							$free_qty_to_add = absint( $free_products_qty * $free_qty_ratio );
+							if( 0 < $cart_item['variation_id'] && ! in_array( $cart_item['variation_id'], $free_products, true ) && $free_qty_to_add > $cart_item['quantity'] ){ //If variation product and variation id not in free products( parent is in free products) and qty increased, then skip auto add.
+								continue;
+							}
+							if ( $cart->get_cart_item( $cart_item_key ) ) {
+								$cart->set_quantity( $cart_item_key, $free_qty_to_add );
+							}
+						}
+					}
 				}
-				if( $free_products_qty <  $free_prod_qty_in_cart ){
-					self::reduce_free_product_qty( $coupon_code, ( $free_prod_qty_in_cart - $free_products_qty ) );
+				else if( 'any' === $bogo_product_condition && $free_products_qty <  $free_prod_qty_in_cart ){
+					self::reduce_free_product_qty( $coupon_code, $free_prod_qty_in_cart - $free_products_qty );
 				}
 			}
 		}
@@ -753,6 +776,7 @@ class Wbte_Smart_Coupon_Bogo_Public extends Wbte_Smart_Coupon_Bogo_Common {
 					? self::get_coupon_eligible_cart_amount_qty( $coupon_id, 'qty' )
 					: self::get_coupon_eligible_cart_amount_qty( $coupon_id, 'amount' );
 
+				$min_value = ( 0 >= $min_value ) ? 1 : $min_value;
 				$frequency = max( 1, (int) ( $eligible_value / $min_value ) );
 
 				return $frequency * $free_qty;
@@ -825,9 +849,13 @@ class Wbte_Smart_Coupon_Bogo_Public extends Wbte_Smart_Coupon_Bogo_Common {
 		$bogo_product_condition = self::get_coupon_meta_value( $coupon_id, 'wbte_sc_bogo_gets_product_condition' );
 
 		/**
-		 *  `or` condition and more than 1 giveaway
+		 *  `or(any)` condition.
 		 */
-		if ( 'all' !== $bogo_product_condition && 1 < count( $free_products ) ) {
+		if ( 'any' === $bogo_product_condition ) {
+			if( 1 === count( $free_products ) && self::is_auto_add_product( $free_products[0], $coupon_id ) ) {
+				return true;
+			}
+
 			return false;
 		}
 
@@ -849,12 +877,6 @@ class Wbte_Smart_Coupon_Bogo_Public extends Wbte_Smart_Coupon_Bogo_Common {
 	 * @return bool            True if product is able to be added automatically to the cart, otherwise false.
 	 */
 	public static function is_auto_add_product( $product_id, $coupon_id ) {
-
-		$bogo_product_condition = self::get_coupon_meta_value( $coupon_id, 'wbte_sc_bogo_gets_product_condition' );
-
-		if ( 'all' !== $bogo_product_condition ) {
-			return false;
-		}
 
 		$free_product = wc_get_product( $product_id );
 		if ( ! self::is_purchasable( $free_product ) ) {
@@ -984,7 +1006,7 @@ class Wbte_Smart_Coupon_Bogo_Public extends Wbte_Smart_Coupon_Bogo_Common {
 		}
 
 		$item_price     = self::get_product_price( $product );
-		$discount_price = 0;
+		$discount_price = 0.0;
 		$coupon         = new WC_Coupon( $coupon_id );
 		if ( ! $coupon || ! self::is_bogo( $coupon_id ) ) {
 			return $discount_price;
@@ -1017,7 +1039,7 @@ class Wbte_Smart_Coupon_Bogo_Public extends Wbte_Smart_Coupon_Bogo_Common {
 		}
 
 		self::$bogo_discount_amount_for_products[ $coupon_id ][ $product_id ] = $discount_price;
-		return $discount_price;
+		return (float) $discount_price;
 	}
 
 	/**
@@ -1412,7 +1434,12 @@ class Wbte_Smart_Coupon_Bogo_Public extends Wbte_Smart_Coupon_Bogo_Common {
 	 * @return int                          Updated BOGO eligible quantity
 	 */
 	public static function alter_giveaway_eligible_qty_based_on_cart( $coupon_code, $bogo_eligible_qty ) {
-		$cart_items = WC()->cart->get_cart();
+		$cart = self::get_cart_object();
+		if ( is_null( $cart ) || $cart->is_empty() ) {
+			return $bogo_eligible_qty;
+		}
+
+		$cart_items = $cart->get_cart();
 
 		foreach ( $cart_items as $cart_item ) {
 			if ( self::is_a_free_item( $cart_item, $coupon_code ) ) {
@@ -1434,9 +1461,12 @@ class Wbte_Smart_Coupon_Bogo_Public extends Wbte_Smart_Coupon_Bogo_Common {
 	 * @return array                Updated free products array
 	 */
 	public static function alter_free_products_display_arr( $coupon_code, $bogo_products, $customer_gets, $args = array() ) {
-		$cart_items = WC()->cart->get_cart();
+		$cart = self::get_cart_object();
+		if ( is_null( $cart ) || $cart->is_empty() ) {
+			return $bogo_products;
+		}
 
-		foreach ( $cart_items as $cart_item ) {
+		foreach ( $cart->get_cart() as $cart_item ) {
 			if ( self::is_a_free_item( $cart_item, $coupon_code ) ) {
 				$item_id = self::prepare_item_id_for_free_products( $cart_item, $bogo_products );
 
@@ -1873,7 +1903,7 @@ class Wbte_Smart_Coupon_Bogo_Public extends Wbte_Smart_Coupon_Bogo_Common {
 		if ( ! is_null( $cart ) && ! $cart->is_empty() ) {
 			$out = array();
 
-			foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+			foreach ( $cart->get_cart() as $cart_item_key => $cart_item ) {
 
 				if ( self::is_a_free_item( $cart_item ) ) {
 

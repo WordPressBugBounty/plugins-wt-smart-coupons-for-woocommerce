@@ -33,6 +33,7 @@ echo $ds_obj->get_component(
 		'values' => array(
 			'plugin_name'      => 'Smart coupon',
 			'developed_by_txt' => esc_html__( 'Developed by', 'wt-smart-coupons-for-woocommerce' ),
+			'plugin_logo' => esc_url( $admin_img_path . 'voucher_tag.svg' ),
 		),
 	)
 );

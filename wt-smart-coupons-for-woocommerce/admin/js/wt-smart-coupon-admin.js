@@ -170,10 +170,13 @@
 		$(".wt-sc-tips").tipTip({'attribute': 'data-wt-sc-tip'});
 	});
 	
-	/** Show the old BOGO disabled notice if the coupon type chosen is old BOGO, after the new BOGO is activated. */
+	/** 
+	 * Show the old BOGO disabled notice if the coupon type chosen is old BOGO, after the new BOGO is activated.
+	 * If new BOGO not activated, show the switch to new BOGO notice.
+	 */
 	$( document ).ready( function() {
 		if( WTSmartCouponAdminOBJ.is_new_bogo_activated ){
-			const notice_elm = '<div class="notice notice-info notice-alt inline wbte_sc_old_bogo_disabled_notice"><p>'+ WTSmartCouponAdminOBJ.msgs.old_bogo_disabled +'</p></div>'
+			const notice_elm = '<div class="notice notice-info notice-alt inline wbte_sc_old_bogo_disabled_notice"><p>'+ WTSmartCouponAdminOBJ.msgs.old_bogo_disabled +'</p></div>';
 			$( '#discount_type' ).on( 'change', function () {
 				if( 'wt_sc_bogo' === $( this ).val() ){
 					if( 0 === $( '.wbte_sc_old_bogo_disabled_notice' ).length ){
@@ -183,7 +186,23 @@
 					$( '.wbte_sc_old_bogo_disabled_notice' ).remove();
 				}
 			});
+		}else{
+			const switchNewBogoNotice = `<div class="wbte_sc_switch_new_bogo_notice"><p>${ WTSmartCouponAdminOBJ.msgs.switch_new_bogo }</p><button class="wbte_sc_button-shadow wbte_sc_button wbte_sc_button-filled wbte_sc_button-small wbte_sc_switch_new_bogo_notice_btn">${ WTSmartCouponAdminOBJ.msgs.update_now }</button></div>`;
+			$( '#discount_type' ).on( 'change', function () {
+				if( 'wt_sc_bogo' === $( this ).val() ){
+					if( 0 === $( '.wbte_sc_switch_new_bogo_notice' ).length ){
+						$( '.form-field.discount_type_field' ).after( switchNewBogoNotice );
+					}
+				}else{
+					$( '.wbte_sc_switch_new_bogo_notice' ).remove();
+				}
+			});
 		}
+
+		$( document ).on( 'click', '.wbte_sc_switch_new_bogo_notice_btn', function(e) {
+            e.preventDefault();
+            window.location.href = 'admin.php?page=wt-smart-coupon-for-woo_bogo';
+        });
 	} );
 	
 

@@ -70,30 +70,34 @@ $today_date = gmdate( 'Y-m-d' );
 
 		<p><?php esc_html_e( 'Activate offer', 'wt-smart-coupons-for-woocommerce' ); ?></p>
 
-		<label class="wbte_sc_radio_container">
-			<?php
-			esc_html_e( 'Automatically', 'wt-smart-coupons-for-woocommerce' );
-			echo wp_kses_post( wc_help_tip( __( 'The offer is automatically applied when eligible products are added to the cart', 'wt-smart-coupons-for-woocommerce' ) ) );
-			?>
-			<input type="radio" id="wbte_sc_bogo_code_auto" name="wbte_sc_bogo_code_condition" value="wbte_sc_bogo_code_auto" <?php checked( 'wbte_sc_bogo_code_auto', self::get_coupon_meta_value( $coupon_id, 'wbte_sc_bogo_code_condition' ) ); ?>>
-			<br><span class="wbte_sc_bogo_help_text">
-			<?php
-			esc_html_e(
-				'Offer name will be displayed in the cart summary when offer is applied',
-				'wt-smart-coupons-for-woocommerce'
-			);
-			?>
-			</span>
-			<span class="wbte_sc_radio_checkmark"></span>
-		</label>
-		<label class="wbte_sc_radio_container">
-			<?php
-			esc_html_e( 'Through coupon code', 'wt-smart-coupons-for-woocommerce' );
-			echo wp_kses_post( wc_help_tip( __( 'The user must enter the coupon code after adding eligible items to the cart to redeem the offer', 'wt-smart-coupons-for-woocommerce' ) ) );
-			?>
-			<input type="radio" id="wbte_sc_bogo_code_manual" name="wbte_sc_bogo_code_condition" value="wbte_sc_bogo_code_manual" <?php checked( 'wbte_sc_bogo_code_manual', self::get_coupon_meta_value( $coupon_id, 'wbte_sc_bogo_code_condition' ) ); ?>>
-			<span class="wbte_sc_radio_checkmark"></span>
-		</label>
+		<?php
+		echo $ds_obj->get_component(
+			'radio-group multi-line',
+			array(
+				'values' => array(
+					'name'  => 'wbte_sc_bogo_code_condition',
+					'items' => array(
+						array(
+							'label' => sprintf( 
+								__( 'Automatically %s %s %s', 'wt-smart-coupons-for-woocommerce' ), 
+								wp_kses_post( wc_help_tip( __( 'The offer is automatically applied when eligible products are added to the cart', 'wt-smart-coupons-for-woocommerce' ) ) ), 
+								wp_kses_post( '<span class="wbte_sc_bogo_code_copy_container"><span class="wbte_sc_hidden_tooltip">' . __( 'Copy coupon code for admin use', 'wt-smart-coupons-for-woocommerce' ) . '</span><img class="wbte_sc_bogo_code_copy" src="' . esc_url( "{$admin_img_path}copy.svg" ) . '" alt="' . esc_attr__( 'copy code', 'wt-smart-coupons-for-woocommerce' ) . '" /></span>' ), 
+								wp_kses_post( '<span class="wbte_sc_bogo_help_text wbte_sc_bogo_code_cond_help_txt">' . __( 'Offer name will be displayed in the cart summary when offer is applied', 'wt-smart-coupons-for-woocommerce' ) . '</span>' ) 
+							),
+							'value' => 'wbte_sc_bogo_code_auto',
+							'is_checked' => 'wbte_sc_bogo_code_auto' === self::get_coupon_meta_value( $coupon_id, 'wbte_sc_bogo_code_condition' ),
+						),
+						array(
+							'label' => sprintf( esc_html__( 'Through coupon code %s', 'wt-smart-coupons-for-woocommerce' ), wp_kses_post( wc_help_tip( __( 'The user must enter the coupon code after adding eligible items to the cart to redeem the offer', 'wt-smart-coupons-for-woocommerce' ) ) ) ),
+							'value' => 'wbte_sc_bogo_code_manual',
+							'is_checked' => 'wbte_sc_bogo_code_manual' === self::get_coupon_meta_value( $coupon_id, 'wbte_sc_bogo_code_condition' ),
+						),
+					),
+				),
+				'class' => array( 'wbte_sc_bogo_edit_code_cond_radio' )
+			)
+		);
+		?>
 
 		<div class=" <?php echo 'wbte_sc_bogo_code_manual' === self::get_coupon_meta_value( $coupon_id, 'wbte_sc_bogo_code_condition' ) ? '' : 'wbte_sc_bogo_conditional_hidden '; ?>">
 			<input type="text" id="wbte_sc_bogo_coupon_code" name="wbte_sc_bogo_coupon_code" class="wbte_sc_bogo_text_input" placeholder="<?php esc_attr_e( 'Coupon code', 'wt-smart-coupons-for-woocommerce' ); ?>" value="<?php echo esc_html( $coupon->get_code() ); ?>">
