@@ -998,6 +998,9 @@ class Wbte_Smart_Coupon_Bogo_Public extends Wbte_Smart_Coupon_Bogo_Common {
 	 * @return float             Discount amount.
 	 */
 	public static function get_available_discount_for_giveaway_product( $coupon_id, $product ) {
+		if ( ! $product ) {
+			return 0;
+		}
 		$product_id = $product->get_id();
 
 		// Check if the discount is already calculated for this product and coupon.
@@ -1063,6 +1066,9 @@ class Wbte_Smart_Coupon_Bogo_Public extends Wbte_Smart_Coupon_Bogo_Common {
 	 */
 	public static function is_full_giveaway( $coupon_id, $item_id ) {
 		$product       = wc_get_product( $item_id );
+		if ( ! $product ) {
+			return false;
+		}
 		$discount      = self::get_available_discount_for_giveaway_product( $coupon_id, $product );
 		$product_price = $product->get_price();
 
@@ -1416,7 +1422,10 @@ class Wbte_Smart_Coupon_Bogo_Public extends Wbte_Smart_Coupon_Bogo_Common {
 	private static function unset_no_discount_product_from_free_products( $free_products, $coupon_id ) {
 		foreach ( $free_products as $key => $product_id ) {
 			$_product   = wc_get_product( $product_id );
-			$item_price = self::get_product_price( $_product );
+			if ( ! $_product ) {
+				unset( $free_products[ $key ] );
+				continue;
+			}
 			$discount   = self::$bogo_discount_amount_for_products[ $coupon_id ][ $product_id ] ?? self::get_available_discount_for_giveaway_product( $coupon_id, $_product );
 			if ( 0 >= $discount ) {
 				unset( $free_products[ $key ] );

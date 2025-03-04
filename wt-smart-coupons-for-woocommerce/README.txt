@@ -1,12 +1,12 @@
-=== Smart Coupons For WooCommerce - Create WooCommerce Coupons, BOGO Coupons, Discount Rules, URL Coupons ===
+=== Smart Coupons For WooCommerce Coupons ===
 Contributors: WebToffee
-Version: 2.1.0
+Version: 2.1.1
 Donate link:https://www.webtoffee.com/plugins/
 Tags: WooCommerce coupons, WooCommerce discounts, BOGO, smart coupons, advanced coupons
 Requires at least: 3.3
 Tested up to: 6.7
 Requires PHP: 5.6
-Stable tag: 2.1.0
+Stable tag: 2.1.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -14,7 +14,7 @@ Create advanced WooCommerce coupons and smart discounts with WooCommerce coupon 
 
 == Description ==
 
-Smart Coupons for WooCommerce coupon plugin enhances default WooCommerce coupons with advanced discount code features. It allows you to create BOGO offers, set various discount rules, enable auto-apply coupons, offer product as giveaways, and manage WooCommerce coupon codes.
+Smart Coupons for WooCommerce plugin enhances default WooCommerce coupons with advanced discount code features. It allows you to create BOGO offers, set various discount rules, enable auto-apply coupons, offer product as giveaways, and manage WooCommerce coupon codes.
 
 ###No.1 WooCommerce Marketing Plugin: Advanced WooCommerce Coupons and Discount Rules Plugin###
 
@@ -24,19 +24,19 @@ The success of every online store depends on how well they market their products
 
 ####WooCommerce BOGO Coupons and Discount Offers####
 
-The free  WooCommerce Smart Coupons plugin is the go-to WooCommerce coupon code plugin for setting up advanced WooCommerce BOGO coupons and discount offers. This WooCommerce discounts plugin comes with a dedicated BOGO module that provides flexibility in configuring buy one get one deals and other BOGO-focused WooCommerce discount code. structures. 
+The free  WooCommerce Smart Coupons plugin is the go-to coupon code plugin for setting up advanced WooCommerce BOGO coupons and discount offers. This WooCommerce discounts plugin comes with a dedicated BOGO module that provides flexibility in configuring buy one get one deals and other BOGO-focused WooCommerce discount code. structures. 
 
 This BOGO coupon plugin includes separate settings for Buy X, Get Y offers, allowing you to configure how BOGO discounts apply. Besides these BOGO features, with this BOGO coupon plugin you can choose whether to apply the BOGO offer once or repeatedly, enabling tiered BOGO discounts like Buy 2, Get 1 Free, Buy 4, Get 2 Free, and more. The coupon is automatically applied when the cart meets the set BOGO coupon criteria.
 
 You can also customize BOGO offers to provide quantity-based discounts (e.g., Buy 2, Get 1 Free) or price-based and percentage discounts (e.g., Buy 1, Get $10 Off or Buy 2, Get 5% Off). This WooCommerce coupon plugin covers both use cases, making WooCommerce Smart Coupons a versatile WooCommerce discount codes plugin solution.
 
-###Major Features: Smart Coupons For WooCommerce Coupon Plugin###
+### Key Features of WebToffee Smart Coupons for WooCommerce ###
 
 * <strong>Dedicated BOGO module</strong>: Create Buy One Get One offers effortlessly with an easy-to-use BOGO module.
 
-* <strong>Auto-apply WooCommerce coupons </strong>: Create smart coupon codes that can be [applied automatically](https://www.webtoffee.com/how-to-auto-apply-coupon-on-checkout-in-woocommerce/) when a product is added to the cart.
+* <strong>Auto-apply WooCommerce coupon codes </strong>: Create smart coupon codes that can be [applied automatically](https://www.webtoffee.com/how-to-auto-apply-coupon-on-checkout-in-woocommerce/) when a product is added to the cart.
 
-* <strong>Apply coupon restrictions</strong>: Restrict WooCommerce coupon usage on the basis of products, categories, and user roles.
+* <strong>Apply coupon restrictions</strong>: Restrict coupon usage on the basis of products, categories, and user roles.
 
 * <strong>Create product quantity/subtotal based discounts</strong>: Filter coupons further with [maximum or minimum quantity/subtotal of products](https://www.webtoffee.com/how-to-offer-quantity-based-discounts-in-woocommerce/) purchased.
 
@@ -46,7 +46,7 @@ You can also customize BOGO offers to provide quantity-based discounts (e.g., Bu
 
 * <strong>View coupons codes from My-Account page</strong>: Make the WooCommerce discount coupons available in the user’s account so that they can view applicable coupons from My Account > My Coupon.
 
-* <strong>Categorize WooCommerce coupon codes</strong>: Organize your WooCommerce discounts using coupon categories.
+* <strong>Categorize discount codes</strong>: Organize your WooCommerce discounts using coupon categories.
 
 * <strong>Coupon customization</strong>: Customize coupon appearance with categorized coupon styling options for expired, used, and active coupons.
 
@@ -54,17 +54,17 @@ You can also customize BOGO offers to provide quantity-based discounts (e.g., Bu
 
 * <strong>Create coupon URLs</strong>: URL coupons feature helps you generate a unique URL to any coupon in your WooCommerce store.
 
-* <strong>Offer ‘seasonal discount offer’</strong>: Allows you to schedule WooCommerce coupons by [setting a start date and an end date](https://www.webtoffee.com/how-to-offer-seasonal-discounts-in-woocommerce/) enabling you to offer ‘seasonal discounts’. 
+* <strong>Offer ‘seasonal discount offer’</strong>: Allows you to schedule WooCommerce advanced coupons by [setting a start date and an end date](https://www.webtoffee.com/how-to-offer-seasonal-discounts-in-woocommerce/) enabling you to offer ‘seasonal discounts’. 
 
-* <strong>Displays available WooCommerce coupons on cart and checkout page</strong>: The customers can view the available coupons from the cart as well as from the checkout page.
+* <strong>Displays available WooCommerce coupon codes on cart and checkout page</strong>: The customers can view the available coupons from the cart as well as from the checkout page.
 
-* <strong>WooCommerce coupon shortcodes</strong>: Shortcodes are auto-created for all WooCommerce coupons in your store. You can use coupon shortcodes to display the coupon code, description, or discount info derived from the coupon settings anywhere on your site.
+* <strong>WooCommerce coupon shortcodes</strong>: Shortcodes are auto-created for all WooCommerce coupon discounts in your store. You can use coupon shortcodes to display the coupon code, description, or discount info derived from the coupon settings anywhere on your site.
 
 
-###Smart Coupons For WooCommerce Coupons - User Guide###
+###Smart Coupons For WooCommerce - User Guide###
 To get more details on how to set up this WooCommerce Smart Coupons plugin, please read [Smart Coupons for WooCommerce user guide](https://www.webtoffee.com/smart-coupons-for-woocommerce-userguide/ "Smart Coupons for WooCommerce user guide").
 
-###WOOCOMMERCE SMART COUPONS AND DISCOUNT RULES PLUGIN-PREMIUM VERSION FEATURES###
+###PREMIUM FEATURES OF WEBTOFFEE WOOCOMMERCE SMART COUPONS PLUGIN###
 
 The following video explains the setup and workflow of the WooCommerce Smart Coupons plugin.
 [youtube https://youtu.be/GJo-1pprTUU?si=7SPLbZa0XPZBmy6Z]
@@ -86,10 +86,10 @@ The following video explains the setup and workflow of the WooCommerce Smart Cou
 * Provision to use **combo coupon** for purchase.
 * **Coupon shortcodes** for displaying all available WooCommerce coupon codes for individual users. You may use the shortcode [wt_sc_user_available_coupons] for this purpose.
 
-For a complete list of advanced WooCommerce coupon plugin features and details, please visit [Smart Coupons for WooCommerce](https://www.webtoffee.com/product/smart-coupons-for-woocommerce/).
+For a complete list of advanced coupon plugin features and details, please visit [Smart Coupons for WooCommerce](https://www.webtoffee.com/product/smart-coupons-for-woocommerce/).
 
 
-### HOW CREATING WOOCOMMERCE ADVANCED COUPONS USING SMART COUPONS BENEFITS YOUR WOOCOMMERCE MARKETING? ###
+### ADVANCED WOOCOMMERCE COUPON FEATURES TO LEVEL UP YOUR WOOCOMMERCE MARKETING ###
 
 <strong>Easily apply coupons</strong>: Each coupon has a coupon code associated with it. Usually, customers are required to enter this WooCommerce discount code in the allowed field for applying a coupon to their purchase. However, this task can be made shorter by smart coupons as it displays all the coupons available for the customer on the Cart & My Account page to easily apply them. This streamlines the coupon application process, increasing coupon usage and reducing abandoned carts.
 
@@ -139,7 +139,7 @@ function wt_removed_un_wanted_my_account_tabs( $items ) {
 }`
 = Can I create quantity based WooCommerce coupons using this plugin?
 
-Yes. This WooCommerce coupon plugin lets you create BOGO discounts of different types.
+Yes. The Smart Coupon plugin lets you create BOGO discounts of different types.
 
 = Can I offer BOGO deals in WooCommerce using this plugin?
 
@@ -150,7 +150,7 @@ Yes. You can use this WooCommere advanced coupon plugin to offer discounts such 
 Yes. You can generate coupon URL's using the following format.
 {site_url}/?wt_coupon={coupon_code}
 
-= Can I create WooCommerce coupons based on subtotal?
+= Can I create WooCommerce coupon codes based on subtotal?
 
 Yes. You can create coupons that get applied as per the purchase amount of a customer. 
 
@@ -175,6 +175,9 @@ Yes. You can create coupons that get applied as per the purchase amount of a cus
 
 
 == Changelog ==
+
+= 2.1.1 - 2025-03-04 =
+* [Fix] - Fatal error when assigned free products in BOGO no longer exists.
 
 = 2.1.0 - 2025-02-27 =
 * [Fix] - Free products not incrementing when eligibility changed, instead displaying free products to choose.
@@ -544,7 +547,5 @@ Yes. You can create coupons that get applied as per the purchase amount of a cus
 
 == Upgrade Notice ==
 
-= 2.1.0 =
-* [Fix] - Free products not incrementing when eligibility changed, instead displaying free products to choose.
-* [Fix] - The payment method-restricted auto coupon was not removed when the payment method changed due to a shipping method change.
-* [Compatibility] - Tested OK with WooCommerce 9.7
+= 2.1.1 =
+* [Fix] - Fatal error when assigned free products in BOGO no longer exists.
