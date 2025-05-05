@@ -12,7 +12,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 <style>
-    .wbte_sc_pro_hor_banner { padding: 15px 24px; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; margin-left: -88px; border-left: 6px solid; }
+    .wbte_sc_pro_hor_banner { padding: 15px 24px; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; border-left: 6px solid; box-sizing: border-box; }
+    .wbte_sc_bogo_edit_main .wbte_sc_pro_hor_banner{ margin-left: -88px; }
     .wbte_sc_pro_hor_banner_content { display: flex; align-items: baseline; gap: 6px; width: 70%; }
     .wbte_sc_hor_banner_dash_icon { font-size: 13px; }
     .wbte_sc_pro_hor_banner_text { font-size: 13px !important; color: #333; font-weight: 400 !important; }

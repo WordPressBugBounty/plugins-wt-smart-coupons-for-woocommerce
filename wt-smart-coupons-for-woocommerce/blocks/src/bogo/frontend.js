@@ -74,33 +74,24 @@ if ( 'undefined' !== typeof WTSmartCouponOBJ && ! wbte_isFirefox && "1" === WTSm
 }
 
 /** 
- *  Giveaway products block
+ *  BOGO products block
  */
-const Block = ({ children, checkoutExtensionData, cart }) => {
-    
-    const [productsHtml, setProductsHtml] = useState('');
-    
-    if ( wbte_cart_obj ) {
+const addBogoProductHtml = ( defaultValue, extensions, args ) => {
 
-        clearTimeout( wbte_giveaway_products_timeout );
+    jQuery( document ).ready( function( $ ) {
+        const bogo_products_html = wbte_cart_obj?.extensions?.wt_sc_blocks?.bogo_products_html;
+        $( '.wbte_sc_block_bogo_products_wrapper_div' ).remove();
+        $( '.wp-block-woocommerce-cart-items-block' ).append(
+            '<div class="wbte_sc_block_bogo_products_wrapper_div">' + bogo_products_html + '</div>'
+        );
+    });
 
-        wbte_giveaway_products_timeout = setTimeout(function(){
-            const giveaway_products_html = wbte_cart_obj?.extensions?.wt_sc_blocks?.bogo_products_html;
-            setProductsHtml( giveaway_products_html );
-        }, 10);
-    }
+    return defaultValue;
+};
 
-    return (
-        <div
-          dangerouslySetInnerHTML={{__html: productsHtml}}
-        />
-      );
-}
-
-registerCheckoutBlock( {
-    metadata,
-    component: Block
-} );
+registerCheckoutFilters('wbte-sc-cart-bogo-product-html', {
+    totalValue: addBogoProductHtml,
+});
 
 const hideApplyRemoveCouponNotice = ( defaultValue, extensions, args ) => {
 

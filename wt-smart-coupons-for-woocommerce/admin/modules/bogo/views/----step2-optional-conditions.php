@@ -38,12 +38,12 @@ if ( ! defined( 'ABSPATH' ) ) {
                     <?php echo wp_kses_post( $trash_icon ); ?>
                     <div class="wbte_sc_bogo_additional_flex">
                         <p><?php esc_html_e( 'Minimum quantity', 'wt-smart-coupons-for-woocommerce' ); ?></p>
-                        <input type="text" name="_wbte_sc_bogo_min_qty_add" id="_wbte_sc_bogo_min_qty_add" class="wbte_sc_bogo_edit_input wbte_sc_bogo_input_only_number" value="<?php echo esc_attr( self::get_coupon_meta_value( $coupon_id, '_wbte_sc_bogo_min_qty_add' ) ); ?>">
+                        <input type="text" name="_wbte_sc_bogo_min_qty_add" id="_wbte_sc_bogo_min_qty_add" class="wbte_sc_admin_number_input wbte_sc_admin_input_only_number" value="<?php echo esc_attr( self::get_coupon_meta_value( $coupon_id, '_wbte_sc_bogo_min_qty_add' ) ); ?>">
                     </div>
                     <br>
                     <div class="wbte_sc_bogo_additional_flex">
                         <p><?php esc_html_e( 'Maximum quantity', 'wt-smart-coupons-for-woocommerce' ); ?></p>
-                        <input type="text" name="_wbte_sc_bogo_max_qty_add" id="_wbte_sc_bogo_max_qty_add" placeholder="<?php esc_attr_e( 'Optional', 'wt-smart-coupons-for-woocommerce' ); ?>" class="wbte_sc_bogo_edit_input wbte_sc_bogo_input_only_number" value="<?php echo esc_attr( self::get_coupon_meta_value( $coupon_id, '_wbte_sc_bogo_max_qty_add' ) ); ?>">
+                        <input type="text" name="_wbte_sc_bogo_max_qty_add" id="_wbte_sc_bogo_max_qty_add" placeholder="<?php esc_attr_e( 'Optional', 'wt-smart-coupons-for-woocommerce' ); ?>" class="wbte_sc_admin_number_input wbte_sc_admin_input_only_number" value="<?php echo esc_attr( self::get_coupon_meta_value( $coupon_id, '_wbte_sc_bogo_max_qty_add' ) ); ?>">
                     </div>
                 </div>
             </td>
@@ -54,12 +54,12 @@ if ( ! defined( 'ABSPATH' ) ) {
                     <?php echo wp_kses_post( $trash_icon ); ?>
                     <div class="wbte_sc_bogo_additional_flex">
                         <p><?php esc_html_e( 'Min quantity of each item', 'wt-smart-coupons-for-woocommerce' ); ?></p>
-                        <input type="text" name="_wbte_sc_min_qty_each" id="_wbte_sc_min_qty_each" class="wbte_sc_bogo_edit_input wbte_sc_bogo_input_only_number" value="<?php echo esc_attr( self::get_coupon_meta_value( $coupon_id, '_wbte_sc_min_qty_each' ) ); ?>">
+                        <input type="text" name="_wbte_sc_min_qty_each" id="_wbte_sc_min_qty_each" class="wbte_sc_admin_number_input wbte_sc_admin_input_only_number" value="<?php echo esc_attr( self::get_coupon_meta_value( $coupon_id, '_wbte_sc_min_qty_each' ) ); ?>">
                     </div>
                     <br>
                     <div class="wbte_sc_bogo_additional_flex">
                         <p><?php esc_html_e( 'Max quantity of each item', 'wt-smart-coupons-for-woocommerce' ); ?></p>
-                        <input type="text" name="_wbte_sc_max_qty_each" id="_wbte_sc_max_qty_each" placeholder=<?php esc_attr_e( 'Optional', 'wt-smart-coupons-for-woocommerce' ) ?> class="wbte_sc_bogo_edit_input wbte_sc_bogo_input_only_number" value="<?php echo esc_attr( self::get_coupon_meta_value( $coupon_id, '_wbte_sc_max_qty_each' ) ); ?>">
+                        <input type="text" name="_wbte_sc_max_qty_each" id="_wbte_sc_max_qty_each" placeholder=<?php esc_attr_e( 'Optional', 'wt-smart-coupons-for-woocommerce' ) ?> class="wbte_sc_admin_number_input wbte_sc_admin_input_only_number" value="<?php echo esc_attr( self::get_coupon_meta_value( $coupon_id, '_wbte_sc_max_qty_each' ) ); ?>">
                     </div>
                 </div>
             </td>
@@ -76,7 +76,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                             echo wp_kses_post( wc_help_tip( __( 'The total number of times this offer can be used in the store, including multiple redemptions by the same user', 'wt-smart-coupons-for-woocommerce' ) ) );
                             ?>
                         </p>
-                        <input type="text" name="usage_limit" id="usage_limit" class="wbte_sc_bogo_edit_input wbte_sc_bogo_input_only_number" value="<?php echo esc_attr( self::get_coupon_meta_value( $coupon_id, 'usage_limit' ) ); ?>">
+                        <input type="text" name="usage_limit" id="usage_limit" class="wbte_sc_admin_number_input wbte_sc_admin_input_only_number" value="<?php echo esc_attr( self::get_coupon_meta_value( $coupon_id, 'usage_limit' ) ); ?>">
                     </div>
                 </div>
             </td>
@@ -93,7 +93,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                             echo wp_kses_post( wc_help_tip( __( 'The maximum number of times a single user can redeem this offer. It must be less than the overall usage limit per offer', 'wt-smart-coupons-for-woocommerce' ) ) );
                             ?>
                         </p>
-                        <input type="text" name="usage_limit_per_user" id="usage_limit_per_user" class="wbte_sc_bogo_edit_input wbte_sc_bogo_input_only_number" value="<?php echo esc_attr( self::get_coupon_meta_value( $coupon_id, 'usage_limit_per_user' ) ); ?>">
+                        <input type="text" name="usage_limit_per_user" id="usage_limit_per_user" class="wbte_sc_admin_number_input wbte_sc_admin_input_only_number" value="<?php echo esc_attr( self::get_coupon_meta_value( $coupon_id, 'usage_limit_per_user' ) ); ?>">
                     </div>
                 </div>
             </td>

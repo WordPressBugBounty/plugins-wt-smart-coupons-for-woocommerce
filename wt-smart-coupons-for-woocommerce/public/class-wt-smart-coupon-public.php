@@ -266,18 +266,25 @@ if( ! class_exists('Wt_Smart_Coupon_Public') ) {
         /**
          *  Get formatted Start/Expiry date of a coupon.
          *  @since 1.3.7
+         * 
+         *  @param int      $date       The timestamp of the start/expiry date.
+         *  @param string   $type       The type of date to format. Either "start_date" or "expiry_date".
+         *  @return string The formatted start/expiry date of the coupon.
          */
-        public static function get_coupon_start_expiry_date_texts($date, $type="start_date")
+        public static function get_coupon_start_expiry_date_texts( $date, $type = "start_date" )
         {
             $date = intval($date);
             $days_diff = (($date - time())/(24*60*60));
+
+            $date_format = get_option( 'date_format', 'M j, Y' );
+            $date_format = str_replace( 'F', 'M', $date_format );
             
             if($days_diff<0)
             {
                 $date_text=("start_date" === $type ? '' : __('Expired', 'wt-smart-coupons-for-woocommerce'));
             }else
             {
-                $date_text=($type=="start_date" ? __('Starts on ', 'wt-smart-coupons-for-woocommerce') : __('Expires on ', 'wt-smart-coupons-for-woocommerce')). esc_html(date_i18n(get_option('date_format', 'F j, Y'), $date)); 
+                $date_text=($type=="start_date" ? __('Starts on ', 'wt-smart-coupons-for-woocommerce') : __('Expires on ', 'wt-smart-coupons-for-woocommerce')). esc_html(date_i18n($date_format, $date)); 
                 $date_text=apply_filters('wt_sc_alter_coupon_start_expiry_date_text', $date_text, $date, $type);
             }
             
@@ -305,30 +312,40 @@ if( ! class_exists('Wt_Smart_Coupon_Public') ) {
                 'limit'         => -1,
             ));
 
-            if ($customer_orders) :
-                foreach ($customer_orders as $order) :
+            if ($customer_orders) {
+                foreach ($customer_orders as $order) {
+                    $coupons = Wt_Smart_Coupon::wt_sc_is_woocommerce_prior_to('3.7') ? $order->get_used_coupons() : $order->get_coupon_codes();
                     
-                    if( Wt_Smart_Coupon::wt_sc_is_woocommerce_prior_to( '3.7' ) ) {
-                        $coupons  = $order->get_used_coupons();
-                    } else {
-                        $coupons  = $order->get_coupon_codes();
+                    if ($coupons) {
+                        $coupon_used = array_merge($coupon_used, $coupons);
                     }
-                    if( $coupons ) {
-                        $coupon_used = array_merge( $coupon_used, $coupons );
-                    }
-                endforeach;
-
-                if( $return =='NO_OF_TIMES' && $coupon_code != '' ) {
-                    $count_of_used = array_count_values($coupon_used);
-                    
-                    return isset( $count_of_used[ $coupon_code ] )? $count_of_used[ $coupon_code ] : 0 ;
-
                 }
-                return apply_filters('wt_smart_coupon_used_coupons',array_unique( $coupon_used ),$user );
 
-            else :
+                $filtered_coupon_used = array();
+                foreach ( $coupon_used as $coupon_code ) {
+                    $coupon_id = wc_get_coupon_id_by_code( $coupon_code );
+                    if ( $coupon_id ) {
+                        $coupon_display = explode(',', get_post_meta( $coupon_id, '_wc_make_coupon_available', true ) );
+                        if( ! in_array( 'my_account', $coupon_display, true ) ) {
+                            continue;
+                        }
+                        $date_expires = get_post_meta( $coupon_id, 'date_expires', true );
+                        if ( $date_expires && $date_expires < current_time( 'timestamp' ) ) {
+                            continue;
+                        }
+                        $filtered_coupon_used[] = wc_format_coupon_code( $coupon_code );
+                    }
+                }
+
+                if ('NO_OF_TIMES' === $return && '' !== $coupon_code) {
+                    $count_of_used = array_count_values($filtered_coupon_used);
+                    return isset($count_of_used[$coupon_code]) ? $count_of_used[$coupon_code] : 0;
+                }
+
+                return apply_filters('wt_smart_coupon_used_coupons', array_unique($filtered_coupon_used), $user);
+            } else {
                 return false;
-            endif;
+            }
         }
         
         /**
@@ -827,59 +844,57 @@ if( ! class_exists('Wt_Smart_Coupon_Public') ) {
                 echo '</div>';
             }
 
-            if($print && apply_filters('wt_sc_enable_pagination_in_user_available_coupons', true, $section) && !empty($post_ids))
-            {
-            ?>
-                <div class="wt_sc_pagination">
-                    <div class="woocommerce-pagination woocommerce-pagination--without-numbers woocommerce-Pagination">
-                        <?php 
-                        global $wp;
-                        $current_url = home_url($wp->request);
-                        
-                        $url_params=!is_array($_GET) ? array() : wc_clean( wp_unslash( $_GET ) ); 
-                        
-                        /* previous link */
-                        $prev_url='';
-                        $prev_link_html='';
-                        if($offset>0)
-                        {
-                            $new_offset=max(($offset-$limit), 0); /* lesser than zero is not allowed */
-                            $post_ids = self::get_user_coupons($user, $new_offset, 1, array('type'=>'available_coupons', 'section'=>$section, 'by_shortcode' => $by_shortcode));
+            if ( true === $print && true === apply_filters( 'wt_sc_enable_pagination_in_user_available_coupons', true, $section ) && ! empty( $post_ids ) ) {
+                $new_offset = $offset + $limit;
+                $next_page_records = self::get_user_coupons( $user, $new_offset, 1, array( 'type' => 'available_coupons', 'section' => $section, 'by_shortcode' => $by_shortcode ) );
+                
+                // Only show pagination if there are previous or next pages.
+                if ( 0 < $offset || ! empty( $next_page_records ) ) {
+                    ?>
+                    <div class="wt_sc_pagination">
+                        <div class="woocommerce-pagination woocommerce-pagination--without-numbers woocommerce-Pagination">
+                            <?php 
+                            global $wp;
+                            $current_url = home_url( $wp->request );
                             
-                            if(!empty($post_ids)) /* show previous link */
-                            {
-                                if(0 === $new_offset)
-                                {
-                                    unset($url_params['wt_sc_available_coupons_offset']);   
-                                }else{
-                                    $url_params['wt_sc_available_coupons_offset']=$new_offset;
+                            $url_params = ! is_array( $_GET ) ? array() : wc_clean( wp_unslash( $_GET ) ); 
+                            
+                            /* previous link */
+                            $prev_url = '';
+                            $prev_link_html = '';
+                            if ( 0 < $offset ) {
+                                $new_offset = max( ( $offset - $limit ), 0 ); /* lesser than zero is not allowed */
+                                $post_ids = self::get_user_coupons( $user, $new_offset, 1, array( 'type' => 'available_coupons', 'section' => $section, 'by_shortcode' => $by_shortcode ) );
+                                
+                                if ( ! empty( $post_ids ) ) { /* show previous link */
+                                    if ( 0 === $new_offset ) {
+                                        unset( $url_params['wt_sc_available_coupons_offset'] );   
+                                    } else {
+                                        $url_params['wt_sc_available_coupons_offset'] = $new_offset;
+                                    }
+
+                                    $prev_url = $current_url . '?' . build_query( $url_params );
+                                    $prev_link_html = '<a href="' . esc_attr( $prev_url ) . '" class="wt_sc_pagination_previous woocommerce-button woocommerce-button--previous woocommerce-Button woocommerce-Button--previous button">' . esc_html__( 'Previous', 'wt-smart-coupons-for-woocommerce' ) . '</a>';
                                 }
-
-                                $prev_url=$current_url.'?'.build_query($url_params);
-                                $prev_link_html='<a href="'.esc_attr($prev_url).'" class="wt_sc_pagination_previous woocommerce-button woocommerce-button--previous woocommerce-Button woocommerce-Button--previous button">'.__('Previous', 'wt-smart-coupons-for-woocommerce').'</a>';
                             }
-                        }
 
-                        echo wp_kses_post(apply_filters("wt_sc_alter_user_available_coupons_previous_link_html", $prev_link_html, $prev_url));
+                            echo wp_kses_post( apply_filters( 'wt_sc_alter_user_available_coupons_previous_link_html', $prev_link_html, $prev_url ) );
 
-                        /* next link */
-                        $next_url='';
-                        $next_link_html='';
-                        $new_offset=$offset+$limit;
-                        $post_ids = self::get_user_coupons($user, $new_offset, 1, array('type'=>'available_coupons', 'section'=>$section, 'by_shortcode' => $by_shortcode));
-                        if(!empty($post_ids)) /* show next link */ 
-                        {   
-                            $url_params['wt_sc_available_coupons_offset']=$new_offset;                  
-                            $next_url=$current_url.'?'.build_query($url_params);
-                            $next_link_html='&nbsp;<a href="'.esc_attr($next_url).'" class="wt_sc_pagination_next woocommerce-button woocommerce-button--next woocommerce-Button woocommerce-Button--next button">'.__('Next', 'wt-smart-coupons-for-woocommerce').'</a>';
-                        }
+                            /* next link */
+                            $next_url = '';
+                            $next_link_html = '';
+                            if ( ! empty( $next_page_records ) ) { /* show next link */ 
+                                $url_params['wt_sc_available_coupons_offset'] = $new_offset;                  
+                                $next_url = $current_url . '?' . build_query( $url_params );
+                                $next_link_html = '&nbsp;<a href="' . esc_attr( $next_url ) . '" class="wt_sc_pagination_next woocommerce-button woocommerce-button--next woocommerce-Button woocommerce-Button--next button">' . esc_html__( 'Next', 'wt-smart-coupons-for-woocommerce' ) . '</a>';
+                            }
 
-                        echo wp_kses_post(apply_filters("wt_sc_alter_user_available_coupons_next_link_html", $next_link_html, $next_url));
-
-                        ?>
+                            echo wp_kses_post( apply_filters( 'wt_sc_alter_user_available_coupons_next_link_html', $next_link_html, $next_url ) );
+                            ?>
+                        </div>
                     </div>
-                </div>
-            <?php
+                    <?php
+                }
             }
 
             return $out;
@@ -1084,6 +1099,30 @@ if( ! class_exists('Wt_Smart_Coupon_Public') ) {
              *  @param  bool     Is admin or not, Default: true
              */
             return is_admin() && apply_filters( 'wt_sc_bypass_is_admin_check', true );
+        }
+
+        /**
+         *  Ajax callback to update payment method on session when payment method is changed
+         * 
+         *  @since 2.2.0
+         */
+        public function update_payment_method_on_session() {
+        
+            check_ajax_referer( 'wt_smart_coupons_public', '_wpnonce' );
+
+            $applied_coupons_before = WC()->cart->get_applied_coupons();
+
+            $payment_method = ( isset( $_POST['payment_method'] ) ? wc_clean( wp_unslash( $_POST['payment_method'] ) ) : '' );
+            WC()->session->set( 'chosen_payment_method', $payment_method );
+
+            WC()->cart->calculate_totals();
+
+            $applied_coupons = WC()->cart->get_applied_coupons();
+            if ( ! empty( array_diff( $applied_coupons_before, $applied_coupons ) ) ) {
+                wp_send_json( true );
+            } else {
+                wp_send_json( false );
+            }
         }
     }
 }

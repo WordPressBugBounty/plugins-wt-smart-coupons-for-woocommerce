@@ -39,6 +39,10 @@ if( ! class_exists ( 'Wt_Smart_Coupon_Category_Common' ) ){
 	         */
         	add_filter('wt_sc_admin_menu', array($this, 'add_admin_menu'));
 
+			add_action( 'shop_coupon_cat_pre_add_form', array( $this, 'promo_before_coupon_category_form' ) );
+
+			add_action( 'admin_print_footer_scripts', array( $this, 'admin_print_footer_scripts' ) );
+
         }
 
         /**
@@ -211,6 +215,49 @@ if( ! class_exists ( 'Wt_Smart_Coupon_Category_Common' ) ){
         	}           
             return $out;
         }
+
+		/**
+		 * 	Add pro CTA to coupon category page.
+		 * 	@since 2.2.0
+		 */
+		public function promo_before_coupon_category_form( $taxonomy )
+		{
+			printf(
+                '<div class="wbte_sc_shop_coupon_cat_pro_promo" style="background-color: #FFF7ED; display: flex; align-items: center; border-left: 4px solid #FF8C00; padding: 10px 30px; font-weight: 400; box-sizing: border-box; gap: 10px; margin-top: 40px;"><p>%s</p><a href="%s" target="_blank" style="text-decoration: none; color: #0055FF; font-weight: 500;">%s</a></div>',
+                sprintf( 
+                    esc_html__( '%s Unlock more ways to reward customers! %s Create first order, next order, milestone discounts, and more!', 'wt-smart-coupons-for-woocommerce' ), 
+                    '<span style="font-weight: 600;">', 
+                    '</span>' 
+                ),
+                esc_url( 
+                    add_query_arg( 
+                        array( 'utm_source' => 'free_plugin_smart_coupon_giveaway', 'utm_medium' => 'smart_coupons_basic', 'utm_campaign' => 'smart_coupons', 'utm_content' => WEBTOFFEE_SMARTCOUPON_VERSION ), 'https://www.webtoffee.com/product/smart-coupons-for-woocommerce/' 
+                    ) 
+                ),
+                esc_html__( 'Upgrade to Pro', 'wt-smart-coupons-for-woocommerce' )
+            );
+		}
+
+		/**
+		 * 	Change the position of pro CTA on coupon category page.
+		 * 	@since 2.2.0
+		 */
+		public function admin_print_footer_scripts()
+		{
+			if( 
+				is_admin() 
+				&& function_exists( 'get_current_screen' ) 
+				&& 'edit-shop_coupon_cat' === get_current_screen()->id 
+			) {
+				?>
+					<script type="text/javascript">
+						jQuery(document).ready(function($){
+							$( '.wbte_sc_shop_coupon_cat_pro_promo' ).detach().insertBefore( ".wp-heading-inline" );
+						});
+					</script>
+				<?php
+			}
+		}
 	}
 	Wt_Smart_Coupon_Category_Common::get_instance();
 }

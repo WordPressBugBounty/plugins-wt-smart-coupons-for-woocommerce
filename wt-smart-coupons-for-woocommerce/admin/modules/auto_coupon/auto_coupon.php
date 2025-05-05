@@ -357,15 +357,15 @@ class Wt_Smart_Coupon_Auto_Coupon_Admin extends Wt_Smart_Coupon_Auto_Coupon_Comm
                                 btn.prop({'disabled':false}).css({'opacity': 1});
                                 
                                 if ( true === data.status ) {
-                                    wt_sc_notify_msg.success(data.msg);
+                                    wbte_sc_notify_msg.success(data.msg);
                                     jQuery('.wbte_sc_auto_coupon_settings_popup').hide();
                                 }else {
-                                    wt_sc_notify_msg.error(data.msg, false);
+                                    wbte_sc_notify_msg.error(data.msg, false);
                                 }
                             },
                             error:function() {
                                 btn.prop({'disabled':false}).css({'opacity': 1});
-                                wt_sc_notify_msg.error(WTSmartCouponAdminOBJ.msgs.settings_error, false);
+                                wbte_sc_notify_msg.error(WTSmartCouponAdminOBJ.msgs.settings_error, false);
                             }
                         });
                     });

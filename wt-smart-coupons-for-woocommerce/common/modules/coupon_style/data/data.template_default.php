@@ -1,4 +1,6 @@
-<div class="wt_sc_single_coupon wt-single-coupon default_style [wt_sc_single_coupon_class]" data-id="[wt_sc_coupon_id]" data-code="[wt_sc_coupon_code_attr]" title="[wt_sc_single_coupon_title]" style="background:[wt_sc_color_0]; color:[wt_sc_color_2]; border:2px dashed [wt_sc_color_1]; box-shadow:0 0 0 4px [wt_sc_color_0], 2px 1px 6px 4px rgba(10, 10, 0, 0);">
+<div class="wt_sc_single_coupon wt-single-coupon default_style [wt_sc_single_coupon_class]" data-id="[wt_sc_coupon_id]" data-code="[wt_sc_coupon_code_attr]" title="[wt_sc_single_coupon_title]" style="background:[wt_sc_color_0]; color:[wt_sc_color_2]; border:2px dashed [wt_sc_color_1]; box-shadow:0 0 0 4px [wt_sc_color_0], 2px 1px 6px 4px rgba(10, 10, 0, 0);" tabindex="0" role="button" aria-label="<?php esc_attr_e( 'Click to apply coupon code [wt_sc_coupon_code_attr]', 'wt-smart-coupons-for-woocommerce' ); ?>" aria-pressed="false">
+    <div class="wbte_sc_coupon_layout_expired_text" style="visibility: [wt_sc_coupon_exp_overlay_visibility];"><?php esc_html_e( 'Expired', 'wt-smart-coupons-for-woocommerce' ); ?></div>
+    <div class="wbte_sc_coupon_layout_expired_overlay" style="visibility: [wt_sc_coupon_exp_overlay_visibility];"></div>
     <div class="wt_sc_coupon_content wt-coupon-content">
         <div class="wt-coupon-amount">
             <span class="wt_sc_coupon_amount amount">[wt_sc_coupon_amount]</span>

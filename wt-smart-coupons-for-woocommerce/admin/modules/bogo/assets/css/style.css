@@ -1,7 +1,7 @@
-#wpbody{ background-color: #f2f8ff; margin-left: -20px; }
+body{ background-color: #f2f8ff; }
+#wpbody{ margin-left: -20px; }
 #wpbody-content:has(.wbte_sc_bogo_body), #wpbody-content:has(.wbte_sc_bogo_edit_main){ margin-top: 72px; }
 #wpbody-content{ padding-bottom: 0; }
-#footer-upgrade, #wpfooter:has(.wbte_sc_bogo_edit_footer){ display: none; }
 
 /* New bogo switching screen */
 #wpbody-content:has(.wbte_sc_bogo_switching){ display: flex; height: 100vh; }
@@ -85,23 +85,9 @@ textarea.wbte_sc_bogo_text_input{ resize: none; }
 .wbte_sc_bogo_campaign_custom_radio input[type=radio]{ vertical-align: bottom; }
 #wbte_sc_bogo_campaign_description{ height: auto; }
 
-/* Wbte bogo help button bottom */
-.wbte_sc_bogo_help{ width: 45px; height: 45px; position: fixed; z-index: 1; right: 40px; bottom: 22px; background-color: white; display: flex; justify-content: center; align-items: center; border-radius: 50px; box-shadow: 0px 0px 10px 1px #545f6f2e; cursor:pointer; }
-.wbte_sc_bogo_help > p{ font-size: 30px; color: #0576FE; }
-.wbte_sc_bogo_help .wbte_sc_bogo_help_tooltext, .wbte_sc_bogo_help .wbte_sc_bogo_help_tooltext_open{ visibility: hidden; background-color: white; color: black; border-radius: 6px; position: absolute; bottom: 130%; box-shadow: 0px 0px 10px 1px #545f6f2e; }
-.wbte_sc_bogo_help .wbte_sc_bogo_help_tooltext {  width: 70px;  padding: 5px 0; z-index: 1; left: 67%; margin-left: -60px; text-align: center; }
-.wbte_sc_bogo_help .wbte_sc_bogo_help_tooltext_open {  width: 233px; height: 85px; z-index: 2; visibility: hidden; right: 0px; text-align: start; display: flex; flex-direction: column; align-items: start; justify-content: center; }
-.wbte_sc_bogo_help_tooltext_open a{ text-decoration: none; font-size: 14px; color: #2A3646; width: 100%; }
-.wbte_sc_bogo_help_tooltext_open a p{ margin: 0px; padding: 10px 21px; }
-.wbte_sc_bogo_help_tooltext_open a:hover{ background-color: #F1F8FE; }
-.wbte_sc_bogo_help_tooltext_open_content a{ font-size: 14px; color: #2A3646; text-decoration: none; width: 100%; text-align: start; padding: 10px 0px; }
-.wbte_sc_bogo_help_tooltext_open_content a:hover{ background-color: yellow; }
-.wbte_sc_bogo_help .wbte_sc_bogo_help_tooltext::after, .wbte_sc_bogo_help .wbte_sc_bogo_help_tooltext_open::after{ content: ""; position: absolute; top: 100%; margin-left: -5px; border-width: 5px; border-style: solid; border-color: white transparent transparent transparent; margin-left: -5px; }
-.wbte_sc_bogo_help .wbte_sc_bogo_help_tooltext::after{ left: 75%;  }
-.wbte_sc_bogo_help .wbte_sc_bogo_help_tooltext_open::after{ left: 90%; }
-.wbte_sc_bogo_help:hover .wbte_sc_bogo_help_tooltext { visibility: visible; }
-
 /* Bogo edit page */
+
+#wbte_sc_bulk_bogo_container .wbte_sc_bogo_step_short_description{ display: none; }
 
 .woocommerce-help-tip{ font-size: 1.4em !important; }
 .wbte_sc_bogo_edit_flex_label{ display: flex; justify-content: space-between; }
@@ -114,14 +100,14 @@ textarea.wbte_sc_bogo_text_input{ resize: none; }
 .wbte_sc_bogo_edit_content{ width: 70%; padding: 25px 75px; box-sizing: border-box; color: #2A3646; margin-top: -72px; }
 .wbte_sc_bogo_edit_head{ position: relative; left: -52px; display: flex; align-items: center; gap: 25px; }
 
-.wbte_sc_bogo_edit_custom_drop_down_btn{ display: flex; align-items: center; justify-content: space-between; box-sizing: border-box; position: relative; background-color: white; cursor: pointer; }
+.wbte_sc_bogo_edit_custom_drop_down_btn{ display: flex; align-items: center; justify-content: space-between; box-sizing: border-box; position: relative; background-color: white; cursor: pointer; height: 36px; padding: 6px 8px; border: 1.5px solid #BDC1C6; border-radius: 6px; z-index: 3; }
 .wbte_sc_bogo_edit_custom_drop_down{ border-radius: 8px; box-shadow: 0px 0px 10px 1px #545f6f2e; background-color: white; position: absolute; display: none; top: 30px; box-sizing: border-box; padding-top: 6px; padding-bottom: 6px; z-index: 1; left: 0; width: 100%; min-width: max-content; }
 .wbte_sc_bogo_edit_custom_drop_down p.wbte_sc_disabled, .wbte_sc_bogo_edit_custom_drop_down label.wbte_sc_disabled{ pointer-events: none; background-color: #EAEBED80; }
 .wbte_sc_bogo_edit_custom_drop_down label{ padding: 10px 16px; cursor: pointer; }
 
 .wbte_sc_bogo_edit_custom_drop_down .wbte_sc_radio_container{ margin-bottom: 0; }
-.wbte_sc_bogo_edit_content p{ margin: 0; font-size: 14px; font-weight: 500; }
-.wbte_sc_bogo_edit_content input:not( .select2-search__field, .wbte_sc_bogo_email_select_input_txt ){ font-weight: 400; text-align: center; }
+.wbte_sc_bogo_edit_content p, .wbte_sc_admin_vrtl_nav_content p{ margin: 0; font-size: 14px; font-weight: 500; }
+.wbte_sc_bogo_edit_content input:not( .select2-search__field, .wbte_sc_bogo_email_select_input_txt ), .wbte_sc_admin_vrtl_nav_content input:not( .select2-search__field, .wbte_sc_bogo_email_select_input_txt, .wbte_sc_bogo_date_picker ){ font-weight: 400; text-align: center; }
 
 .wbte_sc_bogo_edit_step_title{ font-size: 14px; font-weight: 600; color: #6E7681; width: 50px; text-wrap: nowrap; }
 .wbte_sc_bogo_step_container_opened .wbte_sc_bogo_edit_step_title{ color: #0576FE; }
@@ -130,7 +116,7 @@ textarea.wbte_sc_bogo_text_input{ resize: none; }
 
 .wbte_sc_bogo_icon_input { display: inline-flex; border: 1px solid #BDC1C6; border-radius: 6px; width: 90px; height: 35px; }
 .wbte_sc_bogo_icon_input .wbte_sc_bogo_icon_input_symbol { background-color: #EBF1FD; color: #555E6B; width: 100%; display: flex; align-items: center; justify-content: center; font-size:16px; font-weight: 500; border-radius: 0 6px 6px 0; }
-.wbte_sc_bogo_icon_input input { background-color: white; color: #2A3646; border: none; width: 62px; }
+.wbte_sc_bogo_icon_input input { background-color: white; color: #2A3646; border: none !important; width: 62px; }
 
 /* input field with icon end */
 
@@ -159,14 +145,14 @@ textarea.wbte_sc_bogo_text_input{ resize: none; }
 .wbte_sc_bogo_apply_repeatedly_custom_row span.wbte_sc_bogo_no_style_span{ background-color: transparent; padding: 0; font-weight: 500; border-radius: 0; }
 .wbte_sc_bogo_apply_repeatedly_custom_row td{ display: flex; }
 .wbte_sc_bogo_step_opened{ display: none; }
-.wbte_sc_bogo_step_container_opened .wbte_sc_bogo_step_opened{ display: block; }
+.wbte_sc_bogo_step_container_opened .wbte_sc_bogo_step_opened, .wbte_sc_admin_vrtl_nav_content_section.active .wbte_sc_bogo_step_opened{ display: block; }
 .wbte_sc_bogo_step_container_opened .wbte_sc_bogo_step_short_description, .wbte_sc_bogo_step_container_opened .wbte_sc_bogo_step_add_desc{ display: none; }
 
 /* table */
 .wbte_sc_bogo_edit_table{ width: 100%; }
 .wbte_sc_bogo_edit_table tr th:first-child{ width: 18%; text-align: start; }
 .wbte_sc_bogo_edit_table{ border-collapse: separate; border-spacing: 0px 12px; }
-.wbte_sc_bogo_edit_table tr th p, .wbte_sc_bogo_edit_table tr th label{ font-size: 14px; font-weight: 500; }
+.wbte_sc_bogo_edit_table tr th p, .wbte_sc_bogo_edit_table tr th label, .wbte_sc_bulk_bogo_table tr th p, .wbte_sc_bulk_bogo_table tr th label{ font-size: 14px; font-weight: 500; }
 .wbte_sc_bogo_edit_table .wbte_sc_radio_container{ font-weight: 400; }
 .wbte_sc_bogo_edit_table td.wbte_sc_bogo_edit_radio_fields{ padding-top: 4px; }
 .wbte_sc_bogo_edit_table th + td{ padding-left: 9px; }
@@ -175,8 +161,6 @@ textarea.wbte_sc_bogo_text_input{ resize: none; }
 
 
 .wbte_sc_bogo_customer_buys_table, .wbte_sc_bogo_additional_fields_table{ margin-top: 40px; }
-
-.wbte_sc_bogo_edit_input{ width: 80px; height: 35px; border: 1.5px solid #BDC1C6 !important; border-radius: 6px !important; }
 
 .wbte_sc_bogo_edit_add_button{ color: #056BE7; font-weight: 600; font-size: 14px; padding: 8px; background-color: #E7F3FD; width: 66px; box-sizing: border-box; text-align: center; border-radius: 4px; margin-left: 9px; cursor: pointer; }
 
@@ -237,8 +221,8 @@ input[type="text"].wbte_sc_bogo_email_select_input_txt:focus{ outline:none; box-
 .wbte_sc_bogo_allowed_emails_fields{ width: 539px; }
 .wbte_sc_bogo_allowed_emails_fields .wbte_sc_bogo_additional_flex{ align-items: start; }
 .wbte_sc_bogo_email_select { border: 1.5px solid #BDC1C6; padding: 7.5px 16px; display: flex; flex-wrap: wrap; align-items: center; border-radius: 6px; width: 345px; background-color: white; box-sizing: border-box; min-height: 55px; cursor: pointer; }
-.wbte_sc_bogo_edit_main input:not(.select2-search input, input.wt_sc_coupon_time_field, .wbte_sc_bogo_button, .wbte_sc_bogo_icon_input .wbte_sc_bogo_input_only_numbers_with_decimal, .wbte_sc_bogo_error_border, .wbte_sc_bogo_email_select_input_txt ):focus, .wbte_sc_bogo_body input:not( .select2-search input, #wbte_bogo_search, .wbte_sc_bogo_button ):focus{ outline: 1px solid #BDC1C6 !important; }
-.wbte_sc_bogo_icon_input .wbte_sc_bogo_input_only_numbers_with_decimal:focus{ outline: none !important; box-shadow: none; }
+.wbte_sc_bogo_edit_main input:not(.select2-search input, input.wt_sc_coupon_time_field, .wbte_sc_bogo_button, .wbte_sc_bogo_icon_input .wbte_sc_admin_input_only_numbers_with_decimal, .wbte_sc_bogo_error_border, .wbte_sc_bogo_email_select_input_txt ):focus, .wbte_sc_bogo_body input:not( .select2-search input, #wbte_bogo_search, .wbte_sc_bogo_button ):focus{ outline: 1px solid #BDC1C6 !important; }
+.wbte_sc_bogo_icon_input .wbte_sc_admin_input_only_numbers_with_decimal:focus{ outline: none !important; box-shadow: none; }
 p.wbte_sc_bogo_email_field_caption{ font-size: 12px; font-weight: 400; font-style: italic; color: #555E6B; margin-top: 10px; width: 345px; }
 .wbte_sc_bogo_email_row td{ display: flex; }
 
@@ -250,7 +234,7 @@ p.wbte_sc_bogo_email_field_caption{ font-size: 12px; font-weight: 400; font-styl
 
 
 /* Step 2 */
-.wbte_sc_bogo_customer_gets_select_btn, .wbte_sc_bogo_product_restriction_select_btn, .wbte_sc_bogo_cat_restriction_select_btn{ min-width: 292px; max-width: max-content; height: 36px; padding: 6px 8px; border: 1.5px solid #BDC1C6; border-radius: 6px; background-color: white; z-index: 3; }
+.wbte_sc_bogo_customer_gets_select_btn, .wbte_sc_bogo_product_restriction_select_btn, .wbte_sc_bogo_cat_restriction_select_btn, .wbte_sc_bogo_custom_drop_btn{ min-width: 267px; max-width: max-content; }
 .wbte_sc_bogo_customer_gets_select_btn p, .wbte_sc_bogo_product_restriction_select_btn p, .wbte_sc_bogo_cat_restriction_select_btn p{ padding-right: 5px; }
 .wbte_sc_bogo_customer_gets_select_btn p{ font-weight: 400; }
 .wbte_sc_bogo_customer_gets_select_option{ max-width: 300px; position: absolute; left: 0; top: 31px; padding: 11px 0 6px 0; border-top-left-radius: 0; border-top-right-radius: 0; z-index: 2; }
@@ -262,7 +246,7 @@ p.wbte_sc_bogo_email_field_caption{ font-size: 12px; font-weight: 400; font-styl
 .wbte_sc_bogo_customer_gets_discount_type_final_row th{ vertical-align: baseline; }
 
 /* Step 3 */
-.wbte_sc_bogo_apply_repeatedly_table .wbte_sc_bogo_edit_input{ width: 60px; }
+.wbte_sc_bogo_apply_repeatedly_table .wbte_sc_admin_number_input{ width: 60px; }
 p.wbte_sc_bogo_repeatedly_custom_range_btn{ display: flex; gap: 4px; color: #056BE7; cursor: pointer; padding: 12px 20px; width: max-content; margin-left: -20px; }
 .wbte_sc_bogo_repeatedly_custom_range_btn:hover{ background-color: #F1F8FE; }
 
@@ -297,7 +281,7 @@ p.wbte_sc_bogo_repeatedly_custom_range_btn{ display: flex; gap: 4px; color: #056
 .wbte_sc_bogo_edit_gnrl_sts_radio span{ font-size: 14px; font-weight: 500; }
 .wbte_sc_bogo_edit_gnrl_sts_radio.hide{ display: none; }
 
-.wbte_sc_bogo_edit_general{ width: calc( 30% - 50px ); background-color: white; padding: 41px 39px 41px 27px; box-sizing: border-box; box-shadow: 0px 2px 10px 2px #55657D1A; position: fixed; right: 0; bottom: 0; top: 98px; overflow-x: hidden; margin-bottom: 60px; }
+.wbte_sc_bogo_edit_general{ width: calc( 30% - 50px ); background-color: white; padding: 41px 39px 41px 27px; box-sizing: border-box; box-shadow: 0px 2px 10px 2px #55657D1A; position: fixed; right: 0; bottom: 0; top: 98px; overflow-x: hidden; margin-bottom: 60px; z-index: 1; }
 .wbte_sc_bogo_edit_general #woocommerce-coupon-description{ height: 74px; width: calc( 100% - 41px ); font-size: 14px; }
 .wbte_sc_bogo_edit_general p, .wbte_sc_bogo_edit_general .wbte_sc_checkbox_container{ font-size: 14px; font-weight: 500; }
 .wbte_sc_bogo_edit_general .wbte_sc_radio_container { font-weight: 400; }

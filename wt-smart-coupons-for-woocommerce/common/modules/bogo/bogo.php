@@ -247,13 +247,9 @@ class Wbte_Smart_Coupon_Bogo_Common {
 	 * @return array                 Discount types.
 	 */
 	public function add_bogo_coupon_type( $discount_types ) {
-		$restricted_pages = ( class_exists( 'Wt_Smart_Coupon_Common' ) && method_exists( 'Wt_Smart_Coupon_Common', 'bogo_restricted_pages' ) ) ? Wt_Smart_Coupon_Common::bogo_restricted_pages() : array();
 
 		if ( self::is_new_bogo_activated() ) {
 			if ( (
-					isset( $_GET['page'] ) && in_array( $_GET['page'], $restricted_pages, true )
-				) ||
-				(
 					isset( $_GET['post_type'] ) && 'shop_coupon' === $_GET['post_type'] && ! isset( $_GET['wbte_sc_auto_apply'] )
 				) ||
 				(

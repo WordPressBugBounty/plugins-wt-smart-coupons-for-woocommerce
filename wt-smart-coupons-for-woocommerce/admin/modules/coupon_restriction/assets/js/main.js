@@ -20,6 +20,9 @@
 			/* Insert individual quantity condition */
 			$('#woocommerce-coupon-data .form-field._wt_use_individual_min_max_field').detach().insertAfter("#woocommerce-coupon-data .form-field._wt_enable_product_category_restriction_field");
 
+			/** "Coupon can be/ can't be" promo after WC default individual use field */
+			$( '#woocommerce-coupon-data .wbte_sc_usage_restriction_pro_promo' ).detach().insertAfter( "#woocommerce-coupon-data .form-field.individual_use_field" );
+
 			/* Insert Category Condiiton */
 			var product_cat_elm = $("#woocommerce-coupon-data .form-field").has('[name="product_categories[]"]');
 			if (product_cat_elm.length == 1)
@@ -161,6 +164,19 @@
 
 	$(document).ready(function(){
 		wt_sc_coupon_usage_restriction.Set();
+
+		$( '.wbte_sc_usage_restriction_pro_promo_btn_later' ).on('click', function( e ){
+			e.preventDefault();
+			jQuery.ajax({
+				url: WTSmartCouponAdminOBJ.ajaxurl,
+				type: 'POST',
+				data: {
+					action: 'wbte_sc_hide_usage_restriction_pro_cta',
+					_wpnonce: WTSmartCouponAdminOBJ.nonce
+				},
+			});
+			$( '.wbte_sc_usage_restriction_pro_promo' ).hide();
+		});
 	});
 
 })( jQuery );

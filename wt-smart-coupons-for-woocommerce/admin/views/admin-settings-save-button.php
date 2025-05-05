@@ -12,13 +12,13 @@ $settings_footer_left = isset($settings_footer_left) ? $settings_footer_left : '
 $settings_footer_right = isset($settings_footer_right) ? $settings_footer_right : '';
 ?>
 <div style="clear: both;"></div>
-<div class="wt-sc-plugin-toolbar bottom">
+<div class="bottom">
     <div class="left">
     	<?php echo wp_kses_post($settings_footer_left);?>
     </div>
     <div class="right">
-        <input type="submit" name="wt_sc_update_admin_settings_form" value="<?php echo esc_attr($settings_button_title); ?>" class="button button-primary" style="float:right;"/>
-        <?php echo wp_kses_post($settings_footer_right);?>
+        <input type="submit" name="wt_sc_update_admin_settings_form" value="<?php echo esc_attr( $settings_button_title ); ?>" class="wbte_sc_button wbte_sc_button-filled wbte_sc_button-medium" style="float:right;"/>
+        <?php echo wp_kses_post( $settings_footer_right );?>
         <span class="spinner" style="margin-top:11px;"></span>
     </div>
 </div>

@@ -30,6 +30,8 @@ class Wt_Smart_Coupon_Restriction_Admin extends Wt_Smart_Coupon_Restriction
         add_action('woocommerce_process_shop_coupon_meta', array($this, 'process_shop_coupon_meta'), 10, 2);
 
         add_action('admin_enqueue_scripts', array($this, 'enqueue_scripts_styles'), 10, 0);
+
+        add_action( 'wp_ajax_wbte_sc_hide_usage_restriction_pro_cta', array( $this, 'hide_usage_restriction_pro_cta' ) );
     }
 
     /**
@@ -176,10 +178,32 @@ class Wt_Smart_Coupon_Restriction_Admin extends Wt_Smart_Coupon_Restriction
                 'id'            => '_wt_enable_product_category_restriction',
                 'value'         => $wt_enable_product_category_restriction,
                 'class'         => 'wt_enable_product_category_restriction',
-                'label'         => __('Product/Category restrictions', 'wt-smart-coupons-for-woocommerce'),
-                'description'   => __('Enable to apply coupon only if the cart satisfies the product or category restrictions.', 'wt-smart-coupons-for-woocommerce'),
+                'label'         => __( 'Product restrictions', 'wt-smart-coupons-for-woocommerce' ),
+                'description'   => __( 'Enable to apply the coupon only when the cart meets the specified product restrictions.', 'wt-smart-coupons-for-woocommerce' ),
             )
         );
+
+        $hide_usage_restriction_pro_cta = get_option( 'wbte_sc_hide_usage_restriction_pro_cta' );
+        if( ! $hide_usage_restriction_pro_cta ) {
+            printf(
+                '<div class="wbte_sc_usage_restriction_pro_promo" style="background-color: #F7FAFF; margin: 0 15px; display: flex; align-items: center; border-left: 4px solid #0055FF; padding: 10px 12px; font-weight: 400; box-sizing: border-box; gap: 10px;"><p style="margin: 0; flex: 1;">%s</p><a href="%s" target="_blank" style="text-decoration: none; color: #fff; background-color: #0055FF; padding: 10px 14px; border-radius: 2px;">%s</a><button class="wbte_sc_usage_restriction_pro_promo_btn_later wbte_sc_button wbte_sc_button-text wbte_sc_button-small" style="font-size: 12px; color: #434343;">%s</button></div>',
+                sprintf( 
+                    esc_html__( '%s %s Did You Know? %s You can now get full control over coupon stacking—choose which discounts can and cannot be combined with Smart Coupons Pro!', 'wt-smart-coupons-for-woocommerce' ), 
+                    '<span class="dashicons dashicons-lightbulb" style="color: #0055FF; font-size: 18px;"></span>', 
+                    '<span style="font-weight: 600;">', 
+                    '</span>' 
+                ),
+                esc_url( 
+                    add_query_arg( 
+                        array( 'utm_source' => 'free_plugin_smart_coupon_giveaway', 'utm_medium' => 'smart_coupons_basic', 'utm_campaign' => 'smart_coupons', 'utm_content' => WEBTOFFEE_SMARTCOUPON_VERSION ), 'https://www.webtoffee.com/product/smart-coupons-for-woocommerce/' 
+                    ) 
+                ),
+                sprintf( esc_html__( 'Check out plugin %s', 'wt-smart-coupons-for-woocommerce' ), 
+                '<span class="dashicons dashicons-arrow-right-alt"></span>' 
+                ),
+                esc_html__( 'Maybe later', 'wt-smart-coupons-for-woocommerce' )
+            );
+        }
 
         /**
          *  Checkbox to enable/disable individual min/max quantity restriction
@@ -354,6 +378,17 @@ class Wt_Smart_Coupon_Restriction_Admin extends Wt_Smart_Coupon_Restriction
         }
 
         return apply_filters('wt_sc_intl_alter_discount_type_help_arr', $discount_type_help, $type);
+    }
+
+    /**
+     *  Hide usage restriction pro promo ajax callback
+     *  @since 2.2.0
+     */
+    public function hide_usage_restriction_pro_cta()
+    {
+        check_ajax_referer( 'wt_smart_coupons_admin_nonce', '_wpnonce' );
+        update_option( 'wbte_sc_hide_usage_restriction_pro_cta', true );
+        wp_send_json_success();
     }
 }
 Wt_Smart_Coupon_Restriction_Admin::get_instance();

@@ -63,7 +63,7 @@ class Wt_Smart_Coupon_Other_Solutions
      */
     public function out_settings_form($args)
     {
-        $view_file = plugin_dir_path( __FILE__ ).'views/other_solutions_content.php';
+        $view_file = plugin_dir_path( __FILE__ ).'views/other-solutions-content.php';
         $view_params = array();
 
         Wt_Smart_Coupon_Admin::envelope_settings_tabcontent('wt-sc-'.$this->module_base, $view_file, '', $view_params, 0);

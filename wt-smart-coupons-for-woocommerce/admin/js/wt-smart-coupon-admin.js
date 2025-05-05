@@ -13,7 +13,7 @@
     		if(target_elm.length>0 && "" !== target_elm.text().trim())
     		{
     			navigator.clipboard.writeText(target_elm.text().trim());
-    			wt_sc_notify_msg.success(WTSmartCouponAdminOBJ.msgs.copied);
+    			wbte_sc_notify_msg.success(WTSmartCouponAdminOBJ.msgs.copied);
     		}
     	});
 
@@ -204,55 +204,22 @@
             window.location.href = 'admin.php?page=wt-smart-coupon-for-woo_bogo';
         });
 	} );
+
+	/** Vertical nav items */
+	$( 'document' ).ready( function() {
+		$('.wbte_sc_admin_vrtl_nav_item').on('click', function() {
+			// Remove active class from all nav items and sections
+			$('.wbte_sc_admin_vrtl_nav_item, .wbte_sc_admin_vrtl_nav_content_section').removeClass('active');
+	
+			// Add active class to clicked nav item and corresponding section
+			$(this).addClass('active');
+			const section = $(this).data('section');
+			$( '.wbte_sc_admin_vrtl_nav_content_section[data-section="' + section + '"]' ).addClass('active');
+		});
+	});
 	
 
 })( jQuery );
-
-
-/**
- *  Toast notification
- * 	@since 1.3.5
- */
-var wt_sc_notify_msg=
-{
-	error:function(message, auto_close)
-	{
-		var auto_close=(auto_close!== undefined ? auto_close : true);
-		var er_elm=jQuery('<div class="wt_sc_notify_msg wt_sc_notify_msg_error">'+message+'</div>');				
-		this.setNotify(er_elm, auto_close);
-	},
-	success:function(message, auto_close)
-	{
-		var auto_close=(auto_close!== undefined ? auto_close : true);
-		var suss_elm=jQuery('<div class="wt_sc_notify_msg wt_sc_notify_msg_success">'+message+'</div>');				
-		this.setNotify(suss_elm, auto_close);
-	},
-	setNotify:function(elm, auto_close)
-	{
-		jQuery('body').append(elm);
-		elm.on('click',function(){
-			wt_sc_notify_msg.fadeOut(elm);
-		});
-		elm.stop(true,true).animate({'opacity':1,'top':'50px'},1000);
-		if(auto_close)
-		{
-			setTimeout(function(){
-				wt_sc_notify_msg.fadeOut(elm);
-			},5000);
-		}else
-		{
-			jQuery('body').on('click',function(){
-				wt_sc_notify_msg.fadeOut(elm);
-			});
-		}
-	},
-	fadeOut:function(elm)
-	{
-		elm.animate({'opacity':0,'top':'100px'},1000,function(){
-			elm.remove();
-		});
-	}
-}
 
 /**
  *  Form toggler
@@ -817,13 +784,13 @@ var wt_sc_tab_view=
 	Set:function()
 	{
 		this.subTab();
-		var wt_sc_nav_tab=jQuery('.wt-sc-tab-head .nav-tab');
-	 	if(wt_sc_nav_tab.length>0)
+		var wt_sc_nav_tab = jQuery('.wbte_sc_header_nav a');
+	 	if( 0 < wt_sc_nav_tab.length )
 	 	{
 		 	wt_sc_nav_tab.on('click',function(){
 		 		var wt_sc_tab_hash=jQuery(this).attr('href');
-		 		wt_sc_nav_tab.removeClass('nav-tab-active');
-		 		jQuery(this).addClass('nav-tab-active');
+		 		wt_sc_nav_tab.removeClass('active');
+		 		jQuery(this).addClass('active');
 		 		wt_sc_tab_hash=wt_sc_tab_hash.charAt(0)=='#' ? wt_sc_tab_hash.substring(1) : wt_sc_tab_hash;
 		 		var wt_sc_tab_elm=jQuery('div[data-id="'+wt_sc_tab_hash+'"]');
 		 		jQuery('.wt-sc-tab-content').hide();
@@ -884,8 +851,20 @@ var wt_sc_tab_view=
 			ctnr.find('.wt_sc_sub_tab_content').hide();
 			ctnr.find('.wt_sc_sub_tab_content[data-id="'+trgt+'"]').fadeIn();
 		});
-		jQuery('.wt_sc_sub_tab').each(function(){
-			var elm=jQuery(this).children('li').eq(0);
+		jQuery('.wt_sc_sub_tab .wbte_sc_segment').on('click',function(){
+			var trgt = jQuery(this).attr('data-target');
+			var prnt = jQuery(this).parent('.wt_sc_sub_tab');
+			prnt.find('.wbte_sc_segment').removeClass('active');
+			jQuery(this).addClass('active');
+			var ctnr = prnt.siblings('.wt_sc_sub_tab_container');
+			ctnr.find('.wt_sc_sub_tab_content').hide();
+			ctnr.find('.wt_sc_sub_tab_content[data-id="' + trgt + '"]').fadeIn();
+			if( 0 < ctnr.find('.wt_sc_sub_tab_content[data-id="'+trgt+'"]').find('.wt_sc_color_container').length ) {
+				ctnr.find('.wt_sc_sub_tab_content[data-id="'+trgt+'"]').css('display', 'flex');
+			}
+		});
+		jQuery('.wt_sc_sub_tab').each( function(){
+			var elm = jQuery(this).children('.wbte_sc_segment').eq(0);
 			elm.trigger('click');
 		});
 		jQuery('.wt_sc_sub_tab_trigger').on('click', function(){
@@ -929,17 +908,17 @@ var wt_sc_settings_form=
 					submit_btn.css({'opacity':'1','cursor':'pointer'}).prop('disabled',false);
 					if(true === data.status)
 					{
-						wt_sc_notify_msg.success(data.msg);
+						wbte_sc_notify_msg.success(data.msg);
 					}else
 					{
-						wt_sc_notify_msg.error(data.msg);
+						wbte_sc_notify_msg.error(data.msg);
 					}
 				},
 				error:function () 
 				{
 					spinner.css({'visibility':'hidden'});
 					submit_btn.css({'opacity':'1','cursor':'pointer'}).prop('disabled',false);
-					wt_sc_notify_msg.error(WTSmartCouponAdminOBJ.msgs.settings_error, false);
+					wbte_sc_notify_msg.error(WTSmartCouponAdminOBJ.msgs.settings_error, false);
 				}
 			});
 		});
@@ -961,7 +940,7 @@ var wt_sc_settings_form=
 					required_msg='<b><i>'+temp_elm.text()+'</i></b>'+WTSmartCouponAdminOBJ.msgs.is_required;
 				}
 
-				wt_sc_notify_msg.error(required_msg);
+				wbte_sc_notify_msg.error(required_msg);
 				is_valid=false;
 				return false;
 			}			

@@ -91,7 +91,7 @@ if( ! class_exists('Wt_Smart_Coupon_Admin') ) {
          */
         public static function setup_video_sidebar()
         {
-            include WT_SMARTCOUPON_MAIN_PATH.'/admin/views/_setup_video_sidebar.php';
+            include WT_SMARTCOUPON_MAIN_PATH.'/admin/views/-setup-video-sidebar.php';
         }
 
         /**
@@ -998,19 +998,60 @@ if( ! class_exists('Wt_Smart_Coupon_Admin') ) {
                         if ( ! empty( $ids_to_remove ) ) {
                             $placeholders = implode( ',', array_fill( 0, count( $ids_to_remove ), '%d' ) );
             
-                            $wpdb->query(
+                            $deleted_count = $wpdb->query(
                                 $wpdb->prepare(
                                     "DELETE FROM $lookup_tb WHERE coupon_id IN ($placeholders)",
                                     $ids_to_remove
                                 )
                             );
+
+                            if( $deleted_count && $deleted_count === count( $ids_to_remove ) ){
+                                update_option( 'wbte_sc_basic_removed_non_existing_coupons_lookup_tb', 1 );
+                            }
                         }
                     }
-
-                    update_option( 'wbte_sc_basic_removed_non_existing_coupons_lookup_tb', 1 );
                 }
             }
            
+        }
+
+        /**
+         * To change WordPress footer text to review request link in BOGO page.
+         * If the current page is BOGO edit page, then return empty span, this span will be hidden using css.
+         *
+         * @since 2.1.0
+         * @since 2.2.0 Moved from BOGO module to here.
+         * @param  string $footer_text  Current footer text.
+         * @return string               Modified footer text.
+         */
+        public function sc_review_request_footer( $footer_text ) {
+            if ( isset( $_GET['page'] ) && 0 === strpos( sanitize_text_field( wp_unslash( $_GET['page'] ) ), WT_SC_PLUGIN_NAME ) && ! isset( $_GET['wbte_bogo_id'] ) ) {
+
+                $review_url = 'https://wordpress.org/support/plugin/wt-smart-coupons-for-woocommerce/reviews?rate=5#new-post';
+                
+                $footer_text = wp_kses_post(
+                    // Translators: 1: Opening italics tag, 2: Opening a tag, 3: Closing a tag, 4: Closing italics tag.
+                    sprintf( __( '%s If you like Smart Coupons please leave us a %s ★★★★★ %s rating. A huge thanks in advance! %s', 'wt-smart-coupons-for-woocommerce' ), '<i class="wbte_sc_bogo_review_request">', '<a href="'. esc_url( $review_url ) .'" target="_blank">', '</a>', '</i>' )
+                );
+            }
+            if ( isset( $_GET['page'] ) && isset( $_GET['wbte_bogo_id'] ) ) {
+                $footer_text = '<span class="wbte_sc_bogo_edit_footer"></span>';
+            }
+            return $footer_text;
+        }
+
+        /**
+         *  Change WordPress version text to show plugin version in Smart Coupons settings page.
+         *
+         *  @since 2.2.0
+         *  @param string $footer_text Current footer text.
+         *  @return string Modified footer text.
+         */
+        public function sc_version_footer( $footer_text ){
+            if( isset( $_GET['page'] ) && 0 === strpos( sanitize_text_field( wp_unslash( $_GET['page'] ) ), WT_SC_PLUGIN_NAME ) ){
+                $footer_text = sprintf( esc_html__( 'Version %s', 'wt-smart-coupons-for-woocommerce' ), WEBTOFFEE_SMARTCOUPON_VERSION );
+            }
+            return $footer_text;
         }
     }
 }

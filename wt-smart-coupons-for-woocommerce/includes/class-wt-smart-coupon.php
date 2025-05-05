@@ -85,7 +85,7 @@ if( ! class_exists('Wt_Smart_Coupon') ) {
 			if ( defined( 'WEBTOFFEE_SMARTCOUPON_VERSION' ) ) {
 				$this->version = WEBTOFFEE_SMARTCOUPON_VERSION;
 			} else {
-				$this->version = '2.1.1';
+				$this->version = '2.2.0';
 			}
 			$this->plugin_name = WT_SC_PLUGIN_NAME;
 	
@@ -174,7 +174,6 @@ if( ! class_exists('Wt_Smart_Coupon') ) {
 			 * The class responsible for defining all actions that occur in the admin area.
 			 */
 			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wt-smart-coupon-admin.php';
-			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wt-promotion-banner.php';
 	
 	
 			/**
@@ -417,6 +416,19 @@ if( ! class_exists('Wt_Smart_Coupon') ) {
 			 * 	@since 2.0.0
 			 */
 			$this->loader->add_action( "after_wt_smart_coupon_for_woocommerce_is_activated", $this->plugin_admin, "delete_coupon_from_lookup_table" );
+
+			/**
+			 * Show the GDPR promotion banner, if the class `Wt_Gdpr_Promotion_banner` not exists, and the revamped and legacy gdpr plugins are not active.
+			 * 
+			 * @since 2.2.0
+			 */
+			if ( ! class_exists( 'Wt_Gdpr_Promotion_banner' ) && !is_plugin_active( 'webtoffee-cookie-consent/webtoffee-cookie-consent.php' ) && !is_plugin_active( 'webtoffee-gdpr-cookie-consent/cookie-law-info.php' ) ) {
+				require_once plugin_dir_path( __DIR__ ) . 'admin/modules/banner/class-wt-gdpr-promotion-banner.php';
+			}
+
+			$this->loader->add_filter( 'admin_footer_text', $this->plugin_admin, 'sc_review_request_footer' );
+			
+			$this->loader->add_filter( 'update_footer', $this->plugin_admin, 'sc_version_footer', 11 );
 		}
 	
 		/**
@@ -473,6 +485,13 @@ if( ! class_exists('Wt_Smart_Coupon') ) {
 			 * 	@since 1.6.0
 			 */
 			$this->loader->add_action( 'wc_ajax_wbte_sc_set_block_checkout_values', $this->plugin_public, 'set_block_checkout_values' );
+
+			/** 
+			 * 	Update payment method on session when payment method is changed
+			 * 	
+			 * 	@since 2.2.0
+			 */
+			$this->loader->add_action( 'wc_ajax_wbte_sc_update_payment_method_on_session', $this->plugin_public, 'update_payment_method_on_session' );
 		}
 
 		/**

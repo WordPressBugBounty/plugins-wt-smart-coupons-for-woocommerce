@@ -24,6 +24,13 @@ jQuery(function ($) {
             wt_unblock_node($("div.wt_store_credit"));
         });
 
+        /** Handle keyboard Enter press on coupons */
+        $( document ).on("keypress", '.wt-single-coupon.active-coupon', function(e){
+            if( 13 === e.which ) { // Enter key
+                $( this ).trigger( 'click' );
+            }
+        } );
+
         $(document).on("click", '.wt-single-coupon.active-coupon', function(){        
             
             if(!$('.woocommerce-notices-wrapper').length){
@@ -97,18 +104,25 @@ jQuery(function ($) {
     
     });
 
+    /** Update payment method on session, if coupons are changed update checkout */
     $( document.body ).on( 'payment_method_selected', 
         function() {
-            let wt_sc_is_already_fired = 0;
             jQuery( document ).on( "updated_checkout", 
                 function(){
-                    if( 1 === wt_sc_is_already_fired ){
-                        wt_sc_is_already_fired = 0;
-                    }else
-                    {
-                        wt_sc_is_already_fired = 1;
-                        $( 'form.checkout' ).trigger( 'update' );
-                    }
+                    const selectedPaymentMethod = $( 'form.checkout' ).find( 'input[name="payment_method"]:checked' ).val();
+                    $.ajax({
+                        type: "POST",
+                        url: WTSmartCouponOBJ.wc_ajax_url + 'wbte_sc_update_payment_method_on_session',
+                        data: {
+                            'payment_method': selectedPaymentMethod,
+                            '_wpnonce': WTSmartCouponOBJ.nonces.public
+                        },
+                        success: function( response ) {
+                            if ( response ) {
+                                $( 'form.checkout' ).trigger( 'update' );
+                            }
+                        }
+                    });
                 }
             );
         }

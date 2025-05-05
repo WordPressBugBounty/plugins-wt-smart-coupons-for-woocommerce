@@ -299,7 +299,7 @@ $all_bogo_count   = self::get_total_bogo_counts( array( 'is_trash' => false ) );
 		if ( empty( $bogo_coupon_ids ) ) {
 			?>
 				<tr>
-					<td colspan="7" style="text-align:center;"><?php esc_html_e( 'No BOGO offers found', 'wt-smart-coupons-for-woocommerce' ); ?></td>
+					<td colspan="7" style="text-align: center; border-right: none;"><?php esc_html_e( 'No BOGO offers found', 'wt-smart-coupons-for-woocommerce' ); ?></td>
 				</tr>
 				<?php
 		}

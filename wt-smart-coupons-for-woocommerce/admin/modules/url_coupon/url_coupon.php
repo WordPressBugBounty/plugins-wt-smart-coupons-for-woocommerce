@@ -148,7 +148,7 @@ class Wt_Smart_Coupon_Url_Coupon_Admin
                         'image_path' => $image_path,
                     );
 
-                    include plugin_dir_path( __FILE__ ).'views/_tab_data.php';
+                    include plugin_dir_path( __FILE__ ).'views/-tab-data.php';
                     ?>   
                 </div>
             </div>
@@ -202,7 +202,7 @@ class Wt_Smart_Coupon_Url_Coupon_Admin
            return;
         }
 
-        $view_file = plugin_dir_path( __FILE__ ).'views/_tab_data.php';
+        $view_file = plugin_dir_path( __FILE__ ).'views/-tab-data.php';
 
         $image_path=plugin_dir_url( __FILE__ ).'assets/images/';
 

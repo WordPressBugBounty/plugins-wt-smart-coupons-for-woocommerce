@@ -11,29 +11,53 @@
  * @subpackage Wt_Smart_Coupon/admin/partials
  */
 
-$wt_sc_admin_view_path=plugin_dir_path(WT_SMARTCOUPON_FILE_NAME).'admin/views/';
+$wt_sc_admin_view_path = plugin_dir_path(WT_SMARTCOUPON_FILE_NAME).'admin/views/';
+$ds_obj = Wbte\Sc\Ds\Wbte_Ds::get_instance( WEBTOFFEE_SMARTCOUPON_VERSION );
+$admin_img_path = WT_SMARTCOUPON_MAIN_URL . 'admin/images/';
 
 ?>
+<style>
+    #wpbody-content{ margin-top: 130px; }
+    #wpcontent{ background-color: #F1F8FE; }
+</style>
 <div class="wrap">
-    <h2 class="wp-heading-inline">
-    <?php _e('Settings', 'wt-smart-coupons-for-woocommerce');?>: 
-    <?php _e('Smart Coupons for WooCommerce', 'wt-smart-coupons-for-woocommerce');?>
-    <a href="<?php echo esc_attr(admin_url('edit.php?post_type=shop_coupon'));?>" class="page-title-action" target="_blank"><?php _e('All coupons', 'wt-smart-coupons-for-woocommerce');?></a>
-    <a href="<?php echo esc_attr(admin_url('post-new.php?post_type=shop_coupon'));?>" class="page-title-action" target="_blank"><?php _e('Add coupon', 'wt-smart-coupons-for-woocommerce');?></a>
-    </h2>
-    <div class="nav-tab-wrapper wp-clearfix wt-sc-tab-head">
-        <?php
-        $tab_head_arr=array( 
-            'wt-sc-help'        =>  esc_html__( 'Help guide', 'wt-smart-coupons-for-woocommerce' ),
-            'wbte-sc-develop'   =>  esc_html__( 'Develop', 'wt-smart-coupons-for-woocommerce' )
+<?php 
+    $header_arr = array(
+        'wt-sc-help'   =>  __( 'Help guide', 'wt-smart-coupons-for-woocommerce' ),
+        'wbte-sc-develop'        =>  __( 'Develop', 'wt-smart-coupons-for-woocommerce' )
+    );
+    $header_arr = apply_filters( 'wt_sc_plugin_settings_tabhead', $header_arr );
+    if( isset( $_GET['debug'] ) )
+    {
+        $header_arr['wt-sc-debug']=__( 'Debug', 'wt-smart-coupons-for-woocommerce' );
+    }
+    $header_items = array();
+    foreach( $header_arr as $key => $val )
+    {		
+        $_arr = array(
+            'title' =>  is_array( $val ) ? $val[0] : $val,
+            'href' => esc_attr( '#' . $key ),
         );
-        if(isset($_GET['debug']))
+        if( 'wt-sc-coupon_style' === $key )
         {
-            $tab_head_arr['wt-sc-debug']=__('Debug', 'wt-smart-coupons-for-woocommerce');
+            $_arr['class'] = 'active';
         }
-        Wt_Smart_Coupon_Admin::generate_settings_tabhead($tab_head_arr);
-        ?>
-    </div>
+
+        $header_items[] = $_arr;
+    }
+
+    echo $ds_obj->get_component(
+        'header',
+        array(
+            'values' => array(
+                'plugin_name'      => 'Smart coupon',
+                'developed_by_txt' => esc_html__( 'Developed by', 'wt-smart-coupons-for-woocommerce' ),
+                'plugin_logo' => esc_url( $admin_img_path . 'voucher_tag.svg' ),
+                'menu' => $header_items,
+            ),
+        )
+    );
+    ?>
     <div class="wt-sc-tab-container">
         
         <?php
@@ -96,4 +120,18 @@ $wt_sc_admin_view_path=plugin_dir_path(WT_SMARTCOUPON_FILE_NAME).'admin/views/';
 </div>
 <?php
 do_action('wt_sc_plugin_after_settings_tab');
+
+echo $ds_obj->get_component(
+    'help-widget',
+    array(
+        'values' => array(
+            'items' => array(
+            array( 'title' => __( 'Setup Guide', 'wt-smart-coupons-for-woocommerce' ), 'icon' => 'book', 'href' => esc_url( 'https://www.webtoffee.com/setup-smart-coupons-for-woocommerce/' ), 'target' => '_blank' ),
+            array( 'title' => __( 'Contact support', 'wt-smart-coupons-for-woocommerce' ), 'icon' => 'headphone', 'target' => '_blank', 'href' => esc_url( 'https://www.webtoffee.com/support/' ) ),
+            ),
+            'hover_text' => esc_html__( 'Help', 'wt-smart-coupons-for-woocommerce' ),
+        ),
+        'class' => array( 'wbte_sc_admin_settings_help_widget' )
+    )
+);
 ?>

@@ -128,9 +128,11 @@ if(! class_exists ( 'Wt_Smart_Coupon_Style_Admin' ) ) {
 			/* coupon dummy data for preview */
 			$coupon_data_dummy=array(
                 'coupon_amount'	=> '10',
-                'coupon_type'	=> __('Cart discount', 'wt-smart-coupons-for-woocommerce'),
-                'coupon_code'	=> __('coupon-code', 'wt-smart-coupons-for-woocommerce'),
+                'coupon_type'	=> __( 'Cart discount', 'wt-smart-coupons-for-woocommerce' ),
+                'coupon_code'	=> __( 'coupon-code', 'wt-smart-coupons-for-woocommerce' ),
                 'preview_mode'	=> true,
+				'coupon_expiry'	=> '2556100799',
+				'coupon_desc'	=> __( 'This is a sample coupon description', 'wt-smart-coupons-for-woocommerce' ),
             );
 
 			$view_params=array(

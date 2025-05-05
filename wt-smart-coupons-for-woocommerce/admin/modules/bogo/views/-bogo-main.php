@@ -65,7 +65,19 @@ $_all_bogo_coupon_count = self::get_total_bogo_counts();
 		echo '</div>';
 	}
 
-	require_once plugin_dir_path( __FILE__ ) . '--bogo-help.php'; 
+	echo $ds_obj->get_component(
+		'help-widget',
+		array(
+			'values' => array(
+				'items' => array(
+				array( 'title' => __( 'Setup Guide', 'wt-smart-coupons-for-woocommerce' ), 'icon' => 'book', 'href' => esc_url( 'https://www.webtoffee.com/woocommerce-bogo-discounts/' ), 'target' => '_blank' ),
+				array( 'title' => __( 'Contact support', 'wt-smart-coupons-for-woocommerce' ), 'icon' => 'headphone', 'target' => '_blank', 'href' => esc_url( 'https://www.webtoffee.com/support/' ) ),
+				),
+				'hover_text' => esc_html__( 'Help', 'wt-smart-coupons-for-woocommerce' ),
+			),
+			'class' => array( 'wbte_sc_admin_settings_help_widget' )
+		)
+	);
 	?>
 </div>
 

@@ -25,6 +25,8 @@ class Wt_Smart_Coupon_Style
         self::$module_id_static = $this->module_id;
 
         add_filter('wt_sc_module_default_settings', array($this, 'default_settings'), 10, 2);
+
+        add_action( 'after_wt_smart_coupon_for_woocommerce_is_activated', array( $this, 'adjust_coupon_style_settings' ) );
     }
 
     
@@ -60,8 +62,8 @@ class Wt_Smart_Coupon_Style
         
         return array(
             'available_coupon' => array(
-                'style' => 'stitched_padding',
-                'color' => array('#2890a8', '#ffffff', '#ffffff')
+                'style' => 'minimal_outline',
+                'color' => array( '#FFFFFF', '#4D5562', '#D9622B' )
             ),
             'used_coupon'  => array(
                 'style' => 'stitched_padding',
@@ -148,40 +150,77 @@ class Wt_Smart_Coupon_Style
     public static function get_coupon_types()
     {
         $coupon_types = array(
-            'available_coupon'  =>  __('Available coupon', 'wt-smart-coupons-for-woocommerce'),
-            'used_coupon'       =>  __('Used coupon', 'wt-smart-coupons-for-woocommerce'),
-            'expired_coupon'    =>  __('Expired coupon', 'wt-smart-coupons-for-woocommerce'),
+            'available_coupon'  =>  esc_html__( 'Active coupon', 'wt-smart-coupons-for-woocommerce' ),
+            'used_coupon'       =>  esc_html__( 'Redeemed coupon', 'wt-smart-coupons-for-woocommerce' ),
+            'expired_coupon'    =>  esc_html__( 'Expired coupon', 'wt-smart-coupons-for-woocommerce' ),
         );
 
-        return apply_filters('wt_coupon_types', $coupon_types);
+        return apply_filters( 'wt_coupon_types', $coupon_types );
     }
 
     
     /**
-     *  Preset coupon styles
-     *  Format: 
-     *      array(
-     *          template_slug => array(
-     *              'name'  => Display name of the template,
-     *              'html'  => Template HTML,
-     *              'color' => Color array for the template,
-     *          )
-     *      )
-     * 
-     *  @since 1.4.7
-     *  @return array   Array of coupon styles
+     * Preset coupon styles
+     * Format:
+     *     array(
+     *         template_slug => array(
+     *             'name'  => Display name of the template,
+     *             'html'  => Template HTML,
+     *             'color' => Color array for the template,
+     *         )
+     *     )
+     *
+     * @since 1.4.7
+     * @return array Array of coupon styles
      */
-    public static function coupon_styles()
-    {
+    public static function coupon_styles() {
         $coupon_styles = array(
-            'stitched_padding'  => array(
-                'name'          => __('Style 1', 'wt-smart-coupons-for-woocommerce'),
-                'html'          => self::get_template_html_from_template_file('stitched_padding'),
-                'color'         => array('#2890a8', '#ffffff', '#ffffff')
+            'minimal_outline' => array(
+                'name'  => __( 'Style 1', 'wt-smart-coupons-for-woocommerce' ),
+                'html'  => self::get_template_html_from_template_file( 'minimal_outline' ),
+                'color' => array(
+                    array( '#FFFFFF', '#4D5562', '#D9622B' ),
+                    array( '#2F866D', '#94E7CF', '#FFFFFF' ),
+                    array( '#ECE9FC', '#4D5562', '#743EE4' ),
+                ),
+            ),
+            'classic_ticket' => array(
+                'name'  => __( 'Style 2', 'wt-smart-coupons-for-woocommerce' ),
+                'html'  => self::get_template_html_from_template_file( 'classic_ticket' ),
+                'color' => array(
+                    array( '#D63638', '#832122', '#FFFFFF' ),
+                    array( '#ABE7D6', '#FFFFFF', '#005345' ),
+                    array( '#6F9FDA', '#143155', '#FFFFFF' ),
+                ),
+            ),
+            'stitched_padding' => array(
+                'name'  => __( 'Style 3', 'wt-smart-coupons-for-woocommerce' ),
+                'html'  => self::get_template_html_from_template_file( 'stitched_padding' ),
+                'color' => array( '#2890a8', '#ffffff', '#ffffff' ),
+            ),
+            'stitched_edge' => array(
+                'name'  => __( 'Style 4', 'wt-smart-coupons-for-woocommerce' ),
+                'html'  => self::get_template_html_from_template_file( 'stitched_edge' ),
+                'color' => array( '#f7f7f7', '#e9e9eb', '#000000' ),
+            ),
+            'ticket_style' => array(
+                'name'  => __( 'Style 5', 'wt-smart-coupons-for-woocommerce' ),
+                'html'  => self::get_template_html_from_template_file( 'ticket_style' ),
+                'color' => array( '#fffae6', '#fc7400', '#000000' ),
+            ),
+            'plain_coupon' => array(
+                'name'  => __( 'Style 6', 'wt-smart-coupons-for-woocommerce' ),
+                'html'  => self::get_template_html_from_template_file( 'plain_coupon' ),
+                'color' => array( '#c8f1c0', '#30900c' ),
             ),
         );
 
-        return apply_filters('wt_smart_coupon_styles', $coupon_styles);
+        /**
+         * Filter to modify coupon styles.
+         *
+         * @param array $coupon_styles Array of coupon styles.
+         */
+        return apply_filters( 'wt_smart_coupon_styles', $coupon_styles );
     }
 
 
@@ -189,22 +228,27 @@ class Wt_Smart_Coupon_Style
      *  This function will take HTML from template file
      *  Template file format: data.template_{template_slug}.php
      * 
-     *  @since  1.4.7
-     *  @param  string      $template_slug    Slug of the template. 
-     *  @return  string      $html    Template HTML from the template file, If file exists, otherwise returns empty string 
+     * @since  1.4.7
+     * @param  string $template_slug Slug of the template.
+     * @return string Template HTML from the file, empty string if file doesn't exist.
      */
-    public static function get_template_html_from_template_file($template_slug)
-    {
+    public static function get_template_html_from_template_file( $template_slug ) {
         $html = '';
-        $file = plugin_dir_path( __FILE__ ).'data/data.template_stitched_padding.php';
+        $file = plugin_dir_path( __FILE__ ) . 'data/data.template_' . $template_slug . '.php';
 
         /**
-         *  To override the template file 
+         * Filter to override the template file path.
+         *
+         * @param string $file          Path to the template file.
+         * @param string $template_slug Slug of the template.
          */
-        $file = apply_filters('wt_sc_alter_coupon_template_file_path', $file, $template_slug);
+        $file = apply_filters( 'wt_sc_alter_coupon_template_file_path', $file, $template_slug );
+
+        if ( ! file_exists( $file ) ) {
+            $file = plugin_dir_path( __FILE__ ) . 'data/data.template_minimal_outline.php';
+        }
         
-        if(file_exists($file))
-        {
+        if ( file_exists( $file ) ) {
             ob_start();
             include $file;
             $html = ob_get_clean();
@@ -306,14 +350,29 @@ class Wt_Smart_Coupon_Style
             {
                 //dummy texts for preview mode
                 $find_replace['[wt_sc_coupon_start]']           = wp_kses_post(isset($coupon_data['coupon_start']) ? $coupon_data['coupon_start'] : '');
-                $find_replace['[wt_sc_coupon_expiry]']          = wp_kses_post(isset($coupon_data['coupon_expiry']) ? $coupon_data['coupon_expiry'] : '');
+                
+                $has_expiry = isset( $coupon_data['coupon_expiry'] ) && 0 < $coupon_data['coupon_expiry'];
+
                 $find_replace['[wt_sc_credit_history]']         = '';
                 $find_replace['[wt_sc_credit_history_url]']     = '';
                 $find_replace['[wt_sc_coupon_desc]']            = wp_kses_post(isset($coupon_data['coupon_desc']) ? $coupon_data['coupon_desc'] : '');
                 $find_replace['[wt_sc_coupon_desc_wrapper]']    = ("" !== $find_replace['[wt_sc_coupon_desc]'] ? '&nbsp;' : ''); //to toggle description box
-                $find_replace['[wt_sc_coupon_amount]']          = wp_kses_post(wc_price((isset($coupon_data['coupon_amount']) ? absint($coupon_data['coupon_amount']) : 10)));
+                $find_replace['[wt_sc_coupon_amount]']          = Wt_Smart_Coupon_Admin::get_formatted_price( $coupon_data['coupon_amount'] ?? 10 );
                 $find_replace['[wt_sc_coupon_type]']            = wp_kses_post(isset($coupon_data['coupon_type']) ? $coupon_data['coupon_type'] : __('Cart discount', 'wt-smart-coupons-for-woocommerce'));
                 $find_replace['[wt_sc_coupon_code]']            = esc_html(isset($coupon_data['coupon_code']) ? $coupon_data['coupon_code'] : 'XXX-XXX-XXX');
+
+                if( 'expired_coupon' === $coupon_type ) {
+                    $find_replace['[wt_sc_coupon_exp_overlay_visibility]'] = 'visible';
+                    $find_replace['[wt_sc_coupon_exp_clock_icon]'] = 'none';
+                    $find_replace['[wt_sc_coupon_expiry]']          = '';
+                    $find_replace['[wt_sc_coupon_expiry_ctm]']      = '';
+                } else {
+                    $find_replace['[wt_sc_coupon_exp_overlay_visibility]'] = 'hidden';
+                    $find_replace['[wt_sc_coupon_exp_clock_icon]'] = 'flex';
+
+                    $find_replace['[wt_sc_coupon_expiry]']          = Wt_Smart_Coupon_Public::get_coupon_start_expiry_date_texts( $coupon_data['coupon_expiry'], 'expiry_date' );
+                    $find_replace['[wt_sc_coupon_expiry_ctm]']      = Wt_Smart_Coupon_Public::get_coupon_start_expiry_date_texts( $coupon_data['coupon_expiry'], 'expiry_date' );
+                }
 
             }else
             {
@@ -322,7 +381,28 @@ class Wt_Smart_Coupon_Style
                 $find_replace['[wt_sc_coupon_start]'] = (isset($coupon_data['start_date']) && 0 < $coupon_data['start_date']) ? Wt_Smart_Coupon_Public::get_coupon_start_expiry_date_texts($coupon_data['start_date']) : '';
 
                 //Expiry date
-                $find_replace['[wt_sc_coupon_expiry]'] = (isset($coupon_data['coupon_expires']) && 0 < $coupon_data['coupon_expires']) ? Wt_Smart_Coupon_Public::get_coupon_start_expiry_date_texts($coupon_data['coupon_expires'], 'expiry_date') : '';
+
+                $has_expiry = isset( $coupon_data['coupon_expires'] ) && 0 < $coupon_data['coupon_expires'];
+
+                if( $has_expiry ) {
+
+                    if( current_time( 'timestamp' ) > $coupon_data['coupon_expires'] ) { // Expired.
+                        $find_replace['[wt_sc_coupon_exp_clock_icon]'] = 'none';
+                        $find_replace['[wt_sc_coupon_exp_overlay_visibility]'] = 'visible';
+                        $find_replace['[wt_sc_coupon_expiry]'] = '';
+                        $find_replace['[wt_sc_coupon_expiry_ctm]'] = '';
+                    }else{
+                        $find_replace['[wt_sc_coupon_exp_clock_icon]'] = 'flex';
+                        $find_replace['[wt_sc_coupon_exp_overlay_visibility]'] = 'hidden';
+                        $find_replace['[wt_sc_coupon_expiry]'] = Wt_Smart_Coupon_Public::get_coupon_start_expiry_date_texts( $coupon_data['coupon_expires'], 'expiry_date' );
+                        $find_replace['[wt_sc_coupon_expiry_ctm]'] = Wt_Smart_Coupon_Public::get_coupon_start_expiry_date_texts( $coupon_data['coupon_expires'], 'expiry_date' );
+                    }
+                } else {
+                    $find_replace['[wt_sc_coupon_expiry]'] = '';
+                    $find_replace['[wt_sc_coupon_expiry_ctm]'] = '';
+                    $find_replace['[wt_sc_coupon_exp_clock_icon]'] = 'none';
+                    $find_replace['[wt_sc_coupon_exp_overlay_visibility]'] = 'hidden';
+                }
 
                 //Description
                 $find_replace['[wt_sc_coupon_desc]'] = wp_kses_post($coupon->get_description());
@@ -331,16 +411,15 @@ class Wt_Smart_Coupon_Style
                 //Code
                 $find_replace['[wt_sc_coupon_code]'] = esc_html($coupon->get_code());
 
-                // For BOGO coupon type show description instead of code, if description is empty or customer used below filter hook, then show BOGO type.
-                if( 'email_coupon' !== $coupon_type && class_exists( 'Wbte_Smart_Coupon_Bogo_Common' ) && method_exists( 'Wbte_Smart_Coupon_Bogo_Common', 'is_bogo' ) && Wbte_Smart_Coupon_Bogo_Common::is_bogo( $coupon_id ) ){
-                    $bogo_description = $coupon->get_description();
+                if( 
+                    class_exists( 'Wbte_Smart_Coupon_Bogo_Common' ) 
+                    && method_exists( 'Wbte_Smart_Coupon_Bogo_Common', 'is_bogo' ) 
+                    && method_exists( 'Wbte_Smart_Coupon_Bogo_Common', 'is_auto_bogo' ) 
+                    && Wbte_Smart_Coupon_Bogo_Common::is_bogo( $coupon_id ) 
+                ){
+                    $bogo_code_title = Wbte_Smart_Coupon_Bogo_Common::is_auto_bogo( $coupon_id ) ? get_post_meta( $coupon_id, 'wbte_sc_bogo_coupon_name', true ) : $coupon->get_code();
 
-                    if( apply_filters( 'wbte_sc_bogo_type_instead_description', false, $coupon_id ) || empty( $bogo_description ) ){
-                        $find_replace['[wt_sc_coupon_code]'] = esc_html__( 'Buy X Get X/Y', 'wt-smart-coupons-for-woocommerce' );
-                    }
-                    else{
-                        $find_replace['[wt_sc_coupon_code]'] = esc_html( $bogo_description );
-                    }
+                    $find_replace['[wt_sc_coupon_code]'] = esc_html( $bogo_code_title );
                     
                 }
 
@@ -348,7 +427,7 @@ class Wt_Smart_Coupon_Style
                 $find_replace['[wt_sc_coupon_type]'] = esc_html($coupon_data['coupon_type']);
 
                 //Amount
-                $find_replace['[wt_sc_coupon_amount]'] = wp_kses_post($coupon_data['coupon_amount']);
+                $find_replace['[wt_sc_coupon_amount]'] = esc_html( $coupon_data['coupon_amount'] );
 
                 $find_replace['[wt_sc_credit_history_url]'] = '';
                 $find_replace['[wt_sc_credit_history]'] = ''; //to hide credit history block
@@ -393,7 +472,11 @@ class Wt_Smart_Coupon_Style
                 // remove style blocks, because style blocks are already available along with main HTML
                 $style_blocks = self::get_style_blocks($refer_html);
                 $refer_html = self::remove_style_blocks($refer_html, $style_blocks);
+
+                $refer_html = str_replace( '[wbte_sc_wbte_sc_svg_random_id]', "wbte_sc_svg_random_id-" . uniqid() . "-end", $refer_html );
             }
+
+            $find_replace['[wbte_sc_wbte_sc_svg_random_id]'] = "wbte_sc_svg_random_id-" . uniqid() . "-end";
 
             /* replace the placeholder with real values */
             $html = str_replace(array_keys($find_replace), array_values($find_replace), $html);
@@ -630,11 +713,11 @@ class Wt_Smart_Coupon_Style
      */
     public static function get_coupon_default_css()
     {
-        $coupon_css = '.wt_sc_single_coupon{ display:inline-block; width:300px; max-width:100%; height:auto; padding:5px; text-align:center; background:#2890a8; color:#ffffff; position:relative; }
+        $coupon_css = '.wt_sc_single_coupon{ display:inline-block; width:300px; max-width:350px; height:auto; padding:5px; text-align:center; background:#2890a8; color:#ffffff; position:relative; box-sizing: border-box; direction: ltr; }
         .wt_sc_single_coupon .wt_sc_hidden{ display:none; }
         .wt_sc_single_coupon.active-coupon{ cursor:pointer; }
         .wt_sc_coupon_amount{ font-size:30px; margin-right:5px; line-height:22px; font-weight:500; }
-        .wt_sc_coupon_type{ font-size:20px;  font-weight:500; line-height:22px; }
+        .wt_sc_coupon_type{ font-size:20px;  font-weight:500; line-height:22px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         .wt_sc_coupon_code{ float:left; width:100%; font-size:19px; line-height:22px; }
         .wt_sc_coupon_code code{ background:none; font-size:15px; opacity:0.7; display:inline-block; line-height:22px; max-width:100%; word-wrap:break-word; }
         .wt_sc_coupon_content{ padding:10px 0px; float:left; width:100%; }   
@@ -647,6 +730,8 @@ class Wt_Smart_Coupon_Style
         .wt_sc_credit_history_url{font-size:13px;font-weight:700;border-radius:100%;width:20px;height:20px;text-shadow:none;font-style:normal;cursor:pointer;position:absolute;right:12px;bottom:10px;text-align:center;line-height:20px;text-decoration:none!important;background:#fff}
         .wt_sc_credit_history_url span{font:bold 14px/1 dashicons}
         a.wt_sc_credit_history_url span:before{ line-height:20px; color:#2890a8; }
+        .wbte_sc_coupon_layout_expired_text{ color: #D63638; font-size: 13px; font-weight: 500; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; } 
+        .wbte_sc_coupon_layout_expired_overlay{ position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #c5c5c580; z-index: 9; }
 
         @media only screen and (max-width: 700px)  {
           .wt_sc_coupon_content{z-index: 5; }
@@ -654,6 +739,26 @@ class Wt_Smart_Coupon_Style
         }';
         
         return apply_filters('wt_sc_alter_coupon_default_css', $coupon_css);
+    }
+
+    
+    /**
+     *  Change selected style if it is not in the list of available styles
+     * 
+     *  @since    2.2.0
+     */
+    public function adjust_coupon_style_settings()
+    {
+        $coupon_style_settings = get_option( self::$module_id_static, array() );
+        if ( ! empty( $coupon_style_settings ) ) {
+            $available_coupon_styles = array( 'minimal_outline', 'classic_ticket', 'stitched_padding', 'stitched_edge', 'ticket_style', 'plain_coupon' );
+            foreach ( $coupon_style_settings as $coupon_type => $coupon_style_arr ) {
+                if ( ! in_array( $coupon_style_arr['style'], $available_coupon_styles, true ) ) {
+                    $coupon_style_settings[ $coupon_type ]['style'] = 'minimal_outline';
+                }
+            }
+            update_option( self::$module_id_static, $coupon_style_settings );
+        }
     }
 
 }

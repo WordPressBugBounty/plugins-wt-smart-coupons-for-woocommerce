@@ -26,7 +26,7 @@ if( ! class_exists ( 'Wt_Smart_Coupon_Premium_Upgrade' ) )
         {    
             $this->module_id = $this->module_base;
 
-            add_filter('wt_sc_admin_menu', array($this, 'add_admin_pages'));
+            add_filter( 'wt_sc_admin_menu', array( $this, 'add_admin_pages' ), 11 );
             add_action('admin_footer', array($this, 'highlight_admin_menu'));
         }
 

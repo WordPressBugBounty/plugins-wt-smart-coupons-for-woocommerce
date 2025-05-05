@@ -48,14 +48,12 @@ html[dir="rtl"] .wt_smcpn_settings_left{ float:right; }
     {
         if('#wt-sc-freevspro' === href)
         {
-            jQuery('.wt-sc-tab-container, .wt-sc-tab-head').css({'width': '100%', 'background' : '#F0F0F1',});
-            jQuery('.wt_smcpn_freevs_pro tr:first-child, .wt_smcpn_freevs_pro .wt_sc_freevspro_table_body_tr').css({ 'background' : '#fff'});
+            jQuery('.wt-sc-tab-container, .wt-sc-tab-head').css({'width': '100%'});
             jQuery('.wt_smart_coupon_pro_features').hide();
 
         }else
         {
             jQuery('.wt-sc-tab-container, .wt-sc-tab-head').css({'width': '73%', });
-            jQuery('.wt-sc-tab-container').css({'background': '#fff', });
             jQuery('.wt_smart_coupon_pro_features').show(); 
         }
         if('#wt-sc-help' === href)
@@ -84,9 +82,9 @@ html[dir="rtl"] .wt_smcpn_settings_left{ float:right; }
     }
     jQuery(document).ready(function(){
         
-        wt_sc_freevspro_sidebar_switch(jQuery('.wt-sc-tab-head .nav-tab.nav-tab-active').attr('href'));
+        wt_sc_freevspro_sidebar_switch(jQuery('.wbte_sc_header_nav a.active').attr('href'));
 
-        jQuery('.wt-sc-tab-head .nav-tab').on('click', function(){
+        jQuery('.wbte_sc_header_nav a').on('click', function(){
             wt_sc_freevspro_sidebar_switch(jQuery(this).attr('href'));
         });
 

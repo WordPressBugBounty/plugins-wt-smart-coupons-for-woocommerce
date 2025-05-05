@@ -29,7 +29,7 @@ $wf_filters_help_doc_lists=array(
 			'example' => 'add_filter( "wt_sc_alter_coupon_template_html", "wt_sc_customize_coupon_html", 10, 4 );
 function wt_sc_customize_coupon_html( $html, $coupon_style, $coupon_type, $coupon ) {
 
-	return \'<div class="wt_sc_single_coupon [wt_sc_single_coupon_class]" data-id="[wt_sc_coupon_id]" title="[wt_sc_single_coupon_title]">
+	return \'<div class="wt_sc_single_coupon wt-single-coupon [wt_sc_single_coupon_class]" data-id="[wt_sc_coupon_id]" title="[wt_sc_single_coupon_title]">
     			<div class="wt_sc_coupon_content wt-coupon-content">
 			        <div class="wt-coupon-amount">
 			            <span class="wt_sc_coupon_amount amount">[wt_sc_coupon_amount]</span>

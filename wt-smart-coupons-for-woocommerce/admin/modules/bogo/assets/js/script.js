@@ -138,26 +138,6 @@
 			/** BOGO add new campaign form submit. */
 			wbte_sc_bogo_add_new();
 
-			/** Bogo help button click */
-			$( '.wbte_sc_bogo_help' ).on(
-				'click',
-				function (e) {
-					if ( 'hidden' === $( '.wbte_sc_bogo_help_tooltext_open' ).css( 'visibility' ) ) {
-						$( '.wbte_sc_bogo_help_tooltext_open' ).css( 'visibility', 'visible' );
-					} else {
-						$( '.wbte_sc_bogo_help_tooltext_open' ).css( 'visibility', 'hidden' );
-					}
-
-					e.stopPropagation();
-				}
-			);
-			$( document ).on(
-				'click',
-				function () {
-					$( '.wbte_sc_bogo_help_tooltext_open' ).css( 'visibility', 'hidden' );
-				}
-			);
-
 			/** Bogo general settings click */
 			$( '.wbte_sc_bogo_general_settings_button' ).on(
 				'click',
@@ -771,7 +751,7 @@
 				}
 			);
 
-			if ( 0 < $( '.wbte_sc_bogo_edit_step' ).length ) {
+			if ( 0 < $( '.wbte_sc_bogo_edit_step' ).length || 0 < $( '#wbte_sc_bulk_bogo_container' ).length ) {
 				/** Bogo edit page */
 				wbte_sc_bogo_edit_page();
 				const side_bar_width       = $( '#adminmenuwrap' ).width();
@@ -836,11 +816,6 @@
 	function wbte_sc_bogo_show_overlay(){
 		$( '.wbte_sc_blanket' ).show();
 		$( 'html, body' ).css( { overflow: 'hidden', height: '100%' } );
-	}
-
-	function wbte_sc_bogo_remove_overlay(){
-		$( '.wbte_sc_blanket' ).hide();
-		$( 'html, body' ).css( { overflow: 'auto', height: 'auto' } );
 	}
 
 	/** BOGO main general settings form submit. */
@@ -994,7 +969,7 @@
 		 */
 		$( document ).on(
 			'input',
-			'.wbte_sc_bogo_input_only_numbers_with_decimal',
+			'.wbte_sc_admin_input_only_numbers_with_decimal',
 			function () {
 				var vl  = $( this ).val();
 				var reg = /^[0-9]*\.?[0-9]*$/;
@@ -1026,7 +1001,7 @@
 		 */
 		$( document ).on(
 			'input',
-			'.wbte_sc_bogo_input_only_number',
+			'.wbte_sc_admin_input_only_number',
 			function () {
 				var vl  = $( this ).val();
 				var reg = /^[0-9]*$/;
@@ -1106,6 +1081,24 @@
 				});
 			}
 		});
+
+		/** Change dropdown text and hide dropdown on clicking sub button */
+		$( '.wbte_sc_bogo_edit_custom_drop_down_sub_btn' ).on(
+			'click',
+			function () {
+				const dropdownHead = $( this ).closest( '.wbte_sc_bogo_edit_custom_drop_down_head' );
+				dropdownHead.find( '.wbte_sc_bogo_edit_custom_drop_down_btn p' ).html( $( this ).text() );
+
+				const hiddenInput = dropdownHead.find( 'input[type="hidden"]' );
+
+				if ( 0 < hiddenInput.length ) {
+					hiddenInput.val( $( this ).attr( 'data-val' ) ).trigger( 'change' );
+
+					dropdownHead.find( '.wbte_sc_bogo_edit_custom_drop_down_sub_btn' ).removeClass( 'wbte_sc_disabled' );
+					dropdownHead.find( '.wbte_sc_dropdown_selected_icon' ).remove();
+				}
+			}
+		);
 
 		/** Step 1 */
 		wbte_sc_bogo_step1();
@@ -1593,6 +1586,7 @@
 					$( '#wbte_sc_bogo_coupon_code' ).parent( 'div' ).addClass( 'wbte_sc_bogo_conditional_hidden' );
 				} else {
 					$( '#wbte_sc_bogo_coupon_code' ).parent( 'div' ).removeClass( 'wbte_sc_bogo_conditional_hidden' );
+					$( '#wbte_sc_bogo_coupon_code' ).val( $( '#wbte_sc_bogo_coupon_code' ).data( 'coupon-code' ) );
 				}
 			}
 		);
@@ -1602,43 +1596,60 @@
 			function () {
 				const couponName = $( '#wbte_sc_bogo_coupon_name' ).val() || '';
 				const couponId	= $( '#wt_sc_bogo_coupon_id' ).val() || 0 ;
+				const couponCode = $( '#wbte_sc_bogo_coupon_code' ).val();
 				let timeoutId;
 
-				$.ajax(
-					{
-						url: wbte_sc_bogo_params.ajaxurl,
-						type: 'POST',
-						dataType: 'json',
-						data: {
-							'action'	: 'wbte_sc_get_auto_offer_code',
-							'_wpnonce'	: wbte_sc_bogo_params.admin_nonce,
-							'coupon_name' : couponName,
-							'coupon_id'	: couponId
-						},
-						success: async function ( data ) {
-
-							if ( data.status && '' !== data.coupon_code ) {
-								try {
-									await navigator.clipboard.writeText( data.coupon_code );
-									const newToolTip = wbte_sc_bogo_params.text.success_copy.replace( '{coupon_code}', data.coupon_code );
-									$( '.wbte_sc_hidden_tooltip' ).html( newToolTip );
-									
-									if ( timeoutId ) clearTimeout( timeoutId );
-									timeoutId = setTimeout( () => {
-										$( '.wbte_sc_hidden_tooltip' ).html( wbte_sc_bogo_params.text.coupon_copy_tooltip ); 
-									}, 1000 );
-								} catch (err) {
-									wbte_sc_notify_msg.error( wbte_sc_bogo_params.text.failed_copy, err );
+				if( '' === couponCode ) {
+					$.ajax(
+						{
+							url: wbte_sc_bogo_params.ajaxurl,
+							type: 'POST',
+							dataType: 'json',
+							data: {
+								'action'	: 'wbte_sc_get_auto_offer_code',
+								'_wpnonce'	: wbte_sc_bogo_params.admin_nonce,
+								'coupon_name' : couponName,
+								'coupon_id'	: couponId
+							},
+							success: async function ( data ) {
+	
+								if ( data.status && '' !== data.coupon_code ) {
+									try {
+										await navigator.clipboard.writeText( data.coupon_code );
+										const newToolTip = wbte_sc_bogo_params.text.success_copy.replace( '{coupon_code}', data.coupon_code );
+										$( '.wbte_sc_hidden_tooltip' ).html( newToolTip );
+										
+										if ( timeoutId ) clearTimeout( timeoutId );
+										timeoutId = setTimeout( () => {
+											$( '.wbte_sc_hidden_tooltip' ).html( wbte_sc_bogo_params.text.coupon_copy_tooltip ); 
+										}, 1000 );
+									} catch (err) {
+										wbte_sc_notify_msg.error( wbte_sc_bogo_params.text.failed_copy, err );
+									}
+								} else {
+									wbte_sc_notify_msg.error( wbte_sc_bogo_params.text.failed_copy );
 								}
-							} else {
+							},
+							error:function () {
 								wbte_sc_notify_msg.error( wbte_sc_bogo_params.text.failed_copy );
 							}
-						},
-						error:function () {
-							wbte_sc_notify_msg.error( wbte_sc_bogo_params.text.failed_copy );
 						}
+					);
+				}else {
+					try {
+						navigator.clipboard.writeText( couponCode );
+						const newToolTip = wbte_sc_bogo_params.text.success_copy.replace( '{coupon_code}', couponCode );
+						$( '.wbte_sc_hidden_tooltip' ).html( newToolTip );
+						
+						if ( timeoutId ) clearTimeout( timeoutId );
+						timeoutId = setTimeout( () => {
+							$( '.wbte_sc_hidden_tooltip' ).html( wbte_sc_bogo_params.text.coupon_copy_tooltip ); 
+						}, 1000 );
+					} catch (err) {
+						wbte_sc_notify_msg.error( wbte_sc_bogo_params.text.failed_copy, err );
 					}
-				);
+				}
+				
 			}
 		);
 
@@ -1837,85 +1848,13 @@
 			function (e) {
 				e.preventDefault();
 				wbte_sc_bogo_show_overlay();
-				const clicked_button = $( e.originalEvent.submitter ).attr( 'data-btn-id' );
-				var allowed_emails   = [];
-
-				$( 'input[type="text"]' ).each(
-					function () {
-						if ( $( this ).closest( 'tr' ).hasClass( 'wbte_sc_bogo_conditional_hidden' ) ) {
-								$( this ).val( '' ); /** Make text field value empty if field is in hidden state */
-						}
-					}
-				);
-
-				$( 'input[type="checkbox"]' ).each(
-					function () {
-						if ( $( this ).closest( 'tr' ).hasClass( 'wbte_sc_bogo_conditional_hidden' ) ) {
-								$( this ).prop( 'checked', false );
-						}
-					}
-				);
-
-				$( 'select' ).each(
-					function () {
-						if ( $( this ).closest( 'tr' ).hasClass( 'wbte_sc_bogo_conditional_hidden' ) ) {
-								$( this ).val( null ).trigger( 'change' ); /** Clear selected values if hidden */
-						}
-					}
-				);
-
-				if ( ! $( '#wbte_sc_bogo_schedule' ).is( ":checked" ) ) {
-					$( '#_wt_coupon_start_date, #expiry_date' ).val( '' );
+				
+				const data = wbte_sc_bogo_data_processing( e );
+				
+				if( ! data ) {
+					return false;
 				}
-				var fieldValues = {};
-				$( this ).find( ":input" ).each(
-					function () {
-						var input = $( this );
-						var name  = input.attr( 'name' );
-						var value = input.val();
-
-						if (input.is( ':radio' )) {
-							/** Only store the value if the radio button is checked */
-							if (input.is( ':checked' )) {
-								fieldValues[name] = value;
-							}
-						} else if (input.is( ':checkbox' )) {
-							/** Only store the value if the checkbox is checked */
-							if (input.is( ':checked' )) {
-								if ( ! (name in fieldValues)) {
-									fieldValues[name] = [];
-								}
-								fieldValues[name].push( value );
-							}
-						} else {
-							/** For other input types, store the value if it's not empty or if the field hasn't been seen before */
-							if (value !== '' || ! (name in fieldValues)) {
-								fieldValues[name] = value;
-							}
-						}
-					}
-				);
-				if ( ! wbte_sc_form_submit_validation() ) {
-					wbte_sc_bogo_remove_overlay();
-					return;
-				}
-				wbte_sc_bogo_remove_all_validation_msg(); /** If here means validation passed. So remove all validation messages if any. */
-
-				var data = $.param( fieldValues );
-
-				/** Add allowed emails to data */
-				let emails = $( '[name="wbte_sc_bogo_emails[]"]' ).val();
-				$.each(
-					emails,
-					function ( index, email ) {
-						if ( wbte_sc_bogo_email_select.validateEmail( email ) ) {
-							allowed_emails.push( email );
-						}
-					}
-				);
-				$( '.wbte_sc_bogo_email_select_inner span.invalid' ).remove();
-
-				data += '&customer_email=' + allowed_emails + '&clicked_button=' + clicked_button;
+				
 				jQuery.ajax(
 					{
 						url:wbte_sc_bogo_params.ajaxurl,
@@ -2063,331 +2002,6 @@
 		window.location.href = url.toString();
 	}
 
-	function wbte_sc_bogo_get_error_fields(){
-
-		let untilOptl = {
-			/** Step 1. */
-			'wbte_sc_bogo_free_product_ids' : {
-				'err_msg'	  : 'atleast_1_prod',
-				'restriction' : 0,
-				'condition'	  : '>',
-				'type'		  : 'select',
-				'strict'	  : true
-			},
-			'wbte_sc_bogo_customer_gets_qty' : {
-				'err_msg'	  : 'gre_equal_1',
-				'condition'	  : '>=',
-				'restriction' : 1,
-				'strict'	  : true,
-			},
-			'wbte_sc_bogo_customer_gets_discount_perc' : {
-				'err_msg'	  		 : [ 'gre_0', 'perc_less_eq_100' ],
-				'restriction' 		 : [ 0, 100 ],
-				'condition'	  		 : [ '>', '<=' ],
-				'strict'	  		 : true,
-				'multiple_condition' : true
-			},
-			'wbte_sc_bogo_customer_gets_discount_price' : {
-				'err_msg'	  : 'gre_0',
-				'restriction' : 0,
-				'condition'	  : '>',
-				'strict'	  : true
-			},
-			/** Step 2 */
-			'_wbte_sc_bogo_min_amount' : {
-				'err_msg'	  : 'gre_0',
-				'restriction' : 0,
-				'condition'	  : '>',
-				'strict'	  : true
-			},
-			'_wbte_sc_bogo_max_amount' : {
-				'err_msg'	  : 'gre_min',
-				'restriction' : '#_wbte_sc_bogo_min_amount',
-				'condition'	  : '>='
-			},
-			'_wbte_sc_bogo_min_qty' : {
-				'err_msg'	  : 'gre_equal_1',
-				'restriction' : 1,
-				'condition'	  : '>=',
-				'strict'	  : true
-			},
-			'_wbte_sc_bogo_max_qty' : {
-				'err_msg'	  : 'gre_min',
-				'restriction' : '#_wbte_sc_bogo_min_qty',
-				'condition'	  : '>=',
-				'parent_loc'  : 'td'
-			},
-			/** Step 2 prod/cat fields. */
-			'wbte_sc_bogo_specific_products' : {
-				'err_msg'	  : 'atleast_1_prod',
-				'restriction' : 0,
-				'condition'	  : '>',
-				'type'		  : 'select',
-				'strict'	  : true
-			},
-			'wbte_sc_bogo_excluded_products' :{
-				'err_msg'	  : 'atleast_1_ex_prod',
-				'restriction' : 0,
-				'condition'	  : '>',
-				'type'		  : 'select',
-				'strict'	  : true
-			},
-		}
-
-		const optlCondIdList = [ '_wbte_sc_bogo_min_qty_add', '_wbte_sc_bogo_max_qty_add', '_wbte_sc_min_qty_each', '_wbte_sc_max_qty_each', 'wbte_sc_bogo_emails', 'usage_limit', 'usage_limit_per_user' ];
-
-		let optlCondition =  {
-			/** Step 2 additional fields. */
-			'_wbte_sc_bogo_min_qty_add' : {
-				'err_msg'	  : 'gre_equal_1',
-				'restriction' : 0,
-				'condition'	  : '>',
-				'strict'	  : true
-			},
-			'_wbte_sc_bogo_max_qty_add' : {
-				'err_msg'	  : 'gre_min',
-				'restriction' : '#_wbte_sc_bogo_min_qty_add',
-				'condition'	  : '>'
-			},
-			'_wbte_sc_min_qty_each' :{
-				'err_msg'	  : 'gre_equal_1',
-				'restriction' : 0,
-				'condition'	  : '>',
-				'strict'	  : true
-			},
-			'_wbte_sc_max_qty_each' :{
-				'err_msg'	  : 'gre_min',
-				'restriction' : '#_wbte_sc_min_qty_each',
-				'condition'	  : '>'
-			},
-			'usage_limit' : {
-				'err_msg'	  : 'gre_equal_1',
-				'restriction' : 1,
-				'condition'	  : '>=',
-				'strict'	  : true
-			},
-			'usage_limit_per_user' : {
-				'err_msg'	  : 'gre_equal_1',
-				'restriction' : 1,
-				'condition'	  : '>=',
-				'strict'	  : true
-			},
-			'wbte_sc_bogo_emails' : {
-				'err_msg'	  : 'email_error',
-				'restriction' : '',
-				'condition'	  : 'special',
-				'func_name'	  : 'wbte_sc_bogo_email_validation',
-			},
-			
-		}
-
-		let sortedOptlCondIdList = [];
-		let newOptlCondIdList = {};
-
-		$( '.wbte_sc_bogo_additional_fields_contents tr' ).each( function () {
-			$( this ).find('[name]').each(function() {
-				const $trName = $(this).attr('name').replace(/\[\]$/, '');
-				if( optlCondIdList.includes( $trName ) ){
-					sortedOptlCondIdList.push( $trName );
-				}
-			});
-		} );
-
-		sortedOptlCondIdList.forEach( function ( id ) {
-			newOptlCondIdList[ id ] = optlCondition[ id ];
-		} );
-
-		let afterOptl = {
-			/** General settings. */
-			'wbte_sc_bogo_coupon_name' : {
-				'err_msg'	  : 'no_camp_title',
-				'restriction' : '',
-				'condition'	  : '!=',
-				'strict'	  : true,
-				'parent_loc'  : 'div'
-			},
-			'wbte_sc_bogo_coupon_code' : {
-				'err_msg'	  : 'coupon_code_error',
-				'restriction' : '',
-				'condition'	  : 'special',
-				'func_name'	  : 'wbte_sc_bogo_coupon_code_validation',
-				'strict'	  : true,
-				'parent_loc'  : 'div'
-			},
-			'wbte_sc_bogo_schedule_content' : {
-				'err_msg'	  : 'empty_schedule',
-				'restriction' : '',
-				'condition'	  : 'special',
-				'func_name'	  : 'wbte_sc_bogo_schedule_empty_check',
-				'strict'	  : true,
-				'parent_loc'  : 'div',
-				'type'		  : 'select',
-			},
-		}
-
-		return $.extend( untilOptl, newOptlCondIdList, afterOptl );
-	}
-
-	function wbte_sc_form_submit_validation(){
-
-		var err_fields = wbte_sc_bogo_get_error_fields();
-
-		for ( const [key, value] of Object.entries( err_fields ) ) {
-
-			if ( ! $( '#' + key ).closest( 'tr' ).hasClass( 'wbte_sc_bogo_conditional_hidden' ) ) {
-
-				var val1       = $( '#' + key ).val();
-				var val2       = value.restriction.constructor === Array ? value.restriction[0] : value.restriction;
-				const isSelect = value.type && 'select' === value.type;
-				let parentLoc  = typeof( value.parent_loc ) !== undefined ? value.parent_loc : 'td';
-
-				if ( isSelect && $( '#' + key ).closest( 'div' ).hasClass( 'wbte_sc_bogo_conditional_hidden' ) ) {
-					continue;
-				}
-
-				if ( 'special' === value.condition && typeof( value.func_name ) !== 'undefined' ) {
-					const specialFields = ['wbte_sc_bogo_emails' ];
-					if ( specialFields.includes( key ) ) {
-						if ( ! eval( value.func_name + '()' ) ) {
-							return false;
-						}
-					} else if ( ! eval( value.func_name + '()' ) ) {
-						wbte_sc_bogo_show_validation_msg( key, wbte_sc_bogo_params.err_msgs[ value.err_msg ], isSelect, parentLoc );
-						return false;
-					}
-					continue;
-				}
-
-				if ( '' === val1 ) {
-					if ( value.strict ) {
-						wbte_sc_bogo_show_validation_msg(
-							key,
-							value.err_msg.constructor === Array ? wbte_sc_bogo_params.err_msgs[ value.err_msg[0] ] : wbte_sc_bogo_params.err_msgs[ value.err_msg ],
-							isSelect,
-							parentLoc
-						);
-						return false;
-					} else {
-						continue;
-					}
-				}
-
-				if ( ( 'string' === typeof( val2 ) && val2.startsWith( '#' ) ) ) { /** ID given. */
-					val2 = $( val2 ).val();
-				}
-
-				if ( value.multiple_condition ) {
-					let err_flag = false;
-					value.condition.forEach(
-						function ( condition, index ) {
-							if ( ! wbte_sc_bogo_validation_arithmetic( val1, value.restriction[index], condition ) ) {
-									wbte_sc_bogo_show_validation_msg( key, wbte_sc_bogo_params.err_msgs[ value.err_msg[index] ], isSelect, parentLoc );
-									err_flag = true;
-									return false;
-							}
-						}
-					);
-					if ( err_flag ) {
-						return false;
-					}
-				} else {
-					if ( ! wbte_sc_bogo_validation_arithmetic( val1, val2, value.condition ) ) {
-						wbte_sc_bogo_show_validation_msg( key, wbte_sc_bogo_params.err_msgs[ value.err_msg ], isSelect, parentLoc );
-						return false;
-					}
-				}
-			}
-		}
-
-		return true;
-	}
-
-	function wbte_sc_bogo_show_validation_msg( id, msg, is_select, parentLoc = 'td' ){
-		var elm        = $( '#' + id );
-		var parentElm  = elm.closest( parentLoc );
-		let breakFront = '';
-		let breakEnd   = '<br>';
-		var err_icon   = '<img style="vertical-align:middle; width:16px; display:inline-block;" src="' + wbte_sc_bogo_params.urls.image_path + 'exclamation_red.svg">';
-
-		/** Handle 'select2' elements */
-		if ( is_select ) {
-			if ( 0 < elm.closest( 'div' ).find( 'span.select2-selection' ).length ) {
-				elm = elm.closest( 'div' ).find( 'span.select2-selection' );
-			}
-			breakFront = '<br>';
-			breakEnd   = '';
-		}
-
-		/** Add error text if not already present */
-		if ( 0 === parentElm.find( '.wbte_sc_bogo_edit_error_txt' ).length ) {
-			parentElm.append( `<span class="wbte_sc_bogo_edit_error_txt_container">${breakFront}<span class="wbte_sc_bogo_edit_error_txt">${breakEnd}${msg}</span></span>` );
-		}
-
-		/** Handle input fields with icons */
-		if ( elm.closest( 'div' ).hasClass( 'wbte_sc_bogo_icon_input' ) ) {
-			elm = elm.closest( 'div' );
-		}
-
-		/** Append error icon */
-		if ( parentElm.find( 'img[src$="exclamation_red.svg"]' ).length === 0 ) {
-			if ( ! is_select) {
-				elm.after( `<span class="wbte_sc_bogo_edit_error_txt_container">&nbsp;${ err_icon }</span>` );
-			} else {
-				parentElm.find( '.wbte_sc_bogo_edit_error_txt' ).prepend( err_icon + '&nbsp;' );
-			}
-		}
-
-		/** Add error class to input */
-		elm.addClass( 'wbte_sc_bogo_error_border' );
-
-		/** Open step container if it's not already opened */
-		var stepContainer = elm.closest( '.wbte_sc_bogo_edit_step' );
-		if ( ! stepContainer.hasClass( 'wbte_sc_bogo_step_container_opened' )) {
-			stepContainer.trigger( 'click' );
-		}
-
-		/** Trigger focus on the input or select field */
-		var focusElem = elm.hasClass( 'wbte_sc_bogo_icon_input' ) ? elm.find( 'input' ) : elm;
-		focusElem.trigger( 'focus' );
-		setTimeout(
-			() => {
-            focusElem[0].scrollIntoView( { behavior: 'smooth', block: 'center' } );
-			},
-			10
-		);
-
-	}
-
-	function wbte_sc_bogo_validation_arithmetic( val1, val2, operator ){
-
-		val1 = parseFloat( val1 );
-		val2 = parseFloat( val2 );
-
-		switch ( operator ) {
-			case '>':
-				return val1 > val2;
-			case '>=':
-				return val1 >= val2;
-			case '<':
-				return val1 < val2;
-			case '<=':
-				return val1 <= val2;
-			case '==':
-				return val1 == val2;
-			case '===':
-				return val1 === val2;
-			case '!=':
-				return val1 != val2;
-			default:
-				return false;
-		}
-	}
-
-	function wbte_sc_bogo_remove_all_validation_msg(){
-		$( '.wbte_sc_bogo_edit_error_txt_container' ).remove();
-		$( '.wbte_sc_bogo_error_border' ).removeClass( 'wbte_sc_bogo_error_border' );
-	}
-
 	function wbte_sc_bogo_realtime_validation(){
 		var err_fields = wbte_sc_bogo_get_error_fields();
 
@@ -2471,76 +2085,6 @@
 		parentElm.find( '.wbte_sc_bogo_edit_error_txt_container' ).remove();
 
 		parentElm.find( '.wbte_sc_bogo_error_border' ).removeClass( 'wbte_sc_bogo_error_border' );
-	}
-
-	/** Function call is done by dynamically, dont remove it. */
-	function wbte_sc_bogo_email_validation(){
-		if ( ! $( '#customer_email' ).closest( 'tr' ).hasClass( 'wbte_sc_bogo_conditional_hidden' ) ) {
-			let emails             = jQuery( '[name="wbte_sc_bogo_emails[]"]' ).val();
-			let valid_emails_count = 0;
-
-			jQuery.each(
-				emails,
-				function ( index, email ) {
-					if ( wbte_sc_bogo_email_select.validateEmail( email ) ) {
-						valid_emails_count++;
-					}
-				}
-			);
-
-			if ( 0 === valid_emails_count ) {
-				var elm       = $( '#customer_email' );
-				var parentElm = elm.closest( 'td' );
-				var err_icon  = '<img style="vertical-align:middle; width:16px; display:inline-block;" src="' + wbte_sc_bogo_params.urls.image_path + 'exclamation_red.svg">';
-				if ( 0 === parentElm.find( '.wbte_sc_bogo_edit_error_txt' ).length ) {
-					parentElm.append( `<span class="wbte_sc_bogo_edit_error_txt_container"><br><span class="wbte_sc_bogo_edit_error_txt">${ err_icon }&nbsp;${ wbte_sc_bogo_params.err_msgs.email_error }</span></span>` );
-				}
-				elm.parent( '.wbte_sc_bogo_email_field' ).addClass( 'wbte_sc_bogo_error_border' );
-				var stepContainer = elm.closest( '.wbte_sc_bogo_edit_step' );
-				if ( ! stepContainer.hasClass( 'wbte_sc_bogo_step_container_opened' )) {
-					stepContainer.trigger( 'click' );
-				}
-				$( '.wbte_sc_bogo_email_select' )[0].scrollIntoView( { behavior: 'smooth', block: 'center' } );
-				$( '.wbte_sc_bogo_email_select' ).show().trigger( 'focus' );
-				setTimeout(
-					function () {
-						var offset = $( '.wbte_sc_bogo_email_select' ).offset().top - ($( window ).height() / 2);
-						$( 'html, body' ).animate( { scrollTop: offset }, 500 );
-					},
-					100
-				);
-
-				return false;
-			}
-		}
-		return true;
-	}
-
-	function wbte_sc_bogo_coupon_code_validation(){
-
-		/** If auto coupon code is selected then no need to validate. */
-		if ( 'wbte_sc_bogo_code_auto' === $( 'input[ name="wbte_sc_bogo_code_condition" ]:checked' ).val() ) {
-			return true;
-		}
-
-		/** Regular expression to allow only alphabets, numbers, and hyphens */
-		var validPattern = /^[a-z0-9-]+$/;
-		var inputVal 	 = $( '#wbte_sc_bogo_coupon_code' ).val();
-
-		return validPattern.test( inputVal );
-	}
-
-	/** Function call is done by dynamically, dont remove it. */
-	function wbte_sc_bogo_schedule_empty_check(){
-		if (
-			$( '#wbte_sc_bogo_schedule' ).is( ':checked' )
-			&& '' === $( '#_wt_coupon_start_date' ).val()
-			&& '' === $( '#expiry_date' ).val()
-		) {
-			return false;
-		} else {
-			return true;
-		}
 	}
 
 } )( jQuery );
@@ -2803,4 +2347,509 @@ var wbte_sc_bogo_email_select =
 		var mailformat = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 		return email.toLowerCase().match( mailformat );
 	}
+}
+
+const wbte_sc_bogo_data_processing = (function($) {
+
+	return function(e){
+		const $form = $(e.target);
+		const clicked_button = $( e.originalEvent.submitter ).attr( 'data-btn-id' );
+		var allowed_emails   = [];
+
+		$( 'input[type="text"]' ).each(
+			function () {
+				if ( $( this ).closest( 'tr' ).hasClass( 'wbte_sc_bogo_conditional_hidden' ) ) {
+						$( this ).val( '' ); /** Make text field value empty if field is in hidden state */
+				}
+			}
+		);
+
+		$( 'input[type="checkbox"]' ).each(
+			function () {
+				if ( $( this ).closest( 'tr' ).hasClass( 'wbte_sc_bogo_conditional_hidden' ) ) {
+						$( this ).prop( 'checked', false );
+				}
+			}
+		);
+
+		$( 'select' ).each(
+			function () {
+				if ( $( this ).closest( 'tr' ).hasClass( 'wbte_sc_bogo_conditional_hidden' ) ) {
+						$( this ).val( null ).trigger( 'change' ); /** Clear selected values if hidden */
+				}
+			}
+		);
+
+		if ( ! $( '#wbte_sc_bogo_schedule' ).is( ":checked" ) ) {
+			$( '#_wt_coupon_start_date, #expiry_date' ).val( '' );
+		}
+		var fieldValues = {};
+		$form.find( ":input" ).each(
+			function () {
+				var input = $( this );
+				var name  = input.attr( 'name' );
+				var value = input.val();
+
+				if (input.is( ':radio' )) {
+					/** Only store the value if the radio button is checked */
+					if (input.is( ':checked' )) {
+						fieldValues[name] = value;
+					}
+				} else if (input.is( ':checkbox' )) {
+					/** Only store the value if the checkbox is checked */
+					if (input.is( ':checked' )) {
+						if ( ! (name in fieldValues)) {
+							fieldValues[name] = [];
+						}
+						fieldValues[name].push( value );
+					}
+				} else {
+					/** For other input types, store the value if it's not empty or if the field hasn't been seen before */
+					if (value !== '' || ! (name in fieldValues)) {
+						fieldValues[name] = value;
+					}
+				}
+			}
+		);
+		if ( ! wbte_sc_bogo_form_submit_validation() ) {
+			wbte_sc_bogo_remove_overlay();
+			return;
+		}
+		wbte_sc_bogo_remove_all_validation_msg(); /** If here means validation passed. So remove all validation messages if any. */
+
+		var data = $.param( fieldValues );
+
+		/** Add allowed emails to data */
+		let emails = $( '[name="wbte_sc_bogo_emails[]"]' ).val();
+		$.each(
+			emails,
+			function ( index, email ) {
+				if ( wbte_sc_bogo_email_select.validateEmail( email ) ) {
+					allowed_emails.push( email );
+				}
+			}
+		);
+		$( '.wbte_sc_bogo_email_select_inner span.invalid' ).remove();
+
+		data += '&customer_email=' + allowed_emails + '&clicked_button=' + clicked_button;
+
+		return data;
+	}
+})(jQuery);
+
+const wbte_sc_bogo_form_submit_validation = (function($) {
+	return function() {
+		var err_fields = wbte_sc_bogo_get_error_fields();
+
+		for ( const [key, value] of Object.entries( err_fields ) ) {
+
+			if ( ! $( '#' + key ).closest( 'tr' ).hasClass( 'wbte_sc_bogo_conditional_hidden' ) ) {
+
+				var val1       = $( '#' + key ).val();
+				var val2       = value.restriction.constructor === Array ? value.restriction[0] : value.restriction;
+				const isSelect = value.type && 'select' === value.type;
+				let parentLoc  = typeof( value.parent_loc ) !== undefined ? value.parent_loc : 'td';
+
+				if ( isSelect && $( '#' + key ).closest( 'div' ).hasClass( 'wbte_sc_bogo_conditional_hidden' ) ) {
+					continue;
+				}
+
+				if ( 'special' === value.condition && typeof( value.func_name ) !== 'undefined' ) {
+					const specialFields = ['wbte_sc_bogo_emails' ];
+					if ( specialFields.includes( key ) ) {
+						if ( ! eval( value.func_name + '()' ) ) {
+							return false;
+						}
+					} else if ( ! eval( value.func_name + '()' ) ) {
+						wbte_sc_bogo_show_validation_msg( key, wbte_sc_bogo_params.err_msgs[ value.err_msg ], isSelect, parentLoc );
+						return false;
+					}
+					continue;
+				}
+
+				if ( '' === val1 ) {
+					if ( value.strict ) {
+						wbte_sc_bogo_show_validation_msg(
+							key,
+							value.err_msg.constructor === Array ? wbte_sc_bogo_params.err_msgs[ value.err_msg[0] ] : wbte_sc_bogo_params.err_msgs[ value.err_msg ],
+							isSelect,
+							parentLoc
+						);
+						return false;
+					} else {
+						continue;
+					}
+				}
+
+				if ( ( 'string' === typeof( val2 ) && val2.startsWith( '#' ) ) ) { /** ID given. */
+					val2 = $( val2 ).val();
+				}
+
+				if ( value.multiple_condition ) {
+					let err_flag = false;
+					value.condition.forEach(
+						function ( condition, index ) {
+							if ( ! wbte_sc_bogo_validation_arithmetic( val1, value.restriction[index], condition ) ) {
+									wbte_sc_bogo_show_validation_msg( key, wbte_sc_bogo_params.err_msgs[ value.err_msg[index] ], isSelect, parentLoc );
+									err_flag = true;
+									return false;
+							}
+						}
+					);
+					if ( err_flag ) {
+						return false;
+					}
+				} else {
+					if ( ! wbte_sc_bogo_validation_arithmetic( val1, val2, value.condition ) ) {
+						wbte_sc_bogo_show_validation_msg( key, wbte_sc_bogo_params.err_msgs[ value.err_msg ], isSelect, parentLoc );
+						return false;
+					}
+				}
+			}
+		}
+
+		return true;
+	}
+})(jQuery);
+
+const wbte_sc_bogo_get_error_fields = (function($) {
+	return function() {
+		let untilOptl = {
+			/** Step 1. */
+			'wbte_sc_bogo_free_product_ids' : {
+				'err_msg'	  : 'atleast_1_prod',
+				'restriction' : 0,
+				'condition'	  : '>',
+				'type'		  : 'select',
+				'strict'	  : true
+			},
+			'wbte_sc_bogo_customer_gets_qty' : {
+				'err_msg'	  : 'gre_equal_1',
+				'condition'	  : '>=',
+				'restriction' : 1,
+				'strict'	  : true,
+			},
+			'wbte_sc_bogo_customer_gets_discount_perc' : {
+				'err_msg'	  		 : [ 'gre_0', 'perc_less_eq_100' ],
+				'restriction' 		 : [ 0, 100 ],
+				'condition'	  		 : [ '>', '<=' ],
+				'strict'	  		 : true,
+				'multiple_condition' : true
+			},
+			'wbte_sc_bogo_customer_gets_discount_price' : {
+				'err_msg'	  : 'gre_0',
+				'restriction' : 0,
+				'condition'	  : '>',
+				'strict'	  : true
+			},
+			/** Step 2 */
+			'_wbte_sc_bogo_min_amount' : {
+				'err_msg'	  : 'gre_0',
+				'restriction' : 0,
+				'condition'	  : '>',
+				'strict'	  : true
+			},
+			'_wbte_sc_bogo_max_amount' : {
+				'err_msg'	  : 'gre_min',
+				'restriction' : '#_wbte_sc_bogo_min_amount',
+				'condition'	  : '>='
+			},
+			'_wbte_sc_bogo_min_qty' : {
+				'err_msg'	  : 'gre_equal_1',
+				'restriction' : 1,
+				'condition'	  : '>=',
+				'strict'	  : true
+			},
+			'_wbte_sc_bogo_max_qty' : {
+				'err_msg'	  : 'gre_min',
+				'restriction' : '#_wbte_sc_bogo_min_qty',
+				'condition'	  : '>=',
+				'parent_loc'  : 'td'
+			},
+			/** Step 2 prod/cat fields. */
+			'wbte_sc_bogo_specific_products' : {
+				'err_msg'	  : 'atleast_1_prod',
+				'restriction' : 0,
+				'condition'	  : '>',
+				'type'		  : 'select',
+				'strict'	  : true
+			},
+			'wbte_sc_bogo_excluded_products' :{
+				'err_msg'	  : 'atleast_1_ex_prod',
+				'restriction' : 0,
+				'condition'	  : '>',
+				'type'		  : 'select',
+				'strict'	  : true
+			},
+		}
+
+		const optlCondIdList = [ '_wbte_sc_bogo_min_qty_add', '_wbte_sc_bogo_max_qty_add', '_wbte_sc_min_qty_each', '_wbte_sc_max_qty_each', 'wbte_sc_bogo_emails', 'usage_limit', 'usage_limit_per_user' ];
+
+		let optlCondition =  {
+			/** Step 2 additional fields. */
+			'_wbte_sc_bogo_min_qty_add' : {
+				'err_msg'	  : 'gre_equal_1',
+				'restriction' : 0,
+				'condition'	  : '>',
+				'strict'	  : true
+			},
+			'_wbte_sc_bogo_max_qty_add' : {
+				'err_msg'	  : 'gre_min',
+				'restriction' : '#_wbte_sc_bogo_min_qty_add',
+				'condition'	  : '>'
+			},
+			'_wbte_sc_min_qty_each' :{
+				'err_msg'	  : 'gre_equal_1',
+				'restriction' : 0,
+				'condition'	  : '>',
+				'strict'	  : true
+			},
+			'_wbte_sc_max_qty_each' :{
+				'err_msg'	  : 'gre_min',
+				'restriction' : '#_wbte_sc_min_qty_each',
+				'condition'	  : '>'
+			},
+			'usage_limit' : {
+				'err_msg'	  : 'gre_equal_1',
+				'restriction' : 1,
+				'condition'	  : '>=',
+				'strict'	  : true
+			},
+			'usage_limit_per_user' : {
+				'err_msg'	  : 'gre_equal_1',
+				'restriction' : 1,
+				'condition'	  : '>=',
+				'strict'	  : true
+			},
+			'wbte_sc_bogo_emails' : {
+				'err_msg'	  : 'email_error',
+				'restriction' : '',
+				'condition'	  : 'special',
+				'func_name'	  : 'wbte_sc_bogo_email_validation',
+			},
+			
+		}
+
+		let sortedOptlCondIdList = [];
+		let newOptlCondIdList = {};
+
+		$( '.wbte_sc_bogo_additional_fields_contents tr' ).each( function () {
+			$( this ).find('[name]').each(function() {
+				const $trName = $(this).attr('name').replace(/\[\]$/, '');
+				if( optlCondIdList.includes( $trName ) ){
+					sortedOptlCondIdList.push( $trName );
+				}
+			});
+		} );
+
+		sortedOptlCondIdList.forEach( function ( id ) {
+			newOptlCondIdList[ id ] = optlCondition[ id ];
+		} );
+
+		let afterOptl = {
+			/** General settings. */
+			'wbte_sc_bogo_coupon_name' : {
+				'err_msg'	  : 'no_camp_title',
+				'restriction' : '',
+				'condition'	  : '!=',
+				'strict'	  : true,
+				'parent_loc'  : 'div'
+			},
+			'wbte_sc_bogo_coupon_code' : {
+				'err_msg'	  : 'coupon_code_error',
+				'restriction' : '',
+				'condition'	  : 'special',
+				'func_name'	  : 'wbte_sc_bogo_coupon_code_validation',
+				'strict'	  : true,
+				'parent_loc'  : 'div'
+			},
+			'wbte_sc_bogo_schedule_content' : {
+				'err_msg'	  : 'empty_schedule',
+				'restriction' : '',
+				'condition'	  : 'special',
+				'func_name'	  : 'wbte_sc_bogo_schedule_empty_check',
+				'strict'	  : true,
+				'parent_loc'  : 'div',
+				'type'		  : 'select',
+			},
+		}
+
+		return $.extend( untilOptl, newOptlCondIdList, afterOptl );
+	}
+})(jQuery);
+
+function wbte_sc_bogo_validation_arithmetic( val1, val2, operator ){
+
+	val1 = parseFloat( val1 );
+	val2 = parseFloat( val2 );
+
+	switch ( operator ) {
+		case '>':
+			return val1 > val2;
+		case '>=':
+			return val1 >= val2;
+		case '<':
+			return val1 < val2;
+		case '<=':
+			return val1 <= val2;
+		case '==':
+			return val1 == val2;
+		case '===':
+			return val1 === val2;
+		case '!=':
+			return val1 != val2;
+		default:
+			return false;
+	}
+}
+
+/** Function call is done by dynamically, dont remove it. */
+const wbte_sc_bogo_email_validation = ( function($){
+	return function () { 
+		if ( ! $( '#customer_email' ).closest( 'tr' ).hasClass( 'wbte_sc_bogo_conditional_hidden' ) ) {
+			let emails             = jQuery( '[name="wbte_sc_bogo_emails[]"]' ).val();
+			let valid_emails_count = 0;
+	
+			jQuery.each(
+				emails,
+				function ( index, email ) {
+					if ( wbte_sc_bogo_email_select.validateEmail( email ) ) {
+						valid_emails_count++;
+					}
+				}
+			);
+	
+			if ( 0 === valid_emails_count ) {
+				var elm       = $( '#customer_email' );
+				var parentElm = elm.closest( 'td' );
+				var err_icon  = '<img style="vertical-align:middle; width:16px; display:inline-block;" src="' + wbte_sc_bogo_params.urls.image_path + 'exclamation_red.svg">';
+				if ( 0 === parentElm.find( '.wbte_sc_bogo_edit_error_txt' ).length ) {
+					parentElm.append( `<span class="wbte_sc_bogo_edit_error_txt_container"><br><span class="wbte_sc_bogo_edit_error_txt">${ err_icon }&nbsp;${ wbte_sc_bogo_params.err_msgs.email_error }</span></span>` );
+				}
+				elm.parent( '.wbte_sc_bogo_email_field' ).addClass( 'wbte_sc_bogo_error_border' );
+				var stepContainer = elm.closest( '.wbte_sc_bogo_edit_step' );
+				if ( ! stepContainer.hasClass( 'wbte_sc_bogo_step_container_opened' )) {
+					stepContainer.trigger( 'click' );
+				}
+				$( '.wbte_sc_bogo_email_select' )[0].scrollIntoView( { behavior: 'smooth', block: 'center' } );
+				$( '.wbte_sc_bogo_email_select' ).show().trigger( 'focus' );
+				setTimeout(
+					function () {
+						var offset = $( '.wbte_sc_bogo_email_select' ).offset().top - ($( window ).height() / 2);
+						$( 'html, body' ).animate( { scrollTop: offset }, 500 );
+					},
+					100
+				);
+	
+				return false;
+			}
+		}
+		return true;
+	}
+} )(jQuery);
+
+const wbte_sc_bogo_coupon_code_validation = ( function($){
+	return function(){
+
+		/** If auto coupon code is selected then no need to validate. */
+		if ( 'wbte_sc_bogo_code_auto' === $( 'input[ name="wbte_sc_bogo_code_condition" ]:checked' ).val() ) {
+			return true;
+		}
+
+		/** Regular expression to allow only alphabets, numbers, and hyphens */
+		var validPattern = /^[a-z0-9-]+$/;
+		var inputVal 	 = $( '#wbte_sc_bogo_coupon_code' ).val();
+
+		return validPattern.test( inputVal );
+	}
+})(jQuery);
+
+/** Function call is done by dynamically, dont remove it. */
+const wbte_sc_bogo_schedule_empty_check = ( function($){
+	return function(){
+		if (
+			$( '#wbte_sc_bogo_schedule' ).is( ':checked' )
+			&& '' === $( '#_wt_coupon_start_date' ).val()
+		&& '' === $( '#expiry_date' ).val()
+		) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+})(jQuery);
+
+function wbte_sc_bogo_remove_all_validation_msg(){
+	jQuery( '.wbte_sc_bogo_edit_error_txt_container' ).remove();
+	jQuery( '.wbte_sc_bogo_error_border' ).removeClass( 'wbte_sc_bogo_error_border' );
+}
+
+const wbte_sc_bogo_show_validation_msg = ( function($){
+	return function( id, msg, is_select, parentLoc = 'td' ){
+		var elm        = $( '#' + id );
+		var parentElm  = elm.closest( parentLoc );
+		let breakFront = '';
+		let breakEnd   = '<br>';
+		var err_icon   = '<img style="vertical-align:middle; width:16px; display:inline-block;" src="' + wbte_sc_bogo_params.urls.image_path + 'exclamation_red.svg">';
+	
+		/** Handle 'select2' elements */
+		if ( is_select ) {
+			if ( 0 < elm.closest( 'div' ).find( 'span.select2-selection' ).length ) {
+				elm = elm.closest( 'div' ).find( 'span.select2-selection' );
+			}
+			breakFront = '<br>';
+			breakEnd   = '';
+		}
+	
+		/** Add error text if not already present */
+		if ( 0 === parentElm.find( '.wbte_sc_bogo_edit_error_txt' ).length ) {
+			parentElm.append( `<span class="wbte_sc_bogo_edit_error_txt_container">${breakFront}<span class="wbte_sc_bogo_edit_error_txt">${breakEnd}${msg}</span></span>` );
+		}
+	
+		/** Handle input fields with icons */
+		if ( elm.closest( 'div' ).hasClass( 'wbte_sc_bogo_icon_input' ) ) {
+			elm = elm.closest( 'div' );
+		}
+	
+		/** Append error icon */
+		if ( parentElm.find( 'img[src$="exclamation_red.svg"]' ).length === 0 ) {
+			if ( ! is_select) {
+				elm.after( `<span class="wbte_sc_bogo_edit_error_txt_container">&nbsp;${ err_icon }</span>` );
+			} else {
+				parentElm.find( '.wbte_sc_bogo_edit_error_txt' ).prepend( err_icon + '&nbsp;' );
+			}
+		}
+	
+		/** Add error class to input */
+		elm.addClass( 'wbte_sc_bogo_error_border' );
+	
+		/** Open step container if it's not already opened */
+		var stepContainer = elm.closest( '.wbte_sc_bogo_edit_step' );
+		if( 0 < stepContainer.length ){ /** For BOGO single coupon */
+			if ( ! stepContainer.hasClass( 'wbte_sc_bogo_step_container_opened' )) {
+				stepContainer.trigger( 'click' );
+			}
+		}else{ /** For BOGO bulk coupon */
+			stepContainer = elm.closest( '.wbte_sc_admin_vrtl_nav_content_section' );
+			if ( ! stepContainer.hasClass( 'active' ) ) {
+				const section = stepContainer.data( 'section' );
+				$( `.wbte_sc_admin_vrtl_nav_item[data-section="${section}"]` ).trigger( 'click' );
+			}
+		}
+	
+		/** Trigger focus on the input or select field */
+		var focusElem = elm.hasClass( 'wbte_sc_bogo_icon_input' ) ? elm.find( 'input' ) : elm;
+		focusElem.trigger( 'focus' );
+		setTimeout(
+			() => {
+			focusElem[0].scrollIntoView( { behavior: 'smooth', block: 'center' } );
+			},
+			10
+		);
+	}
+ } )(jQuery)
+
+ function wbte_sc_bogo_remove_overlay(){
+	jQuery( '.wbte_sc_blanket' ).hide();
+	jQuery( 'html, body' ).css( { overflow: 'auto', height: 'auto' } );
 }

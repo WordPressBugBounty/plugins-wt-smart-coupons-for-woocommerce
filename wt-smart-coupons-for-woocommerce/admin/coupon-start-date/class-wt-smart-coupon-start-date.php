@@ -20,11 +20,12 @@ if( ! class_exists ( 'WT_smart_Coupon_Start_Date' ) ) {
     
 	class WT_smart_Coupon_Start_Date {
 
-        function __construct() {
+        public function __construct() {
             add_action('woocommerce_coupon_options', array( $this,'add_coupon_start_date_field' ) ,9,2);
             add_action('woocommerce_process_shop_coupon_meta', array( $this,'save_coupon_start_date' ), 11, 2);
 			add_filter( 'woocommerce_coupon_is_valid',   array( $this,'wt_woocommerce_coupon_is_valid' ), 10, 2 );
 
+            add_action( 'wt_sc_before_bogo_coupon_save', array( $this, 'set_start_expiry_data_for_bogo_coupon' ), 10, 2 );
         }
 
 
@@ -93,6 +94,37 @@ if( ! class_exists ( 'WT_smart_Coupon_Start_Date' ) ) {
             }
 
             return $valid;
+        }
+
+        /**
+         * Save start and expiry data for BOGO coupon
+         * 
+         * @since 2.2.0
+         * @param int   $post_id    Post id
+         * @param array $post_data  Arrat POST data
+         */
+        public function set_start_expiry_data_for_bogo_coupon( $post_id, $post_data ){
+
+            if( ! $post_id || ! is_array( $post_data ) || empty( $post_data ) )
+            {
+                return;
+            }
+
+            if ( isset( $post_data['_wt_coupon_start_date'] ) && '' !== $post_data['_wt_coupon_start_date'] ) {
+                $start_date = Wt_Smart_Coupon_Security_Helper::sanitize_item( $post_data['_wt_coupon_start_date'] );
+                update_post_meta( $post_id, '_wt_coupon_start_date', $start_date );
+    
+            } else {
+                update_post_meta( $post_id, '_wt_coupon_start_date', '' );
+            }
+    
+            if ( isset( $post_data['expiry_date'] ) && '' !== $post_data['expiry_date'] ) {
+                $expiry_date = Wt_Smart_Coupon_Security_Helper::sanitize_item( $post_data['expiry_date'] );
+                update_post_meta( $post_id, 'date_expires', Wt_Smart_Coupon_Admin::wt_sc_get_date_prop( $expiry_date )->getTimestamp() );
+    
+            } else {
+                update_post_meta( $post_id, 'date_expires', '' );
+            }
         }
     }
 

@@ -13,10 +13,10 @@ if ( ! defined( 'WPINC' ) ) {
     <?php $admin_img_path = WT_SMARTCOUPON_MAIN_URL.'admin/images/'; ?>
     <ul class="wt-smartcoupon-help-links">
         <li>
-            <img src="<?php echo esc_url( "{$admin_img_path}documentation.png" );?>">
+            <img style="height: 90px;" src="<?php echo esc_url( "{$admin_img_path}documentation.png" );?>">
             <h3><?php esc_html_e( 'Documentation', 'wt-smart-coupons-for-woocommerce' ); ?></h3>
             <p><?php esc_html_e( 'Refer to our documentation to set up and get started', 'wt-smart-coupons-for-woocommerce' ); ?></p>
-            <a target="_blank" href="<?php echo esc_url( 'https://www.webtoffee.com/smart-coupons-for-woocommerce-userguide/' ); ?>" class="button button-primary">
+            <a target="_blank" href="<?php echo esc_url( 'https://www.webtoffee.com/smart-coupons-for-woocommerce-userguide/' ); ?>" class="wbte_sc_button wbte_sc_button-filled wbte_sc_button-medium">
                 <?php esc_html_e( 'Documentation', 'wt-smart-coupons-for-woocommerce' ); ?>        
             </a>
         </li>
@@ -24,7 +24,7 @@ if ( ! defined( 'WPINC' ) ) {
             <img src="<?php echo esc_url( "{$admin_img_path}support.png" );?>">
             <h3><?php esc_html_e( 'Help and Support', 'wt-smart-coupons-for-woocommerce' ); ?></h3>
             <p><?php esc_html_e( 'We would love to help you on any queries or issues.', 'wt-smart-coupons-for-woocommerce' ); ?></p>
-            <a target="_blank" href="<?php echo esc_url( 'https://www.webtoffee.com/support/' ); ?>" class="button button-primary">
+            <a target="_blank" href="<?php echo esc_url( 'https://www.webtoffee.com/support/' ); ?>" class="wbte_sc_button wbte_sc_button-filled wbte_sc_button-medium">
                 <?php esc_html_e( 'Contact Us', 'wt-smart-coupons-for-woocommerce' ); ?>
             </a>
         </li>

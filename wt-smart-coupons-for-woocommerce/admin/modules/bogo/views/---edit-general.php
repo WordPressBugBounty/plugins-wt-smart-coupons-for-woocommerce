@@ -100,7 +100,7 @@ $today_date = gmdate( 'Y-m-d' );
 		?>
 
 		<div class=" <?php echo 'wbte_sc_bogo_code_manual' === self::get_coupon_meta_value( $coupon_id, 'wbte_sc_bogo_code_condition' ) ? '' : 'wbte_sc_bogo_conditional_hidden '; ?>">
-			<input type="text" id="wbte_sc_bogo_coupon_code" name="wbte_sc_bogo_coupon_code" class="wbte_sc_bogo_text_input" placeholder="<?php esc_attr_e( 'Coupon code', 'wt-smart-coupons-for-woocommerce' ); ?>" value="<?php echo esc_html( $coupon->get_code() ); ?>">
+			<input type="text" id="wbte_sc_bogo_coupon_code" name="wbte_sc_bogo_coupon_code" class="wbte_sc_bogo_text_input" placeholder="<?php esc_attr_e( 'Coupon code', 'wt-smart-coupons-for-woocommerce' ); ?>" value="<?php echo esc_html( $coupon->get_code() ); ?>" data-coupon-code="<?php echo esc_attr( $coupon->get_code() ); ?>">
 			<br><span class="wbte_sc_bogo_help_text">
 			<?php
 			esc_html_e(

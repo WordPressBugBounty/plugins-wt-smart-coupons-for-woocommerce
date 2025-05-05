@@ -39,7 +39,19 @@
 		$('.wt_sc_coupon_templates .wt_sc_single_template_box').on('click', function(){
 			
 			var coupon_type = $(this).attr('data-coupon_type');	
-			$('.wt_sc_coupon_preview[data-coupon_type="'+coupon_type+'"]').html($(this).find('.wt_sc_single_template_box_inner').html());
+			var hasPalettes = true === $(this).data('has-palettes') ? true : false;
+
+			let template_box_inner = $(this).find('.wt_sc_single_template_box_inner').html();
+			let random_id = Math.random().toString(36).substring(2);
+			template_box_inner = template_box_inner.replace(/wbte_sc_svg_random_id-[a-z0-9]+-end/g, 'wbte_sc_svg_random_id-' + random_id + '-end');
+			
+			$('.wt_sc_coupon_preview[data-coupon_type="'+coupon_type+'"]').html(template_box_inner);
+
+			if( 'expired_coupon' === coupon_type ) {
+				const $preview = $('.wt_sc_coupon_preview[data-coupon_type="'+coupon_type+'"]');
+				$preview.find('.wbte_sc_coupon_layout_expired_text, .wbte_sc_coupon_layout_expired_overlay').css('visibility', 'visible');
+				$preview.find('.wt_sc_coupon_expiry, .wbte_sc_coupon_layout_expiry_ctm').hide();
+			}
 
 			/* update current style */
 			var style_key = $(this).attr('data-style_key');
@@ -49,16 +61,27 @@
 			var color_config_arr = color_config.split('|');
 
 			var color_form_elm = $('.wt_sc_coupon_colors[data-coupon_type="'+coupon_type+'"] .wt_sc_coupon_color_form_element');
-			color_form_elm.hide();
+			color_form_elm.addClass('hide');
 			
 			/* update color pickers */
 			for(var ee = 0; ee < color_config_arr.length; ee++)
 			{
-				color_form_elm.eq(ee).show();
+				color_form_elm.eq(ee).removeClass('hide');
 				color_form_elm.eq(ee).find('input.wt_sc_color_picker').val(color_config_arr[ee]).attr('data-style_type', style_key).iris('color', color_config_arr[ee]);
 			}
 
+			/** Toggle color picker visibility based on whether template has palettes */
+			var colorPicker = $('.wt_sc_coupon_colors[data-coupon_type="'+coupon_type+'"]');
+			if(hasPalettes) {
+				colorPicker.addClass('closed');
+			} else {
+				colorPicker.removeClass('closed');
+			}
+
+			wbte_sc_update_palette_visibility( $(this) );
+
 			wt_sc_popup.hidePopup();
+			$('.wt_sc_coupon_templates .wt_sc_single_template_box').css({'box-shadow':'none'});
 		});
 
 
@@ -84,22 +107,55 @@
 					submit_btn.css({'opacity':'1','cursor':'pointer'}).prop('disabled',false);
 					if(data.status)
 					{
-						wt_sc_notify_msg.success(data.msg);
+						wbte_sc_notify_msg.success(data.msg);
 					}else
 					{
-						wt_sc_notify_msg.error(data.msg);
+						wbte_sc_notify_msg.error(data.msg);
 					}
 				},
 				error:function () 
 				{
 					spinner.css({'visibility':'hidden'});
 					submit_btn.css({'opacity':'1','cursor':'pointer'}).prop('disabled',false);
-					wt_sc_notify_msg.error(wt_sc_customizer_params.msgs.settings_error, false);
+					wbte_sc_notify_msg.error(wt_sc_customizer_params.msgs.settings_error, false);
 				}
 
 			});
 		});
 
+		$('.wt_sc_coupon_colors').on('click', function(e) {
+			if($(e.target).is('.wt_sc_coupon_colors, .wbte_sc_coupon_clr_picker_header, .wbte_sc_coupon_clr_picker_header_txt, .wbte_sc_coupon_clr_picker_header_arr')) {
+				$(this).toggleClass('closed');
+				$(this).closest( '.wt_sc_color_container' ).find( '.wt_sc_palette_preview' ).removeClass( 'selected' );
+			}
+		});
+
+		function wbte_sc_update_palette_visibility(templateBox) {
+			const hasPalettes = true === templateBox.data('has-palettes') ? true : false;
+			const palettes = templateBox.data('palettes');
+			const couponType = templateBox.attr('data-coupon_type');
+			const paletteContainer = $(`.wt_sc_sub_tab_content[data-id="${couponType}"] .wt_sc_palette_options`);
+			
+			if ( hasPalettes && palettes ) {
+				const newPaletteHtml = `
+					<div class="wt_sc_palette_options">
+						${palettes.map(palette => `
+							<div class="wt_sc_palette_preview" data-palette='${JSON.stringify(palette)}'>
+								${palette.map(color => `
+									<span class="wt_sc_color_swatch" style="background-color: ${color}"></span>
+								`).join('')}
+							</div>
+						`).join('')}
+					</div>
+				`;
+				
+				paletteContainer.remove();
+				$(`.wt_sc_sub_tab_content[data-id="${couponType}"] .wt_sc_color_container`).prepend(newPaletteHtml);
+				$(`.wt_sc_sub_tab_content[data-id="${couponType}"] .wt_sc_palette_preview`).first().addClass('selected');
+			} else {
+				paletteContainer.remove();	
+			}
+		}
 
 		function wt_sc_update_color(coupon_type)
 		{
@@ -119,6 +175,75 @@
 
 			preview_elm.children('.wt_sc_single_coupon').replaceWith(reference_elm_html);
 		}
+
+		/** Handle palette selection */
+		$(document).on('click', '.wt_sc_palette_preview', function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+			
+			var $this = $(this);
+			var palette = $this.data('palette');
+			var coupon_type = $this.closest('.wt_sc_sub_tab_content').data('id');
+			
+			/** Force remove and add class */
+			$this.removeClass('selected');
+			$this.attr('class', 'wt_sc_palette_preview selected');
+			
+			/** Update each color picker with palette colors */
+			palette.forEach(function(color, index) {
+				var colorPicker = $('.wt_sc_coupon_colors[data-coupon_type="'+coupon_type+'"] .wt_sc_color_picker').eq(index);
+				colorPicker.val(color).trigger('change');
+			});
+			
+			wt_sc_update_color(coupon_type);
+			$('.wt_sc_coupon_colors[data-coupon_type="'+coupon_type+'"]').addClass('closed');
+			
+			if (!$this.hasClass('selected')) {
+				$this.addClass('selected');
+			}
+		});
+
+		/** Remove selected state when custom colors are used */
+		$('.wt_sc_color_picker').on('change', function() {
+			var coupon_type = $(this).data('coupon_type');
+			$('.wt_sc_sub_tab_content[data-id="'+coupon_type+'"] .wt_sc_palette_preview').removeClass('selected');
+		});
+
+		/** Initialize palettes on page load */
+		$('.wt_sc_sub_tab_content').each(function() {
+			var $content = $(this);
+			var templateBox = $('.wt_sc_single_template_box[data-style_key="' + $content.find('.wt_sc_selected_coupon_style_input').val() + '"]');
+			
+			if(templateBox.length) {
+				wbte_sc_update_palette_visibility(templateBox);
+				
+				/** Get current colors from color pickers */
+				var currentColors = [];
+				$content.find('.wt_sc_color_picker').each(function() {
+					currentColors.push($(this).val());
+				});
+				
+				// Find and select matching palette
+				if(templateBox.data('has-palettes')) {
+					var palettes = templateBox.data('palettes');
+					var matchingPalette = palettes.find(palette => 
+						JSON.stringify(palette).toLowerCase() === JSON.stringify(currentColors).toLowerCase()
+					);
+					
+					if(matchingPalette) {
+						$content.find('.wt_sc_palette_preview').each(function() {
+							if(JSON.stringify($(this).data('palette')) === JSON.stringify(matchingPalette)) {
+								$(this).addClass('selected');
+								$content.find('.wt_sc_coupon_colors').addClass('closed');
+							}
+						});
+					}
+				} else {
+					// If template doesn't have palettes, ensure color picker is open
+					$content.find('.wt_sc_coupon_colors').removeClass('closed');
+				}
+			}
+		});
 
 	});
 })( jQuery );
