@@ -2596,7 +2596,7 @@ const wbte_sc_bogo_get_error_fields = (function($) {
 			'_wbte_sc_bogo_max_qty_add' : {
 				'err_msg'	  : 'gre_min',
 				'restriction' : '#_wbte_sc_bogo_min_qty_add',
-				'condition'	  : '>'
+				'condition'	  : '>='
 			},
 			'_wbte_sc_min_qty_each' :{
 				'err_msg'	  : 'gre_equal_1',
@@ -2607,7 +2607,7 @@ const wbte_sc_bogo_get_error_fields = (function($) {
 			'_wbte_sc_max_qty_each' :{
 				'err_msg'	  : 'gre_min',
 				'restriction' : '#_wbte_sc_min_qty_each',
-				'condition'	  : '>'
+				'condition'	  : '>='
 			},
 			'usage_limit' : {
 				'err_msg'	  : 'gre_equal_1',

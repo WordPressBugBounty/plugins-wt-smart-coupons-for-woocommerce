@@ -15,8 +15,7 @@ $today_date      = gmdate( 'Y-m-d' );
 ?>
 <style>
 	/* Bulk BOGO */
-	#wbte_sc_bulk_bogo_container { padding: 20px; width: 95%; background: #fff; border-radius: 8px; box-shadow: 0px 0px 10px 1px #545f6f2e; display: none; }
-	.wbte_sc_bulk_bogo_title { font-size: 16px; font-weight: 600; color: #333; margin: 0; }
+	#wbte_sc_bulk_bogo_container { width: 95%; background: #fff; border-radius: 8px; box-shadow: 0px 0px 10px 1px #545f6f2e; display: none; }
 	.wbte_sc_bulk_bogo_field { margin-bottom: 20px; }
 	.wbte_sc_bulk_bogo_field label { display: block; margin-bottom: 8px; font-weight: 500; }
 	.wbte_sc_bulk_bogo_select { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 15px; }
@@ -25,7 +24,6 @@ $today_date      = gmdate( 'Y-m-d' );
 	.wbte_sc_bulk_bogo_radio_label { display: flex; align-items: center; margin: 8px 0; cursor: pointer; }
 	.wbte_sc_bulk_bogo_radio_label input { margin-right: 8px; }
 
-	#wpbody{ margin: 0; }
 	.wbte_sc_bogo_edit_step_content{ margin: 0; }
 	.wbte_sc_bulk_bogo_table{ width: 100%; }
 	.wbte_sc_bogo_edit_table tr th:first-child, .wbte_sc_bulk_bogo_table tr th:first-child{ width: 30%; text-align: start; }
@@ -125,7 +123,7 @@ $today_date      = gmdate( 'Y-m-d' );
 		</td>
 	</tr>
 
-	<tr class="wbte_sc_code_format_tr wbte_sc_bogo_conditional_hidden">
+	<tr>
 		<th>
 			<label><?php esc_html_e( 'Offer Code Format', 'wt-smart-coupons-for-woocommerce' ); ?></label>
 		</th>
@@ -354,15 +352,6 @@ $today_date      = gmdate( 'Y-m-d' );
 			
 			$('#discount_type').val($(this).val());
 		});
-
-		/** Hide/Show 'Offer Code Format' and 'Offer Code Length' fields based on 'Coupon code automatic or manual' */
-		$( document ).on(
-			'change',
-			'input[ type=radio ][ name=wbte_sc_bogo_code_condition ]',
-			function () {
-				$('.wbte_sc_code_format_tr').toggleClass('wbte_sc_bogo_conditional_hidden');
-			}
-		);
 	});
 
 </script>

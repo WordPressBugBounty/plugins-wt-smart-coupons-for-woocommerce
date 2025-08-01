@@ -45,13 +45,14 @@ if ( ! class_exists( 'Wt_Gdpr_Promotion_banner' ) ) {
          */
         public function show_banner() {
             $current_screen = get_current_screen();
+            $is_edit = ( isset( $_GET['action'] ) && in_array( $_GET['action'], array( 'edit', 'new' ) ) ) || ( isset( $_SERVER['REQUEST_URI'] ) && false !== strpos( esc_url_raw( $_SERVER['REQUEST_URI'] ), 'post-new.php' ) );
             if ( $this->is_show_banner() && ( 
                 false !== strpos( $current_screen->id, 'woocommerce' )
                 || false !== strpos( $current_screen->id, 'product' )
                 || false !== strpos( $current_screen->id, 'shop_order' )
                 || false !== strpos( $current_screen->id, 'shop_coupon' )
                 || false !== strpos( $current_screen->id, 'wt-smart-coupon-for-woo' )
-            ) ) {
+            ) && ! $is_edit ) {
             ?>
             <div class="wt-gdpr-promotion-banner notice notice-info is-dismissible">
                     <div class="wt-gdpr-promotion-banner-content-wrap">

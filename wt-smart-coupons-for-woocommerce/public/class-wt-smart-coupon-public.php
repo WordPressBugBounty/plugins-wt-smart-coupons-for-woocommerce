@@ -298,14 +298,16 @@ if( ! class_exists('Wt_Smart_Coupon_Public') ) {
          *  @since 1.5.1   Added HPOS Compatibility
          */
         public static function get_coupon_used_by_a_customer( $user,$coupon_code = '', $return = 'COUPONS' ) 
-        {         
-            global $current_user,$woocommerce,$wpdb;
-
-            if( !$user ) {
+        {   
+            if ( ! $user ) {
                 $user = wp_get_current_user();
             }
             $coupon_used = array();
             $customer_id = $user->ID;
+
+            if ( ! $user || ! $customer_id ) {
+                return false;
+            }
             
             $customer_orders = Wt_Smart_Coupon_Common::get_orders(array( 
                 'customer'      => $customer_id,
@@ -329,10 +331,26 @@ if( ! class_exists('Wt_Smart_Coupon_Public') ) {
                         if( ! in_array( 'my_account', $coupon_display, true ) ) {
                             continue;
                         }
-                        $date_expires = get_post_meta( $coupon_id, 'date_expires', true );
+
+                        $coupon = new WC_Coupon( $coupon_id );
+                        $date_expires = Wt_Smart_Coupon_Public::get_coupon_expires( $coupon );
                         if ( $date_expires && $date_expires < current_time( 'timestamp' ) ) {
                             continue;
                         }
+
+                        // Check usage limits.
+                        $usage_limit            = $coupon->get_usage_limit();
+                        $usage_count            = $coupon->get_usage_count();
+                        $usage_limit_per_user   = $coupon->get_usage_limit_per_user();
+                        $data_store  			= $coupon->get_data_store();
+				        $used_by_user 			= (int) $data_store->get_usage_by_user_id( $coupon, $customer_id );
+                        
+                        if ( ( 0 < $usage_limit && $usage_count >= $usage_limit ) 
+                            || ( 0 < $usage_limit_per_user && $used_by_user >= $usage_limit_per_user ) 
+                        ) {
+                            continue;
+                        }
+
                         $filtered_coupon_used[] = wc_format_coupon_code( $coupon_code );
                     }
                 }
@@ -1023,33 +1041,6 @@ if( ! class_exists('Wt_Smart_Coupon_Public') ) {
             wc_print_notices();
             die();
         }
-
-
-
-        /**
-         *  Display available coupon in `cart/checkout block`
-         * 
-         *  @since  1.6.0
-         *  @param  string   $block_content      Block content HTML
-         *  @param  array    $block              Block data array
-         *  @return string   $block_content      Block content HTML
-         */
-        public function display_available_coupon_in_block_cart_checkout( $block_content, $block ) {
-            
-            if ( 'woocommerce/cart' === $block['blockName'] || 'woocommerce/checkout' === $block['blockName'] ) {
-                
-                // Prepare coupon list HTML
-                ob_start();            
-                ( 'woocommerce/cart' === $block['blockName'] ? $this->display_available_coupon_in_cart() : $this->display_available_coupon_in_checkout() ); 
-                $coupons_html = ob_get_clean();
-                $block_content = $coupons_html . $block_content; 
-
-            }
-
-            return $block_content;
-        }
-
-
         
         /**
          *  Ajax callback to save checkout values for block checkout.
@@ -1123,6 +1114,26 @@ if( ! class_exists('Wt_Smart_Coupon_Public') ) {
             } else {
                 wp_send_json( false );
             }
+        }
+
+        /**
+         * Add 'available coupon in block cart/checkout' blocks data
+         * Hooked into: wbte_sc_alter_blocks_data
+         * 
+         *  @since 2.2.1
+         *  @param array $block_data block data array.
+         *  @return array block data array with added coupon blocks data.
+         */
+        public function add_coupon_blocks_data( $block_data ) {
+            ob_start();            
+            $this->display_available_coupon_in_cart();
+            $coupons_html = ob_get_clean();
+            $block_data['coupon_blocks_cart'] = $coupons_html;
+            ob_start();            
+            $this->display_available_coupon_in_checkout();
+            $coupons_html = ob_get_clean();
+            $block_data['coupon_blocks_checkout'] = $coupons_html;
+            return $block_data;
         }
     }
 }

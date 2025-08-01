@@ -13,7 +13,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 <div id="wbte_sc_bulk_bogo_container">
-    <h3 class="wbte_sc_bulk_bogo_title"><?php _e( 'Coupon data', 'wt-smart-coupons-for-woocommerce' ); ?></h3>
     
     <div class="wbte_sc_admin_vrtl_nav">
         <div class="wbte_sc_admin_vrtl_nav_items">

@@ -13,13 +13,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.5\n"
 "X-Poedit-Basepath: ..\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
-"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-WPHeader: wt-smart-coupon.php\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-WPHeader: wt-smart-coupon.php\n"
 
 #: admin/class-wt-duplicate-coupon.php:53
 #: admin/class-wt-smart-coupon-admin.php:151
@@ -52,10 +50,6 @@ msgstr "Dupliseer"
 msgid "Duplicate this item"
 msgstr "Dupliseer hierdie item"
 
-#: admin/class-wt-promotion-banner.php:42
-msgid "Biggest sale of the year is here!"
-msgstr "Grootste uitverkoping van die jaar is hier!"
-
 #: admin/class-wt-promotion-banner.php:43
 #, no-php-format
 msgid ""
@@ -65,17 +59,9 @@ msgstr ""
 "Black Friday & Cyber Monday-uitverkoping is nou aan die gang! Kry enige "
 "WebToffee-plugins teen 'n eksklusiewe 30% afslag."
 
-#: admin/class-wt-promotion-banner.php:44
-msgid "Grab this deal"
-msgstr "Gryp hierdie aanbod"
-
 #: admin/class-wt-smart-coupon-admin.php:122
 msgid "Quick links"
 msgstr "Vinnige skakels"
-
-#: admin/class-wt-smart-coupon-admin.php:140
-msgid "Upgrade your coupon campaigns with enhanced features"
-msgstr "Verbeter jou koeponveldtogte met verbeterde kenmerke"
 
 #: admin/class-wt-smart-coupon-admin.php:227
 #, php-format
@@ -219,17 +205,9 @@ msgid "Did you know?"
 msgstr "Het jy geweet?"
 
 #: admin/class-wt-smart-coupon-admin.php:676
-msgid "You can easily create bulk coupons within a few clicks."
-msgstr "Jy kan maklik grootmaat koepons skep met 'n paar klikke"
-
-#: admin/class-wt-smart-coupon-admin.php:676
 #, php-format
 msgid "Get %s WooCommerce Coupon Generator %s plugin."
 msgstr "Kry %s WooCommerce Koopongenerator %s inprop."
-
-#: admin/class-wt-smart-coupon-admin.php:676
-msgid "Check out plugin"
-msgstr "Kyk na inprop"
 
 #: admin/class-wt-smart-coupon-admin.php:676
 msgid "Maybe later"
@@ -325,8 +303,8 @@ msgstr "Verander die teks van die koepon se begin- en vervaldatums"
 
 #: admin/data/data.hooks-help.php:77
 msgid ""
-"By default, \"Start on\" and \"Expires on\" will be the text if a coupon has "
-"a starting date and an expiration date; it can be changed by this hook."
+"By default, \"Start on\" and \"Expires on\" will be the text if a coupon has"
+" a starting date and an expiration date; it can be changed by this hook."
 msgstr ""
 "Standaard sal 'Start op' en 'Verstryk op' die teks wees as 'n koepon 'n "
 "begindatum en 'n vervaldatum het; dit kan deur hierdie hook verander word"
@@ -369,9 +347,9 @@ msgstr ""
 
 #: admin/data/data.hooks-help.php:130
 msgid ""
-"To change the minimum and maximum quantity validation messages when enabling "
-"\"Product/Category restrictions\" and \"Individual quantity restriction\" in "
-"coupon settings."
+"To change the minimum and maximum quantity validation messages when enabling"
+" \"Product/Category restrictions\" and \"Individual quantity restriction\" "
+"in coupon settings."
 msgstr ""
 "Om die minimum en maksimum hoeveelheid valideringsboodskappe te verander "
 "wanneer 'Produkrestriksies' en 'Individuele hoeveelheidsbeperking' in "
@@ -422,7 +400,8 @@ msgid "Change url coupon message."
 msgstr "Verander URL koepon boodskap"
 
 #: admin/data/data.hooks-help.php:198
-msgid "To change the coupon applied message when the coupon is applied by url."
+msgid ""
+"To change the coupon applied message when the coupon is applied by url."
 msgstr ""
 "Om die boodskap oor die toegepaste koepon te verander wanneer die koepon "
 "deur 'n URL toegepas word"
@@ -453,7 +432,8 @@ msgstr ""
 
 #: admin/data/data.hooks-help.php:241
 msgid ""
-"Message when no expired coupons available to show in my account coupons page."
+"Message when no expired coupons available to show in my account coupons "
+"page."
 msgstr ""
 "Boodskap wanneer geen vervalde koepons beskikbaar is om in my rekening-"
 "koeponbladsy te wys"
@@ -470,8 +450,8 @@ msgstr "Verander die verstek sorteer volgorde vir my rekeningkoepons"
 
 #: admin/data/data.hooks-help.php:252
 msgid ""
-"By default the sort order is `Latest last`. You can use this filter to alter "
-"the sort order."
+"By default the sort order is `Latest last`. You can use this filter to alter"
+" the sort order."
 msgstr ""
 "Standaard is die sorteervolgorde `Laaste laaste`. Jy kan hierdie filter "
 "gebruik om die sorteervolgorde te verander"
@@ -678,19 +658,19 @@ msgid ""
 "The cart will apply the selected number of auto apply coupons based on "
 "priority"
 msgstr ""
-"Die mandjie sal die geselekteerde aantal outomatiese koepons toepas op grond "
-"van prioriteit"
+"Die mandjie sal die geselekteerde aantal outomatiese koepons toepas op grond"
+" van prioriteit"
 
 #: admin/modules/auto_coupon/auto_coupon.php:605
 msgid ""
 "The chosen quantity of coupons will undergo eligibility verification among "
-"the entire pool of auto-apply coupons based on priority. If the limit is set "
-"to 100, any coupon with a priority of 101 or lower, will not be considered "
+"the entire pool of auto-apply coupons based on priority. If the limit is set"
+" to 100, any coupon with a priority of 101 or lower, will not be considered "
 "to apply to the cart, even if eligible"
 msgstr ""
 "Die gekose hoeveelheid koepons sal gekeur word onder die hele groep outo-"
-"toepas koepons op grond van prioriteit. As die limiet tot 100 gestel is, sal "
-"enige koepon met 'n prioriteit van 101 of laer nie oorweeg word om op die "
+"toepas koepons op grond van prioriteit. As die limiet tot 100 gestel is, sal"
+" enige koepon met 'n prioriteit van 101 of laer nie oorweeg word om op die "
 "mandjie toe te pas nie, selfs al is dit geskik"
 
 #: admin/modules/auto_coupon/auto_coupon.php:624
@@ -704,10 +684,6 @@ msgstr "Instellings bygewerk"
 #: admin/modules/bogo/bogo.php:133 common/modules/bogo/bogo.php:260
 msgid "BOGO"
 msgstr "Koop een kry een gratis"
-
-#: admin/modules/bogo/bogo.php:134
-msgid "BOGO<sup>beta</sup>"
-msgstr "BOGO<sup>beta</sup>"
 
 #: admin/modules/bogo/bogo.php:193
 msgid "Buy"
@@ -740,47 +716,29 @@ msgstr "%s hoeveelhede van %s Spesifieke produk(te) %s vir %s Gratis %s"
 msgid "%s quantities of %s Specific product(s) %s with %s Discount %s each"
 msgstr "%s hoeveelhede van %s Spesifieke produk(te) %s met %s Afslag %s elk"
 
-#: admin/modules/bogo/bogo.php:223
-#, php-format
-msgid "Customer %s Spends %s between %s and %s on any products"
-msgstr "Kliënt %s bestee %s tussen %s en %s op enige produkte"
-
 #: admin/modules/bogo/bogo.php:231
 #, php-format
 msgid "Customer %s Spends %s between %s and %s on %s Selected product(s) %s"
 msgstr "Kliënt %s bestee %s tussen %s en %s op %s Gekose produk(te) %s"
-
-#: admin/modules/bogo/bogo.php:241
-#, php-format
-msgid "Customer %s Spends %s at least %s on any products"
-msgstr "Kliënt %s bestee %s minstens %s aan enige produkte"
 
 #: admin/modules/bogo/bogo.php:248
 #, php-format
 msgid "Customer %s Spends %s at least %s on %s Selected product(s) %s"
 msgstr "Klant %s bestee %s ten minste %s aan %s Geselekteerde produk(te) %s"
 
-#: admin/modules/bogo/bogo.php:257
-#, php-format
-msgid "Customer %s Buys %s between %s and %s quantities of any products"
-msgstr "Klant %s koop %s tussen %s en %s hoeveelhede van enige produkte"
-
 #: admin/modules/bogo/bogo.php:265
 #, php-format
 msgid ""
-"Customer %s Buys %s between %s and %s quantities of %s Selected product(s) %s"
-msgstr ""
-"Klant %s Koop %s tussen %s en %s hoeveelhede van %s Geselekteerde produk(te) "
+"Customer %s Buys %s between %s and %s quantities of %s Selected product(s) "
 "%s"
-
-#: admin/modules/bogo/bogo.php:275
-#, php-format
-msgid "Customer %s Buys %s at least %s quantities of any products"
-msgstr "Kliënt %s koop %s ten minste %s hoeveelhede van enige produkte"
+msgstr ""
+"Klant %s Koop %s tussen %s en %s hoeveelhede van %s Geselekteerde produk(te)"
+" %s"
 
 #: admin/modules/bogo/bogo.php:282
 #, php-format
-msgid "Customer %s Buys %s at least %s quantities of %s Selected product(s) %s"
+msgid ""
+"Customer %s Buys %s at least %s quantities of %s Selected product(s) %s"
 msgstr ""
 "Kliënt %s Koop %s ten minste %s hoeveelhede van %s Geselekteerde produk(te) "
 "%s"
@@ -993,23 +951,19 @@ msgstr ""
 msgid "Activate offer"
 msgstr "Aktiveer aanbod"
 
-#: admin/modules/bogo/views/---edit-general.php:75
-msgid "Automatically"
-msgstr "Outomaties"
-
 #: admin/modules/bogo/views/---edit-general.php:76
 msgid ""
 "The offer is automatically applied when eligible products are added to the "
 "cart"
 msgstr ""
-"Die aanbod word outomaties toegepas wanneer geskikte produkte by die mandjie "
-"gevoeg word"
+"Die aanbod word outomaties toegepas wanneer geskikte produkte by die mandjie"
+" gevoeg word"
 
 #: admin/modules/bogo/views/---edit-general.php:82
 msgid "Offer name will be displayed in the cart summary when offer is applied"
 msgstr ""
-"Aanbodnaam sal in die mandjieopsommings vertoon word wanneer aanbod toegepas "
-"word"
+"Aanbodnaam sal in die mandjieopsommings vertoon word wanneer aanbod toegepas"
+" word"
 
 #: admin/modules/bogo/views/---edit-general.php:91
 msgid "Through coupon code"
@@ -1020,8 +974,8 @@ msgid ""
 "The user must enter the coupon code after adding eligible items to the cart "
 "to redeem the offer"
 msgstr ""
-"Die gebruiker moet die koeponkode invoer nadat geskikte items by die mandjie "
-"gevoeg is om die aanbod te gebruik"
+"Die gebruiker moet die koeponkode invoer nadat geskikte items by die mandjie"
+" gevoeg is om die aanbod te gebruik"
 
 #: admin/modules/bogo/views/---edit-general.php:99
 msgid "Coupon code"
@@ -1184,8 +1138,8 @@ msgstr "Afslag "
 
 #: admin/modules/bogo/views/---step1.php:203
 msgid ""
-"You can now set a final slash price for giveaway products in your store with "
-"our premium plugin!"
+"You can now set a final slash price for giveaway products in your store with"
+" our premium plugin!"
 msgstr ""
 "Jy kan nou 'n finale afslagprys vir weggeeprodukte in jou winkel stel met "
 "ons premium inprop"
@@ -1331,8 +1285,8 @@ msgid ""
 "The maximum number of times a single user can redeem this offer. It must be "
 "less than the overall usage limit per offer"
 msgstr ""
-"Die maksimum aantal kere wat 'n enkele gebruiker hierdie aanbod kan gebruik. "
-"Dit moet minder wees as die algemene gebruikslimiet per aanbod"
+"Die maksimum aantal kere wat 'n enkele gebruiker hierdie aanbod kan gebruik."
+" Dit moet minder wees as die algemene gebruikslimiet per aanbod"
 
 #: admin/modules/bogo/views/---step2.php:278
 msgid "The BOGO deal is only valid for recipients of the selected emails."
@@ -1344,8 +1298,8 @@ msgid ""
 "Offer won’t be auto-applied for guest users when email restriction is "
 "enabled."
 msgstr ""
-"Aanbod sal nie outomaties toegepas word vir gasgebruikers wanneer e-"
-"posbeperking geaktiveer is nie"
+"Aanbod sal nie outomaties toegepas word vir gasgebruikers wanneer "
+"e-posbeperking geaktiveer is nie"
 
 #: admin/modules/bogo/views/---step3.php:15
 msgid "Step 3"
@@ -1372,10 +1326,6 @@ msgstr "Aangepas"
 #, php-format
 msgid "Limit for applying repeatedly %s time(s) %s"
 msgstr "Limiet vir herhaaldelik aansoek %s keer %s"
-
-#: admin/modules/bogo/views/---step3.php:85
-msgid "How About Some Additional Features?"
-msgstr "Hoe gaan dit met 'n paar bykomende kenmerke?"
 
 #: admin/modules/bogo/views/---step3.php:86
 msgid ""
@@ -1437,8 +1387,8 @@ msgid ""
 "Buy 1 item, get 1 @ 50% off. Buy 2 items, get 2 @ 50% off — and so on! Buy "
 "more, Get more"
 msgstr ""
-"Koop 1 item, kry 1 teen 50% afslag. Koop 2 items, kry 2 teen 50% afslag — en "
-"so aan! Koop meer, kry meer"
+"Koop 1 item, kry 1 teen 50% afslag. Koop 2 items, kry 2 teen 50% afslag — en"
+" so aan! Koop meer, kry meer"
 
 #: admin/modules/bogo/views/--bogo-listing.php:39
 #: admin/modules/bogo/views/--first-bogo-campaign.php:19
@@ -1627,8 +1577,8 @@ msgstr "Oorspronklike prys %s %s"
 #: admin/modules/bogo/views/--bogo-main-general.php:80
 msgid "Tax is calculated on the original price before the offer is applied."
 msgstr ""
-"Belasting word bereken op die oorspronklike prys voordat die aanbod toegepas "
-"word"
+"Belasting word bereken op die oorspronklike prys voordat die aanbod toegepas"
+" word"
 
 #: admin/modules/bogo/views/--bogo-main-general.php:91
 msgid "Offer applied message"
@@ -1688,8 +1638,8 @@ msgstr "Ontdek ons verbeterde BOGO-module"
 
 #: admin/modules/bogo/views/--new-bogo-switching.php:25
 msgid ""
-"We've separated BOGO from other coupon types to unlock endless "
-"possibilities  based on your feedback and market trends."
+"We've separated BOGO from other coupon types to unlock endless possibilities"
+"  based on your feedback and market trends."
 msgstr ""
 "Ons het BOGO van ander koepon tipes geskei om eindelose moontlikhede oop te "
 "maak gebaseer op julle terugvoer en markneigings"
@@ -1717,8 +1667,8 @@ msgstr ""
 #: admin/modules/bogo/views/--new-bogo-switching.php:40
 #, php-format
 msgid ""
-"Switching to the new BOGO module will disable %d BOGO coupons made using the "
-"old version."
+"Switching to the new BOGO module will disable %d BOGO coupons made using the"
+" old version."
 msgstr ""
 "Oorskakeling na die nuwe BOGO-module sal %d BOGO-koepons wat met die ou "
 "weergawe gemaak is, deaktiveer"
@@ -1767,7 +1717,8 @@ msgid "Any payment method"
 msgstr "Enige betaalmetode"
 
 #: admin/modules/checkout_options/checkout_options.php:141
-msgid "Coupon will be applicable if any of these payment methods are selected."
+msgid ""
+"Coupon will be applicable if any of these payment methods are selected."
 msgstr ""
 "Koopon sal van toepassing wees as enige van hierdie betalingsmetodes gekies "
 "word"
@@ -1821,10 +1772,6 @@ msgstr ""
 "Koepone sal slegs van toepassing wees op die geselekteerde land vanuit óf "
 "die versending- óf die faktuuradres"
 
-#: admin/modules/coupon_restriction/coupon_restriction.php:179
-msgid "Product/Category restrictions"
-msgstr "Produk/Kategoriebeperkings"
-
 #: admin/modules/coupon_restriction/coupon_restriction.php:180
 msgid ""
 "Enable to apply coupon only if the cart satisfies the product or category "
@@ -1862,8 +1809,8 @@ msgstr "Alles van onderstaanderige keuse"
 #: admin/modules/coupon_restriction/coupon_restriction.php:212
 #, php-format
 msgid ""
-"%s Any: %s Applies coupon if any of the products from the below is available "
-"in the cart."
+"%s Any: %s Applies coupon if any of the products from the below is available"
+" in the cart."
 msgstr ""
 "%s Enige: %s Pas koepon toe as enige van die produkte hieronder in die "
 "mandjie beskikbaar is"
@@ -1901,11 +1848,6 @@ msgstr ""
 msgid "Minimum quantity of matching products"
 msgstr "Minimum hoeveelheid ooreenstemmende produkte"
 
-#: admin/modules/coupon_restriction/coupon_restriction.php:248
-#: admin/modules/coupon_restriction/coupon_restriction.php:272
-msgid "No minimum"
-msgstr "Geen minimum"
-
 #: admin/modules/coupon_restriction/coupon_restriction.php:249
 msgid ""
 "Minimum quantity of the products that match the given product or category "
@@ -1913,17 +1855,12 @@ msgid ""
 "total number of products is used."
 msgstr ""
 "Minimum hoeveelheid van die produkte wat ooreenstem met die gegewe produk- "
-"of kategoriebeperkings. As geen produk- of kategoriebeperkings gespesifiseer "
-"is nie, word die totale aantal produkte gebruik"
+"of kategoriebeperkings. As geen produk- of kategoriebeperkings gespesifiseer"
+" is nie, word die totale aantal produkte gebruik"
 
 #: admin/modules/coupon_restriction/coupon_restriction.php:259
 msgid "Maximum quantity of matching products"
 msgstr "Maksimum hoeveelheid van ooreenstemmende produkte"
-
-#: admin/modules/coupon_restriction/coupon_restriction.php:260
-#: admin/modules/coupon_restriction/coupon_restriction.php:284
-msgid "No maximum"
-msgstr "Geen maksimum"
 
 #: admin/modules/coupon_restriction/coupon_restriction.php:261
 msgid ""
@@ -1932,8 +1869,8 @@ msgid ""
 "total number of products is used."
 msgstr ""
 "Maksimum hoeveelheid van die produkte wat ooreenstem met die gegewe produk- "
-"of kategoriebeperkings. As geen produk- of kategoriebeperkings gespesifiseer "
-"is nie, word die totale aantal produkte gebruik"
+"of kategoriebeperkings. As geen produk- of kategoriebeperkings gespesifiseer"
+" is nie, word die totale aantal produkte gebruik"
 
 #: admin/modules/coupon_restriction/coupon_restriction.php:271
 msgid "Minimum subtotal of matching products"
@@ -1980,8 +1917,8 @@ msgstr ""
 #: admin/modules/giveaway_product/giveaway_product.php:310
 msgid ""
 "Apply coupon only if the selected quantity of products of the chosen "
-"category are in the cart. Discounts will be given for those products and not "
-"the total cart amount."
+"category are in the cart. Discounts will be given for those products and not"
+" the total cart amount."
 msgstr ""
 "Pas die koepon slegs toe as die geselekteerde hoeveelheid produkte van die "
 "gekose kategorie in die mandjie is. Afslag sal op daardie produkte gegee "
@@ -1990,10 +1927,11 @@ msgstr ""
 #: admin/modules/coupon_restriction/coupon_restriction.php:333
 msgid ""
 "Applies coupon only if the selected quantity of products of the chosen "
-"category are in the cart. A discount will be given for the total cart amount."
+"category are in the cart. A discount will be given for the total cart "
+"amount."
 msgstr ""
-"Toepas koepon slegs as die geselekteerde hoeveelheid produkte van die gekose "
-"kategorie in die mandjie is. 'n Afslag sal gegee word vir die totale "
+"Toepas koepon slegs as die geselekteerde hoeveelheid produkte van die gekose"
+" kategorie in die mandjie is. 'n Afslag sal gegee word vir die totale "
 "mandjiesom."
 
 #: admin/modules/coupon_restriction/coupon_restriction.php:339
@@ -2342,8 +2280,8 @@ msgstr "Pas herhaaldelik aan"
 msgid ""
 "%s Apply once: %s If cart is eligible or conditions are met, coupon applies "
 "once. ie: If you set the coupon to offer Buy 2 Get 1, you get one free "
-"product. Moving more items to the cart will not make it eligible to get more "
-"free products."
+"product. Moving more items to the cart will not make it eligible to get more"
+" free products."
 msgstr ""
 "%s Pas een keer toe: %s As die mandjie kwalifiseer of voorwaardes nagekom "
 "word, word die koepon een keer toegepas. bv: As jy die koepon instel om "
@@ -2358,8 +2296,8 @@ msgid ""
 "Get 1 then the coupon works repeatedly for Buy 4 Get 2 and so on."
 msgstr ""
 "%s Toepas herhaaldelik: %s Die koepon geld herhaaldelik wanneer die wa in "
-"aanmerking kom of as voorwaardes nagekom word. bv: As u die koepon instel om "
-"Koop 2 Kry 1 aan te bied, werk die koepon herhaaldelik vir Koop 4 Kry 2 en "
+"aanmerking kom of as voorwaardes nagekom word. bv: As u die koepon instel om"
+" Koop 2 Kry 1 aan te bied, werk die koepon herhaaldelik vir Koop 4 Kry 2 en "
 "so aan"
 
 #: admin/modules/giveaway_product/giveaway_product.php:216
@@ -2373,9 +2311,9 @@ msgstr "Gratis geskenk:"
 
 #: admin/modules/giveaway_product/giveaway_product.php:306
 msgid ""
-"Apply coupon only if the selected product quantity is in the cart. Discounts "
-"will be given for those products and not the total cart amount. For example, "
-"for setting up Buy X Get Y, choose the product/s X in this section."
+"Apply coupon only if the selected product quantity is in the cart. Discounts"
+" will be given for those products and not the total cart amount. For "
+"example, for setting up Buy X Get Y, choose the product/s X in this section."
 msgstr ""
 "Pas die koepon slegs toe as die geselekteerde produkhoeveelheid in die "
 "mandjie is. Afslag sal op daardie produkte toegepas word, nie op die totale "
@@ -2406,8 +2344,8 @@ msgid ""
 "such as a custom quantity counter, dynamic pricing discounts, and more."
 msgstr ""
 "Opgradeer na premium en geniet van gevorderde BOGO kenmerke vir "
-"weggeeprodukte, soos 'n pasgemaakte kwantiteitsteller, dinamiese prysafslag, "
-"en meer"
+"weggeeprodukte, soos 'n pasgemaakte kwantiteitsteller, dinamiese prysafslag,"
+" en meer"
 
 #: admin/modules/giveaway_product/views/_normal_coupon_giveaway_tab_content.php:7
 msgid "Free Product"
@@ -2416,8 +2354,8 @@ msgstr "Gratis Produk"
 #: admin/modules/giveaway_product/views/_normal_coupon_giveaway_tab_content.php:22
 msgid ""
 "A single quantity of the specified free product is added to the customer's "
-"cart when the coupon is applied. However, the corresponding tax and shipping "
-"charges are not exempted."
+"cart when the coupon is applied. However, the corresponding tax and shipping"
+" charges are not exempted."
 msgstr ""
 "'n Enkele hoeveelheid van die gespesifiseerde gratis produk word by die "
 "klant se mandjie gevoeg wanneer die koepon toegepas word. Die "
@@ -2433,13 +2371,13 @@ msgstr "Onbeperkte afslag"
 
 #: admin/modules/limit_max_discount/limit_max_discount.php:95
 msgid ""
-"Use this option to set a cap on the discount value especially for percentage "
-"discounts. e.g, you may provide a 5 percentage discount coupon for a product "
-"but with a maximum discount upto $10."
+"Use this option to set a cap on the discount value especially for percentage"
+" discounts. e.g, you may provide a 5 percentage discount coupon for a "
+"product but with a maximum discount upto $10."
 msgstr ""
 "Gebruik hierdie opsie om 'n limiet op die afslagwaarde te stel, veral vir "
-"persentasie afslag. Byvoorbeeld, jy mag 'n 5 persentasie afslagkoepon vir 'n "
-"produk gee, maar met 'n maksimum afslag van tot $10"
+"persentasie afslag. Byvoorbeeld, jy mag 'n 5 persentasie afslagkoepon vir 'n"
+" produk gee, maar met 'n maksimum afslag van tot $10"
 
 #: admin/modules/other_solutions/other_solutions.php:46
 #: admin/modules/other_solutions/other_solutions.php:52
@@ -2499,8 +2437,9 @@ msgid ""
 "set to add new products to the cart upon application."
 msgstr ""
 "Genereer pasgemaakte URL's en QR-kodes vir elke afslagkoepon in jou "
-"WooCommerce-winkel. Hierdie unieke koepons is maklik om te deel en kan selfs "
-"gestel word om nuwe produkte by die mandjie te voeg wanneer dit toegepas word"
+"WooCommerce-winkel. Hierdie unieke koepons is maklik om te deel en kan selfs"
+" gestel word om nuwe produkte by die mandjie te voeg wanneer dit toegepas "
+"word"
 
 #: admin/modules/other_solutions/views/other_solutions_content.php:59
 msgid "WooCommerce Coupon Generator plugin"
@@ -2542,8 +2481,8 @@ msgid ""
 "Delivery Notes with custom settings and layouts. Customize the label sizes "
 "and add extra product or order fields as required."
 msgstr ""
-"Genereer outomaties WooCommerce versendingsetikette, afleweringsetikette, en "
-"afleweringsnotas met pasgemaakte instellings en uitlegte. Pas die "
+"Genereer outomaties WooCommerce versendingsetikette, afleweringsetikette, en"
+" afleweringsnotas met pasgemaakte instellings en uitlegte. Pas die "
 "etiketgroottes aan en voeg ekstra produk- of bestelvelde by soos benodig"
 
 #: admin/modules/other_solutions/views/other_solutions_content.php:86
@@ -2566,8 +2505,8 @@ msgstr "WooCommerce Proforma Fakture"
 
 #: admin/modules/other_solutions/views/other_solutions_content.php:96
 msgid ""
-"Automate the generation of WooCommerce proforma invoices when new orders are "
-"placed and send them to your customers via order emails. Customize the "
+"Automate the generation of WooCommerce proforma invoices when new orders are"
+" placed and send them to your customers via order emails. Customize the "
 "layout and content of the invoice as per your needs."
 msgstr ""
 "Outomatiseer die generering van WooCommerce-proformafakture wanneer nuwe "
@@ -2584,8 +2523,8 @@ msgid ""
 "in bulk. Customize the label layout and create labels of different types "
 "(shipping, billing, return, from address) with ease."
 msgstr ""
-"Genereer adresetikette vir alle bestellings in jou winkel en druk dit maklik "
-"in grootmaat. Pas die etiketuitleg aan en skep etikette van verskillende "
+"Genereer adresetikette vir alle bestellings in jou winkel en druk dit maklik"
+" in grootmaat. Pas die etiketuitleg aan en skep etikette van verskillende "
 "tipes (versending, faktuur, terugkeer, van adres) met gemak"
 
 #: admin/modules/other_solutions/views/other_solutions_content.php:113
@@ -2698,12 +2637,8 @@ msgid ""
 "coupons, and subscriptions using this single plugin."
 msgstr ""
 "'n Alles-in-een-inprop om WooCommerce-winkeldata in en uit te voer. Jy kan "
-"produkte, produkresensies, bestellings, klante, afslagkoepons en intekeninge "
-"invoer en uitvoer met hierdie enkele inprop"
-
-#: admin/modules/other_solutions/views/other_solutions_content.php:189
-msgid "PayPal Express Checkout Payment Gateway for WooCommerce"
-msgstr "PayPal Express Checkout Betalingspoort vir WooCommerce"
+"produkte, produkresensies, bestellings, klante, afslagkoepons en intekeninge"
+" invoer en uitvoer met hierdie enkele inprop"
 
 #: admin/modules/other_solutions/views/other_solutions_content.php:190
 msgid ""
@@ -2715,23 +2650,15 @@ msgstr ""
 "Jy kan die PayPal Express Checkout-opsie op die produkbladsye instel om die "
 "kliks te verminder om die uitklok te voltooi"
 
-#: admin/modules/other_solutions/views/other_solutions_content.php:198
-msgid "WooCommerce Stripe Payment Gateway"
-msgstr "WooCommerce Stripe Betalingspoort"
-
 #: admin/modules/other_solutions/views/other_solutions_content.php:199
 msgid ""
-"Ensure a fast and secure checkout experience for your users with WooCommerce "
-"Stripe Payment Gateway. Stripe accepts credit/debit cards and offers "
+"Ensure a fast and secure checkout experience for your users with WooCommerce"
+" Stripe Payment Gateway. Stripe accepts credit/debit cards and offers "
 "integrations with Apple Pay, SEPA, Alipay, and more."
 msgstr ""
 "Verseker 'n vinnige en veilige betaalervaring vir jou gebruikers met "
 "WooCommerce Stripe Betalingspoort. Stripe aanvaar krediet-/debietkaarte en "
 "bied integrasies met Apple Pay, SEPA, Alipay en meer"
-
-#: admin/modules/other_solutions/views/other_solutions_content.php:207
-msgid "Subscriptions for WooCommerce"
-msgstr "Intekeninge vir WooCommerce"
 
 #: admin/modules/other_solutions/views/other_solutions_content.php:208
 msgid ""
@@ -2750,8 +2677,8 @@ msgstr "Opeenvolgende Volgordenommers vir WooCommerce"
 #: admin/modules/other_solutions/views/other_solutions_content.php:217
 msgid ""
 "Number your WooCommerce orders in a custom, sequential & manageable format. "
-"The Sequential Order Number plugin lets your orders follow a custom & unique "
-"numbering sequence suitable for your business."
+"The Sequential Order Number plugin lets your orders follow a custom & unique"
+" numbering sequence suitable for your business."
 msgstr ""
 "Nommer u WooCommerce bestellings in 'n persoonlike, opeenvolgende en "
 "hanteerbare formaat. Die Sequential Order Number-inprop laat u bestellings "
@@ -2779,8 +2706,8 @@ msgid ""
 "Get advanced WooCommerce coupon features to make irresistible coupon "
 "campaigns and discounts"
 msgstr ""
-"Kry gevorderde WooCommerce-koeponfunksies om onweerstaanbare koeponveldtogte "
-"en afslag te maak"
+"Kry gevorderde WooCommerce-koeponfunksies om onweerstaanbare koeponveldtogte"
+" en afslag te maak"
 
 #: admin/modules/premium_upgrade/views/page_content.php:85
 msgid "Advanced Buy (X) Get (Y) BOGO offers"
@@ -2828,43 +2755,21 @@ msgstr "Vertoon koepon baniere en widgette"
 msgid "Import coupons from CSV"
 msgstr "Voer koepons in vanaf CSV"
 
-#: admin/modules/premium_upgrade/views/page_content.php:106
-msgid ""
-"Ensure your WooCommerce store complies with GDPR, CCPA and other cookie laws"
-msgstr ""
-"Verseker jou WooCommerce-winkel voldoen aan GDPR, CCPA en ander koekiewette"
-
 #: admin/modules/premium_upgrade/views/page_content.php:108
 msgid "Show a cookie consent banner with Accept/Reject buttons"
 msgstr "Wys 'n koekie toestemmingsbanier met Aanvaar/Verwerp knoppies"
-
-#: admin/modules/premium_upgrade/views/page_content.php:109
-msgid "Obtain implicit and explicit consent"
-msgstr "Verkry implisiete en eksplisiete toestemming"
 
 #: admin/modules/premium_upgrade/views/page_content.php:110
 msgid "Scan your website to identify cookies"
 msgstr "Skandeer jou webwerf om koekies te identifiseer"
 
-#: admin/modules/premium_upgrade/views/page_content.php:113
-msgid "Ensure compliance with GDPR, CCPA, and US State laws"
-msgstr "Verseker nakoming van GDPR, CCPA, en Amerikaanse staatwette"
-
 #: admin/modules/premium_upgrade/views/page_content.php:114
 msgid "Automatically block third-party cookies"
 msgstr "Blokkeer outomaties derdeparty-koekies"
 
-#: admin/modules/premium_upgrade/views/page_content.php:115
-msgid "Integration with Google Consent Mode v2 and IAB TCF"
-msgstr "Integrasie met Google Consent Mode v2 en IAB TCF"
-
 #: admin/modules/premium_upgrade/views/page_content.php:116
 msgid "Show cookie notice based on Geo IP"
 msgstr "Wys koekie-kennisgewing gebaseer op Geo IP"
-
-#: admin/modules/premium_upgrade/views/page_content.php:117
-msgid "Obtain granular consent based on cookie categories"
-msgstr "Verkry gedetailleerde toestemming gebaseer op koekie kategorieë"
 
 #: admin/modules/premium_upgrade/views/page_content.php:123
 msgid "OUR FLAGSHIP PLUGIN 🔥"
@@ -2875,7 +2780,8 @@ msgid "WooCommerce Product Recommendations"
 msgstr "WooCommerce Produk Aanbevelings"
 
 #: admin/modules/premium_upgrade/views/page_content.php:133
-msgid "Create smart product recommendation campaigns on your WooCommerce store"
+msgid ""
+"Create smart product recommendation campaigns on your WooCommerce store"
 msgstr "Skep slim produk-aanbevelingsveldtogte op jou WooCommerce-winkel"
 
 #: admin/modules/premium_upgrade/views/page_content.php:135
@@ -3003,7 +2909,8 @@ msgstr "WooCommerce Produkvoer-inprop"
 
 #: admin/modules/premium_upgrade/views/page_content.php:204
 msgid ""
-"Get free listings of WooCommerce products on popular eCommerce sales channels"
+"Get free listings of WooCommerce products on popular eCommerce sales "
+"channels"
 msgstr ""
 "Kry gratis lyste van WooCommerce-produkte op gewilde e-handel verkoopskanale"
 
@@ -3113,9 +3020,9 @@ msgstr "URL koepon"
 #: admin/modules/url_coupon/views/_tab_data.php:8
 msgid ""
 "The plugin auto generates a unique URL for all the coupons created in your "
-"store. Visiting the URL associated with a coupon will automatically redirect "
-"the users to the cart page by applying the coupon. You can embed a URL in a "
-"button, and your customer can click the button to apply the coupon."
+"store. Visiting the URL associated with a coupon will automatically redirect"
+" the users to the cart page by applying the coupon. You can embed a URL in a"
+" button, and your customer can click the button to apply the coupon."
 msgstr ""
 "Die inprop genereer outomaties 'n unieke URL vir al die koepons wat in jou "
 "winkel geskep word. Wanneer die URL wat met 'n koepon geassosieer word "
@@ -3129,11 +3036,11 @@ msgstr "Voorvereiste:"
 
 #: admin/modules/url_coupon/views/_tab_data.php:10
 msgid ""
-"Ensure that you have created a coupon with the required configuration to use "
-"it as a URL coupon."
+"Ensure that you have created a coupon with the required configuration to use"
+" it as a URL coupon."
 msgstr ""
-"Maak seker dat jy 'n koepon geskep het met die nodige konfigurasie om dit as "
-"'n URL-koepon te gebruik"
+"Maak seker dat jy 'n koepon geskep het met die nodige konfigurasie om dit as"
+" 'n URL-koepon te gebruik"
 
 #: admin/modules/url_coupon/views/_tab_data.php:12
 msgid "URL coupon format:"
@@ -3168,10 +3075,11 @@ msgid "Custom URLs"
 msgstr "Aangepaste URL's"
 
 #: admin/modules/url_coupon/views/_upgrade_to_pro.php:34
-msgid "Generate customized coupon URLs (example:www.mystore.com/happybirthday)"
+msgid ""
+"Generate customized coupon URLs (example:www.mystore.com/happybirthday)"
 msgstr ""
-"Genereer gepersonaliseerde koepon-URL's (voorbeeld: www.mystore.com/"
-"happybirthday)"
+"Genereer gepersonaliseerde koepon-URL's (voorbeeld: "
+"www.mystore.com/happybirthday)"
 
 #: admin/modules/url_coupon/views/_upgrade_to_pro.php:40
 msgid "Set up a redirect page"
@@ -3199,8 +3107,8 @@ msgstr "Voeg produkte outomaties by"
 
 #: admin/modules/url_coupon/views/_upgrade_to_pro.php:56
 msgid ""
-"Assign a product to the URL to be automatically added to the customer’s cart "
-"upon activating it."
+"Assign a product to the URL to be automatically added to the customer’s cart"
+" upon activating it."
 msgstr ""
 "Ken 'n produk toe aan die URL om dit outomaties by die klant se mandjie te "
 "voeg wanneer dit geaktiveer word"
@@ -3315,17 +3223,9 @@ msgstr "99% Kliënte Tevredenheid Gradering"
 msgid "Watch setup video"
 msgstr "Kyk opstelvideo"
 
-#: admin/views/_upgrade_to_pro_metabox.php:33
-msgid "Smart Coupons Premium features:"
-msgstr "Slim Koeponne Premie-kenmerke:"
-
 #: admin/views/_upgrade_to_pro_metabox.php:49
 msgid "See more..."
 msgstr "Sien meer..."
-
-#: admin/views/_upgrade_to_pro_metabox.php:54
-msgid "Check Out Premium"
-msgstr "Kyk na Premium"
 
 #: admin/views/admin-help.php:11
 msgid "Help links"
@@ -3475,10 +3375,6 @@ msgstr "Koeponkategorie"
 msgid "Invalid coupon"
 msgstr "Ongeldige koepon"
 
-#: common/modules/coupon_style/coupon_style.php:151
-msgid "Available coupon"
-msgstr "Beskikbare koepon"
-
 #: common/modules/coupon_style/coupon_style.php:152
 msgid "Used coupon"
 msgstr "Gebruik koepon"
@@ -3571,40 +3467,20 @@ msgstr ""
 msgid "Oops! Woocommerce not activated.."
 msgstr "Oeps! Woocommerce is nie geaktiveer nie."
 
-#: includes/class-wt-smart-coupon-review_request.php:71
-#, php-format
-msgid ""
-"Hey, we at %s WebToffee %s would like to thank you for using our Smart "
-"Coupon for WooCommerce plugin. %s We would really appreciate if you could "
-"take a moment to drop a quick review that will inspire us to keep going."
-msgstr ""
-"Hey, ons by %s WebToffee %s wil u graag bedank dat u ons Slim Koupon vir "
-"WooCommerce-inprop gebruik. %s Ons sal dit regtig waardeer as u 'n oomblik "
-"kan neem om 'n vinnige resensie te gee wat ons sal inspireer om aan te hou "
-"gaan"
-
 #: includes/class-wt-smart-coupon-review_request.php:75
 #, php-format
 msgid ""
 "%s Wow %s, you have created more than %s coupons with our %s Smart Coupon "
-"for WooCommerce plugin! %s That’s awesome! We’d love it if you take a moment "
-"to rate us and help spread the word."
+"for WooCommerce plugin! %s That’s awesome! We’d love it if you take a moment"
+" to rate us and help spread the word."
 msgstr ""
 "%s Wow %s, jy het meer as %s koepons geskep met ons %s Smart Coupon vir "
 "WooCommerce-inprop! %s Dis wonderlik! Ons sal daarvan hou as jy 'n oomblik "
 "neem om ons te beoordeel en te help om die woord te versprei"
 
-#: includes/class-wt-smart-coupon-review_request.php:79
-msgid "Remind me later"
-msgstr "Herinner my later"
-
 #: includes/class-wt-smart-coupon-review_request.php:80
 msgid "Not interested"
 msgstr "Nie geïnteresseerd nie"
-
-#: includes/class-wt-smart-coupon-review_request.php:81
-msgid "Rate us now"
-msgstr "Beoordeel ons nou"
 
 #: includes/class-wt-smart-coupon.php:696
 #, php-format
@@ -3644,7 +3520,8 @@ msgid "Which plugin?"
 msgstr "Watter inprop?"
 
 #: includes/class-wt-smartcoupon-uninstall-feedback.php:37
-msgid "The plugin is great, but I need specific feature that you don't support"
+msgid ""
+"The plugin is great, but I need specific feature that you don't support"
 msgstr ""
 "Die inprop is wonderlik, maar ek het 'n spesifieke funksie nodig wat jy nie "
 "ondersteun nie"
@@ -3770,7 +3647,8 @@ msgstr "Volgende"
 
 #: public/class-wt-smart-coupon-public.php:1000
 msgid "Coupon code applied successfully, Please add products into cart"
-msgstr "Koepongkode suksesvol toegepas, voeg asseblief produkte in die mandjie"
+msgstr ""
+"Koepongkode suksesvol toegepas, voeg asseblief produkte in die mandjie"
 
 #: public/modules/auto_coupon/auto_coupon.php:500
 #: public/modules/url_coupon/url_coupon.php:66
@@ -3851,7 +3729,8 @@ msgstr "Jammer, hierdie koepon is nie van toepassing op jou rol nie"
 #: public/modules/checkout_options/checkout_options.php:178
 msgid "Sorry, this coupon is not applicable to selected location"
 msgstr ""
-"Jammer, hierdie koepon is nie van toepassing op die geselekteerde ligging nie"
+"Jammer, hierdie koepon is nie van toepassing op die geselekteerde ligging "
+"nie"
 
 #: public/modules/coupon_restriction/coupon_restriction.php:91
 #, php-format
@@ -3867,8 +3746,8 @@ msgstr "Die maksimum hoeveelheid %s vir hierdie koepon is %s."
 msgid ""
 "Your cart does not meet the quantity eligibility criteria for this coupon."
 msgstr ""
-"Jou mandjie voldoen nie aan die hoeveelheid geskiktheid kriteria vir hierdie "
-"koepon nie"
+"Jou mandjie voldoen nie aan die hoeveelheid geskiktheid kriteria vir hierdie"
+" koepon nie"
 
 #: public/modules/coupon_restriction/coupon_restriction.php:197
 msgid "the category"
@@ -3888,7 +3767,8 @@ msgstr ""
 #, php-format
 msgid "Sorry, the coupon %s is not applicable for selected products."
 msgstr ""
-"Jammer, die koepon %s is nie van toepassing op die geselekteerde produkte nie"
+"Jammer, die koepon %s is nie van toepassing op die geselekteerde produkte "
+"nie"
 
 #: public/modules/coupon_restriction/coupon_restriction.php:833
 #: public/modules/coupon_restriction/coupon_restriction.php:842
@@ -3940,7 +3820,8 @@ msgstr "Baie geluk! Jy het 'n gratis geskenk in jou mandjie!"
 #: public/modules/giveaway_product/giveaway_product.php:510
 #, php-format
 msgid "Surprise! %s You've received a special giveaway product with %s Off!"
-msgstr "Verrassing! %s Jy het 'n spesiale weggee-produk ontvang met %s afslag!"
+msgstr ""
+"Verrassing! %s Jy het 'n spesiale weggee-produk ontvang met %s afslag!"
 
 #: public/modules/giveaway_product/giveaway_product.php:605
 msgid "Lucky You! Your cart is now loaded with incredible giveaway goodies!"
@@ -3955,7 +3836,8 @@ msgstr ""
 "Probeer asseblief weer."
 
 #: public/modules/giveaway_product/giveaway_product.php:685
-msgid "You've exceeded the maximum quantity of products to avail the giveaway."
+msgid ""
+"You've exceeded the maximum quantity of products to avail the giveaway."
 msgstr ""
 "Jy het die maksimum hoeveelheid produkte oorskry om die weggeefaanbod te kry"
 
@@ -3966,8 +3848,8 @@ msgstr ""
 
 #: public/modules/giveaway_product/giveaway_product.php:691
 msgid ""
-"Something went wrong! It seems like there are no products available for this "
-"coupon. Please contact our support team."
+"Something went wrong! It seems like there are no products available for this"
+" coupon. Please contact our support team."
 msgstr ""
 "Iets het verkeerd geloop! Dit lyk asof daar geen produkte beskikbaar is vir "
 "hierdie koepon nie. Kontak asseblief ons ondersteuningspan"
@@ -4081,3 +3963,682 @@ msgstr ""
 #. Author URI of the plugin/theme
 msgid "https://www.webtoffee.com/"
 msgstr "https://www.webtoffee.com/"
+
+#: admin/class-wt-smart-coupon-admin.php:218
+msgid "Switch to our new BOGO module for the latest features"
+msgstr "Skuif oor na ons nuwe BOGO-module vir die nuutste kenmerke."
+
+#: admin/class-wt-smart-coupon-admin.php:667
+msgid ""
+"With %s WooCommerce Marketing Automation %s app, you can build signup forms,"
+" create popups, and run automated email campaigns with exclusive coupons."
+msgstr ""
+"Met die %s WooCommerce Marketing Automation %s toepassing, kan jy "
+"aanmeldvorms bou, pop-ups skep, en geoutomatiseerde e-posveldtogte met "
+"eksklusiewe koepons uitvoer."
+
+#: admin/class-wt-smart-coupon-admin.php:671
+msgid "Sign Up for Free"
+msgstr "Sluit gratis aan"
+
+#: admin/class-wt-smart-coupon-admin.php:807
+msgid "Access denied"
+msgstr "Toegang geweier"
+
+#. Translators: 1: Opening italics tag, 2: Opening a tag, 3: Closing a tag, 4:
+#. Closing italics tag.
+#: admin/class-wt-smart-coupon-admin.php:1029
+msgid ""
+"%s If you like Smart Coupons please leave us a %s ★★★★★ %s rating. A huge "
+"thanks in advance! %s"
+msgstr ""
+"%s As u van Slim Kouepons hou, laat asseblief vir ons 'n %s ★★★★★ %s "
+"beoordeling. 'n Groot dankie byvoorbaat! %s"
+
+#: admin/class-wt-smart-coupon-admin.php:1047
+msgid "Version %s"
+msgstr "Weergawe %s"
+
+#: admin/modules/banner/class-wt-gdpr-promotion-banner.php:60
+msgid "Make Your WordPress Website Privacy Compliant!"
+msgstr "Maak u WordPress-webwerf privaatheidsvriendelik!"
+
+#: admin/modules/banner/class-wt-gdpr-promotion-banner.php:68
+msgid ""
+"Ensure cookie compliance with GDPR and US State Privacy laws with our %1$s. "
+"Join over %2$s already trusting the GDPR Cookie Consent Plugin."
+msgstr ""
+"Verseker koekie-nakoming met GDPR en Amerikaanse Staat Privaatheidswette met"
+" ons %1$s. Sluit aan by meer as %2$s wat reeds die GDPR "
+"Koekietoestemmingsprop vertrou."
+
+#: admin/modules/banner/class-wt-gdpr-promotion-banner.php:69
+#: admin/modules/banner/class-wt-gdpr-promotion-banner.php:84
+msgid "Google-certified CMP Partner"
+msgstr "Google-gesertifiseerde CMP-vennoot"
+
+#: admin/modules/banner/class-wt-gdpr-promotion-banner.php:70
+msgid "1 million+ websites"
+msgstr "1 miljoen+ webwerwe"
+
+#: admin/modules/banner/class-wt-gdpr-promotion-banner.php:80
+msgid "Get plugin now"
+msgstr "Kry die inprop nou"
+
+#: admin/modules/banner/class-wt-gdpr-promotion-banner.php:88
+msgid "Certified Partner"
+msgstr "Gekwalifiseerde Vennoot"
+
+#: admin/modules/banner/class-wt-smart-coupon-cta-banner.php:59
+msgid ""
+"Create better coupon campaigns with advanced WooCommerce coupon features"
+msgstr "Skep beter koeponveldtogte met gevorderde WooCommerce-koeponkenmerke"
+
+#: admin/modules/banner/class-wt-smart-coupon-cta-banner.php:107
+msgid "Create attractive Buy X Get Y (BOGO) offers"
+msgstr "Skep aantreklike Koop X Kry Y (BOGO) aanbiedinge"
+
+#: admin/modules/banner/class-wt-smart-coupon-cta-banner.php:108
+msgid "Create product quantity/subtotal based discounts"
+msgstr "Skep afslag gebaseer op produkhoeveelheid/subtotaal"
+
+#: admin/modules/banner/class-wt-smart-coupon-cta-banner.php:111
+msgid "Set advanced coupon rules and conditions"
+msgstr "Stel gevorderde koeponreëls en voorwaardes in"
+
+#: admin/modules/banner/class-wt-smart-coupon-cta-banner.php:115
+msgid "Shipping, purchase history, and payment method-based coupons"
+msgstr "Koeponne gebaseer op versending, koophistorie en betalingsmetode"
+
+#: admin/modules/banner/class-wt-smart-coupon-cta-banner.php:122
+msgid "View all premium features"
+msgstr "Sien alle premium-funksies"
+
+#: admin/modules/banner/class-wt-smart-coupon-cta-banner.php:127
+msgid "Get the plugin"
+msgstr "Kry die inprop"
+
+#: admin/modules/banner/class-wt-smart-coupon-cta-banner.php:144
+msgid "Insufficient permissions"
+msgstr "Onvoldoende toestemmings"
+
+#. Translators: 1: Success tick icon.
+#: admin/modules/bogo/bogo.php:1373
+msgid "Code '{coupon_code}' copied %s"
+msgstr "Kode '{coupon_code}' gekopieer %s"
+
+#. Translators: 1: Success tick icon.
+#: admin/modules/bogo/bogo.php:1374
+msgid "success"
+msgstr "sukses"
+
+#: admin/modules/bogo/bogo.php:1376
+#: admin/modules/bogo/views/---edit-general.php:84
+msgid "Copy coupon code for admin use"
+msgstr "Kopieer koeponkode vir administrateur gebruik"
+
+#: admin/modules/bogo/bogo.php:1377
+msgid "Failed to copy"
+msgstr "Kopie misluk"
+
+#. Translators: 1: span opening 2: span closing 3:span opening 4:span closing
+#. 5:span opening 6:span closing.
+#: admin/modules/bogo/bogo.php:1403
+msgid ""
+"Customer %s Spends %s between %s {min} %s and %s {max} %s on any products"
+msgstr ""
+"Kliënt %s bestee %s tussen %s {min} %s en %s {max} %s op enige produkte"
+
+#. Translators: 1: span opening 2: span closing 3:span opening 4:span closing
+#. 5:span opening 6:span closing 7:span opening 8:span closing.
+#: admin/modules/bogo/bogo.php:1413
+msgid ""
+"Customer %s Spends %s between %s {min} %s and %s {max} %s on %s Selected "
+"product(s) %s"
+msgstr ""
+"Kliënt %s bestee %s tussen %s {min} %s en %s {max} %s op %s Geselekteerde "
+"produk(te) %s"
+
+#. Translators: 1: span opening 2: span closing 3: span opening 4: span
+#. closing 5: span opening 6: span closing.
+#: admin/modules/bogo/bogo.php:1425
+msgid "Customer %s Spends %s at least %s {min} %s on any products"
+msgstr "Kliënt %s bestee %s ten minste %s {min} %s op enige produkte"
+
+#. Translators: 1: span opening 2: span closing 3: span opening 4: span
+#. closing 5: span opening 6: span closing.
+#: admin/modules/bogo/bogo.php:1433
+msgid ""
+"Customer %s Spends %s at least %s {min} %s on %s Selected product(s) %s"
+msgstr ""
+"Kliënt %s Bestee %s ten minste %s {min} %s op %s Geselekteerde produk(te) %s"
+
+#. Translators: 1: span opening 2: span closing 3: span opening 4: span
+#. closing 5: span opening 6: span closing.
+#: admin/modules/bogo/bogo.php:1443
+msgid ""
+"Customer %s Buys %s between %s {min} %s and %s {max} %s quantities of any "
+"products"
+msgstr ""
+"Klant %s koop %s tussen %s {min} %s en %s {max} %s hoeveelhede van enige "
+"produkte."
+
+#. Translators: 1: span opening 2: span closing 3: span opening 4: span
+#. closing 5: span opening 6: span closing 7: span opening 8: span closing.
+#: admin/modules/bogo/bogo.php:1453
+msgid ""
+"Customer %s Buys %s between %s {min} %s and %s {max} %s quantities of %s "
+"Selected product(s) %s"
+msgstr ""
+"Kliënt %s Koop %s tussen %s {min} %s en %s {max} %s hoeveelhede van gekose "
+"produk(te) %s"
+
+#. Translators: 1: span opening 2: span closing 3: span opening 4: span
+#. closing
+#: admin/modules/bogo/bogo.php:1465
+msgid "Customer %s Buys %s at least %s {min} %s quantities of any products"
+msgstr ""
+"Klant %s Koop %s ten minste %s {min} %s hoeveelhede van enige produkte"
+
+#. Translators: 1: span opening 2: span closing 3: span opening 4: span
+#. closing 5: span opening 6: span closing.
+#: admin/modules/bogo/bogo.php:1473
+msgid ""
+"Customer %s Buys %s at least %s {min} %s quantities of %s Selected "
+"product(s) %s"
+msgstr ""
+"Kliënt %s koop %s ten minste %s {min} %s hoeveelhede van gekose produk(te) "
+"%s"
+
+#: admin/modules/bogo/views/---edit-general.php:82
+msgid "Automatically %s %s %s"
+msgstr "Outomaties %s %s %s"
+
+#: admin/modules/bogo/views/---edit-general.php:84
+msgid "copy code"
+msgstr "kopieer kode"
+
+#: admin/modules/bogo/views/---edit-general.php:91
+msgid "Through coupon code %s"
+msgstr "Deur koeponkode %s"
+
+#: admin/modules/bogo/views/--bogo-bulk-general.php:47
+msgid "Discount type"
+msgstr "Afslag tipe"
+
+#: admin/modules/bogo/views/--bogo-bulk-general.php:51
+msgid "Select the type of discount you want to apply to the coupon"
+msgstr "Kies die tipe afslag wat jy op die koepon wil toepas"
+
+#: admin/modules/bogo/views/--bogo-bulk-general.php:81
+msgid ""
+"The offer title is used to identify a BOGO campaign within the plugin and "
+"the store"
+msgstr ""
+"Die aanbodtitel word gebruik om 'n BOGO-veldtog binne die inprop en die "
+"winkel te identifiseer."
+
+#: admin/modules/bogo/views/--bogo-bulk-general.php:82
+msgid "Campaign title"
+msgstr "Veldtog titel"
+
+#: admin/modules/bogo/views/--bogo-bulk-general.php:89
+msgid "Trigger offer"
+msgstr "Aanbod aktiveer"
+
+#: admin/modules/bogo/views/--bogo-bulk-general.php:93
+msgid ""
+"Choose how the offer should be triggered: automatically applied at checkout "
+"or through a coupon code"
+msgstr ""
+"Kies hoe die aanbod geaktiveer moet word: outomaties toegepas by uitklok of "
+"deur middel van 'n koeponkode."
+
+#. Translators: 1: tooltip text.
+#: admin/modules/bogo/views/--bogo-bulk-general.php:105
+msgid "Automatically %s"
+msgstr "Outomaties %s"
+
+#: admin/modules/bogo/views/--bogo-bulk-general.php:128
+msgid "Offer Code Format"
+msgstr "Aanbodkode Formaat"
+
+#: admin/modules/bogo/views/--bogo-bulk-general.php:132
+msgid ""
+"Customize how your coupon codes are generated by adding a prefix or suffix. "
+"Example: \"BOGO-VJASISVY-2024\""
+msgstr ""
+"Pas aan hoe u koeponkodes gegenereer word deur 'n voor- of agtervoegsel by "
+"te voeg. Voorbeeld: \"BOGO-VJASISVY-2024\""
+
+#: admin/modules/bogo/views/--bogo-bulk-general.php:135
+msgid "Prefix"
+msgstr "Voorvoegsel"
+
+#: admin/modules/bogo/views/--bogo-bulk-general.php:136
+msgid "Offer code"
+msgstr "Aanbodkode"
+
+#: admin/modules/bogo/views/--bogo-bulk-general.php:137
+msgid "Suffix"
+msgstr "Agtervoegsel"
+
+#: admin/modules/bogo/views/--bogo-bulk-general.php:139
+msgid "Type in prefix/ suffix if required"
+msgstr "Tik in voorvoegsel/agtervoegsel indien nodig"
+
+#: admin/modules/bogo/views/--bogo-bulk-general.php:147
+msgid "Offer Code Length"
+msgstr "Aanbodkodelengte"
+
+#: admin/modules/bogo/views/--bogo-bulk-general.php:151
+msgid "Set how many characters the auto-generated code should include"
+msgstr ""
+"Stel in hoeveel karakters die outomaties-gegenereerde kode moet insluit."
+
+#: admin/modules/bogo/views/--bogo-bulk-general.php:161
+msgid "Display Offer On"
+msgstr "Vertoon aanbod aan"
+
+#: admin/modules/bogo/views/--bogo-bulk-general.php:166
+msgid "Choose where shoppers will see the coupon offer"
+msgstr "Kies waar kopers die koeponaanbod sal sien"
+
+#: admin/modules/bogo/views/--bogo-bulk-general.php:200
+msgid "Coupon(s) can be used by"
+msgstr "Koopon(s) kan gebruik word deur"
+
+#: admin/modules/bogo/views/--bogo-bulk-general.php:214
+msgid "Email recipients"
+msgstr "E-pos ontvangers"
+
+#: admin/modules/bogo/views/--bogo-bulk-general.php:219
+msgid "Anyone"
+msgstr "Enigiemand"
+
+#: admin/modules/bogo/views/--bogo-bulk-general.php:234
+msgid "Schedule offer"
+msgstr "Skeduleer aanbod"
+
+#: admin/modules/bogo/views/--bogo-bulk-general.php:238
+msgid "Enable this option to run the BOGO offer during a specific time period"
+msgstr ""
+"Aktiveer hierdie opsie om die BOGO-aanbod gedurende 'n spesifieke "
+"tydsperiode te laat loop."
+
+#: admin/modules/bogo/views/--bogo-bulk-general.php:262
+msgid "Choose when the BOGO offer will become active on your store"
+msgstr "Kies wanneer die BOGO-aanbod aktief in jou winkel sal wees"
+
+#: admin/modules/bogo/views/--bogo-bulk-general.php:271
+msgid "Ends in"
+msgstr "Eindig oor"
+
+#: admin/modules/bogo/views/--bogo-bulk-general.php:274
+msgid "Set a specific end date and time for the BOGO offer"
+msgstr "Stel 'n spesifieke einddatum en tyd vir die BOGO-aanbod vas."
+
+#: admin/modules/bogo/views/-bogo-bulk-container.php:19
+msgid "General"
+msgstr "Algemeen"
+
+#: admin/modules/bogo/views/-bogo-bulk-container.php:21
+msgid "Offer trigger"
+msgstr "Aanbod sneller"
+
+#: admin/modules/bogo/views/-bogo-bulk-container.php:22
+msgid "Limit"
+msgstr "Limiet"
+
+#: admin/modules/bogo/views/-step1.php:196
+msgid "Include free shipping"
+msgstr "Sluit gratis aflewering in"
+
+#: admin/modules/bogo/views/-step1.php:208
+msgid "Combine free shipping with the offer"
+msgstr "Kombineer gratis aflewering met die aanbod"
+
+#: admin/modules/bogo/views/-step1.php:232
+msgid "Caution"
+msgstr "Waarskuwing"
+
+#: admin/modules/bogo/views/-step1.php:233
+msgid ""
+"Enable free shipping in WooCommerce %s shipping zones %s to use this option!"
+msgstr ""
+"Aktiveer gratis versending in WooCommerce %s versendingsones %s om hierdie "
+"opsie te gebruik!"
+
+#: admin/modules/bogo/views/-step3.php:82
+msgid "How about some additional features?"
+msgstr "Hoe lyk dit met 'n paar bykomende funksies?"
+
+#: admin/modules/checkout_options/checkout_options.php:152
+msgid "Guest"
+msgstr "Gas"
+
+#: admin/modules/coupon_restriction/coupon_restriction.php:181
+msgid "Product restrictions"
+msgstr "Produk beperkings"
+
+#: admin/modules/coupon_restriction/coupon_restriction.php:182
+msgid ""
+"Enable to apply the coupon only when the cart meets the specified product "
+"restrictions."
+msgstr ""
+"Aktiveer om die koepon slegs toe te pas wanneer die mandjie aan die "
+"gespesifiseerde produkbeperkings voldoen."
+
+#: admin/modules/coupon_restriction/coupon_restriction.php:191
+msgid ""
+"%s %s Did You Know? %s You can now get full control over coupon "
+"stacking—choose which discounts can and cannot be combined with Smart "
+"Coupons Pro!"
+msgstr ""
+"%s %s Het jy geweet? %s Jy kan nou volle beheer hê oor koeponstapeling—kies "
+"watter afslag wel en nie saam met Smart Coupons Pro gekombineer kan word "
+"nie!"
+
+#: admin/modules/coupon_restriction/coupon_restriction.php:201
+msgid "Check out plugin %s"
+msgstr "Kyk gerus na inprop %s"
+
+#: admin/modules/coupon_style/coupon_style.php:135
+msgid "This is a sample coupon description"
+msgstr "Dit is 'n voorbeeld van koeponbeskrywing."
+
+#: admin/modules/coupon_style/views/_customize.php:64
+msgid "Available coupon styles"
+msgstr "Beskikbare koeponstyle"
+
+#: admin/modules/coupon_style/views/_customize.php:78
+msgid "Click to choose"
+msgstr "Klik om te kies"
+
+#: admin/modules/coupon_style/views/_customize.php:99
+msgid ""
+"Choose a style for the coupon types(status based: Active, Expired, "
+"Redeemed), from the available templates."
+msgstr ""
+"Kies 'n styl vir die koeponsoorte (statusgebaseerd: Aktief, Vervaldatum, "
+"Ingelos) uit die beskikbare templates."
+
+#: admin/modules/coupon_style/views/_customize.php:163
+msgid "Change layout"
+msgstr "Verander uitleg"
+
+#: admin/modules/coupon_style/views/_customize.php:194
+msgid "Custom color"
+msgstr "Pasgemaakte kleur"
+
+#. translators: 1: a tag opening, 2: a tag closing
+#: admin/modules/giftcard-banner/giftcard-banner.php:129
+msgid "🎁 Drive More Sales with the %1$s Gift Card %2$s plugin!"
+msgstr "🎁 Dryf meer verkope met die %1$s Geskenkkaart %2$s invoegtoepassing!"
+
+#. translators: 1: strong tag opening, 2: strong tag closing
+#: admin/modules/giftcard-banner/giftcard-banner.php:139
+msgid ""
+"Turn one-time buyers into loyal customers! Create, sell, and manage "
+"customizable gift cards with WebToffee's %1$s free %2$s plugin!"
+msgstr ""
+"Verander eenmalige kopers in lojale kliënte! Skep, verkoop en bestuur "
+"aanpasbare geskenkbewyse met WebToffee se %1$s gratis %2$s inprop!"
+
+#: admin/modules/giftcard-banner/giftcard-banner.php:148
+msgid "Activate after installation"
+msgstr "Aktiveer na installasie"
+
+#: admin/modules/giftcard-banner/giftcard-banner.php:154
+msgid "Download"
+msgstr "Aflaai"
+
+#: admin/modules/giftcard-banner/giftcard-banner.php:157
+msgid "Not Interested"
+msgstr "Nie belangstel nie"
+
+#: admin/modules/giftcard-banner/giftcard-banner.php:176
+#: admin/modules/giftcard-banner/giftcard-banner.php:277
+msgid "Something went wrong. Please try again."
+msgstr "Iets het verkeerd geloop. Probeer asseblief weer."
+
+#: admin/modules/giftcard-banner/giftcard-banner.php:180
+msgid "You do not have sufficient permissions to install plugins."
+msgstr "Jy het nie voldoende toestemmings om inproppe te installeer nie."
+
+#: admin/modules/giftcard-banner/giftcard-banner.php:198
+msgid "Plugin download link not found."
+msgstr "Inpropaan van die invoegtoepassing-aflaaiskakel."
+
+#: admin/modules/giftcard-banner/giftcard-banner.php:249
+msgid "You do not have sufficient permissions to activate plugins."
+msgstr "Jy het nie voldoende toestemmings om plugins te aktiveer nie."
+
+#: admin/modules/giftcard-banner/giftcard-banner.php:259
+msgid "Activation failed. Please try again."
+msgstr "Aktivering het misluk. Probeer asseblief weer."
+
+#: admin/modules/premium_upgrade/views/page_content.php:105
+msgid "WebToffee WooCommerce Marketing Automation App"
+msgstr "WebToffee WooCommerce Bemarkingsoutomatiseringsprogram"
+
+#: admin/modules/premium_upgrade/views/page_content.php:106
+msgid ""
+"Streamline your eCommerce marketing with automation. Create dynamic popups, "
+"web campaigns, and marketing emails all in one place."
+msgstr ""
+"Vereenvoudig jou eCommerce-bemarking met outomatisering. Skep dinamiese pop-"
+"ups, webveldtogte en bemarkings-e-posse, alles op een plek."
+
+#: admin/modules/premium_upgrade/views/page_content.php:108
+msgid "Dynamic Popups: Exit-intent, cart abandonment, and lead generation"
+msgstr ""
+"Dinamiese pop-ups: Uitgangsintentie, karverlating, en leidingsgenerering"
+
+#: admin/modules/premium_upgrade/views/page_content.php:109
+msgid ""
+"Email Marketing Automation: Welcome emails, cart recovery, win-back "
+"promotions, and thank-you emails"
+msgstr ""
+"E-posbemarking Outomatisering: Welkom e-posse, mandjieherstel, terugwen-"
+"promosies, en dankie-e-posse"
+
+#: admin/modules/premium_upgrade/views/page_content.php:112
+msgid "Email Customizer for personalized messaging"
+msgstr "E-pos Aanpasser vir persoonlike boodskappe"
+
+#: admin/modules/premium_upgrade/views/page_content.php:113
+msgid "Pre-built Templates to save time"
+msgstr "Voorafgeboude templates om tyd te bespaar"
+
+#: admin/modules/premium_upgrade/views/page_content.php:114
+msgid "In-depth Analytics to track and optimize your performance"
+msgstr "In-diepte Analitika om u prestasie te volg en te optimaliseer."
+
+#: admin/modules/premium_upgrade/views/page_content.php:120
+msgid "INTRODUCING 🔥"
+msgstr "INLEIDING 🔥"
+
+#: common/modules/coupon_category/coupon_category.php:228
+msgid ""
+"%s Unlock more ways to reward customers! %s Create first order, next order, "
+"milestone discounts, and more!"
+msgstr ""
+"%s Ontsluit meer maniere om klante te beloon! %s Skep eerste bestelling, "
+"volgende bestelling, mylpaaldiskonte en meer!"
+
+#: common/modules/coupon_category/coupon_category.php:237
+msgid "Upgrade to Pro"
+msgstr "Opgradeer na Pro"
+
+#: common/modules/coupon_style/coupon_style.php:153
+msgid "Active coupon"
+msgstr "Aktiewe koepon"
+
+#: common/modules/coupon_style/coupon_style.php:154
+msgid "Redeemed coupon"
+msgstr "Ingeloste koepon"
+
+#: common/modules/coupon_style/coupon_style.php:188
+msgid "Style 2"
+msgstr "Styl 2"
+
+#: common/modules/coupon_style/coupon_style.php:197
+msgid "Style 3"
+msgstr "Styl 3"
+
+#: common/modules/coupon_style/coupon_style.php:202
+msgid "Style 4"
+msgstr "Styl 4"
+
+#: common/modules/coupon_style/coupon_style.php:207
+msgid "Style 5"
+msgstr "Styl 5"
+
+#: common/modules/coupon_style/coupon_style.php:212
+msgid "Style 6"
+msgstr "Styl 6"
+
+#: common/modules/coupon_style/data/data.template_classic_ticket.php:1
+#: common/modules/coupon_style/data/data.template_default.php:1
+#: common/modules/coupon_style/data/data.template_minimal_outline.php:19
+#: common/modules/coupon_style/data/data.template_plain_coupon.php:4
+#: common/modules/coupon_style/data/data.template_stitched_edge.php:1
+#: common/modules/coupon_style/data/data.template_stitched_padding.php:1
+#: common/modules/coupon_style/data/data.template_ticket_style.php:12
+msgid "Click to apply coupon code [wt_sc_coupon_code_attr]"
+msgstr "Klik om die koeponkode toe te pas [wt_sc_coupon_code_attr]"
+
+#. translators: 1: number of coupons created, 2: opening bold tag, 3: closing
+#. bold tag.
+#: includes/class-wt-smart-coupon-review_request.php:244
+msgid ""
+"We’re excited to see you’ve created %1$s coupons using the %2$s Smart "
+"Coupons for WooCommerce %3$s plugin! We hope boosting your store’s success "
+"and making discounts easier to manage."
+msgstr ""
+"Ons is opgewonde om te sien dat jy %1$s koepons geskep het deur die %2$s "
+"Smart Coupons for WooCommerce %3$s inprop te gebruik! Ons hoop dat dit jou "
+"winkel se sukses verhoog en afslagbestuur makliker maak."
+
+#: includes/class-wt-smart-coupon-review_request.php:251
+msgid "a week"
+msgstr "'n week"
+
+#: includes/class-wt-smart-coupon-review_request.php:254
+msgid "months"
+msgstr "maande"
+
+#: includes/class-wt-smart-coupon-review_request.php:254
+msgid "a month"
+msgstr "een maand"
+
+#. translators: 1: opening bold tag, 2: closing bold tag, 3: duration text.
+#: includes/class-wt-smart-coupon-review_request.php:259
+msgid ""
+"Wow! You have been using %1$s Smart Coupons for WooCommerce %2$s plugin for "
+"over %3$s now, and we hope it’s been helping you save time and simplify your"
+" workflow!"
+msgstr ""
+"Wow! Jy gebruik alreeds vir meer as %3$s die %1$s Smart Coupons vir "
+"WooCommerce %2$s-inprop, en ons hoop dit help jou om tyd te bespaar en jou "
+"werkvloei te vereenvoudig!"
+
+#. translators: 1: opening span tag, 2: closing span tag.
+#: includes/class-wt-smart-coupon-review_request.php:342
+msgid ""
+"🌟 Loving %1$s Smart Coupon for WooCommerce plugin? %2$s Share Your Feedback!"
+msgstr ""
+"🌟 Is jy mal oor die %1$s Smart Coupon inprop vir WooCommerce? %2$s Deel jou "
+"terugvoer!"
+
+#: includes/class-wt-smart-coupon-review_request.php:347
+msgid "there"
+msgstr "daar"
+
+#. translators: 1: first name.
+#: includes/class-wt-smart-coupon-review_request.php:352
+msgid "Hey %s!"
+msgstr "Hallo %s!"
+
+#: includes/class-wt-smart-coupon-review_request.php:356
+msgid ""
+"If you found the plugin helpful, please leave us a quick 5-star review. It "
+"would mean the world to us."
+msgstr ""
+"As u die inprop nuttig gevind het, los asseblief vir ons 'n vinnige 5-ster "
+"resensie. Dit sou vir ons baie beteken."
+
+#. translators: 1: break tag.
+#: includes/class-wt-smart-coupon-review_request.php:360
+msgid "Warm regards, %s Team WebToffee"
+msgstr "Vriendelike groete, WebToffee-span %s"
+
+#: includes/class-wt-smart-coupon-review_request.php:364
+msgid "You deserve it"
+msgstr "Jy verdien dit"
+
+#: includes/class-wt-smart-coupon-review_request.php:365
+msgid "Nope, maybe later"
+msgstr "Nee, miskien later"
+
+#: includes/class-wt-smart-coupon-review_request.php:366
+msgid "I already did"
+msgstr "Ek het dit al gedoen"
+
+#: public/modules/bogo/bogo.php:327
+msgid "The minimum quantity of each product for this coupon is %s."
+msgstr "Die minimum hoeveelheid van elke produk vir hierdie koepon is %s."
+
+#: public/modules/bogo/bogo.php:332
+msgid "The maximum quantity of each product for this coupon is %s."
+msgstr "Die maksimum hoeveelheid van elke produk vir hierdie koepon is %s."
+
+#: public/modules/bogo/bogo.php:628
+msgid "%s%% off"
+msgstr "%s%% afslag"
+
+#: public/modules/bogo/bogo.php:632
+msgid "%s off"
+msgstr "%s afslag"
+
+#. translators: %s coupon code.
+#: blocks/build/main/frontend.js:19 blocks/src/main/frontend.js:51
+msgid "Coupon code \"%s\" has been applied to your cart."
+msgstr "Koepbewyskode \"%s\" is op jou mandjie toegepas."
+
+#: blocks/build/auto-coupon/block.json blocks/src/auto-coupon/block.json
+msgid "Auto coupon"
+msgstr "Outomatiese koepon"
+
+#: blocks/build/auto-coupon/block.json blocks/build/bogo/block.json
+#: blocks/build/giveaway-product/block.json blocks/src/auto-coupon/block.json
+#: blocks/src/bogo/block.json blocks/src/giveaway-product/block.json
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+#: blocks/build/auto-coupon/block.json blocks/src/auto-coupon/block.json
+msgid "Auto coupon related operations."
+msgstr "Outomatiese koepon-verwante bedrywighede."
+
+#: blocks/build/bogo/block.json blocks/src/bogo/block.json
+msgid "Bogo"
+msgstr "Bogo"
+
+#: blocks/build/bogo/block.json blocks/src/bogo/block.json
+msgid "BOGO coupon related operations."
+msgstr "BOGO-koepon-verwante bedrywighede."
+
+#: blocks/build/giveaway-product/block.json
+#: blocks/src/giveaway-product/block.json
+msgid "Giveaway product"
+msgstr "Weggeeproduk"
+
+#: blocks/build/giveaway-product/block.json
+#: blocks/src/giveaway-product/block.json
+msgid "Giveaway coupon related operations."
+msgstr "Weggee-koepon-verwante bedrywighede."
+
+#: blocks/build/main/block.json blocks/src/main/block.json
+msgid "Smart coupon blocks"
+msgstr "Slim koeponblokke"

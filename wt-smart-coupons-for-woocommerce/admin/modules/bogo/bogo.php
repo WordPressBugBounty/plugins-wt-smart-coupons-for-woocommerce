@@ -1375,6 +1375,7 @@ class Wbte_Smart_Coupon_Bogo_Admin extends Wbte_Smart_Coupon_Bogo_Common {
 				),
 				'coupon_copy_tooltip' => esc_html__( 'Copy coupon code for admin use', 'wt-smart-coupons-for-woocommerce' ),
 				'failed_copy' => esc_html__( 'Failed to copy', 'wt-smart-coupons-for-woocommerce' ),
+				'bogo' => __( 'BOGO', 'wt-smart-coupons-for-woocommerce' ),
 			),
 			'summary_text'       => array(
 				// Step 1.

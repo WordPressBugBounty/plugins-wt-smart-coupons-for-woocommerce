@@ -94,13 +94,18 @@ class WBTE_Smart_Coupon_Giftcard_Banner {
 
 	/**
 	 * Check if the banner should be displayed
+	 * True if not an edit page and more than 10 days since the plugin was installed and the banner is not dismissed.
 	 *
 	 * @since    2.1.0
 	 * @access   private
 	 * @return   bool    True if banner should be shown, false otherwise.
 	 */
 	private static function check_condition() {
-		return ! get_option( self::$option_name );
+		$days_since_sc_start = floor( ( time() - get_option( 'wt_smart_coupon_start_date', time() ) ) / DAY_IN_SECONDS );
+		
+		$is_edit = ( isset( $_GET['action'] ) && in_array( $_GET['action'], array( 'edit', 'new' ) ) ) || ( isset( $_SERVER['REQUEST_URI'] ) && false !== strpos( esc_url_raw( $_SERVER['REQUEST_URI'] ), 'post-new.php' ) );
+
+		return ! get_option( self::$option_name ) && $days_since_sc_start > 10 && ! $is_edit;
 	}
 
 	/**

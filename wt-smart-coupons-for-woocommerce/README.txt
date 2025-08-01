@@ -1,28 +1,28 @@
 === Smart Coupons For WooCommerce Coupons ===
 Contributors: WebToffee
-Version: 2.2.0
+Version: 2.2.1
 Donate link:https://www.webtoffee.com/plugins/
 Tags: WooCommerce coupons, WooCommerce discounts, BOGO, smart coupons, advanced coupons
 Requires at least: 3.3
 Tested up to: 6.8
 Requires PHP: 5.6
-Stable tag: 2.2.0
+Stable tag: 2.2.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Create advanced WooCommerce coupons and smart discounts with WooCommerce coupon extended features like auto-apply coupons, BOGO discounts, giveaway products, Woo discount rules, free shipping, bulk coupons, and more.
+This WordPress coupon code plugin lets you create WooCommerce coupons and discounts with smart coupon features such as auto-apply coupons, BOGO discounts, giveaway products, Woo discount rules, free shipping, and more.
 
 == Description ==
 
-Smart Coupons for WooCommerce plugin enhances default WooCommerce coupons with advanced discount code features. It allows you to create BOGO offers, set various discount rules, enable auto-apply coupons, offer product as giveaways, and manage WooCommerce coupon codes.
+Smart Coupons for WooCommerce plugin is a coupon code plugin for WooCommerce websites. It lets you create WooCommerce advanced coupons and discounts. The plugin supports BOGO coupons, bulk discounts, discount rules, auto-apply coupons, and more. 
 
 **See how the WooCommerce Smart Coupon plugin works: <a rel="nofollow" href="https://tastewp.com/new?pre-installed-plugin-slug=woocommerce&pre-installed-plugin-slug=wt-smart-coupons-for-woocommerce&redirect=admin.php%3Fpage%3Dwt-smart-coupon-for-woo&ni=true">Try out demo</a>** 
 
-###No.1 WooCommerce Marketing Plugin: Advanced WooCommerce Coupons and Discount Rules Plugin###
+###Best WooCommerce Coupons Plugin to Create Advanced Coupons and Discount Rules for WooCommerce###
 
-The success of every online store depends on how well they market their products. Even if your store sells higher quality products at a reasonable price, improper marketing will keep your sales always on the downside. Thus coming up with the most appropriate marketing strategies from time to time is necessary to keep your store on the move. This WooCommerce smart coupon plugin is an essential marketing tool for it.
+Effective marketing is the backbone of any successful online store. Even if you're offering top-notch products at competitive prices, poor promotion can hold your sales back. That's why using the right tools, like a reliable WooCommerce coupon code plugin, is crucial. A powerful solution, such as a WebToffee Smart Coupons plugin, lets you create irresistible WooCommerce discounts, including BOGO deals, bulk discounts, and quantity-based offers that drive conversions.
 
-###WooCommerce BOGO Coupons and Discount Offers###
+###Create WooCommerce BOGO Coupons and Discount Offers###
 
 The free  WooCommerce Smart Coupons plugin is the go-to coupon code plugin for setting up advanced WooCommerce BOGO coupons and discount offers. This WooCommerce discounts plugin comes with a dedicated BOGO module that provides flexibility in configuring buy one get one deals and other BOGO-focused WooCommerce discount code. structures. 
 
@@ -73,7 +73,7 @@ Explore the power of the WooCommerce Discounts Plugin to create advanced promoti
 The following video explains the setup and workflow of the WooCommerce Smart Coupons plugin.
 [youtube https://youtu.be/GJo-1pprTUU?si=7SPLbZa0XPZBmy6Z]
 
-* Smart Coupon for WooCommerce coupon plugin is an advanced [WooCommerce coupon plugin](https://www.webtoffee.com/product/smart-coupons-for-woocommerce/) that provides extensive options to set up WooCommerce discount codes.
+* Smart Coupon for WooCommerce coupon plugin is an advanced [WooCommerce coupon plugin](https://www.webtoffee.com/product/smart-coupons-for-woocommerce/?utm_source=free_plugin_readme&utm_medium=smart_coupons&utm_campaign=smart_coupons) that provides extensive options to set up WooCommerce discount codes.
 * Configure the coupons with **extensive usage restrictions and checkout options**
 * Enhanced **BOGO deals (Buy X Get X/Y)** with multiple giveaway options. Gives options to offer varied quantity or price-based discounts such as Buy X and Get the same product/any product from store/specific product from store/product from a specific category, etc.
 * Create **purchase history based coupons/discounts** (first order/next order/nth order coupons)
@@ -103,15 +103,24 @@ For a complete list of advanced coupon plugin features and details, please visit
 
 <strong>Duplicate coupons</strong>: Instead of setting up a new offer from scratch, existing coupon configurations can be copied and reused, ensuring consistency while saving time on campaign setup.
 
+<strong>WooCommerce bulk discounts</strong>: Reward customers for buying more by offering WooCommerce bulk discount options. With the smart coupons plugin, you can automatically apply quantity-based pricing rules, encouraging larger purchases while simplifying the buying decision for customers. Whether you're offering tiered pricing or bulk percentage offs, this feature boosts average order value effortlessly.
+
+== You May Also Need ==
+GDPR Cookie Consent is our flagship cookie consent plugin, which is a Google-certified CMP built specifically for WordPress websites. With this plugin, you can display a fully customizable cookie banner on your site to help ensure compliance with major privacy laws like the GDPR and CCPA.
+
+Key features include an advanced cookie scanner, automatic script blocking, and detailed consent log reporting. It also lets you deploy an IAB-compliant cookie banner and supports Google Consent Mode v2. 
+
+Get [GDPR Cookie Consent Plugin](https://www.webtoffee.com/product/gdpr-cookie-consent/?utm_source=free_plugin_readme&utm_medium=smart_coupons&utm_campaign=GDPR) Now.
+
 
 == Installation ==
 
-=== Minimum Requirements ===
+= Minimum Requirements =
 
 WordPress version 3.3 or higher
 PHP version5.6 or higher
 
-=== Steps to install the plugin ===
+= Steps to install the plugin =
 
 Step 1: Log in to your WordPress dashboard.
 Step 2: Navigate to Plugins and select Add New.
@@ -180,387 +189,17 @@ Yes. You can create coupons that get applied as per the purchase amount of a cus
 
 == Changelog ==
 
-= 2.2.0 - 2025-05-05 =
-* [Add] – New coupon layout designs.
-* [Fix] – Payment method selection reloading twice.
-* [Fix] BOGO giveaway choosing not rendering after reload in block cart.
-* [Compatibility] – Tested OK with WordPress 6.8
-* [Compatibility] – Tested OK with WooCommerce 9.8
+= 2.2.1 - 2025-08-01 =
+* [Fix] - Not able to set max each quantity the same as min each quantity in BOGO.
+* [Fix] - Coupon with usage limit reached is appearing under both "Used" and "Expired" coupon sections.
+* [Compatibility] – Tested OK with WooCommerce 10.0
 
-= 2.1.1 - 2025-03-04 =
-* [Fix] - Fatal error when assigned free products in BOGO no longer exists.
 
-= 2.1.0 - 2025-02-27 =
-* [Fix] - Free products not incrementing when eligibility changed, instead displaying free products to choose.
-* [Fix] - The payment method-restricted auto coupon was not removed when the payment method changed due to a shipping method change.
-* [Compatibility] - Tested OK with WooCommerce 9.7
-
-= 2.0.0 - 2025-01-06 =
-* [New] Added a separate module for BOGO configuration with enhanced customization options.
-
-= 1.8.5 - 2024-11-27 =
-* [Fix] - Resolved early loading issue for translations.
-
-= 1.8.4 - 2024-11-14 =
-* [Fix] - Validation error in category restriction.
-* [Compatibility] - Tested OK with WordPress 6.7
-* [Compatibility] - Tested OK with WooCommerce 9.4
-
-= 1.8.3 - 2024-09-26 =
-* [Add] - Filter hook to alter user capability check.
-* [Compatibility] - Tested OK with WordPress 6.6
-* [Compatibility] - Tested OK with WooCommerce 9.3
-
-= 1.8.2 - 2024-08-21 =
-* [Compatibility] - Tested OK with WordPress 6.6
-* [Compatibility] - Tested OK with WooCommerce 9.1
-
-= 1.8.1 - 2024-07-26 =
-* [Fix] Auto coupons not replaced by the highest priority coupon.
-* [Fix] UI issue in the free product choosing section when changing coupon type (backend).
-* [Fix] Incorrect coupon discount amount when the coupon has 'Maximum discount value' and a free product.
-* [Compatibility] - Tested OK with WordPress 6.6
-* [Compatibility] - Tested OK with WooCommerce 9.1
-
-= 1.8.0 - 2024-06-14 =
-* [FIX] Coupon style not applied for used coupons via shortcode
-* [FIX] Coupon template missing in general settings
-* [FIX] Auto coupons are not removed when individual coupons are applied.
-* [FIX] High-priority auto coupons are not replacing other low-priority auto coupons.
-* [Compatibility] - Tested OK with WordPress 6.5
-* [Compatibility] - Tested OK with WooCommerce 8.9 
-
-= 1.7.1 - 2024-05-14 =
-* [FIX] Block checkout form field settings are not impacting the front end.
-* [FIX] URL coupon removing when cart is empty.
-* [FIX] Auto coupons with a zero amount are not auto applied.
-
-= 1.7.0 - 2024-04-16 =
-* [Fix] Fixed an issue where the coupon usage count was also cloned when duplicating coupons.
-* [Fix] Resolved the attribute missing warning that occurred while adding giveaway products if a variation product was set with no attribute selected.
-* [Fix] Fixed the issue where user-role restricted coupons were being displayed for guest users.
-* [Fix] Added session null checking to prevent unexpected session null errors.
-* [Improvement] Added a separate page for auto apply coupons.
-* [Improvement] Non-BOGO coupons with a zero coupon amount are now treated as invalid for auto coupons.
-* [Add] Added options in the admin panel for maximum auto apply coupon checking limit and applying limit.
-* [Compatibility] - Tested OK with WordPress 6.5
-* [Compatibility] - Tested OK with WooCommerce 8.7
-
-= 1.6.1 - 2024-02-13 =
-* [Fix] Auto coupon not working on pages other than cart and checkout.
-* [Fix] Checkout validations are not working.
-
-= 1.6.0 - 2024-02-05 =
-* [Fix] - Minimum subtotal calculation issue. Skipped the excluded products/category and sale items (If exclude sale items enabled).
-* [Fix] - Issue when calculating the expiry time for auto coupons.
-* [Compatibility] - Checkout block compatibility.
-* [Compatibility]  - Cart block compatibility.
-* [Compatibility] - Tested OK with WooCommerce 8.5
-
-= 1.5.2 - 2023-11-20 =
-* [Compatibility] - Tested OK with WordPress 6.4
-* [Compatibility] - Tested OK with WooCommerce 8.3
-
-= 1.5.1 - 2023-10-25 =
-* [Fix] - Click to apply coupon is not working when coupon metabox added via shortcode
-* [Fix] - Unable to add multiple variations of a product when `apply repeatedly` is enabled on the `Specific product` giveaway.
-* [Compatibility] - Tested OK with WooCommerce 8.2
-
-= 1.5.0 - 2023-09-21 =
-* [Improvement] - Add Giveaways automatically to the cart when no variable product is chosen as a giveaway.
-* [Compatibility] - Tested OK with WooCommerce 8.1
-
-= 1.4.9 - 2023-07-31 =
-* [Fix] - The auto-apply coupons are not applied until the payment method is changed
-* [Compatibility] - WP 6.3
-
-= 1.4.8 - 2023-06-27 =
-* [Add] - Click to apply coupon
-* [Compatibility] - Tested OK with WooCommerce 7.9
-
-= 1.4.7 - 2023-06-16 =
-* [Fix] - Used and expired coupons are not listed on the My Account page.
-* [Improvement] - Coupon block HTML preparation.
-* [Improvement] - jQuery deprecated functions changed.
-* [Improvement] - Coupon settings DB structure made the same as in the premium version.
-* [Compatibility] - Tested OK with WooCommerce 7.8
-
-= 1.4.6 - 2023-03-30 =
-* [Add] Country wise restriction for coupons
-* [Bug fix] Coupon start date not showing properly on different timezones.
-* [Compatibility] WC 7.5
-
-= 1.4.5 - 2023-02-21 =
-* [Add] New filter: `wt_sc_alter_giveaway_product_price` to alter giveaway product price.
-* [Add] New filter: `wt_sc_chosen_shipping_for_validation` to process the shipping method name for validation.
-* [Improvement] Added compatibility for shipping method value that has no `colon`
-* [Improvement] Added WPML compatibility for giveaway products.
-* [Improvement] Compatibility when adding product wise discounts(not via coupon) in the back-end.
-* [Compatibility] WooCommerce HPOS.
-* [Compatibility] WC 7.3
-
-= 1.4.4 - 13-01-2023 =
-* [Bug fix] Lookup table int column size issue. Few columns converted from int to bigint
-* [Bug fix] BOGO product quantity was not updated correctly when different eligible products are added
-* [Bug fix] Displaying coupons that are expired in the same date.
-* [Bug fix] Giveaway product alignment issue in small screens.
-* [Bug fix] Showing non-existing coupons.
-* [Improvement] Lookup table migration code updated to handle very slow websites. New filter added to control migration batch limit. wt_sc_lookup_table_migration_batch_limit
-* [Improvement] Coupon restriction compatibility added for backend coupon applying
-* [Improvement] Custom warning message added, if lookup table not exists
-* [Add] Search coupons using email
-* [Add] New filter: `wt_sc_auto_coupons_list` to alter auto coupon list.
-* [Compatibility] WC 7.2
-
-= 1.4.3 - 09-11-2022 =
-* [Improvement] Coupon fetching and displaying optimized. Lookup table added
-* [Add] Option to display available coupons in cart page
-* [Add] New filter `wt_sc_alter_giveaway_cart_item_data_before_add_to_cart` to alter giveaway product cart item data before adding to cart.
-* [Bug fix] Email validation is not working properly when email has capital letters
-* [Bug fix] Validation fails when global quantity restriction with exclude product/category exists
-* [Bug fix] Takeway payment gateway payment method is not listing in admin dropdown
-* [Bug fix] Not taking coupons having multiple user role restriction.
-* [Bug fix] Coupon expired text is not translating.
-* [Compatibility] WC 7.1
-* [Compatibility] WP 6.1
-
-
-= 1.4.2 - 14-09-2022 =
-* [Bug fix] Removing manually applied auto coupons when email restrictions are present
-* [Bug fix] Coupons are not displaying in my account
-* [Bug fix] Style breaking issue in Google chrome latest version.
-* [Bug fix] Custom coupon style not showing in frontend.
-* [Bug fix] getTimestamp() on int
-* [Improvement] Optimized available coupons SQL query
-* [Compatibility] WC 6.9.0
-* [Compatibility] WP 6.0.2
-
-= 1.4.1 - 01-09-2022 =
-* [Bug fix] null value metas converted to empty string on duplicate functionality
-* [Bug fix] Not automatically applying coupons with wild card(*) email restriction.
-* [Bug fix] Conflict with auto apply and coupon individual use.
-* [Bug fix] Causing error on YITH POS custom add to cart
-* [Bug fix] Start date validation issue
-* [Bug fix] Expired coupons are applying in auto coupons.
-* [Add] Coupon URL help popup added in coupon edit page.
-* [Add] Pagination added for available coupons
-* [Improvement] Decimal support added in price columns of admin giveaway tab
-* [Improvement] BOGO total giveaway discount now showing as coupon discount in cart summary
-* [Compatibility] QPilot Autoship plugin
-* [Compatibility] WC 6.8.2
-* [Compatibility] WP 6.0.1
-
-= 1.4.0 - 27-06-2022 =
-* [New] `BOGO offers` option introduced.
-* [New] Individual product/category quantity restriction.
-* [Compatibility] with WooCommerce 6.6
-
-
-= 1.3.9 =
-* [Compatibility] with WooCommerce 6.5.1
-* [Compatibility] with WordPress 6.0
-* [Compatibility] with YITH POS. Thanks @youssefhegazy
-* [Bug fix] Giveaway product is not adding to cart if the chosen product is a variation.
-
-
-= 1.3.8 =
-* [Improvement] Coupon alignment in checkout and my account pages
-* [Compatibility] with WooCommerce 6.3.1
-
-= 1.3.7 =
-* Coupon shortcode option added
-* Show coupon in checkout page option added.
-* [Fix] Shows a warning when `Hide shipping costs until an address is entered` option enabled.
-* [Fix] Coupon expiry date not showing correctly
-* [Compatibility] with WooCommerce 6.1.1
-* [Compatibility] with WordPress 5.9
-
-
-= 1.3.6 =
-* [Tweak] Maximum limit option for percentage coupon
-* [Improvement] Variable product compatibility in Giveaway option
-* [Fix] SQL injection issue in Duplicate coupon functionality
-* [Compatibility] with WooCommerce 6.0
-
-= 1.3.5 =
-* [Add] Coupon category option
-* [Add] New filters: wt_smart_coupon_after_my_account_coupons, wt_smart_coupon_before_my_account_coupons
-* [Tweak] Separate tab for URL coupon
-* [Tweak] UI updates
-* [Tweak] Help links
-* [Fix] Minor bug fixes
-* [Fix] Coupon URL preview not working on coupon code generate.
-* [Improvement] Styles and scripts limited to WC pages and Smart coupon settings pages
-* [Improvement] New argument $coupon_obj for filter `wt_smart_coupon_before_my_account_single_coupon`
-* [Compatibility] with WooCommerce 5.9
-* [Deprecated] filter: wt_smart_coupon_before_my_acocount_coupons
-
-= 1.3.4 =
-* [Compatibility] with WooCommerce 5.8
-* [Bug fix] Auto apply coupon limit issue.
-* [Tweak] Showing coupon URL preview on coupons add/edit page
-* [Add] Translations added for AR, AF, CZ, DE, ES, FR, IT, MY, RU
-
-= 1.3.3 =
-* Tested OK with WC 5.6
-* [Bug fix] Displaying all coupons in My Account when the eligible coupon list is empty.
-* Customization/hide option via filter added for free product added success message. Filter: `wt_smart_coupon_free_product_added_message`
-
-= 1.3.2 =
-* Tested OK with WP 5.8
-* Tested OK with WC 5.5
-* [Bug fix] Excluded free products from calculating total quantity of matching products
-
-= 1.3.1 =
-* Tested OK with WC 5.4
-* [Bug fix] Coupon still showing in `My account` when `Show in My account` option disabled.
-* [Bug fix] Giveaway product is added repeatedly when logged in back to the site.
-* [Bug fix] Buy Giveaway products individually
-* [Bug fix] Removes any free products from the cart if their related coupon is not present in the cart
-
-= 1.3.0 =
-* Tested OK with WC 5.2
-
-= 1.2.9 =
-* Tested OK with WP 5.7.0
-* Tested OK with WC 5.1.0
-
-= 1.2.8 =
-* Fix: Auto apply of coupons fails when email restriction was added.
-* Tested OK with WC 4.9.0
-* Tested OK with WP 5.6.0
-
-= 1.2.7 =
-* Fix: Auto apply coupon of fixed amount discount on subscription sign up fee is taking cart total to 0
-* Tested OK with WC 4.7.0
-* Tested OK with WP 5.5.3
-
-= 1.2.6 =
-* Improvement: display coupon based on user roles
-* Fix: Auto coupons are not applied properly after changing the payment method
-* Tested OK with WP 5.5.2
-* Tested OK with WC 4.5.2
-
-= 1.2.5 =
-* [Fix] Auto coupons are not applied properly.
-* Tested OK with WC 4.2.0
-
-= 1.2.4 =
-* [Fix] The auto coupon is not applied if the checkout page is directly visited after the product has added to the cart.
-* [Fix] Fixed languages translation issues.
-* Tested OK with WC 4.1.0
-* Updated translation files
-
-= 1.2.3 =
-* [Fix] - Memory limit exceeded error when a large number of auto coupons are present.
-* Added a filter `wt_smartcoupon_max_auto_coupons_limit` to limit the maximum number of auto coupons that can be applied
-
-= 1.2.2 =
-* Tested OK with WP 5.4
-
-= 1.2.1 =
-* Tested OK with WC 3.9.2
-* [fix] Giveaway product is not removed from the cart even if all the applied coupon products are removed
-* [fix] Smart coupon start date is not working properly
-
-= 1.2.0 =
-* [Improvement] Security
-
-= 1.1.9 =
-* Tested OK with WooCommerce 3.8.1
-* Removed quantity updates for giveaway item 
-
-= 1.1.8 =
-* Tested OK with WP 5.3
-* [update] Content update
-* [update] Activate WooCommerce Coupon module on plugin activation.
-* [fix] Fixed issues in discount calculation for giveaway product.
-
-
-= 1.1.7 =
-* Tested OK with WP 5.2.4
-* Tested OK with WC 3.8.0
-* [update] Fixed Currency position all over the plugin. Thanks @imborx reporting issue.
-* [update] Added filter for formatted text "wt_smart_coupon_meta_data"
-
-= 1.1.6 =
-* Tested OK with WP 5.2.3
-
-
-= 1.1.5 =
-* WPML compatiblity
-* Content update
-
-= 1.1.4 =
-* Implemented URL coupon
-* Content update
-
-= 1.1.3 =
-* Implemented Start date for coupon.
-* Tested ok with WC 3.6.4
-* Tested ok with WordPress 5.2.1
-* Content Update.
-
-
-= 1.1.2 =
-* Fixed PHP Warning in Exclude Product section.
-* Tested ok with WC 3.6.2
-* Content Update.
-
-
-= 1.1.1 =
-* Ability to omit coupons from applying for specific products.
-* Tested ok with WC 3.6.1
-
-= 1.1.0 =
-* Included option to automatically apply coupon.
-* Tested ok with WP 5.1.1 and WC 3.5.7
-
-= 1.0.1 =
-* Customize myCoupon Styles.
-* Readme updates.
-
-= 1.0.0 =
-* Updated Language translation
-
-= 0.0.9 =
-* Additional filters in usage restriction by product/min-max subtotal/min-max quantity
-* Giveaway free products(simple products)
-* Option to list applicable coupons under users My account->My Coupons
-* Categorized view of Active/Used/Expired coupons
-* Tested OK with the latest version of WordPress and WooCommerce
-
-= 0.0.8 =
-* Updated read me - tested OK with latest version of WP and WC
-
-= 0.0.7 =
-* Content updates.
-* Tested OK with Wordpress 5.0.2
-* Tested OK with WC 3.5.3
-
-= 0.0.6 =
-* Content updates.
-
-= 0.0.5 =
-* Content updates.
-
-= 0.0.4 =
-* Content updates.
-
-= 0.0.3 =
-* Tested OK with WC 3.5.1.
-
-= 0.0.2 =
-* Tested OK with WC 3.4.4.
-
-= 0.0.1 =
-* Initial commit.
+[See changelog for all versions](https://plugins.svn.wordpress.org/wt-smart-coupons-for-woocommerce/trunk/changelog.txt)
 
 == Upgrade Notice ==
 
-= 2.2.0 =
-* [Add] – New coupon layout designs.
-* [Fix] – Payment method selection reloading twice.
-* [Fix] BOGO giveaway choosing not rendering after reload in block cart.
-* [Compatibility] – Tested OK with WordPress 6.8
-* [Compatibility] – Tested OK with WooCommerce 9.8
+= 2.2.1 =
+* [Fix] - Not able to set max each quantity the same as min each quantity in BOGO.
+* [Fix] - Coupon with usage limit reached is appearing under both "Used" and "Expired" coupon sections.
+* [Compatibility] – Tested OK with WooCommerce 10.0

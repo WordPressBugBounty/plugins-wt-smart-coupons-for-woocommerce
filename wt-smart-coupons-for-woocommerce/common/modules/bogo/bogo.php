@@ -324,7 +324,19 @@ class Wbte_Smart_Coupon_Bogo_Common {
 			self::get_all_coupon_meta( $coupon_id );
 		}
 		$default_vl = isset( self::$meta_arr[ $meta_key ] ) && isset( self::$meta_arr[ $meta_key ]['default'] ) ? self::$meta_arr[ $meta_key ]['default'] : $default_meta_val;
-		return isset( self::$coupon_meta_arr[ $meta_key ] ) ? self::$coupon_meta_arr[ $meta_key ][0] : $default_vl;
+
+		$meta_value = isset( self::$coupon_meta_arr[ $meta_key ] ) ? self::$coupon_meta_arr[ $meta_key ][0] : $default_vl;
+
+		/**
+		 * Filter to alter the BOGO meta value.
+		 *
+		 * @since 2.2.1
+		 *
+		 * @param mixed  $meta_value Meta value.
+		 * @param string $meta_key   Meta key.
+		 * @param int    $coupon_id  Coupon id.
+		 */
+		return apply_filters( 'wbte_sc_alter_bogo_meta_value', $meta_value, $meta_key, $coupon_id );
 	}
 
 	/**

@@ -1,0 +1,106 @@
+/**
+ * Smart Coupons Pro CTA Metabox Styles
+ * 
+ * @package WT_Smart_Coupons
+ * @since 2.2.1
+ */
+
+#wbte-sc-upgrade-to-pro .postbox-header h2 {
+	color: #000;
+	font-size: 13px;
+	font-weight: 600;
+}
+
+#wbte-sc-upgrade-to-pro .postbox-header .handle-actions {
+	display: none;
+}
+
+#wbte-sc-upgrade-to-pro .inside {
+	background: #fff;
+	padding: 0 14px 20px;
+	border-radius: 15px;
+}
+
+#wbte-sc-upgrade-to-pro .wt-sc-metabox-pro-features {
+	margin: 10px 0 20px;
+}
+
+#wbte-sc-upgrade-to-pro .wt-sc-metabox-pro-features li {
+	font-size: 13px;
+	color: #212121;
+	font-weight: 500;
+	margin-bottom: 10px;
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+	line-height: 1.2;
+}
+
+#wbte-sc-upgrade-to-pro .wt-sc-metabox-pro-features li::before {
+	content: "✓";
+	min-width: 13px;
+	min-height: 13px;
+	background: #4CAF50;
+	border-radius: 50%;
+	color: white;
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 10px;
+}
+
+#wbte-sc-upgrade-to-pro .wt-sc-metabox-pro-features .wt-sc-pro-features-all-features {
+	display: none;
+}
+
+#wbte-sc-upgrade-to-pro .wt-sc-metabox-pro-features .dashicons {
+	background: #fff;
+	color: #6ABE45;
+	border-radius: 20px;
+	margin-right: 5px;
+}
+
+#wbte-sc-upgrade-to-pro .wt-sc-metabox-pro-features-heading {
+	color: #4750CB;
+	font-weight: 700;
+	text-align: left;
+	font-size: 13px;
+	margin: 0;
+}
+
+#wbte-sc-upgrade-to-pro .wt-sc-metabox-upgrade-to-pro-btn {
+	display: block;
+	background: #2270B1;
+	color: #fff;
+	text-decoration: none;
+	padding: 8px 12px;
+	border-radius: 4px;
+	font-weight: 500;
+	font-size: 13px;
+	margin-bottom: 15px;
+	transition: background-color 0.3s ease;
+}
+
+#wbte-sc-upgrade-to-pro .wt-sc-metabox-upgrade-to-pro-btn:hover,
+#wbte-sc-upgrade-to-pro .wt-sc-metabox-upgrade-to-pro-btn:focus,
+#wbte-sc-upgrade-to-pro .wt-sc-metabox-upgrade-to-pro-btn:active {
+	background: #135e96;
+	outline: none;
+	box-shadow: none;
+}
+
+#wbte-sc-upgrade-to-pro .wt-sc-pro-features-view-all {
+	color: #007FFF;
+	text-decoration-line: underline;
+	text-align: center;
+	cursor: pointer;
+}
+
+#wbte-sc-upgrade-to-pro .wt-sc-pro-features-view-less {
+	color: #007FFF;
+	text-decoration-line: underline;
+	text-align: center;
+	display: none;
+	cursor: pointer;
+}

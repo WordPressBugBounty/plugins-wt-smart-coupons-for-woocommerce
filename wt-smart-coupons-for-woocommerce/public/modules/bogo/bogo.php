@@ -92,6 +92,20 @@ class Wbte_Smart_Coupon_Bogo_Public extends Wbte_Smart_Coupon_Bogo_Common {
 	private static $last_successful_output_bogo_products = '';
 
 	/**
+	 * To store the bogo restricted products and categories.
+	 * eg structure:
+	 *      array(
+	 *          'coupon_id' => array(
+	 *              'product_ids' => array( 1, 2, 3 ),
+	 *              'exclude_product_ids' => array( 4, 5, 6 ),
+	 *          )
+	 *      )
+	 *
+	 * @var array $bogo_products
+	 */
+	private static $bogo_products = array();
+
+	/**
 	 * Constructor function of the class
 	 *
 	 * @since 2.0.0
@@ -309,13 +323,13 @@ class Wbte_Smart_Coupon_Bogo_Public extends Wbte_Smart_Coupon_Bogo_Common {
 			$cart_qty    += $item_qty;
 
 			// Min each qty check.
-			if ( $item_qty < $wbte_sc_min_each_qty ) {
-				return false;
+			if ( $wbte_sc_min_each_qty && $item_qty < $wbte_sc_min_each_qty ) {
+				throw new Exception( sprintf( esc_html__( 'The minimum quantity of each product for this coupon is %s.', 'wt-smart-coupons-for-woocommerce' ), absint( $wbte_sc_min_each_qty ) ), 113 );
 			}
 
 			// Max each qty check.
 			if ( ! empty( $wbte_sc_max_each_qty ) && $item_qty > $wbte_sc_max_each_qty ) {
-				return false;
+				throw new Exception( sprintf( esc_html__( 'The maximum quantity of each product for this coupon is %s.', 'wt-smart-coupons-for-woocommerce' ), absint( $wbte_sc_max_each_qty ) ), 114 );
 			}
 		}
 
@@ -424,8 +438,8 @@ class Wbte_Smart_Coupon_Bogo_Public extends Wbte_Smart_Coupon_Bogo_Common {
 	 */
 	public static function validate_coupon_on_products_categories( $coupon_id, &$applicable_products ) {
 
-		$specific_products = array_map( 'absint', array_filter( explode( ',', self::get_coupon_meta_value( $coupon_id, 'wbte_sc_bogo_product_ids' ) ) ) );
-		$excluded_products = array_map( 'absint', array_filter( explode( ',', self::get_coupon_meta_value( $coupon_id, 'wbte_sc_bogo_exclude_product_ids' ) ) ) );
+		$specific_products = self::get_bogo_products( $coupon_id, 'product_ids' );
+		$excluded_products = self::get_bogo_products( $coupon_id, 'exclude_product_ids' );
 
 		$_specific_products = $specific_products;
 
@@ -839,8 +853,8 @@ class Wbte_Smart_Coupon_Bogo_Public extends Wbte_Smart_Coupon_Bogo_Common {
 			return $eligible_count;
 		}
 
-		$coupon_products          = array_map( 'absint', array_filter( explode( ',', self::get_coupon_meta_value( $coupon_id, 'wbte_sc_bogo_product_ids' ) ) ) );
-		$coupon_excluded_products = array_map( 'absint', array_filter( explode( ',', self::get_coupon_meta_value( $coupon_id, 'wbte_sc_bogo_exclude_product_ids' ) ) ) );
+		$coupon_products          = self::get_bogo_products( $coupon_id, 'product_ids' );
+		$coupon_excluded_products = self::get_bogo_products( $coupon_id, 'exclude_product_ids' );
 
 		// Assigning $args before for loop to avoid multiple time fetching restriction data.
 		$args = array(
@@ -2208,6 +2222,40 @@ class Wbte_Smart_Coupon_Bogo_Public extends Wbte_Smart_Coupon_Bogo_Common {
 			remove_action( 'woocommerce_after_cart_item_quantity_update', array( $this, 'prevent_free_product_quantity_update' ), 999 );
 			WC()->cart->set_quantity( $cart_item_key, $old_quantity );
 		}
+	}
+
+	/**
+	 * Get the BOGO products.
+	 *
+	 * @since 2.2.1
+	 * @param int    $coupon_id Coupon id.
+	 * @param string $type      Type of products, default product_ids, other value is exclude_product_ids.
+	 * @return array            BOGO products.
+	 */
+	private static function get_bogo_products( $coupon_id, $type = 'product_ids' ) {
+		if( isset( self::$bogo_products[ $coupon_id ][ $type ] ) ){
+			return self::$bogo_products[ $coupon_id ][ $type ];
+		}
+
+		$products = array_map( 'absint', array_filter( explode( ',', self::get_coupon_meta_value( $coupon_id, 'wbte_sc_bogo_' . $type ) ) ) );
+
+		if( empty( $products ) ){
+			self::$bogo_products[ $coupon_id ][ $type ] = array();
+			return array();
+		}
+		
+		/**
+		 * Filter to alter the BOGO products.
+		 *
+		 * @since 2.2.1
+		 *
+		 * @param array  $products     BOGO products, product ids or exclude product ids.
+		 * @param int    $coupon_id    Coupon id.
+		 */
+		$products = array_map( 'absint', array_filter( apply_filters( 'wbte_sc_alter_bogo_' . $type, $products, $coupon_id ) ) );
+
+		self::$bogo_products[ $coupon_id ][ $type ] = $products;
+		return $products;
 	}
 }
 Wbte_Smart_Coupon_Bogo_Public::get_instance();

@@ -382,26 +382,45 @@ class Wt_Smart_Coupon_Style
 
                 //Expiry date
 
+                $empty_expiry = array(
+                    '[wt_sc_coupon_expiry]'                 => '',
+                    '[wt_sc_coupon_expiry_ctm]'             => '',
+                    '[wt_sc_coupon_exp_clock_icon]'         => 'none',
+                    '[wt_sc_coupon_exp_overlay_visibility]' => 'hidden'
+                );
+                $find_replace = array_merge( $find_replace, $empty_expiry );
+
                 $has_expiry = isset( $coupon_data['coupon_expires'] ) && 0 < $coupon_data['coupon_expires'];
 
                 if( $has_expiry ) {
 
                     if( current_time( 'timestamp' ) > $coupon_data['coupon_expires'] ) { // Expired.
-                        $find_replace['[wt_sc_coupon_exp_clock_icon]'] = 'none';
                         $find_replace['[wt_sc_coupon_exp_overlay_visibility]'] = 'visible';
-                        $find_replace['[wt_sc_coupon_expiry]'] = '';
-                        $find_replace['[wt_sc_coupon_expiry_ctm]'] = '';
                     }else{
                         $find_replace['[wt_sc_coupon_exp_clock_icon]'] = 'flex';
-                        $find_replace['[wt_sc_coupon_exp_overlay_visibility]'] = 'hidden';
                         $find_replace['[wt_sc_coupon_expiry]'] = Wt_Smart_Coupon_Public::get_coupon_start_expiry_date_texts( $coupon_data['coupon_expires'], 'expiry_date' );
                         $find_replace['[wt_sc_coupon_expiry_ctm]'] = Wt_Smart_Coupon_Public::get_coupon_start_expiry_date_texts( $coupon_data['coupon_expires'], 'expiry_date' );
                     }
-                } else {
+                }
+
+                //Usage limit.
+                $usage_limit = $coupon->get_usage_limit();
+                $usage_count = $coupon->get_usage_count();
+                $usage_limit_per_user = $coupon->get_usage_limit_per_user();
+
+                $usage_limit_reached = 0 < $usage_limit && $usage_count >= $usage_limit;
+                $user_id = get_current_user_id();
+                if ( 0 < $user_id && ! $usage_limit_reached && 0 < $usage_limit_per_user ) {
+                    $data_store = $coupon->get_data_store();
+                    $used_by_user = (int) $data_store->get_usage_by_user_id( $coupon, $user_id );
+                    $usage_limit_reached = 0 < $usage_limit_per_user && $used_by_user >= $usage_limit_per_user;
+                }
+
+                if ( $usage_limit_reached ) {
+                    $find_replace['[wt_sc_coupon_exp_overlay_visibility]'] = 'block';
                     $find_replace['[wt_sc_coupon_expiry]'] = '';
                     $find_replace['[wt_sc_coupon_expiry_ctm]'] = '';
                     $find_replace['[wt_sc_coupon_exp_clock_icon]'] = 'none';
-                    $find_replace['[wt_sc_coupon_exp_overlay_visibility]'] = 'hidden';
                 }
 
                 //Description

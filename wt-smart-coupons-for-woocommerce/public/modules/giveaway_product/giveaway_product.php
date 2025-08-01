@@ -30,6 +30,13 @@ class Wt_Smart_Coupon_Giveaway_Product_Public extends Wt_Smart_Coupon_Giveaway_P
     
     public static $bogo_discounts=array(); /* BOGO coupon type giveaway total discount */
 
+    /**
+	 * To store the last successful output of bogo products display.
+	 *
+	 * @var string $last_successful_output_giveaway_products
+	 */
+	private static $last_successful_output_giveaway_products = '';
+
     public function __construct()
     {
         $this->module_id=Wt_Smart_Coupon::get_module_id($this->module_base);
@@ -205,8 +212,7 @@ class Wt_Smart_Coupon_Giveaway_Product_Public extends Wt_Smart_Coupon_Giveaway_P
     {
         $free_products = self::get_giveaway_products($coupon_id); 
 
-        if(!empty($free_products) && !$this->is_auto_add_giveaway($coupon_id, $coupon_code, $free_products, 'specific_product'))
-        {  
+        if( ! empty( $free_products ) ) {  
             $this->set_hook_to_show_giveaway_products();
         }
     }
@@ -2137,7 +2143,7 @@ class Wt_Smart_Coupon_Giveaway_Product_Public extends Wt_Smart_Coupon_Giveaway_P
                 $free_gift_text = sprintf(__("Surprise! You've received a special giveaway product with %s Off!", 'wt-smart-coupons-for-woocommerce'), $discount_text);
             }
 
-            return apply_filters( 'wt_sc_alter_giveaway_cart_lineitem_text', '<p style="color:green;clear:both">' . $free_gift_text . '</p>', $cart_item );
+            return apply_filters( 'wt_sc_alter_giveaway_cart_lineitem_text', '<p class="wt_sc_giveaway_cart_item_text" style="color: green; clear: both; font-size: small; cursor: default;">' . $free_gift_text . '</p>', $cart_item );
         }
 
         return '';
@@ -2180,6 +2186,16 @@ class Wt_Smart_Coupon_Giveaway_Product_Public extends Wt_Smart_Coupon_Giveaway_P
             ob_start();
             $this->display_giveaway_products( true );
             $out = ob_get_clean();
+
+            if ( ! empty( $out ) ) {
+				self::$last_successful_output_giveaway_products = $out;
+			}
+
+			// Use last successful output if current call is empty.
+			if ( empty( $out ) && ! empty( self::$last_successful_output_giveaway_products ) ) {
+				$out = self::$last_successful_output_giveaway_products;
+			}
+            
             $block_data['giveaway_products_html'] = $out;
         }
 

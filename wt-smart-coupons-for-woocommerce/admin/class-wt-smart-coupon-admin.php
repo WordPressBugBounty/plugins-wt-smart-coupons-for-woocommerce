@@ -122,25 +122,6 @@ if( ! class_exists('Wt_Smart_Coupon_Admin') ) {
         {
             add_meta_box("wt-sc-help-links", __("Quick links", 'wt-smart-coupons-for-woocommerce'), array($this, "help_links_meta_box_html"), "shop_coupon", "side", "default", null);
         }
-
-        /**
-         * Upgrade to pro metabox html
-         * @since 1.3.3
-         */
-        public function upgrade_to_pro_meta_box_html()
-        {
-           include WT_SMARTCOUPON_MAIN_PATH.'/admin/views/_upgrade_to_pro_metabox.php';
-        }
-
-        /**
-         * Upgrade to pro metabox
-         * @since 1.3.3
-         */
-        public function upgrade_to_pro_meta_box()
-        {
-            add_meta_box( "wt-sc-upgrade-to-pro", __( "Upgrade your coupon campaigns with enhanced features", 'wt-smart-coupons-for-woocommerce' ), array( $this, "upgrade_to_pro_meta_box_html" ), "shop_coupon", "side", "core", null );
-        }
-    
     
         /**
          * Save Custom meata fields added in coupon 
@@ -661,28 +642,37 @@ if( ! class_exists('Wt_Smart_Coupon_Admin') ) {
         public function coupon_page_settings_button()
         {
             global $current_screen;
-            include_once(ABSPATH.'wp-admin/includes/plugin.php');
+            include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
-            if('shop_coupon' !== $current_screen->post_type || is_plugin_active('wt-smart-coupon-generate/wt-smart-coupon-generate.php'))
+            if( 'shop_coupon' !== $current_screen->post_type )
             {
                 return;
             }
             ?>
             <script type="text/javascript">
                 jQuery(document).ready(function($){
-                    jQuery('.page-title-action').after('<a href="<?php echo esc_attr(admin_url('admin.php?page='.WT_SC_PLUGIN_NAME));?>" class="page-title-action wt_sc_plugin_settings_btn"><?php _e('Smart coupon settings', 'wt-smart-coupons-for-woocommerce');?></a>');
+                    jQuery( '.page-title-action' ).after( '<a href="<?php echo esc_url( admin_url( 'admin.php?page=' . WT_SC_PLUGIN_NAME ) );?>" class="page-title-action wt_sc_plugin_settings_btn"><?php esc_html_e( 'Smart coupon settings', 'wt-smart-coupons-for-woocommerce' ); ?></a>' );
                     
                     <?php  
-                    if(0 === absint( get_option( 'wt_sc_bulk_plugin_text_close', 0) ) )
+                    $hidden_banners = get_option( 'wbte_sc_hidden_promotion_banners', array() );
+                    if( ! in_array( 'ema_cpns_page', $hidden_banners ) )
                     {
-                        $bulk_plugin_text = '<div style="width:calc(100% - 30px); line-height:48px; padding:10px 10px 10px 10px; background:#E3E3FF; border-left:solid 3px #5454A5; margin-bottom:10px; box-shadow:0px 2px 2px #ccc;" class="wt_sc_bulk_plugin_text"><span><img src="' . esc_url( WT_SMARTCOUPON_MAIN_URL . 'admin/images/idea_bulb_purple.svg' ) . '" style="width:16px;"></span>&nbsp;<span style="font-size:13px;"><span style="color:#5454A5; font-size:15px; font-weight:500;">' . esc_html__( 'Did you know?', 'wt-smart-coupons-for-woocommerce' ) . '</span>&ensp;' . esc_html__( 'You can easily create bulk coupons within a few clicks.', 'wt-smart-coupons-for-woocommerce' ) . ' ' . sprintf( esc_html__( 'Get %s WooCommerce Coupon Generator %s plugin.', 'wt-smart-coupons-for-woocommerce' ), '<a href="' . esc_url( 'https://www.webtoffee.com/product/woocommerce-coupon-generator/?utm_source=free_plugin_add_coupon_menu&utm_medium=smart_coupon_basic&utm_campaign=Coupon_Generator&utm_content=' . WEBTOFFEE_SMARTCOUPON_VERSION ) . '" target="_blank"><b>', '</b></a>' ) . '&ensp;<a style="height:25px; margin-top:10px; background:#5454A5; color:#fff; border:none;" class="button button-secondary" href="' . esc_url( 'https://www.webtoffee.com/product/woocommerce-coupon-generator/?utm_source=free_plugin_add_coupon_menu&utm_medium=smart_coupon_basic&utm_campaign=Coupon_Generator&utm_content=' . WEBTOFFEE_SMARTCOUPON_VERSION ) . '" target="_blank">' . esc_html__( "Check out plugin", "wt-smart-coupons-for-woocommerce" ) . '<span class="dashicons dashicons-arrow-right-alt" style="margin-top:8px;font-size:14px;"></span> </a>&ensp;<button type="button" style="height:25px; margin-top:10px; background:#E3E3FF; color:#5454A5; border:1px solid #5454A5;" class="button button-secondary wt_sc_bulk_plugin_text_close">' . esc_html__( "Maybe later", "wt-smart-coupons-for-woocommerce" ) . ' </button><span style="line-height:48px; float:right; color:#505050;cursor:pointer;" class="dashicons dashicons-no-alt wt_sc_bulk_plugin_text_close"></span></span></div>';
+                        $campaign_url = 'https://www.webtoffee.com/ecommerce-marketing-automation/?utm_source=free_plugin_add_coupon_menu&utm_medium=smart_coupon_basic&utm_campaign=EMA&utm_content=' . WEBTOFFEE_SMARTCOUPON_VERSION;
+
+                        $bulk_plugin_text = sprintf( 
+                            '<div data-wbte-sc-promotion-banner-id="ema_cpns_page" class="wbte_sc_promotion_banner_div"><span><img src="%s" style="width: 16px;" /></span>&nbsp;<span class="wbte_sc_promotion_banner_title">%s</span><div class="wbte_sc_promotion_banner_content"><p style="margin: 0; font-size: 14px;"> %s </p><div class="wbte_sc_promotion_banner_actions"> <a class="button button-secondary wbte_sc_promotion_banner_link_btn" href="%s" target="_blank"> %s <span class="dashicons dashicons-arrow-right-alt" style="font-size: 14px; line-height: 1.5;"></span> </a>&ensp;<button type="button" class="button button-secondary wbte_sc_promotion_banner_close wbte_sc_promotion_banner_later"> %s </button></div></div><span class="dashicons dashicons-no-alt wbte_sc_promotion_banner_close wbte_sc_promotion_banner_close_btn"></span></div>',
+                            esc_url( WT_SMARTCOUPON_MAIN_URL . 'admin/images/idea_bulb_purple.svg' ),
+                            esc_html__( 'Did you know?', 'wt-smart-coupons-for-woocommerce' ),
+                            sprintf( 
+                                __( 'With %s WooCommerce Marketing Automation %s app, you can build signup forms, create popups, and run automated email campaigns with exclusive coupons.', 'wt-smart-coupons-for-woocommerce' ), 
+                                '<a href="' . esc_url( $campaign_url ) . '" target="_blank"><b>', '</b></a>' 
+                            ),
+                            esc_url( $campaign_url ),
+                            esc_html__( "Sign Up for Free", "wt-smart-coupons-for-woocommerce" ),
+                            esc_html__( "Maybe later", "wt-smart-coupons-for-woocommerce" )
+                        );
                     ?>
-                        jQuery('.page-title-action.wt_sc_plugin_settings_btn').after('<?php echo wp_kses_post($bulk_plugin_text); ?>');
-                        jQuery('.wt_sc_bulk_plugin_text').css({'box-shadow': '0px 2px 2px #ccc'});
-                        jQuery('.wt_sc_bulk_plugin_text_close').on('click', function(){
-                            jQuery('.wt_sc_bulk_plugin_text').hide();
-                            jQuery.get('?wt_sc_bulk_plugin_text_close');
-                        });
+                        jQuery( '.page-title-action.wt_sc_plugin_settings_btn' ).after( '<?php echo wp_kses_post( $bulk_plugin_text ); ?>' );
                     <?php  
                     }
                     ?>
@@ -805,17 +795,22 @@ if( ! class_exists('Wt_Smart_Coupon_Admin') ) {
 
 
         /**
-         *  Ajax hook to close bulk generate info bar on coupons admin page 
-         * 
-         *  @since 1.4.8
+         *  Hide promotion banner
+         *
+         *  @since 2.2.1
          */
-        public function bulk_generate_info_bar_close()
-        {
-            if(isset($_GET['wt_sc_bulk_plugin_text_close']))
-            {
-                update_option('wt_sc_bulk_plugin_text_close', 1, false);
-                exit();
+        public static function hide_promotion_banner(){
+
+            check_ajax_referer( 'wt_smart_coupons_admin_nonce', '_wpnonce' );
+
+            if ( ! Wt_Smart_Coupon_Security_Helper::check_role_access( 'smart_coupons' ) ) {
+                wp_send_json_error( __( 'Access denied', 'wt-smart-coupons-for-woocommerce' ) );
             }
+
+            $hided_banners = get_option( 'wbte_sc_hidden_promotion_banners', array() );
+            $hided_banners[] = isset( $_POST['banner_id'] ) ? sanitize_text_field( wp_unslash( $_POST['banner_id'] ) ) : '';
+            update_option( 'wbte_sc_hidden_promotion_banners', $hided_banners );
+            wp_send_json_success();
         }
 
         /**

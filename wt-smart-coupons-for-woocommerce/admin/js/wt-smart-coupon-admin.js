@@ -128,17 +128,35 @@
 			wt_reload_coupon_preview( 'expired_coupon' );
 		});
 
-		jQuery(document).on('click', '.wt-sc-pro-features-view-all', function(){
-    		jQuery(".wt-sc-pro-features-all-features").show();
-    		jQuery(".wt-sc-pro-features-view-all").hide();
-    		jQuery(".wt-sc-pro-features-view-less").show();
-    	});
+		$( document ).on('click', '.wbte_sc_promotion_banner_close', function( e ){
+			e.preventDefault();
+			const banner_div = $(this).closest('.wbte_sc_promotion_banner_div');
+			const banner_id = banner_div.attr('data-wbte-sc-promotion-banner-id');
 
-		jQuery(document).on('click', '.wt-sc-pro-features-view-less', function(){
-    		jQuery(".wt-sc-pro-features-all-features").hide();
-    		jQuery(".wt-sc-pro-features-view-less").hide();
-    		jQuery(".wt-sc-pro-features-view-all").show();
-    	});
+			if( banner_id ) {
+				$.ajax({
+					url: WTSmartCouponAdminOBJ.ajaxurl,
+					type: 'POST',
+					data: {
+						action: 'wbte_sc_hide_promotion_banner',
+						banner_id: banner_id,
+						_wpnonce: WTSmartCouponAdminOBJ.nonce
+					},
+					success: function(response) {
+						if ( response.success ) {
+							$( banner_div ).hide();
+						} else {
+							wt_sc_notify_msg.error( response.data );
+						}
+					},
+					error: function() {
+						$( banner_div ).hide();
+					}
+				});
+			} else {
+				$( banner_div ).hide();
+			} 
+		});
 
 	});
 

@@ -8,19 +8,18 @@ import { applyCheckoutFilter, extensionCartUpdate } from '@woocommerce/blocks-ch
 
 
 // Global import
-const { registerCheckoutBlock } = wc.blocksCheckout;
+const { registerCheckoutBlock, registerCheckoutFilters } = wc.blocksCheckout;
+let isClickBinded = false;
 
     
 export const WtScBlocksMain = (() => {
-    const [couponCode, setCouponCode] = useState('');
-    const [isClickBinded, setIsClickBinded] = useState(false);
     const { applyCoupon, removeCoupon } = useDispatch( CART_STORE_KEY );
     const { createErrorNotice, createSuccessNotice } = useDispatch( 'core/notices' );
 
     if ( ! isClickBinded ) {
         
         /* Set `true` for preventing multiple event binding */
-        setIsClickBinded(true);
+        isClickBinded = true;
         
         /* Click event triggered by plugin public JS file */
         document.addEventListener('wt_sc_api_coupon_clicked', function(e){ 
@@ -65,9 +64,13 @@ export const WtScBlocksMain = (() => {
                     });
                     document.dispatchEvent(coupon_click_done_event);
 
+                    /** Decode HTML entities (e.g., &quot; → ") in error messages before displaying, as WooCommerce API responses may return encoded HTML in error.message */
+                    const textarea = document.createElement('textarea');
+                    textarea.innerHTML = error.message;
+
                     /* Show error message */
                     createErrorNotice(
-                        error.message,
+                        textarea.value,
                         {
                             id: 'coupon-form',
                             type: 'snackbar',
@@ -116,3 +119,28 @@ wp.data.subscribe( () => {
         } );
     }
 } );
+
+/**
+ * The 'itemName' filter is used to edit the product name, but here we are adding coupon blocks HTML to the cart/checkout and returning the default value (product name).
+ * 
+ * @since 2.2.1
+ */
+const addCouponBlocksHtml = ( defaultValue, extensions, args ) => {
+
+    jQuery(document).ready(function($) { 
+        $( '.wbte_sc_block_coupon_wrapper_div' ).remove();
+        
+        if( 'undefined' !== typeof WTSmartCouponOBJ && "1" === WTSmartCouponOBJ?.is_cart ){
+            $( '.wp-block-woocommerce-filled-cart-block' ).before( `<div class="wbte_sc_block_coupon_wrapper_div">${args?.cart?.extensions?.wt_sc_blocks?.coupon_blocks_cart}</div>` );
+        }else{
+            $( '.wp-block-woocommerce-checkout' ).before( `<div class="wbte_sc_block_coupon_wrapper_div">${args?.cart?.extensions?.wt_sc_blocks?.coupon_blocks_checkout}</div>` );
+        }
+        
+    });
+
+    return defaultValue;
+};
+
+registerCheckoutFilters('wbte-sc-cart-checkout-coupon-blocks', {
+    itemName: addCouponBlocksHtml,
+});

@@ -85,7 +85,7 @@ if( ! class_exists('Wt_Smart_Coupon') ) {
 			if ( defined( 'WEBTOFFEE_SMARTCOUPON_VERSION' ) ) {
 				$this->version = WEBTOFFEE_SMARTCOUPON_VERSION;
 			} else {
-				$this->version = '2.2.0';
+				$this->version = '2.2.1';
 			}
 			$this->plugin_name = WT_SC_PLUGIN_NAME;
 	
@@ -290,11 +290,6 @@ if( ! class_exists('Wt_Smart_Coupon') ) {
 			$this->loader->add_action('woocommerce_coupon_options', $this->plugin_admin,'add_new_coupon_options',10,2);
 	
 			$this->loader->add_action('wp_ajax_wt_check_product_type',$this->plugin_admin,'check_product_type');
-			
-			/**
-			 * 	@since 1.3.3
-			 */
-			$this->loader->add_action("add_meta_boxes", $this->plugin_admin, "upgrade_to_pro_meta_box");
 
 			/** 
 			*	Initiate admin modules 
@@ -374,11 +369,11 @@ if( ! class_exists('Wt_Smart_Coupon') ) {
 
 
 			/**
-	         *  Close bulk generate info bar on coupons admin page 
+	         *  Close promotion banner
 	         * 
-	         *  @since 1.4.8
+	         *  @since 2.2.1
 	         */
-			$this->loader->add_action( "admin_init", $this->plugin_admin, "bulk_generate_info_bar_close", 1 );
+			$this->loader->add_action( 'wp_ajax_wbte_sc_hide_promotion_banner', $this->plugin_admin, 'hide_promotion_banner' );
 
 
 			/**
@@ -426,6 +421,15 @@ if( ! class_exists('Wt_Smart_Coupon') ) {
 				require_once plugin_dir_path( __DIR__ ) . 'admin/modules/banner/class-wt-gdpr-promotion-banner.php';
 			}
 
+			/**
+			 * Show SC Pro CTA meta box in coupon edit page.
+			 * 
+			 * @since 2.2.1
+			 */
+			if( ! class_exists( 'Wt_Smart_Coupon_Cta_Banner' ) && ! is_plugin_active( 'wt-smart-coupon-pro/wt-smart-coupon-pro.php' ) ) {
+				require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/modules/banner/class-wt-smart-coupon-cta-banner.php';
+			}
+
 			$this->loader->add_filter( 'admin_footer_text', $this->plugin_admin, 'sc_review_request_footer' );
 			
 			$this->loader->add_filter( 'update_footer', $this->plugin_admin, 'sc_version_footer', 11 );
@@ -470,15 +474,6 @@ if( ! class_exists('Wt_Smart_Coupon') ) {
 			 */
 			$this->loader->add_action('wc_ajax_apply_coupon_on_click', $this->plugin_public, 'apply_coupon');
 
-
-			/**
-			 *  Display available coupon in `cart/checkout block`
-			 * 
-			 * 	@since 1.6.0
-			 */
-            $this->loader->add_filter( 'render_block', $this->plugin_public, 'display_available_coupon_in_block_cart_checkout' , 11, 2 );
-
-
             /** 
 			 * 	Set checkout values on block checkout
 			 * 	
@@ -492,6 +487,13 @@ if( ! class_exists('Wt_Smart_Coupon') ) {
 			 * 	@since 2.2.0
 			 */
 			$this->loader->add_action( 'wc_ajax_wbte_sc_update_payment_method_on_session', $this->plugin_public, 'update_payment_method_on_session' );
+
+			/**
+			 *  Add 'available coupon in block cart/checkout' blocks data
+			 * 
+			 * 	@since 2.2.1
+			 */
+			$this->loader->add_filter( 'wbte_sc_alter_blocks_data', $this->plugin_public, 'add_coupon_blocks_data' );
 		}
 
 		/**
