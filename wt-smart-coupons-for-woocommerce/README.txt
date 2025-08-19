@@ -1,12 +1,12 @@
 === Smart Coupons For WooCommerce Coupons ===
 Contributors: WebToffee
-Version: 2.2.1
+Version: 2.2.2
 Donate link:https://www.webtoffee.com/plugins/
 Tags: WooCommerce coupons, WooCommerce discounts, BOGO, smart coupons, advanced coupons
 Requires at least: 3.3
 Tested up to: 6.8
 Requires PHP: 5.6
-Stable tag: 2.2.1
+Stable tag: 2.2.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -189,17 +189,13 @@ Yes. You can create coupons that get applied as per the purchase amount of a cus
 
 == Changelog ==
 
-= 2.2.1 - 2025-08-01 =
-* [Fix] - Not able to set max each quantity the same as min each quantity in BOGO.
-* [Fix] - Coupon with usage limit reached is appearing under both "Used" and "Expired" coupon sections.
-* [Compatibility] – Tested OK with WooCommerce 10.0
+= 2.2.2 - 2025-08-19 =
+* [Compatibility] – Tested OK with WooCommerce 10.1
 
 
 [See changelog for all versions](https://plugins.svn.wordpress.org/wt-smart-coupons-for-woocommerce/trunk/changelog.txt)
 
 == Upgrade Notice ==
 
-= 2.2.1 =
-* [Fix] - Not able to set max each quantity the same as min each quantity in BOGO.
-* [Fix] - Coupon with usage limit reached is appearing under both "Used" and "Expired" coupon sections.
-* [Compatibility] – Tested OK with WooCommerce 10.0
+= 2.2.2 =
+* [Compatibility] – Tested OK with WooCommerce 10.1

@@ -49,3 +49,11 @@ $custom_tick = '<img src="'. esc_url( WT_SMARTCOUPON_MAIN_URL ) .'admin/images/p
 
     </div>
 </div>
+<script>
+    jQuery(document).ready(function ($) {
+        $('.wt-sc-pro-features-view-all, .wt-sc-pro-features-view-less').on('click', function() {
+            $('.wt-sc-pro-features-all-features').toggle();
+            $('.wt-sc-pro-features-view-all, .wt-sc-pro-features-view-less').toggle();
+        });
+    });
+</script>

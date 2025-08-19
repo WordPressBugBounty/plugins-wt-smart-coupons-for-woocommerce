@@ -85,7 +85,7 @@ if( ! class_exists('Wt_Smart_Coupon') ) {
 			if ( defined( 'WEBTOFFEE_SMARTCOUPON_VERSION' ) ) {
 				$this->version = WEBTOFFEE_SMARTCOUPON_VERSION;
 			} else {
-				$this->version = '2.2.1';
+				$this->version = '2.2.2';
 			}
 			$this->plugin_name = WT_SC_PLUGIN_NAME;
 	
@@ -422,13 +422,11 @@ if( ! class_exists('Wt_Smart_Coupon') ) {
 			}
 
 			/**
-			 * Show SC Pro CTA meta box in coupon edit page.
+			 * Includes cross promotion banner main class file.
 			 * 
-			 * @since 2.2.1
+			 * @since 2.2.2
 			 */
-			if( ! class_exists( 'Wt_Smart_Coupon_Cta_Banner' ) && ! is_plugin_active( 'wt-smart-coupon-pro/wt-smart-coupon-pro.php' ) ) {
-				require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/modules/banner/class-wt-smart-coupon-cta-banner.php';
-			}
+			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/cross-promotion-banners/class-wbte-cross-promotion-banners.php';
 
 			$this->loader->add_filter( 'admin_footer_text', $this->plugin_admin, 'sc_review_request_footer' );
 			

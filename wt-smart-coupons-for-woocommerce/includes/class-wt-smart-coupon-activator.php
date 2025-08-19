@@ -51,6 +51,7 @@ if( !class_exists('Wt_Smart_Coupon_Activator') )  {
 		     *	@since 1.4.3
 		     */
 			Wt_Smart_Coupon::install_tables();
+			self::update_cross_promo_banner_version(); // Update promotion banner version.
 
 			$is_existing_user = get_option( 'wt-smart-coupon-for-woo' );
 			if ( ! $is_existing_user ) {
@@ -63,6 +64,19 @@ if( !class_exists('Wt_Smart_Coupon_Activator') )  {
 			update_option( 'wbte_sc_basic_activation_hook_version', WEBTOFFEE_SMARTCOUPON_VERSION );
 
 			self::migrate();
+		}
+
+		/**
+		 *	Check and update the cross promotion banner version.
+		 */
+		public static function update_cross_promo_banner_version() {
+			$current_latest = get_option('wbfte_promotion_banner_version');
+
+			if ( false === $current_latest ||  // User is installing the plugin first time.
+				version_compare( $current_latest, WBTE_SC_CROSS_PROMO_BANNER_VERSION, '<') // $current_latest is lesser than the installed version in this plugin.
+			) {
+				update_option( 'wbfte_promotion_banner_version', WBTE_SC_CROSS_PROMO_BANNER_VERSION );
+			}
 		}
 
 		/**

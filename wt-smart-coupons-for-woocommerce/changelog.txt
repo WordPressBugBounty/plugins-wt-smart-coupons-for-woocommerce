@@ -1,6 +1,11 @@
 
 == Changelog ==
 
+= 2.2.1 - 2025-08-01 =
+* [Fix] - Not able to set max each quantity the same as min each quantity in BOGO.
+* [Fix] - Coupon with usage limit reached is appearing under both "Used" and "Expired" coupon sections.
+* [Compatibility] – Tested OK with WooCommerce 10.0
+
 = 2.2.0 - 2025-05-05 =
 * [Add] – New coupon layout designs.
 * [Fix] – Payment method selection reloading twice.

@@ -15,7 +15,7 @@
  * Plugin Name:       Smart Coupons For WooCommerce Coupons 
  * Plugin URI:        
  * Description:       Smart Coupons For WooCommerce Coupons plugin adds advanced coupon features to your store to strengthen your marketing efforts and boost sales.
- * Version:           2.2.1
+ * Version:           2.2.2
  * Author:            WebToffee
  * Author URI:        https://www.webtoffee.com/
  * License:           GPLv3
@@ -23,7 +23,7 @@
  * Text Domain:       wt-smart-coupons-for-woocommerce
  * Domain Path:       /languages
  * Requires PHP:      5.6
- * WC tested up to:   10.0
+ * WC tested up to:   10.1
  * Requires Plugins:  woocommerce
  */
 // If this file is called directly, abort.
@@ -131,7 +131,7 @@ if( in_array( 'wt-smart-coupon-pro/wt-smart-coupon-pro.php', apply_filters( 'act
  */
 
  if ( !defined( 'WEBTOFFEE_SMARTCOUPON_VERSION' ) ) {
-    define( 'WEBTOFFEE_SMARTCOUPON_VERSION', '2.2.1' );
+    define( 'WEBTOFFEE_SMARTCOUPON_VERSION', '2.2.2' );
 }
 
 if ( !defined( 'WT_SMARTCOUPON_FILE_NAME' ) ) {
@@ -161,6 +161,11 @@ if ( !defined( 'WT_SC_PLUGIN_NAME' ) )
     define( 'WT_SC_PLUGIN_NAME', 'wt-smart-coupon-for-woo' );
     define( 'WT_SC_PLUGIN_ID', 'wt_smart_coupon_for_woo' );
     define( 'WT_SC_SETTINGS_FIELD', WT_SC_PLUGIN_NAME ); /* option name to store settings */
+}
+
+if ( ! defined( 'WBTE_SC_CROSS_PROMO_BANNER_VERSION' ) ) {
+    // This constant must be unique for each plugin. Update this value when updating to a new banner.
+    define ( 'WBTE_SC_CROSS_PROMO_BANNER_VERSION', '1.0.0' );
 }
 
 /**
