@@ -1806,9 +1806,9 @@ class Wt_Smart_Coupon_Giveaway_Product_Public extends Wt_Smart_Coupon_Giveaway_P
      */
     public function exclude_giveaway_from_other_discounts($valid, $product, $coupon, $values)
     {
-        if( self::is_a_free_item( $values ) && 0 >= $values['data']->get_price() )
+        if( self::is_a_free_item( $values ) && is_object( $values['data'] ) && method_exists( $values['data'], 'get_price' ) && 0 >= $values['data']->get_price() )
         {
-            $valid = false;
+            return false;
         }
 
         return $valid;

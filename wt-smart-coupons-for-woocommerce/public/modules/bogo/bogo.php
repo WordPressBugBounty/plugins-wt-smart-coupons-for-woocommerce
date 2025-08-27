@@ -167,7 +167,7 @@ class Wbte_Smart_Coupon_Bogo_Public extends Wbte_Smart_Coupon_Bogo_Common {
 
 		add_action( 'woocommerce_applied_coupon', array( $this, 'add_free_product_into_cart' ) );
 
-		add_filter( 'woocommerce_coupon_is_valid_for_product', array( $this, 'exclude_giveaway_from_other_discounts' ), 10, 4 );
+		add_filter( 'woocommerce_coupon_is_valid_for_product', array( $this, 'make_product_valid_for_bogo' ), 10, 3 );
 
 		add_action( 'template_redirect', array( $this, 'check_any_free_products_without_coupon' ), 15 );
 
@@ -1675,20 +1675,15 @@ class Wbte_Smart_Coupon_Bogo_Public extends Wbte_Smart_Coupon_Bogo_Common {
 	}
 
 	/**
-	 *  Exclude the free giveaway products from applying other coupons.
+	 *  Make the product valid for BOGO.
 	 *
 	 *  @since    2.0.0
 	 *  @param bool       $valid     Is valid or not.
 	 *  @param WC_Product $product   Product instance.
 	 *  @param WC_Coupon  $coupon    Coupon data.
-	 *  @param array      $values    Cart item values.
-	 *  @return bool                 If prodct is free item and price is 0 then return false, if coupon is BOGO then return true otherwise return default value.
+	 *  @return bool                 If coupon is BOGO, return true. Otherwise return default value.
 	 */
-	public static function exclude_giveaway_from_other_discounts( $valid, $product, $coupon, $values ) {
-
-		if ( self::is_a_free_item( $values ) && 0 >= $values['data']->get_price() ) {
-			return false;
-		}
+	public static function make_product_valid_for_bogo( $valid, $product, $coupon ) {
 
 		if ( self::is_bogo( $coupon->get_id() ) ) {
 			return true;
