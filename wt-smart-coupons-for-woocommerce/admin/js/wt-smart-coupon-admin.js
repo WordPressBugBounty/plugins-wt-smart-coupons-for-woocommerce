@@ -8,26 +8,25 @@
     	 * 	@since 1.3.5
     	 */
     	$(document).on('click', '.wt_sc_copy_to_clipboard', function(){
-    		var target_class=$(this).attr('data-target');
-    		var target_elm=$('.'+target_class);
-    		if(target_elm.length>0 && "" !== target_elm.text().trim())
-    		{
-    			navigator.clipboard.writeText(target_elm.text().trim());
-    			wbte_sc_notify_msg.success(WTSmartCouponAdminOBJ.msgs.copied);
-    		}
-    	});
+			const target_class = $(this).attr('data-target');
+			const target_elm = $('.' + target_class);
+			
+			if ( 0 < target_elm.length && "" !== target_elm.text().trim() ) {
+				wbte_sc_copy_to_clipboard( target_elm.text().trim() );
+			}
+		});
 
 
 		$('#upload').on('change',function( ){
 			$('.wt-file-container-label').html('selected').addClass('selected');
 		});
 	
-
+		
 		// Check if selected is a Simple product
 		$('#wt_give_away_product').on('change',function() {
-			var product_id = $(this).val();
+			const product_id = $(this).val();
 			$('.error_message.wt_coupon_error').hide();
-			var data = {
+			const data = {
 				'action'        : 'wt_check_product_type',
 				'product'       : product_id
 			};
@@ -52,19 +51,15 @@
 		$('.wt_colorpick').wpColorPicker({
 			change:function(event,ui)
 			{	
-				var element = jQuery(event.target);
-				var elementID = element.attr('id');
+				const element = jQuery(event.target);
 				element.val(ui.color);
 				reload_all_coupon_preview();
 			}
 		});
-		// $('#wt_active_coupon_border_color').wpColorPicker( options );
 
 
-		var wt_create_coupon_preview = function(bg_color, text_color) {
-			// var bg_color = $('#wt_active_coupon_bg_color').val() ;
-			// var text_color = $('#wt_active_coupon_border_color').val() ;
-			var coupon_html = '<div class="wt-single-coupon" style="background: '+ bg_color + ';\
+		const wt_create_coupon_preview = function(bg_color, text_color) {
+			const coupon_html = '<div class="wt-single-coupon" style="background: '+ bg_color + ';\
 								 color: '+ text_color+ ';\
 								 box-shadow: 0 0 0 4px '+ bg_color + ', 2px 1px 6px 4px rgba(10, 10, 0, 0.5);\
 								 text-shadow: -1px -1px '+ bg_color + '; \
@@ -82,39 +77,40 @@
 		};
 	
 
-		var wt_reload_coupon_preview = function( coupon_type ) {
+		const wt_reload_coupon_preview = function( coupon_type ) {
+			let coupon_preview_element = '';
+			let bg_color = '';
+			let text_color = '';
 			switch( coupon_type) {
 				case 'active_coupon' : 
-					var coupon_preview_element = '.active_coupon_preview';
-					var bg_color = $('#wt_active_coupon_bg_color').val();
-					var text_color = $('#wt_active_coupon_border_color').val();
+					coupon_preview_element = '.active_coupon_preview';
+					bg_color = $('#wt_active_coupon_bg_color').val();
+					text_color = $('#wt_active_coupon_border_color').val();
 					break;
 				case 'used_coupon' : 
-					var coupon_preview_element = '.used_coupon_preview';
-					var bg_color = $('#wt_used_coupon_bg_color').val();
-					var text_color = $('#wt_used_coupon_border_color').val();
+					coupon_preview_element = '.used_coupon_preview';
+					bg_color = $('#wt_used_coupon_bg_color').val();
+					text_color = $('#wt_used_coupon_border_color').val();
 					break;
 				case 'expired_coupon' : 
-					var coupon_preview_element = '.expired_coupon_preview';
-					var bg_color = $('#wt_expired_coupon_bg_color').val();
-					var text_color = $('#wt_expired_coupon_border_color').val();
+					coupon_preview_element = '.expired_coupon_preview';
+					bg_color = $('#wt_expired_coupon_bg_color').val();
+					text_color = $('#wt_expired_coupon_border_color').val();
 					break;
 
 			}
-			var preview = wt_create_coupon_preview( bg_color,text_color );
+			const preview = wt_create_coupon_preview( bg_color,text_color );
 			
 			jQuery( coupon_preview_element ).find('.wc-sc-coupon-preview-container').remove();
 			jQuery( coupon_preview_element ).append( '<span class="wc-sc-coupon-preview-container">' + preview + '</span>' );
 		};
-		var reload_all_coupon_preview = function( ) {
+		const reload_all_coupon_preview = function( ) {
 			wt_reload_coupon_preview( 'active_coupon');
 			wt_reload_coupon_preview( 'used_coupon');
 			wt_reload_coupon_preview( 'expired_coupon');
 		}
 
-		jQuery(document).ready(function(){
-			reload_all_coupon_preview();
-		});
+		reload_all_coupon_preview();
 
 		jQuery('#wt_active_coupon_bg_color, #wt_active_coupon_border_color').on('change keyup irischange', function(){
 			wt_reload_coupon_preview( 'active_coupon' );
@@ -133,66 +129,56 @@
 			const banner_div = $(this).closest('.wbte_sc_promotion_banner_div');
 			const banner_id = banner_div.attr('data-wbte-sc-promotion-banner-id');
 
+			banner_div.block({
+				message: null,
+				overlayCSS: {
+					background: '#000',
+					opacity: 0.6
+				}
+			});
+
 			if( banner_id ) {
 				$.ajax({
 					url: WTSmartCouponAdminOBJ.ajaxurl,
 					type: 'POST',
 					data: {
 						action: 'wbte_sc_hide_promotion_banner',
-						banner_id: banner_id,
+						banner_id,
 						_wpnonce: WTSmartCouponAdminOBJ.nonce
 					},
 					success: function(response) {
 						if ( response.success ) {
-							$( banner_div ).hide();
+							banner_div.hide();
 						} else {
-							wt_sc_notify_msg.error( response.data );
+							wbte_sc_notify_msg.error( response.data );
 						}
 					},
 					error: function() {
-						$( banner_div ).hide();
+						banner_div.hide();
 					}
 				});
 			} else {
-				$( banner_div ).hide();
+				banner_div.hide();
 			} 
+			banner_div.unblock();
 		});
 
-	});
-
-
-	// Implement Subtab for admin screen.
-	jQuery(document).ready(function(  ){
-
-		jQuery('.wt_sub_tab li a').on('click', function( e ) {
-			e.preventDefault();
-			if( $(this).parent('li').hasClass('active') ) {
-				return;//nothing to do;
-			}
-			var target=$(this).attr('href');
-			var parent = $(this).parents('.wt_sub_tab');
-			var container = $('.wt_sub_tab_container');
-			$('.wt_sub_tab li').removeClass('active');
-			$(this).parent('li').addClass('active');
-			container.find('.wt_sub_tab_content').hide().removeClass('active');
-			container.find(target).fadeIn().addClass('active');
-		});
-
-		wt_sc_popup.Set();
-		wt_sc_form_toggler.Set();
-		wt_sc_conditional_help_text.Set();
-		wt_sc_coupon_edit_meta_item_table.Set();
-		wt_sc_tab_view.Set();
-		wt_sc_settings_form.Set();
-
-		$(".wt-sc-tips").tipTip({'attribute': 'data-wt-sc-tip'});
-	});
+		/** Vertical nav items */
+		$('.wbte_sc_admin_vrtl_nav_item').on('click', function() {
+			// Remove active class from all nav items and sections
+			$('.wbte_sc_admin_vrtl_nav_item, .wbte_sc_admin_vrtl_nav_content_section').removeClass('active');
 	
-	/** 
-	 * Show the old BOGO disabled notice if the coupon type chosen is old BOGO, after the new BOGO is activated.
-	 * If new BOGO not activated, show the switch to new BOGO notice.
-	 */
-	$( document ).ready( function() {
+			// Add active class to clicked nav item and corresponding section
+			$(this).addClass('active');
+			const section = $(this).data('section');
+			$( '.wbte_sc_admin_vrtl_nav_content_section[data-section="' + section + '"]' ).addClass('active');
+		});
+
+
+		/** 
+		 * Show the old BOGO disabled notice if the coupon type chosen is old BOGO, after the new BOGO is activated.
+		 * If new BOGO not activated, show the switch to new BOGO notice.
+		 */
 		if( WTSmartCouponAdminOBJ.is_new_bogo_activated ){
 			const notice_elm = '<div class="notice notice-info notice-alt inline wbte_sc_old_bogo_disabled_notice"><p>'+ WTSmartCouponAdminOBJ.msgs.old_bogo_disabled +'</p></div>';
 			$( '#discount_type' ).on( 'change', function () {
@@ -221,19 +207,30 @@
             e.preventDefault();
             window.location.href = 'admin.php?page=wt-smart-coupon-for-woo_bogo';
         });
-	} );
 
-	/** Vertical nav items */
-	$( 'document' ).ready( function() {
-		$('.wbte_sc_admin_vrtl_nav_item').on('click', function() {
-			// Remove active class from all nav items and sections
-			$('.wbte_sc_admin_vrtl_nav_item, .wbte_sc_admin_vrtl_nav_content_section').removeClass('active');
-	
-			// Add active class to clicked nav item and corresponding section
-			$(this).addClass('active');
-			const section = $(this).data('section');
-			$( '.wbte_sc_admin_vrtl_nav_content_section[data-section="' + section + '"]' ).addClass('active');
+		/** Implement Subtab for admin screen. */
+		jQuery('.wt_sub_tab li a').on('click', function( e ) {
+			e.preventDefault();
+			if( $(this).parent('li').hasClass('active') ) {
+				return;//nothing to do;
+			}
+			const target=$(this).attr('href');
+			const container = $('.wt_sub_tab_container');
+			$('.wt_sub_tab li').removeClass('active');
+			$(this).parent('li').addClass('active');
+			container.find('.wt_sub_tab_content').hide().removeClass('active');
+			container.find(target).fadeIn().addClass('active');
 		});
+
+		wt_sc_popup.Set();
+		wt_sc_form_toggler.Set();
+		wt_sc_conditional_help_text.Set();
+		wt_sc_coupon_edit_meta_item_table.Set();
+		wt_sc_tab_view.Set();
+		wt_sc_settings_form.Set();
+
+		$(".wt-sc-tips").tipTip({'attribute': 'data-wt-sc-tip'});
+
 	});
 	
 
@@ -243,7 +240,7 @@
  *  Form toggler
  * 	@since 1.4.0
  */
-var wt_sc_form_toggler=
+const wt_sc_form_toggler=
 {
 	Set:function()
 	{
@@ -279,15 +276,15 @@ var wt_sc_form_toggler=
 	},
 	toggle:function(elm,checkbox)
 	{
-		var vl=elm.val();
-		var trgt=elm.attr('wt_sc_form_toggle-target');
+		const vl = elm.val();
+		const trgt =elm.attr('wt_sc_form_toggle-target');
 		jQuery('[wt_sc_form_toggle-id="'+trgt+'"]').hide().addClass('wt_sc_form_toggle_hidden');
 		
 		jQuery('[wt_sc_form_toggle-id="'+trgt+'"] [data-settings-required], [wt_sc_form_toggle-id="'+trgt+'"] [required]').each(function(){		
-			var td_elm=jQuery(this).parents('td');
+			const td_elm=jQuery(this).parents('td');
 			if(td_elm.length>0)
 			{
-				var clone_elm=jQuery(this).clone();
+				const clone_elm=jQuery(this).clone();
 				td_elm.data('w_sc_input_elm', clone_elm).addClass('wt_sc_form_toggle_input_holder');
 				jQuery(this).remove();
 			}
@@ -295,11 +292,11 @@ var wt_sc_form_toggler=
 
 		if(elm.css('display')!='none') /* if parent is visible. `:visible` method. it will not work on JS tabview */
 		{
-			var elms=this.getElms(elm, trgt, vl, checkbox);
+			const elms=this.getElms(elm, trgt, vl, checkbox);
 			elms.show().removeClass('wt_sc_form_toggle_hidden').find('th label').css({'margin-left':'0px'})
 			elms.each(function(){
-				var lvl=jQuery(this).attr('wt_sc_form_toggle-level');
-				var mrgin=15;
+				const lvl=jQuery(this).attr('wt_sc_form_toggle-level');
+				let mrgin=15;
 				if (typeof lvl!== typeof undefined && lvl!== false) {
 				    mrgin=lvl*mrgin;
 				}
@@ -319,7 +316,7 @@ var wt_sc_form_toggler=
 	getElms:function(elm, trgt, vl, checkbox)
 	{		
 		return jQuery('[wt_sc_form_toggle-id="'+trgt+'"]').filter(function(){
-				var toggle_val=jQuery(this).attr('wt_sc_form_toggle-val');
+				const toggle_val=jQuery(this).attr('wt_sc_form_toggle-val');
 				if(toggle_val==vl)
 				{
 					if(checkbox)
@@ -349,7 +346,7 @@ var wt_sc_form_toggler=
 					}
 				}else if(toggle_val.indexOf("||")!=-1)
 				{
-					var val_arr=toggle_val.split("||");
+					const val_arr=toggle_val.split("||");
 					if(jQuery.inArray(vl, val_arr)!==-1)
 					{
 						return true;
@@ -369,7 +366,7 @@ var wt_sc_form_toggler=
  *  Conditional help text
  * 	@since 1.4.0
  */
-var wt_sc_conditional_help_text=
+const wt_sc_conditional_help_text=
 {
 	Set:function(prnt)
 	{
@@ -378,12 +375,12 @@ var wt_sc_conditional_help_text=
 		let m;
 		prnt.find('.wt_sc_conditional_help_text').each(function()
 		{
-			var help_text_elm=jQuery(this);
-			var this_condition=jQuery(this).attr('data-sc-help-condition');
+			const help_text_elm=jQuery(this);
+			const this_condition=jQuery(this).attr('data-sc-help-condition');
 			if(this_condition!='')
 			{
-				var condition_conf=new Array();
-				var field_arr=new Array();
+				const condition_conf=new Array();
+				const field_arr=new Array();
 				while ((m = regex.exec(this_condition)) !== null)
 				{
 					/* This is necessary to avoid infinite loops with zero-width matches */
@@ -392,7 +389,7 @@ var wt_sc_conditional_help_text=
 				        regex.lastIndex++;
 				    }
 				    condition_conf.push(m[1]);
-				    condition_arr=m[1].split('=');
+					const condition_arr=m[1].split('=');
 				    if(condition_arr.length>1) /* field value pair */
 				    {
 				    	field_arr.push(condition_arr[0]);
@@ -400,21 +397,21 @@ var wt_sc_conditional_help_text=
 				}
 				if(field_arr.length>0)
 				{					
-					var callback_fn=function()
+					const callback_fn=function()
 					{
-						var is_hide=true;
-						var previous_type='';
-						for(var c_i=0; c_i<condition_conf.length; c_i++)
+						let is_hide=true;
+						let previous_type='';
+						for(let c_i=0; c_i<condition_conf.length; c_i++)
 						{
-							var cr_conf=condition_conf[c_i]; /* conf */
-							var conf_arr=cr_conf.split('=');
+							const cr_conf=condition_conf[c_i]; /* conf */
+							const conf_arr=cr_conf.split('=');
 							if(conf_arr.length>1) /* field value pair */
 							{
 								if(previous_type!='field')
 								{
 									previous_type='field';
-									var elm=jQuery('[name="'+conf_arr[0]+'"]');
-									var vl='';
+									const elm=jQuery('[name="'+conf_arr[0]+'"]');
+									let vl='';
 									if(elm.prop('nodeName').toLowerCase()=='input' && elm.attr('type')=='radio')
 									{
 										vl=jQuery('[name="'+conf_arr[0]+'"]:checked').val();
@@ -430,7 +427,7 @@ var wt_sc_conditional_help_text=
 										vl=elm.val();
 									}
 									
-									var check_val_arr = conf_arr[1].split('|');
+									const check_val_arr = conf_arr[1].split('|');
 									
 									is_hide = (-1 !== jQuery.inArray(vl, check_val_arr) ? false : true);
 								}
@@ -465,9 +462,9 @@ var wt_sc_conditional_help_text=
 						}
 					}
 					callback_fn();
-					for(var f_i=0; f_i<field_arr.length; f_i++)
+					for(let f_i=0; f_i<field_arr.length; f_i++)
 					{
-						var elm=jQuery('[name="'+field_arr[f_i]+'"]');
+						const elm=jQuery('[name="'+field_arr[f_i]+'"]');
 						if(elm.prop('nodeName')=='radio' || elm.prop('nodeName')=='checkbox')
 						{
 							elm.on('click', callback_fn);
@@ -486,7 +483,7 @@ var wt_sc_conditional_help_text=
  *  @since 1.4.0
  * 	Coupon edit page product/category table
  */
-var wt_sc_coupon_edit_meta_item_table=
+const wt_sc_coupon_edit_meta_item_table=
 {
 	Set:function()
 	{
@@ -504,7 +501,7 @@ var wt_sc_coupon_edit_meta_item_table=
 		table_elm.find('tbody tr').each(function(ind, elm){
 			
 			jQuery(elm).find('input, select').each(function(){
-				var new_name = jQuery(this).attr('name').replace(/[0-9]/g, ind);
+				const new_name = jQuery(this).attr('name').replace(/[0-9]/g, ind);
 				jQuery(this).attr('name', new_name);
 			});
 
@@ -513,14 +510,14 @@ var wt_sc_coupon_edit_meta_item_table=
 	set_add_row:function()
 	{
 		jQuery('.wt_sc_meta_item_tb_add_row').on('click', function(){
-			var tb=jQuery(this).parents('table');
+			const tb=jQuery(this).parents('table');
 			if(parseInt(tb.parent('.wt_sc_coupon_fieldset').attr('data-disabled'))===1)
 			{
 				return false;
 			}
-			var first_row=tb.find('tbody tr:eq(0)');
+			const first_row=tb.find('tbody tr:eq(0)');
 			first_row.find('.wt_sc_select2').select2("destroy"); /* destroy select2 before cloning */
-			var new_row=first_row.clone().insertBefore(jQuery(this).parents('tr')); /* clone and insert before the add button row */
+			const new_row=first_row.clone().insertBefore(jQuery(this).parents('tr')); /* clone and insert before the add button row */
 			
 			/* reset all values to default */		
 			new_row.find('input, select').each(function(){
@@ -539,7 +536,7 @@ var wt_sc_coupon_edit_meta_item_table=
 	set_remove_row:function()
 	{
 		jQuery(document).on('click', '.wt_sc_meta_item_tb_delete_row', function(){
-			var tb=jQuery(this).parents('table');
+			const tb=jQuery(this).parents('table');
 			if(parseInt(tb.parent('.wt_sc_coupon_fieldset').attr('data-disabled'))===1)
 			{
 				return false;
@@ -557,7 +554,7 @@ var wt_sc_coupon_edit_meta_item_table=
 				return false;
 			}
 			
-			var row=jQuery(this).parents('tr');
+			const row=jQuery(this).parents('tr');
 			row.remove();
 
 			wt_sc_coupon_edit_meta_item_table.set_table_form_field_index(tb);
@@ -574,8 +571,8 @@ var wt_sc_coupon_edit_meta_item_table=
 		});
 
 		if(jQuery(self).data('sortable')) {
-			var $select = jQuery(self);
-			var $list   = jQuery( self ).next( '.select2-container' ).find( 'ul.select2-selection__rendered' );
+			const $select = jQuery(self);
+			const $list   = jQuery( self ).next( '.select2-container' ).find( 'ul.select2-selection__rendered' );
 
 			$list.sortable({
 				placeholder : 'ui-state-highlight select2-selection__choice',
@@ -584,8 +581,8 @@ var wt_sc_coupon_edit_meta_item_table=
 				tolerance   : 'pointer',
 				stop: function() {
 					jQuery( $list.find( '.select2-selection__choice' ).get().reverse() ).each( function() {
-						var id     = jQuery( this ).data( 'data' ).id;
-						var option = $select.find( 'option[value="' + id + '"]' )[0];
+						const id     = jQuery( this ).data( 'data' ).id;
+						const option = $select.find( 'option[value="' + id + '"]' )[0];
 						$select.prepend( option );
 					} );
 				}
@@ -593,10 +590,10 @@ var wt_sc_coupon_edit_meta_item_table=
 		// Keep multiselects ordered alphabetically if they are not sortable.
 		} else if ( jQuery( self ).prop( 'multiple' ) ) {
 			jQuery( self ).on( 'change', function(){
-				var $children = jQuery( self ).children();
+				const $children = jQuery( self ).children();
 				$children.sort(function(a, b){
-					var atext = a.text.toLowerCase();
-					var btext = b.text.toLowerCase();
+					const atext = a.text.toLowerCase();
+					const btext = b.text.toLowerCase();
 
 					if ( atext > btext ) {
 						return 1;
@@ -624,7 +621,7 @@ var wt_sc_coupon_edit_meta_item_table=
 	reg_category_search:function(elms)
 	{
 		elms.each( function() {
-			var select2_args = {
+			const select2_args = {
 				allowClear        : jQuery( this ).data( 'allow_clear' ) ? true : false,
 				placeholder       : jQuery( this ).data( 'placeholder' ),
 				minimumInputLength: jQuery( this ).data( 'minimum_input_length' ) ? jQuery( this ).data( 'minimum_input_length' ) : 3,
@@ -643,7 +640,7 @@ var wt_sc_coupon_edit_meta_item_table=
 						};
 					},
 					processResults: function( data ) {
-						var terms = [];
+						const terms = [];
 						if ( data ) {
 							jQuery.each( data, function( id, term ) {
 								terms.push({
@@ -671,7 +668,7 @@ var wt_sc_coupon_edit_meta_item_table=
 	{
 		// Ajax product search box
 		elms.each( function() {
-			var select2_args = {
+			const select2_args = {
 				allowClear:  jQuery( this ).data( 'allow_clear' ) ? true : false,
 				placeholder: jQuery( this ).data( 'placeholder' ),
 				minimumInputLength: jQuery( this ).data( 'minimum_input_length' ) ? jQuery( this ).data( 'minimum_input_length' ) : '3',
@@ -695,7 +692,7 @@ var wt_sc_coupon_edit_meta_item_table=
 						};
 					},
 					processResults: function( data ) {
-						var terms = [];
+						let terms = [];
 						if ( data ) {
 							jQuery.each( data, function( id, text ) {
 								terms.push( { id: id, text: text } );
@@ -714,7 +711,7 @@ var wt_sc_coupon_edit_meta_item_table=
 	},
 	clear_parent_elm_val:function(sele_elm)
 	{
-		var parent_elm=sele_elm.parents('.wt_sc_coupon_fieldset').data('parent-select');
+		const parent_elm=sele_elm.parents('.wt_sc_coupon_fieldset').data('parent-select');
 		if(typeof parent_elm!='undefined' && parent_elm.length)
 		{
 			parent_elm.val(null).trigger('change');
@@ -726,15 +723,15 @@ var wt_sc_coupon_edit_meta_item_table=
 	 */
 	set_val_to_parent_elm:function(sele_elm)
 	{
-		var parent_elm=sele_elm.parents('.wt_sc_coupon_fieldset').data('parent-select');
+		const parent_elm=sele_elm.parents('.wt_sc_coupon_fieldset').data('parent-select');
 		if(typeof parent_elm!='undefined' && parent_elm.length)
 		{
 			parent_elm.val(null).trigger('change');
 			sele_elm.parents('.wt_sc_coupon_meta_item_table').find('.wt_sc_select2').each(function(){
-				var selected_opt=jQuery(this).find(':selected');
+				const selected_opt=jQuery(this).find(':selected');
 				if(selected_opt.length)
 				{
-					var opt=new Option(selected_opt.text(), selected_opt.val(), true, true);
+					const opt=new Option(selected_opt.text(), selected_opt.val(), true, true);
 					parent_elm.append(opt).trigger('change');
 				}
 			});
@@ -747,7 +744,7 @@ var wt_sc_coupon_edit_meta_item_table=
  *  Popup creator
  * 	@since 1.4.1
  */
-var wt_sc_popup={
+const wt_sc_popup={
 	Set:function()
 	{		
 		jQuery('body').prepend('<div class="wt_sc_cst_overlay"></div>');
@@ -757,8 +754,8 @@ var wt_sc_popup={
 	regPopupOpen:function()
 	{
 		jQuery('[data-wt_sc_popup]').on('click',function(){
-			var elm_class=jQuery(this).attr('data-wt_sc_popup');
-			var elm=jQuery('.'+elm_class);
+			const elm_class=jQuery(this).attr('data-wt_sc_popup');
+			const elm=jQuery('.'+elm_class);
 			if(elm.length>0)
 			{
 				wt_sc_popup.showPopup(elm);
@@ -767,9 +764,9 @@ var wt_sc_popup={
 	},
 	showPopup:function(popup_elm)
 	{
-		var pw=popup_elm.outerWidth();
-		var wh=jQuery(window).height();
-		var ph=wh-150;
+		const pw=popup_elm.outerWidth();
+		const wh=jQuery(window).height();
+		const ph=wh-150;
 		popup_elm.css({'margin-left':((pw/2)*-1),'display':'block','top':'20px'}).animate({'top':'50px'});
 		popup_elm.find('.wt_sc_popup_body').css({'max-height':ph+'px','overflow':'auto'});
 		jQuery('.wt_sc_cst_overlay').show();
@@ -797,20 +794,20 @@ var wt_sc_popup={
  * 	
  * 	@since 1.4.4
  */
-var wt_sc_tab_view=
+const wt_sc_tab_view=
 {
 	Set:function()
 	{
 		this.subTab();
-		var wt_sc_nav_tab = jQuery('.wbte_sc_header_nav a');
+		const wt_sc_nav_tab = jQuery('.wbte_sc_header_nav a');
 	 	if( 0 < wt_sc_nav_tab.length )
 	 	{
 		 	wt_sc_nav_tab.on('click',function(){
-		 		var wt_sc_tab_hash=jQuery(this).attr('href');
+		 		let wt_sc_tab_hash = jQuery(this).attr('href');
 		 		wt_sc_nav_tab.removeClass('active');
 		 		jQuery(this).addClass('active');
-		 		wt_sc_tab_hash=wt_sc_tab_hash.charAt(0)=='#' ? wt_sc_tab_hash.substring(1) : wt_sc_tab_hash;
-		 		var wt_sc_tab_elm=jQuery('div[data-id="'+wt_sc_tab_hash+'"]');
+		 		wt_sc_tab_hash = '#' === wt_sc_tab_hash.charAt(0) ? wt_sc_tab_hash.substring(1) : wt_sc_tab_hash;
+		 		const wt_sc_tab_elm=jQuery('div[data-id="'+wt_sc_tab_hash+'"]');
 		 		jQuery('.wt-sc-tab-content').hide();
 		 		if(wt_sc_tab_elm.length>0 && wt_sc_tab_elm.is(':hidden'))
 		 		{	 		
@@ -818,14 +815,14 @@ var wt_sc_tab_view=
 		 		}
 		 	});
 		 	jQuery(window).on('hashchange', function (e) {
-			    var location_hash=window.location.hash;
+			    const location_hash=window.location.hash;
 			 	if("" !== location_hash)
 			 	{
 			    	wt_sc_tab_view.showTab(location_hash);
 			    }
 			}).trigger('hashchange');
 
-		 	var location_hash=window.location.hash;
+		 	const location_hash=window.location.hash;
 		 	if("" !== location_hash)
 		 	{
 		 		wt_sc_tab_view.showTab(location_hash);
@@ -837,21 +834,21 @@ var wt_sc_tab_view=
 	},
 	showTab:function(location_hash)
 	{
-		var wt_sc_tab_hash=location_hash.charAt(0)=='#' ? location_hash.substring(1) : location_hash;
+		let wt_sc_tab_hash = location_hash.charAt(0)=='#' ? location_hash.substring(1) : location_hash;
  		if("" !== wt_sc_tab_hash)
  		{
- 			var wt_sc_tab_hash_arr=wt_sc_tab_hash.split('#');
+ 			const wt_sc_tab_hash_arr=wt_sc_tab_hash.split('#');
  			wt_sc_tab_hash=wt_sc_tab_hash_arr[0];
- 			var wt_sc_tab_elm=jQuery('div[data-id="'+wt_sc_tab_hash+'"]');
+ 			const wt_sc_tab_elm=jQuery('div[data-id="'+wt_sc_tab_hash+'"]');
 	 		if(wt_sc_tab_elm.length>0 && wt_sc_tab_elm.is(':hidden'))
 	 		{	 			
 	 			jQuery('a[href="#'+wt_sc_tab_hash+'"]').trigger('click');
 	 			if(wt_sc_tab_hash_arr.length>1)
 		 		{
-		 			var wt_sc_sub_tab_link=wt_sc_tab_elm.find('.wt_sc_sub_tab');
+		 			const wt_sc_sub_tab_link=wt_sc_tab_elm.find('.wt_sc_sub_tab');
 		 			if(wt_sc_sub_tab_link.length>0) /* subtab exists  */
 		 			{
-		 				var wt_sc_sub_tab=wt_sc_sub_tab_link.find('li[data-target='+wt_sc_tab_hash_arr[1]+']');
+		 				const wt_sc_sub_tab=wt_sc_sub_tab_link.find('li[data-target='+wt_sc_tab_hash_arr[1]+']');
 		 				wt_sc_sub_tab.trigger('click');
 		 			}
 		 		}
@@ -861,20 +858,20 @@ var wt_sc_tab_view=
 	subTab:function()
 	{
 		jQuery('.wt_sc_sub_tab li').on('click',function(){
-			var trgt=jQuery(this).attr('data-target');
-			var prnt=jQuery(this).parent('.wt_sc_sub_tab');
-			var ctnr=prnt.siblings('.wt_sc_sub_tab_container');
+			const trgt=jQuery(this).attr('data-target');
+			const prnt=jQuery(this).parent('.wt_sc_sub_tab');
+			const ctnr=prnt.siblings('.wt_sc_sub_tab_container');
 			prnt.find('li a').css({'color':'#0073aa','cursor':'pointer', 'font-weight':'normal'});
 			jQuery(this).find('a').css({'color':'#000','cursor':'default', 'font-weight':'500'});
 			ctnr.find('.wt_sc_sub_tab_content').hide();
 			ctnr.find('.wt_sc_sub_tab_content[data-id="'+trgt+'"]').fadeIn();
 		});
 		jQuery('.wt_sc_sub_tab .wbte_sc_segment').on('click',function(){
-			var trgt = jQuery(this).attr('data-target');
-			var prnt = jQuery(this).parent('.wt_sc_sub_tab');
+			const trgt = jQuery(this).attr('data-target');
+			const prnt = jQuery(this).parent('.wt_sc_sub_tab');
 			prnt.find('.wbte_sc_segment').removeClass('active');
 			jQuery(this).addClass('active');
-			var ctnr = prnt.siblings('.wt_sc_sub_tab_container');
+			const ctnr = prnt.siblings('.wt_sc_sub_tab_container');
 			ctnr.find('.wt_sc_sub_tab_content').hide();
 			ctnr.find('.wt_sc_sub_tab_content[data-id="' + trgt + '"]').fadeIn();
 			if( 0 < ctnr.find('.wt_sc_sub_tab_content[data-id="'+trgt+'"]').find('.wt_sc_color_container').length ) {
@@ -882,17 +879,17 @@ var wt_sc_tab_view=
 			}
 		});
 		jQuery('.wt_sc_sub_tab').each( function(){
-			var elm = jQuery(this).children('.wbte_sc_segment').eq(0);
+			const elm = jQuery(this).children('.wbte_sc_segment').eq(0);
 			elm.trigger('click');
 		});
 		jQuery('.wt_sc_sub_tab_trigger').on('click', function(){
-			var trgt=jQuery(this).attr('data-target');
+			const trgt=jQuery(this).attr('data-target');
 			jQuery('.wt_sc_sub_tab li[data-target="'+trgt+'"]').trigger('click');
 		});
 	}
 }
 
-var wt_sc_settings_form=
+const wt_sc_settings_form=
 {
 	Set:function()
 	{
@@ -907,11 +904,11 @@ var wt_sc_settings_form=
 				return false;
 			}
 
-			var settings_base=jQuery(this).find('.wt_sc_settings_base').val();
-			var data=jQuery(this).serialize();
+			const settings_base=jQuery(this).find('.wt_sc_settings_base').val();
+			const data=jQuery(this).serialize();
 
-			var submit_btn=jQuery(this).find('input[type="submit"]');
-			var spinner=submit_btn.siblings('.spinner');
+			const submit_btn=jQuery(this).find('input[type="submit"]');
+			const spinner=submit_btn.siblings('.spinner');
 			spinner.css({'visibility':'visible'});
 			submit_btn.css({'opacity':'.5','cursor':'default'}).prop('disabled',true);	
 
@@ -943,17 +940,17 @@ var wt_sc_settings_form=
 	},
 	validate:function(form_elm)
 	{
-		var is_valid=true;
+		let is_valid=true;
 		form_elm.find('[data-settings-required]').each(function(){
-			var elm=jQuery(this);
+			const elm=jQuery(this);
 			if(elm.val().trim() === "" && elm.is(':visible'))
 			{
-				var required_msg=elm.attr('data-required-msg');
+				const required_msg=elm.attr('data-required-msg');
 				if(typeof required_msg === 'undefined')
 				{
-					var prnt=elm.parents('tr');
-					var label=prnt.find('th label');				
-					var temp_elm=jQuery('<div />').html(label.html());
+					const prnt=elm.parents('tr');
+					const label=prnt.find('th label');				
+					const temp_elm=jQuery('<div />').html(label.html());
 					temp_elm.find('.wt_sc_required_field').remove();
 					required_msg='<b><i>'+temp_elm.text()+'</i></b>'+WTSmartCouponAdminOBJ.msgs.is_required;
 				}
@@ -964,5 +961,59 @@ var wt_sc_settings_form=
 			}			
 		});
 		return is_valid;
+	}
+}
+
+/**
+ * Common copy to clipboard function
+ * @since 2.2.3 - Moved to seperate function with old browser fallback
+ * @param {string} text - Text to copy
+ * @param {function} successCallback - Callback function on success
+ */
+function wbte_sc_copy_to_clipboard(text, successCallback) {
+	if ( 'undefined' !== typeof ClipboardJS ) {
+		const tempElement = document.createElement('button');
+		tempElement.setAttribute('data-clipboard-text', text);
+		tempElement.style.display = 'none';
+		document.body.appendChild(tempElement);
+		
+		const clipboard = new ClipboardJS(tempElement);
+		
+		clipboard.on('success', function(e) {
+			e.clearSelection();
+			document.body.removeChild(tempElement);
+			clipboard.destroy();
+			
+			if ( 'function' === typeof successCallback ) {
+				successCallback();
+			} else {
+				wbte_sc_notify_msg.success(WTSmartCouponAdminOBJ.msgs.copied);
+			}
+		});
+		
+		clipboard.on('error', function() {
+			document.body.removeChild(tempElement);
+			clipboard.destroy();
+			
+			wbte_sc_notify_msg.error(WTSmartCouponAdminOBJ.msgs.copy_failed);
+		});
+		
+		tempElement.click();
+	} else {
+		if (navigator.clipboard && navigator.clipboard.writeText) {
+			navigator.clipboard.writeText(text)
+				.then(function() {
+					if ( 'function' === typeof successCallback ) {
+						successCallback();
+					} else {
+						wbte_sc_notify_msg.success(WTSmartCouponAdminOBJ.msgs.copied);
+					}
+				})
+				.catch(function() {
+					wbte_sc_notify_msg.error(WTSmartCouponAdminOBJ.msgs.copy_failed);
+				});
+		} else {
+			wbte_sc_notify_msg.error(WTSmartCouponAdminOBJ.msgs.copy_failed);
+		}
 	}
 }

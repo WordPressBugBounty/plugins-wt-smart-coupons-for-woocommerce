@@ -108,8 +108,8 @@ const addGiveawayProductHtml = ( defaultValue, extensions, args ) => {
         const giveaway_products_html = wbte_cart_obj?.extensions?.wt_sc_blocks?.giveaway_products_html;
         const isCart = '1' === WTSmartCouponOBJ?.is_cart;
         
-        if ( isCart ) {
-            $( '.wbte_sc_block_giveaway_products_wrapper_div' ).remove();
+        $( '.wbte_sc_block_giveaway_products_wrapper_div' ).remove();
+        if ( giveaway_products_html && isCart ) {
             $( '.wp-block-woocommerce-cart-items-block' ).append(
                 '<div class="wbte_sc_block_giveaway_products_wrapper_div">' + giveaway_products_html + '</div>'
             );
@@ -120,6 +120,6 @@ const addGiveawayProductHtml = ( defaultValue, extensions, args ) => {
 };
 
 registerCheckoutFilters('wbte-sc-cart-giveaway-product-html', {
-    totalValue: addGiveawayProductHtml,
+    itemName: addGiveawayProductHtml,
 });
     

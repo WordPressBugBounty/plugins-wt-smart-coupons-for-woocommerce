@@ -1,20 +1,45 @@
 
 == Changelog ==
 
+= 2.2.7 - 2026-01-19 =
+* [Fix] Undefined variable $ds_obj error when switching to the new BOGO.
+
+= 2.2.6 - 2025-12-18 =
+* [Fix] PHP fatal error caused by redeclaration of function wbte_sc_update_message.
+
+= 2.2.5 - 2025-12-17 =
+* [Fix] Duplicate BOGO free products appearing after login/logout cycles.
+* [Fix] Coupons being applied by incorrectly including excluded category quantities.
+* [Fix] Auto-applied coupons incorrectly applied alongside "individual use only" coupons.
+* [Fix] Incorrect category quantity calculation when both parent and child categories are assigned to a product.
+* [Fix] Free products incorrectly counted as eligible items for brand-restricted coupons.
+* [Compatibility] Tested OK with WooCommerce 10.4
+* [Compatibility] Tested OK with WordPress 6.9
+
+= 2.2.4 - 2025-10-22 =
+* [Fix] - Fixed coupon wrapper div rendering when no coupons are available in cart or checkout.
+* [Fix] - Fixed "undefined" showing in the giveaway choosing area.
+* [Tweak] - Performance optimization and bug fixes.
+* [Improvement] - Added capability handling via filter hook.
+* [Compatibility] - Tested OK with WooCommerce 10.2
+
+= 2.2.3 - 2025-08-27 =
+* [Fix] - Fatal error when changing order status.
+
 = 2.2.2 - 2025-08-19 =
 * [Compatibility] – Tested OK with WooCommerce 10.1
 
 = 2.2.1 - 2025-08-01 =
 * [Fix] - Not able to set max each quantity the same as min each quantity in BOGO.
 * [Fix] - Coupon with usage limit reached is appearing under both "Used" and "Expired" coupon sections.
-* [Compatibility] – Tested OK with WooCommerce 10.0
+* [Compatibility] - Tested OK with WooCommerce 10.0
 
 = 2.2.0 - 2025-05-05 =
-* [Add] – New coupon layout designs.
-* [Fix] – Payment method selection reloading twice.
+* [Add] - New coupon layout designs.
+* [Fix] - Payment method selection reloading twice.
 * [Fix] BOGO giveaway choosing not rendering after reload in block cart.
-* [Compatibility] – Tested OK with WordPress 6.8
-* [Compatibility] – Tested OK with WooCommerce 9.8
+* [Compatibility] - Tested OK with WordPress 6.8
+* [Compatibility] - Tested OK with WooCommerce 9.8
 
 = 2.1.1 - 2025-03-04 =
 * [Fix] - Fatal error when assigned free products in BOGO no longer exists.

@@ -9,10 +9,12 @@
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
-$current_user    = wp_get_current_user();
-$user_id         = $current_user->ID;
-$email           = $current_user->user_email;
-$printed_coupons = array(
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+
+$current_user_obj = wp_get_current_user();
+$user_id          = $current_user_obj->ID;
+$email            = $current_user_obj->user_email;
+$printed_coupons  = array(
 	'available_coupons' => array(),
 	'used_coupons'      => array(),
 	'expired_coupons'   => array(),
@@ -30,14 +32,17 @@ do_action_deprecated( 'wt_smart_coupon_before_my_acocount_coupons', array(), '1.
  *
  * @since 1.3.5
  */
-do_action( 'wt_smart_coupon_before_my_account_coupons', $current_user );
+do_action( 'wt_smart_coupon_before_my_account_coupons', $current_user_obj ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+Wt_Smart_Coupon_Public::print_coupon_default_css();
 ?>
 <div class="wt-mycoupons">
 	<h4><?php esc_html_e( 'Available Coupons', 'wt-smart-coupons-for-woocommerce' ); ?></h4>
 	<div class="wt_sc_available_coupon_sort_by">
 		<form>
 			<span><?php esc_html_e( 'Sort by', 'wt-smart-coupons-for-woocommerce' ); ?> </span>
-			<?php $sort_orderby = ( isset( $_GET['wt_sc_available_coupons_orderby'] ) ? sanitize_text_field( $_GET['wt_sc_available_coupons_orderby'] ) : Wt_Smart_Coupon_Public::get_available_coupons_sort_order() ); ?>
+			<?php
+			$sort_orderby = isset( $_GET['wt_sc_available_coupons_orderby'] ) ? sanitize_text_field( wp_unslash( $_GET['wt_sc_available_coupons_orderby'] ) ) : Wt_Smart_Coupon_Public::get_available_coupons_sort_order(); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			?>
 			<select name="wt_sc_available_coupons_orderby" onchange="this.form.submit()">
 				<option value="created_date:desc" <?php selected( 'created_date:desc', $sort_orderby ); ?>><?php esc_html_e( 'Latest first', 'wt-smart-coupons-for-woocommerce' ); ?></option>
 				<option value="created_date:asc" <?php selected( 'created_date:asc', $sort_orderby ); ?>><?php esc_html_e( 'Latest last', 'wt-smart-coupons-for-woocommerce' ); ?></option>
@@ -52,10 +57,10 @@ do_action( 'wt_smart_coupon_before_my_account_coupons', $current_user );
 	 *
 	 * @since 1.3.5
 	 */
-	$limit = apply_filters( 'wt_sc_my_account_available_coupons_per_page', 20 );
+	$limit = apply_filters( 'wt_sc_my_account_available_coupons_per_page', 20 ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 
-	$offset                               = ( isset( $_GET['wt_sc_available_coupons_offset'] ) ? absint( $_GET['wt_sc_available_coupons_offset'] ) : 0 );
-	$printed_available_coupons            = Wt_Smart_Coupon_Public::print_user_available_coupon( '', 'my_account', $offset, $limit );
+	$offset                               = ( isset( $_GET['wt_sc_available_coupons_offset'] ) ? absint( wp_unslash( $_GET['wt_sc_available_coupons_offset'] ) ) : 0 ); //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	$printed_available_coupons            = Wt_Smart_Coupon_Public::print_user_available_coupon( false, 'my_account', $offset, $limit );
 	$printed_coupons['available_coupons'] = $printed_available_coupons;
 	?>
 </div>
@@ -66,7 +71,7 @@ do_action( 'wt_smart_coupon_before_my_account_coupons', $current_user );
  *
  * @since 1.3.5
  */
-do_action( 'wt_smart_coupon_after_my_coupons', $current_user, $printed_available_coupons );
+do_action( 'wt_smart_coupon_after_my_coupons', $current_user_obj, $printed_available_coupons ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 
 $smart_coupon_options = Wt_Smart_Coupon::get_settings();
 
@@ -78,7 +83,7 @@ if ( isset( $smart_coupon_options['display_used_coupons_my_account'] ) && $smart
 		/**
 		 *  Display used coupons by the current user
 		 */
-		$used_coupons = Wt_Smart_Coupon_Public::get_coupon_used_by_a_customer( $current_user );
+		$used_coupons = Wt_Smart_Coupon_Public::get_coupon_used_by_a_customer( $current_user_obj );
 		if ( ! empty( $used_coupons ) ) {
 			$i = 0;
 
@@ -104,7 +109,7 @@ if ( isset( $smart_coupon_options['display_used_coupons_my_account'] ) && $smart
 					echo '<div class="wt_coupon_wrapper">';
 				}
 
-				echo Wt_Smart_Coupon_Public::get_coupon_html( $coupon_post, $coupon_data, 'used_coupon' );
+				echo Wt_Smart_Coupon_Public::get_coupon_html( $coupon_post, $coupon_data, 'used_coupon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
 
 				$printed_coupons['used_coupons'][] = $coupon_obj;
 
@@ -121,7 +126,7 @@ if ( isset( $smart_coupon_options['display_used_coupons_my_account'] ) && $smart
 			 *
 			 * @since 1.3.5
 			 */
-			echo wp_kses_post( apply_filters( 'wt_sc_alter_myaccount_no_used_coupons_msg', __( "Sorry, you don't have any used coupons", 'wt-smart-coupons-for-woocommerce' ) ) );
+			echo wp_kses_post( apply_filters( 'wt_sc_alter_myaccount_no_used_coupons_msg', __( "Sorry, you don't have any used coupons", 'wt-smart-coupons-for-woocommerce' ) ) ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 			echo '</div>';
 		}
 
@@ -130,7 +135,7 @@ if ( isset( $smart_coupon_options['display_used_coupons_my_account'] ) && $smart
 		 *
 		 * @since 1.3.5
 		 */
-		do_action( 'wt_smart_coupon_after_used_coupons' );
+		do_action( 'wt_smart_coupon_after_used_coupons' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 
 		?>
 	</div>
@@ -150,9 +155,9 @@ if ( isset( $smart_coupon_options['display_expired_coupons_my_account'] ) && $sm
 		 *
 		 * @since 1.3.5
 		 */
-		$limit = apply_filters( 'wt_sc_my_account_expired_coupons_per_page', 50 );
+		$limit = apply_filters( 'wt_sc_my_account_expired_coupons_per_page', 50 ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 
-		$coupon_ids = Wt_Smart_Coupon_Public::get_user_coupons( $current_user, $offset, $limit, array( 'type' => 'expired_coupons' ) );
+		$coupon_ids = Wt_Smart_Coupon_Public::get_user_coupons( $current_user_obj, $offset, $limit, array( 'type' => 'expired_coupons' ) );
 
 		if ( ! empty( $coupon_ids ) ) {
 			echo '<div class="wt_coupon_wrapper">';
@@ -163,9 +168,9 @@ if ( isset( $smart_coupon_options['display_expired_coupons_my_account'] ) && $sm
 				$coupon_data['display_on_page'] = 'my_account_page';
 
 				if ( 0 === $coupon_index ) {
-					echo Wt_Smart_Coupon_Public::get_coupon_html( $post_obj, $coupon_data, 'expired_coupon', true );
+					echo Wt_Smart_Coupon_Public::get_coupon_html( $post_obj, $coupon_data, 'expired_coupon', true ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
 				} else {
-					echo Wt_Smart_Coupon_Public::get_coupon_html( $post_obj, $coupon_data, 'expired_coupon' );
+					echo Wt_Smart_Coupon_Public::get_coupon_html( $post_obj, $coupon_data, 'expired_coupon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
 				}
 				$printed_coupons['expired_coupons'][] = $coupon_obj;
 			}
@@ -179,7 +184,7 @@ if ( isset( $smart_coupon_options['display_expired_coupons_my_account'] ) && $sm
 			 *
 			 * @since 1.3.5
 			 */
-			echo wp_kses_post( apply_filters( 'wt_sc_alter_myaccount_no_expired_coupons_msg', __( "Sorry, you don't have any expired coupons", 'wt-smart-coupons-for-woocommerce' ) ) );
+			echo wp_kses_post( apply_filters( 'wt_sc_alter_myaccount_no_expired_coupons_msg', __( "Sorry, you don't have any expired coupons", 'wt-smart-coupons-for-woocommerce' ) ) ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 			echo '</div>';
 		}
 
@@ -188,7 +193,7 @@ if ( isset( $smart_coupon_options['display_expired_coupons_my_account'] ) && $sm
 		 *
 		 * @since 1.3.5
 		 */
-		do_action( 'wt_smart_coupon_after_expired_coupons' );
+		do_action( 'wt_smart_coupon_after_expired_coupons' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 
 		?>
 	</div>
@@ -200,4 +205,4 @@ if ( isset( $smart_coupon_options['display_expired_coupons_my_account'] ) && $sm
  *
  * @since 1.3.5
  */
-do_action( 'wt_smart_coupon_after_my_account_coupons', $printed_coupons );
+do_action( 'wt_smart_coupon_after_my_account_coupons', $printed_coupons ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound

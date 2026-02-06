@@ -81,16 +81,18 @@ const addBogoProductHtml = ( defaultValue, extensions, args ) => {
     jQuery( document ).ready( function( $ ) {
         const bogo_products_html = wbte_cart_obj?.extensions?.wt_sc_blocks?.bogo_products_html;
         $( '.wbte_sc_block_bogo_products_wrapper_div' ).remove();
-        $( '.wp-block-woocommerce-cart-items-block' ).append(
-            '<div class="wbte_sc_block_bogo_products_wrapper_div">' + bogo_products_html + '</div>'
-        );
+        if ( bogo_products_html ) {
+            $( '.wp-block-woocommerce-cart-items-block' ).append(
+                '<div class="wbte_sc_block_bogo_products_wrapper_div">' + bogo_products_html + '</div>'
+            );
+        }
     });
 
     return defaultValue;
 };
 
 registerCheckoutFilters('wbte-sc-cart-bogo-product-html', {
-    totalValue: addBogoProductHtml,
+    itemName: addBogoProductHtml,
 });
 
 const hideApplyRemoveCouponNotice = ( defaultValue, extensions, args ) => {

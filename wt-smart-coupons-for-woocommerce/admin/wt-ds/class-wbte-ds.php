@@ -159,8 +159,8 @@ class Wbte_Ds {
 
 		// Localize the script.
 		$params = array(
-			'icon_base_url' => esc_url( WP_CONTENT_URL . $this->icon_base_path ),
-			'img_base_url'  => esc_url( WP_CONTENT_URL . $this->img_base_path ),
+			'icon_base_url' => esc_url( content_url() . $this->icon_base_path ),
+			'img_base_url'  => esc_url( content_url() . $this->img_base_path ),
 		);
 		wp_localize_script( $this->prefix . 'ds_js', $this->prefix . 'ds_js_params', $params );
 	}
@@ -278,9 +278,9 @@ class Wbte_Ds {
 		$type = isset( $args['type'] ) ? $args['type'] : '';
 		$name = isset( $args['name'] ) ? $args['name'] : '';
 		if ( 'icon' === $type && file_exists( WP_CONTENT_DIR . $this->icon_base_path . $name . '.svg' ) ) {
-			return WP_CONTENT_URL . $this->icon_base_path . $name . '.svg';
+			return content_url() . $this->icon_base_path . $name . '.svg';
 		} elseif ( 'image' === $type && file_exists( WP_CONTENT_DIR . $this->img_base_path . $name ) ) {
-			return WP_CONTENT_URL . $this->img_base_path . $name;
+			return content_url() . $this->img_base_path . $name;
 		}
 		return '';
 	}
@@ -321,12 +321,12 @@ class Wbte_Ds {
 	 */
 	private function prepare_pagination_component_html( $args ) {
 
-		$total  = $args['total'] ?? 0;
-		$limit  = $args['limit'] ?? 0;
-		$mxnav  = $args['max_nav'] ?? 5;
-		$crpage = $args['current_page'] ?? 1;
-		$html   = $args['html'] ?? '';
-		$url    = $args['url'] ?? '';
+		$total  = isset( $args['total'] ) ? $args['total'] : 0;
+		$limit  = isset( $args['limit'] ) ? $args['limit'] : 0;
+		$mxnav  = isset( $args['max_nav'] ) ? $args['max_nav'] : 5;
+		$crpage = isset( $args['current_page'] ) ? $args['current_page'] : 1;
+		$html   = isset( $args['html'] ) ? $args['html'] : '';
+		$url    = isset( $args['url'] ) ? $args['url'] : '';
 
 		if ( $total <= 0 || $limit <= 0 ) {
 			return '';
@@ -424,8 +424,8 @@ class Wbte_Ds {
 	 */
 	public function render_html( $args ) {
 		$args               = is_array( $args ) ? $args : array();
-		$args['html']       = $args['html'] ?? '';
-		$args['variations'] = $args['variations'] ?? array();
+		$args['html']       = isset( $args['html'] ) ? $args['html'] : '';
+		$args['variations'] = isset( $args['variations'] ) ? $args['variations'] : array();
 		$args['parent_obj'] = $this;
 		$args['icon_base']  = $this->icon_base_path;
 		$args['img_base']   = $this->img_base_path;

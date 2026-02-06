@@ -125,7 +125,7 @@ var wbte_sc_help_widget={
 	Set:function() {
 		jQuery(document).on('click', function (e) {
 			var widget = jQuery('.wbte_sc_help-widget');
-			var checkbox = jQuery('#wt_ds_help-widget_hidden_checkbox');
+			var checkbox = jQuery('#wbte_sc_help-widget_hidden_checkbox');
 
 			if (checkbox.is(':checked') && !widget.has(e.target).length && !widget.is(e.target)) {
 			  checkbox.prop('checked', false);
@@ -253,34 +253,25 @@ var wbte_sc_segments = {
 wbte_sc_segments.Set();
 
 var wbte_sc_notify_msg = {
-	error_icon: '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">'
-				+'<circle cx="10" cy="10" r="10" fill="#D63638"/>'
-				+'<path d="M10.0996 5V11" stroke="white" stroke-width="2.2" stroke-linecap="round"/>'
-				+'<circle cx="10.2" cy="15.2" r="1.2" fill="white"/>'
-				+'</svg>',
-	success_icon: '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">'
-				+'<circle cx="10" cy="10" r="10" fill="#20B93E"/>'
-				+'<path d="M14.0931 7.21515L8.29143 13.0168L5.6543 10.3797" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'
-				+'</svg>',
-	warn_icon:  '<svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">'
-				+'<path d="M8.35477 1.52476C9.50517 -0.508251 12.4948 -0.508255 13.6452 1.52476L21.6179 15.6141C22.7325 17.5838 21.2752 20 18.9727 20H3.02734C0.724759 20 -0.732486 17.5839 0.382104 15.6141L8.35477 1.52476Z" fill="#DBA617"/>'
-				+'<path d="M11.0996 5V11" stroke="white" stroke-width="2.2" stroke-linecap="round"/>'
-				+'<circle cx="11.2" cy="15.2" r="1.2" fill="white"/>'
-				+'</svg>',
 	error:function( message, auto_close ) {
 		var auto_close = (auto_close!== undefined ? auto_close : true);
-		var er_elm=jQuery('<div class="wbte_sc_notify_msg wbte_sc_notify_msg_error">' + this.error_icon + message + '</div>');				
+		var er_elm=jQuery('<div class="wbte_sc_notify_msg wbte_sc_notify_msg_error">' + this.get_icon('error-icon') + message + '</div>');				
 		this.set_notify(er_elm, auto_close);
 	},
 	success:function( message, auto_close ) {
 		var auto_close = (auto_close!== undefined ? auto_close : true);
-		var suss_elm = jQuery('<div class="wbte_sc_notify_msg wbte_sc_notify_msg_success">' + this.success_icon + message + '</div>');				
+		var suss_elm = jQuery('<div class="wbte_sc_notify_msg wbte_sc_notify_msg_success">' + this.get_icon('success-icon') + message + '</div>');				
 		this.set_notify(suss_elm, auto_close);
 	},
 	warning:function( message, auto_close ) {
 		var auto_close = (auto_close!== undefined ? auto_close : true);
-		var suss_elm = jQuery('<div class="wbte_sc_notify_msg wbte_sc_notify_msg_warning">' + this.warn_icon + message + '</div>');				
+		var suss_elm = jQuery('<div class="wbte_sc_notify_msg wbte_sc_notify_msg_warning">' + this.get_icon('warn-icon') + message + '</div>');				
 		this.set_notify(suss_elm, auto_close);
+	},
+	info:function( message, auto_close ) {
+		var auto_close = (auto_close!== undefined ? auto_close : true);
+		var info_elm = jQuery('<div class="wbte_sc_notify_msg wbte_sc_notify_msg_info">' + this.get_icon('info-icon') + message + '</div>');				
+		this.set_notify(info_elm, auto_close);
 	},
 	progress:function( message ) {
 		var prog_elm = jQuery('<div class="wbte_sc_notify_msg wbte_sc_notify_msg_progress"><span class="spinner"></span> ' + message + '</div>');				
@@ -290,14 +281,17 @@ var wbte_sc_notify_msg = {
 	progress_complete:function( elm, message, auto_close ) {
 		var auto_close = (auto_close!== undefined ? auto_close : true);
 		elm.removeClass('wbte_sc_notify_msg_progress').addClass('wbte_sc_notify_msg_success');
-		elm.html( this.success_icon + message );				
+		elm.html( this.get_icon('success-icon') +  message );				
 		this.set_notify(elm, auto_close);
 	},
 	progress_error:function( elm, message, auto_close ) {
 		var auto_close = (auto_close!== undefined ? auto_close : true);
 		elm.removeClass('wbte_sc_notify_msg_progress').addClass('wbte_sc_notify_msg_error');
-		elm.html( this.error_icon + message );				
+		elm.html( this.get_icon('error-icon') + message );				
 		this.set_notify(elm, auto_close);
+	},
+    get_icon:function( type ) {
+		return '<img class="wbte_sc_notify_msg_icon" src="' + wbte_sc_ds.getAsset( { 'name': type, 'type': 'icon' } ) + '" />';
 	},
 	set_notify:function( elm, auto_close, is_static ) {
 		jQuery('body').append(elm);

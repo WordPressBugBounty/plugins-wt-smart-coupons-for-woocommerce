@@ -24,4 +24,7 @@
 .wt_sc_pagination{ width:100%; clear:both; margin-bottom:15px; text-align:right; }
 .wt_sc_pagination .woocommerce-pagination{ display:inline-block; float:none; }
 .wt_sc_available_coupon_sort_by{ float:right; font-size:14px; }
+.wt_sc_available_coupon_sort_by form{ margin-bottom: 0; }
 .wt_sc_bogo_cart_item_discount, .wt_sc_bogo_cart_item_discount *{ color:green; font-size:small; }
+.wt-mycoupons:has(.wt_sc_myaccount_no_available_coupons) .wt_sc_available_coupon_sort_by { display: none; }
+

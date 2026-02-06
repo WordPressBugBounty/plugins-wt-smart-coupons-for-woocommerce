@@ -17,6 +17,14 @@ if ( ! class_exists( 'Wt_P_IEW_Cta_Banner' ) ) {
 	 * Class Wt_P_IEW_Cta_Banner
 	 */
 	class Wt_P_IEW_Cta_Banner {
+
+		/**
+		 * Is BFCM season.
+		 *
+		 * @var bool
+		 */
+		private static $is_bfcm_season = false;
+
 		/**
 		 * Constructor.
 		 */
@@ -29,11 +37,13 @@ if ( ! class_exists( 'Wt_P_IEW_Cta_Banner' ) ) {
 			 * @param array $active_plugins Active plugins.
 			 * @return array Active plugins.
 			 */
-			$active_plugins = apply_filters( 'active_plugins', get_option( 'active_plugins' ) );
+			$active_plugins = apply_filters( 'active_plugins', get_option( 'active_plugins' ) ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 			if (
 				! in_array( 'wt-import-export-for-woo-product/wt-import-export-for-woo-product.php', $active_plugins, true ) &&
-				! in_array( 'import-export-suite-for-woocommerce/import-export-suite-for-woocommerce.php', $active_plugins, true ) 
+				! in_array( 'import-export-suite-for-woocommerce/import-export-suite-for-woocommerce.php', $active_plugins, true )
 			) {
+				self::$is_bfcm_season = method_exists( 'Wt_Smart_Coupon_Admin', 'is_bfcm_season' ) && Wt_Smart_Coupon_Admin::is_bfcm_season();
+
 				add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 				add_action( 'add_meta_boxes', array( $this, 'add_meta_box' ) );
 				add_action( 'wp_ajax_wt_dismiss_product_ie_cta_banner', array( $this, 'dismiss_banner' ) );
@@ -82,7 +92,7 @@ if ( ! class_exists( 'Wt_P_IEW_Cta_Banner' ) ) {
 		public function add_meta_box() {
 			global $wpdb;
 
-			$total_products = $wpdb->get_var(
+			$total_products = $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 				"
                 SELECT COUNT(ID)
                 FROM {$wpdb->posts}
@@ -95,13 +105,13 @@ if ( ! class_exists( 'Wt_P_IEW_Cta_Banner' ) ) {
 			if ( ! defined( 'WT_PRODUCT_IMPORT_EXPORT_DISPLAY_BANNER' ) && 50 <= $total_products ) {
 				add_meta_box(
 					'wt_product_import_export_pro',
-					__( 'Product Import Export for WooCommerce', 'wt-smart-coupons-for-woocommerce' ),
+					self::$is_bfcm_season ? ' ' : __( 'Product Import Export for WooCommerce', 'wt-smart-coupons-for-woocommerce' ),
 					array( $this, 'render_banner' ),
 					'product',
 					'side',
 					'low'
 				);
-				define( 'WT_PRODUCT_IMPORT_EXPORT_DISPLAY_BANNER', true );
+				define( 'WT_PRODUCT_IMPORT_EXPORT_DISPLAY_BANNER', true ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
 			}
 		}
 
@@ -115,10 +125,32 @@ if ( ! class_exists( 'Wt_P_IEW_Cta_Banner' ) ) {
 
 			?>
 			<style type="text/css">
-				#wt_product_import_export_pro .postbox-header{  height: 80px; background: url( <?php echo esc_url( $wt_admin_img_path . '/product-ie.svg' ); ?> ) no-repeat 18px 18px #F9FCFF; padding-left: 65px; margin-bottom: 18px; background-size: 45px 45px; border-bottom: 1px dotted #CDE1F5; }
+				<?php
+				if ( self::$is_bfcm_season ) {
+					?>
+					#wt_product_import_export_pro .postbox-header{  height: 66px; background: url( <?php echo esc_url( WT_SMARTCOUPON_MAIN_URL . 'admin/images/bfcm-doc-settings-coupon.svg' ); ?> ) no-repeat 18px 0 #FFFBD5; }
+					.wbte-cta-banner-features_head_div{ height: 80px; border-bottom: 1px solid #c3c4c7; display: flex; align-items: center; padding-left: 15px; justify-content: center; }
+					.wbte-cta-banner-features_head_div img{ width: 50px; }
+					.wbte-cta-banner-features_head_div h2{ font-weight: 600 !important; font-size: 13px !important; }
+					<?php
+				} else {
+					echo '#wt_product_import_export_pro .postbox-header{  height:80px; background:url(' . esc_url( $wt_admin_img_path . '/product-ie.svg' ) . ') no-repeat 18px 18px #fff; padding-left:65px; margin-bottom:18px; background-size: 45px 45px; }';
+				}
+				?>
 			</style>
 			<div class="wt-cta-banner">
 				<div class="wt-cta-content">
+
+					<?php
+					if ( self::$is_bfcm_season ) {
+						?>
+						<div class="wbte-cta-banner-features_head_div">
+							<img src=" <?php echo esc_url( $wt_admin_img_path . '/product-ie.svg' ); ?>" alt="<?php esc_attr_e( 'upgrade box icon', 'wt-smart-coupons-for-woocommerce' ); ?>">
+							<h2><?php esc_html_e( 'Product Import Export for WooCommerce', 'wt-smart-coupons-for-woocommerce' ); ?></h2>
+						</div>
+						<?php
+					}
+					?>
 
 					<ul class="wt-cta-features">
 						<li><?php esc_html_e( 'Import, export, or update WooCommerce products', 'wt-smart-coupons-for-woocommerce' ); ?></li>
@@ -134,7 +166,7 @@ if ( ! class_exists( 'Wt_P_IEW_Cta_Banner' ) ) {
 					<div class="wt-cta-footer">
 						<div class="wt-cta-footer-links">
 							<a href="#" class="wt-cta-toggle" data-show-text="<?php esc_attr_e( 'View all premium features', 'wt-smart-coupons-for-woocommerce' ); ?>" data-hide-text="<?php esc_attr_e( 'Show less', 'wt-smart-coupons-for-woocommerce' ); ?>"><?php esc_html_e( 'View all premium features', 'wt-smart-coupons-for-woocommerce' ); ?></a>
-							<a href="<?php echo esc_url( $plugin_url ); ?>" class="wt-cta-button" target="_blank"><img src="<?php echo esc_url( $wt_admin_img_path . '/promote_crown.svg' ); ?>" style="width: 15.01px; height: 10.08px; margin-right: 8px;"><?php esc_html_e( 'Get the plugin', 'wt-smart-coupons-for-woocommerce' ); ?></a>
+							<a href="<?php echo esc_url( $plugin_url ); ?>" class="wt-cta-button" target="_blank"><img src="<?php echo esc_url( $wt_admin_img_path . '/promote_crown.svg' ); ?>" style="width: 15.01px; height: 10.08px; margin-right: 8px;" alt=""><?php esc_html_e( 'Get the plugin', 'wt-smart-coupons-for-woocommerce' ); ?></a>
 						</div>
 						<a href="#" class="wt-cta-dismiss" style="display: block; text-align: center; margin-top: 15px; color: #666; text-decoration: none;"><?php esc_html_e( 'Dismiss', 'wt-smart-coupons-for-woocommerce' ); ?></a>
 					</div>

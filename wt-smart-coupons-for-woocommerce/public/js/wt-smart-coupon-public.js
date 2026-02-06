@@ -2,7 +2,7 @@ jQuery(function ($) {
     "use strict";
     $('form.checkout').on('change.wt_sc_payment_method_change', 'input[name="payment_method"]', function () {
 
-        var t = {updateTimer: !1, dirtyInput: !1,
+        let t = {updateTimer: !1, dirtyInput: !1,
             reset_update_checkout_timer: function () {
                 clearTimeout(t.updateTimer)
             }, trigger_update_checkout: function () {
@@ -37,8 +37,8 @@ jQuery(function ($) {
                 $('#main').prepend('<div class="woocommerce-notices-wrapper"></div>');
             }
             
-            var coupon_code = ( typeof $(this).attr('data-code') === 'undefined' ? $(this).find('code').text() : $(this).attr('data-code') );
-            var coupon_id = $(this).attr('data-id');
+            const coupon_code = ( typeof $(this).attr('data-code') === 'undefined' ? $(this).find('code').text() : $(this).attr('data-code') );
+            const coupon_id = $(this).attr('data-id');
 
             $('div.wt_coupon_wrapper, div.wt_store_credit').each(function(){
                 if($(this).find('.wt-single-coupon').length)
@@ -57,7 +57,7 @@ jQuery(function ($) {
                 return false;
             }
             
-            var data = {
+            const data = {
                 'coupon_code'   : coupon_code,
                 'coupon_id'     : coupon_id,
                 '_wpnonce'      : WTSmartCouponOBJ.nonces.apply_coupon
@@ -128,10 +128,10 @@ jQuery(function ($) {
         }
     );
 
-    var wbte_set_block_checkout_values = function() {
+    const wbte_set_block_checkout_values = function() {
 
         let payment_method = '';
-        let shipping_method = {};
+        const shipping_method = {};
       
         if( $('[name="radio-control-wc-payment-method-options"]').length ) {
             
@@ -142,9 +142,8 @@ jQuery(function ($) {
         
         /* Prepare shipping method from radio button */
         if( $('.wc-block-components-shipping-rates-control input[type="radio"]').length ) {         
-            $('.wc-block-components-shipping-rates-control input[type="radio"]:checked').each(function(){
-                let prefix = $(this).attr('name').split('-').pop();
-                shipping_method[prefix] = $(this).val();
+            $('.wc-block-components-shipping-rates-control input[type="radio"]:checked').each(function(index){
+                shipping_method[index] = $(this).val(); 
             });
         }
 
@@ -186,8 +185,8 @@ jQuery(function ($) {
      * Function from cart.js by woocommmerce
      * @param {bool} preserve_notices 
      */
-    var update_cart = function( preserve_notices ) {
-        var $form = $( '.woocommerce-cart-form' );
+    const update_cart = function( preserve_notices ) {
+        const $form = $( '.woocommerce-cart-form' );
         wt_block_node( $form );
         wt_block_node( $( 'div.cart_totals' ) );
         
@@ -215,11 +214,11 @@ jQuery(function ($) {
      * @param {string} html_str 
      * @param {bool} preserve_notices 
      */
-    var update_wc_div = function( html_str, preserve_notices ) {
-        var $html       = $.parseHTML( html_str );
-        var $new_form   = $( '.woocommerce-cart-form', $html );
-        var $new_totals = $( '.cart_totals', $html );
-        var $notices    = $( '.woocommerce-error, .woocommerce-message, .woocommerce-info', $html );
+    const update_wc_div = function( html_str, preserve_notices ) {
+        const $html       = $.parseHTML( html_str );
+        const $new_form   = $( '.woocommerce-cart-form', $html );
+        const $new_totals = $( '.cart_totals', $html );
+        const $notices    = $( '.woocommerce-error, .woocommerce-message, .woocommerce-info', $html );
 
         // No form, cannot do this.
         if ( $( '.woocommerce-cart-form' ).length === 0 ) {
@@ -240,7 +239,7 @@ jQuery(function ($) {
             }
 
             // No items to display now! Replace all cart content.
-            var $cart_html = $( '.cart-empty', $html ).closest( '.woocommerce' );
+            const $cart_html = $( '.cart-empty', $html ).closest( '.woocommerce' );
             $( '.woocommerce-cart-form__contents' ).closest( '.woocommerce' ).replaceWith( $cart_html );
 
             // Display errors
@@ -271,7 +270,7 @@ jQuery(function ($) {
      * Function from woocmmerce cart.js
      * @param {string} html_str 
      */
-    var update_cart_totals_div = function( html_str ) {
+    const update_cart_totals_div = function( html_str ) {
         $( '.cart_totals' ).replaceWith( html_str );
         $( document.body ).trigger( 'updated_cart_totals' );
     };
@@ -282,7 +281,7 @@ jQuery(function ($) {
      * function from cart.js by wooocommerce
      * @param { jQuery object } node 
      */
-    var wt_block_node = function( node ) {
+    const wt_block_node = function( node ) {
 
         node.addClass( 'processing' );
 
@@ -303,7 +302,7 @@ jQuery(function ($) {
      * function from cart.js by wooocommerce
      * @param {jQuery object} $node 
      */
-    var wt_unblock_node = function( node ) {
+    const wt_unblock_node = function( node ) {
         
         node.removeClass( 'processing' );
         
@@ -315,7 +314,7 @@ jQuery(function ($) {
     window.wbte_sc_unblock_node = wt_unblock_node;
 
 
-    var show_notice = function( html_element, $target ) {
+    const show_notice = function( html_element, $target ) {
         if ( ! $target ) {
             $target = $( '.woocommerce-notices-wrapper:first' ) || $( '.cart-empty' ).closest( '.woocommerce' ) || $( '.woocommerce-cart-form' );
         }

@@ -135,13 +135,18 @@ class Wt_Ds_Template_Engine {
 
 		$icon_base            = trim( isset( $args['icon_base'] ) ? $args['icon_base'] : 'wbte-ds/icons' );
 		$icon_base            = ( isset( $icon_base[0] ) && '/' !== $icon_base[0] ? '/' . $icon_base : $icon_base );
-		$this->icon_base_url  = trailingslashit( WP_CONTENT_URL . $icon_base );
+		$this->icon_base_url  = trailingslashit( content_url() . $icon_base );
 		$this->icon_base_path = trailingslashit( WP_CONTENT_DIR . $icon_base );
 
 		$img_base           = trim( isset( $args['img_base'] ) ? $args['img_base'] : 'wbte-ds/images' );
 		$img_base           = ( isset( $img_base[0] ) && '/' !== $img_base[0] ? '/' . $img_base : $img_base );
-		$this->img_base_url = trailingslashit( WP_CONTENT_URL . $img_base );
+		$this->img_base_url = trailingslashit( content_url() . $img_base );
 
+		
+		// Compatibility: environments without the PHP DOM extension.
+		if ( ! class_exists( '\\DOMDocument' ) || ! class_exists( '\\DOMXPath' ) ) {
+			return $this->render_without_dom_fallback( $args );
+		}
 		$doc = new \DOMDocument();
 		$doc->encoding = 'UTF-8'; // Add encoding specification
 		libxml_use_internal_errors( true );
@@ -1145,5 +1150,87 @@ class Wt_Ds_Template_Engine {
 			}
 			return $trimmed;
 		}
+	}
+
+	/**
+	 * Compatibility fallback for environments without DOMDocument.
+	 * - Does *not* support data-for / conditional blocks / dynamic class assembly.
+	 * - Performs safe placeholder replacements for {{...}}, icons, and images.
+	 * - Ensures basic HTML is returned without fatal errors.
+	 *
+	 * @param array $args Same as render()'s $args.
+	 * @return string
+	 */
+	private function render_without_dom_fallback( $args ) {
+		if ( empty( $args['html'] ) ) {
+			return '';
+		}
+
+		$this->args       = is_array( $args ) ? $args : array();
+		$this->variables  = isset( $args['values'] ) && is_array( $args['values'] ) ? $args['values'] : array();
+
+		$icon_base   = isset( $args['icon_base'] ) ? trim( $args['icon_base'] ) : 'wbte-ds/icons';
+		$icon_base   = ( isset( $icon_base[0] ) && '/' !== $icon_base[0] ? '/' . $icon_base : $icon_base );
+		$this->icon_base_url  = trailingslashit( content_url() . $icon_base );
+
+		$img_base    = isset( $args['img_base'] ) ? trim( $args['img_base'] ) : 'wbte-ds/images';
+		$img_base    = ( isset( $img_base[0] ) && '/' !== $img_base[0] ? '/' . $img_base : $img_base );
+		$this->img_base_url   = trailingslashit( content_url() . $img_base );
+
+		$html = $args['html'];
+
+		// Replace icon placeholders that appear in attributes or text: {{wbte-ds-icon-<name or var>}}
+		$html = preg_replace_callback('/{{\\s*wbte-ds-icon-([^}]+)\\s*}}/i', function( $m ) {
+			$name = $this->prepare_icon_name( $m[1] );
+			return $name ? esc_url( $this->icon_base_url . $name . '.svg' ) : '';
+		}, $html);
+
+		// Replace image placeholders that appear in attributes or text: {{wbte-ds-img-<path>}}
+		$html = preg_replace_callback('/{{\\s*wbte-ds-img-([^}]+)\\s*}}/i', function( $m ) {
+			$path = trim( $m[1] );
+			return esc_url( $this->img_base_url . $path );
+		}, $html);
+
+		// Replace generic {{ ... }} placeholders by delegating to existing parser.
+		$html = preg_replace_callback('/{{\\s*([^}]+)\\s*}}/', function( $m ) {
+			return $this->parse_placeholder_values( $m[1] );
+		}, $html);
+
+		// Best-effort: strip data-* attributes that are DS-internal and would not be processed without DOM.
+		// This avoids visible artifacts like "data-class" showing in markup.
+		$html = preg_replace("#\sdata-(?:for|class|main|attr-[^=\s]+|bind-[^=\s]+)=(?:\"[^\"]*\"|'[^']*')#i", '', $html);
+
+		// Add outer classes/attrs if explicitly passed (no DOM to merge intelligently).
+		if ( ! empty( $args['class'] ) && is_array( $args['class'] ) ) {
+			$classes = array_map( 'sanitize_html_class', $args['class'] );
+			$classes = array_filter( array_map( 'trim', $classes ) );
+			if ( ! empty( $classes ) ) {
+				// Only prepend to the first tag.
+				$html = preg_replace('/<(\\w+)([^>]*)>/', '<$1 class="' . esc_attr( implode(' ', $classes) ) . '"$2>', $html, 1);
+			}
+		}
+
+		// Add custom attributes if provided.
+		if ( ! empty( $args['attr'] ) && is_array( $args['attr'] ) ) {
+			$attr_str = '';
+			foreach ( $args['attr'] as $k => $v ) {
+				$k = preg_replace('/[^a-zA-Z0-9_-]/', '', $k);
+				if ( '' === $k ) {
+					continue;
+				}
+				if ( is_bool( $v ) ) {
+					if ( $v ) {
+						$attr_str .= ' ' . esc_attr( $k ) . '="' . esc_attr( $k ) . '"';
+					}
+				} else {
+					$attr_str .= ' ' . esc_attr( $k ) . '="' . esc_attr( (string) $v ) . '"';
+				}
+			}
+			if ( '' !== $attr_str ) {
+				$html = preg_replace('/<(\\w+)([^>]*)>/', '<$1$2' . $attr_str . '>', $html, 1);
+			}
+		}
+
+		return $html;
 	}
 }

@@ -52,27 +52,9 @@ msgstr "Dupliquer"
 msgid "Duplicate this item"
 msgstr "Dupliquer cet élément"
 
-#: admin/class-wt-promotion-banner.php:43
-#, no-php-format
-msgid ""
-"Black Friday & Cyber Monday sale is now live! Get any WebToffee plugins at "
-"an exclusive 30% discount."
-msgstr ""
-"Les soldes du Black Friday et du Cyber Monday sont maintenant en ligne! "
-"Obtenez n'importe quel plugin WebToffee avec une remise exclusive de 30%"
-
 #: admin/class-wt-smart-coupon-admin.php:122
 msgid "Quick links"
 msgstr "Liens rapides"
-
-#: admin/class-wt-smart-coupon-admin.php:227
-#, php-format
-msgid ""
-"Unable to update settings due to an internal error. %s To troubleshoot "
-"please click %s here. %s"
-msgstr ""
-"Impossible de mettre à jour les paramètres en raison d'une erreur interne. "
-"%s Pour dépanner, veuillez cliquer %s ici. %s"
 
 #: admin/class-wt-smart-coupon-admin.php:228
 msgid "is required"
@@ -208,11 +190,6 @@ msgid "Did you know?"
 msgstr "Le saviez-vous?"
 
 #: admin/class-wt-smart-coupon-admin.php:676
-#, php-format
-msgid "Get %s WooCommerce Coupon Generator %s plugin."
-msgstr "Obtenez le plugin %s WooCommerce Coupon Generator %s"
-
-#: admin/class-wt-smart-coupon-admin.php:676
 msgid "Maybe later"
 msgstr "Peut-être plus tard"
 
@@ -223,11 +200,6 @@ msgstr "Mise à jour de la base de données des coupons intelligents en cours"
 #: admin/class-wt-smart-coupon-admin.php:777
 msgid "The site may experience a slow response for few minutes."
 msgstr "Le site peut rencontrer une réponse lente pendant quelques minutes"
-
-#: admin/class-wt-smart-coupon-admin.php:785
-#, php-format
-msgid "Progress: %d out of %d"
-msgstr "Progrès : %d sur %d"
 
 #: admin/coupon-start-date/class-wt-smart-coupon-start-date.php:39
 msgid "Coupon start date"
@@ -722,35 +694,15 @@ msgstr "sélectionné"
 msgid "Are you sure you want to disable the old BOGO coupons?"
 msgstr "Êtes-vous sûr de vouloir désactiver les anciens coupons BOGO ?"
 
-#: admin/modules/bogo/bogo.php:204
-#, php-format
-msgid "%s quantities of %s Specific product(s) %s for %s Free %s"
-msgstr "%s quantités de %s Produit(s) spécifique(s) %s pour %s Gratuit %s"
-
 #: admin/modules/bogo/bogo.php:213
 #, php-format
 msgid "%s quantities of %s Specific product(s) %s with %s Discount %s each"
 msgstr "%s quantités de %s Produit spécifique %s avec %s Remise %s chacun"
 
-#: admin/modules/bogo/bogo.php:231
-#, php-format
-msgid "Customer %s Spends %s between %s and %s on %s Selected product(s) %s"
-msgstr ""
-"Client %s Dépense %s entre %s et %s sur %s Produit(s) Sélectionné(s) %s"
-
 #: admin/modules/bogo/bogo.php:248
 #, php-format
 msgid "Customer %s Spends %s at least %s on %s Selected product(s) %s"
 msgstr "Client %s Dépense %s au moins %s sur %s Produit(s) sélectionné(s) %s"
-
-#: admin/modules/bogo/bogo.php:265
-#, php-format
-msgid ""
-"Customer %s Buys %s between %s and %s quantities of %s Selected product(s) "
-"%s"
-msgstr ""
-"Le client %s achète %s entre %s et %s quantités de %s produit(s) "
-"sélectionné(s) %s"
 
 #: admin/modules/bogo/bogo.php:282
 #, php-format
@@ -760,22 +712,11 @@ msgstr ""
 "Le client %s achète %s au moins %s quantités de %s produit(s) sélectionné(s)"
 " %s"
 
-#: admin/modules/bogo/bogo.php:292
-#, php-format
-msgid "Buy %s to %s items, Get %s Specific product(s) %s x %s"
-msgstr ""
-"Achetez de %s à %s articles, Obtenez %s produit(s) spécifique(s) %s x %s"
-
 #: admin/modules/bogo/bogo.php:301
 #, php-format
 msgid "Spend %s to %s on items, Get %s Specific product(s) %s x %s"
 msgstr ""
 "Dépensez %s à %s en articles, Obtenez %s Produit(s) spécifique(s) %s x %s"
-
-#: admin/modules/bogo/bogo.php:310
-#, php-format
-msgid "Buy %s , Get %s Specific product(s) %s x %s"
-msgstr "Achetez %s , Obtenez %s Produit(s) spécifique(s) %s x %s"
 
 #: admin/modules/bogo/bogo.php:318
 #, php-format
@@ -842,11 +783,6 @@ msgstr "Limite d'utilisation de %s par utilisateur"
 #, php-format
 msgid "Usage limit of %s per offer."
 msgstr "Limite d'utilisation de %s par offre"
-
-#: admin/modules/bogo/bogo.php:352
-#, php-format
-msgid "Minimum %s and maximum %s quantity of any item."
-msgstr "Quantité minimale de %s et maximale de %s pour tout article"
 
 #: admin/modules/bogo/bogo.php:358
 #, php-format
@@ -1342,11 +1278,6 @@ msgstr "Répétitivement"
 msgid "Custom"
 msgstr "Sur mesure"
 
-#: admin/modules/bogo/views/---step3.php:71
-#, php-format
-msgid "Limit for applying repeatedly %s time(s) %s"
-msgstr "Limite pour postuler plusieurs fois %s fois %s"
-
 #: admin/modules/bogo/views/---step3.php:86
 msgid ""
 "You can set advanced cart conditions and create custom discount rules for "
@@ -1538,11 +1469,6 @@ msgstr "Aucune offre BOGO trouvée"
 msgid "Buy X, get X/Y"
 msgstr "Achetez X, obtenez X/Y"
 
-#: admin/modules/bogo/views/--bogo-listing.php:388
-#, php-format
-msgid "%s / %s"
-msgstr "%s / %s"
-
 #: admin/modules/bogo/views/--bogo-listing.php:404
 msgid "Delete"
 msgstr "Supprimer"
@@ -1590,11 +1516,6 @@ msgstr "Prix réduit %s"
 msgid "Tax is calculated based on the price after the offer is applied"
 msgstr "La taxe est calculée sur le prix après application de l'offre"
 
-#: admin/modules/bogo/views/--bogo-main-general.php:78
-#, php-format
-msgid "Original price %s %s"
-msgstr "Prix original %s %s"
-
 #: admin/modules/bogo/views/--bogo-main-general.php:80
 msgid "Tax is calculated on the original price before the offer is applied."
 msgstr ""
@@ -1630,10 +1551,6 @@ msgstr "Infos sur les remises sous chaque article dans le panier"
 #: admin/modules/bogo/views/--bogo-main-general.php:120
 msgid "Discount..."
 msgstr "Réduction..."
-
-#: admin/modules/bogo/views/--bogo-main-general.php:133
-msgid "“Choose product” title"
-msgstr "Titre « Choisir un produit »"
 
 #: admin/modules/bogo/views/--bogo-main-general.php:134
 #: common/modules/bogo/bogo.php:293
@@ -1793,14 +1710,6 @@ msgstr ""
 "Le coupon ne sera applicable que pour le pays sélectionné soit à partir de "
 "l'adresse de livraison/facturation"
 
-#: admin/modules/coupon_restriction/coupon_restriction.php:180
-msgid ""
-"Enable to apply coupon only if the cart satisfies the product or category "
-"restrictions."
-msgstr ""
-"Activer l'application du coupon uniquement si le panier satisfait aux "
-"restrictions de produit ou de catégorie"
-
 #: admin/modules/coupon_restriction/coupon_restriction.php:193
 msgid "Individual quantity restriction"
 msgstr "Restriction de quantité individuelle"
@@ -1830,15 +1739,6 @@ msgstr "Tout de la sélection ci-dessous"
 #: admin/modules/coupon_restriction/coupon_restriction.php:212
 #, php-format
 msgid ""
-"%s Any: %s Applies coupon if any of the products from the below is available"
-" in the cart."
-msgstr ""
-"%s N'importe quel: %s Applique le coupon si l'un des produits ci-dessous est"
-" disponible dans le panier."
-
-#: admin/modules/coupon_restriction/coupon_restriction.php:212
-#, php-format
-msgid ""
 "%s All: %s Applies coupon if the cart contains all of the listed products."
 msgstr ""
 "%s Tous : %s Applique le coupon si le panier contient tous les produits "
@@ -1847,16 +1747,6 @@ msgstr ""
 #: admin/modules/coupon_restriction/coupon_restriction.php:226
 msgid "Category condition:"
 msgstr "Condition de catégorie:"
-
-#: admin/modules/coupon_restriction/coupon_restriction.php:232
-#, php-format
-msgid ""
-"%s Any: %s Applies coupon if the eligible quantity of products from any of "
-"the below selected categories are available in the cart."
-msgstr ""
-"%s N'importe lequel : %s Applique le coupon si la quantité éligible de "
-"produits de l'une des catégories sélectionnées ci-dessous est disponible "
-"dans le panier."
 
 #: admin/modules/coupon_restriction/coupon_restriction.php:232
 #, php-format
@@ -2302,20 +2192,6 @@ msgstr "Appliquer à plusieurs reprises"
 #: admin/modules/giveaway_product/giveaway_product.php:207
 #, php-format
 msgid ""
-"%s Apply once: %s If cart is eligible or conditions are met, coupon applies "
-"once. ie: If you set the coupon to offer Buy 2 Get 1, you get one free "
-"product. Moving more items to the cart will not make it eligible to get more"
-" free products."
-msgstr ""
-"%s Appliquer une fois : %s Si le panier est éligible ou si les conditions "
-"sont remplies, le coupon s'applique une fois. C'est-à-dire : si vous "
-"configurez le coupon pour offrir Achetez 2 Obtenez 1, vous obtenez un "
-"produit gratuit. Ajouter plus d'articles au panier ne rendra pas éligible à "
-"plus de produits gratuits"
-
-#: admin/modules/giveaway_product/giveaway_product.php:207
-#, php-format
-msgid ""
 "%s Apply repeatedly: %s The coupon applies repeatedly whenever the cart is "
 "eligible or if conditions are met. ie: If you set the coupon to offer Buy 2 "
 "Get 1 then the coupon works repeatedly for Buy 4 Get 2 and so on."
@@ -2684,17 +2560,6 @@ msgstr ""
 " produits, des commandes, des clients, des coupons de réduction et des "
 "abonnements en utilisant ce seul plugin."
 
-#: admin/modules/other_solutions/views/other_solutions_content.php:190
-msgid ""
-"Offer a fast checkout experience to your customers with PayPal Payment "
-"Gateway. You can set up the PayPal Express Checkout option on the product "
-"pages to reduce the clicks to complete the checkout."
-msgstr ""
-"Offrez une expérience de paiement rapide à vos clients avec la passerelle de"
-" paiement PayPal. Vous pouvez configurer l'option PayPal Express Checkout "
-"sur les pages produits pour réduire le nombre de clics nécessaires pour "
-"finaliser le paiement"
-
 #: admin/modules/other_solutions/views/other_solutions_content.php:199
 msgid ""
 "Ensure a fast and secure checkout experience for your users with WooCommerce"
@@ -2704,17 +2569,6 @@ msgstr ""
 "Assurez une expérience de paiement rapide et sécurisée pour vos utilisateurs"
 " avec WooCommerce Stripe Payment Gateway. Stripe accepte les cartes de "
 "crédit/débit et offre des intégrations avec Apple Pay, SEPA, Alipay, et plus"
-
-#: admin/modules/other_solutions/views/other_solutions_content.php:208
-msgid ""
-"Enable subscriptions on your WooCommerce store to sell products (physical "
-"and digital) and services that require accepting recurring payments. "
-"Supports both simple and variable subscription products."
-msgstr ""
-"Activez les abonnements sur votre boutique WooCommerce pour vendre des "
-"produits (physiques et numériques) et des services nécessitant l'acceptation"
-" de paiements récurrents. Prend en charge les produits d'abonnement simples "
-"et variables."
 
 #: admin/modules/other_solutions/views/other_solutions_content.php:216
 msgid "Sequential Order Numbers for WooCommerce"
@@ -2801,27 +2655,13 @@ msgstr "Afficher les bannières de coupons et les widgets"
 msgid "Import coupons from CSV"
 msgstr "Importer des coupons à partir d'un CSV"
 
-#: admin/modules/premium_upgrade/views/page_content.php:108
-msgid "Show a cookie consent banner with Accept/Reject buttons"
-msgstr ""
-"Afficher une bannière de consentement aux cookies avec des boutons "
-"Accepter/Rejeter"
-
 #: admin/modules/premium_upgrade/views/page_content.php:110
 msgid "Scan your website to identify cookies"
 msgstr "Analysez votre site web pour identifier les cookies"
 
-#: admin/modules/premium_upgrade/views/page_content.php:114
-msgid "Automatically block third-party cookies"
-msgstr "Bloquer automatiquement les cookies tiers"
-
 #: admin/modules/premium_upgrade/views/page_content.php:116
 msgid "Show cookie notice based on Geo IP"
 msgstr "Afficher l'avis de cookies basé sur l'IP géographique"
-
-#: admin/modules/premium_upgrade/views/page_content.php:123
-msgid "OUR FLAGSHIP PLUGIN 🔥"
-msgstr "NOTRE PLUGIN PHARE 🔥"
 
 #: admin/modules/premium_upgrade/views/page_content.php:132
 msgid "WooCommerce Product Recommendations"
@@ -3220,11 +3060,6 @@ msgstr "Crochets"
 msgid "Some useful `hooks` to extend the plugin's functionality"
 msgstr "Quelques `hooks` utiles pour étendre la fonctionnalité du plugin"
 
-#: admin/views/_premium_features_sidebar.php:5
-#: admin/views/_upgrade_to_pro_metabox.php:11
-msgid "Tick"
-msgstr "Cochez"
-
 #: admin/views/_premium_features_sidebar.php:11
 msgid "Make Irresistible Coupon Campaigns with Powerful Features"
 msgstr ""
@@ -3281,10 +3116,6 @@ msgstr "Taux de satisfaction client de 99%"
 #: admin/views/_setup_video_sidebar.php:13
 msgid "Watch setup video"
 msgstr "Regarder la vidéo d'installation"
-
-#: admin/views/_upgrade_to_pro_metabox.php:49
-msgid "See more..."
-msgstr "Voir plus..."
 
 #: admin/views/admin-help.php:11
 msgid "Help links"
@@ -3435,10 +3266,6 @@ msgstr "Catégorie de coupon"
 msgid "Invalid coupon"
 msgstr "Coupon invalide"
 
-#: common/modules/coupon_style/coupon_style.php:152
-msgid "Used coupon"
-msgstr "Coupon utilisé"
-
 #: common/modules/coupon_style/coupon_style.php:153
 msgid "Expired coupon"
 msgstr "Coupon expiré"
@@ -3531,29 +3358,9 @@ msgstr ""
 msgid "Oops! Woocommerce not activated.."
 msgstr "Oups! Woocommerce non activé.."
 
-#: includes/class-wt-smart-coupon-review_request.php:75
-#, php-format
-msgid ""
-"%s Wow %s, you have created more than %s coupons with our %s Smart Coupon "
-"for WooCommerce plugin! %s That’s awesome! We’d love it if you take a moment"
-" to rate us and help spread the word."
-msgstr ""
-"%s Waouh %s, vous avez créé plus de %s coupons avec notre plugin %s Smart "
-"Coupon pour WooCommerce! %s C’est génial! Nous serions ravis si vous preniez"
-" un moment pour nous évaluer et aider à faire connaître."
-
 #: includes/class-wt-smart-coupon-review_request.php:80
 msgid "Not interested"
 msgstr "Pas intéressé"
-
-#: includes/class-wt-smart-coupon.php:696
-#, php-format
-msgid ""
-"An error occurred while activating %s Smart Coupons For WooCommerce Coupons "
-"%s: Unable to create database table. %s"
-msgstr ""
-"Une erreur s'est produite lors de l'activation de %s Smart Coupons pour les "
-"Coupons WooCommerce %s : Impossible de créer la table de base de données. %s"
 
 #: includes/class-wt-smart-coupon.php:696
 msgid "Go to plugins page"
@@ -3729,11 +3536,6 @@ msgstr "Coupon de livraison gratuite"
 msgid "Sorry, this coupon is not applicable to selected products."
 msgstr "Désolé, ce coupon n'est pas applicable aux produits sélectionnés"
 
-#: public/modules/bogo/bogo.php:335
-#, php-format
-msgid "The %s %s of matching products for this coupon is %s."
-msgstr "Le %s %s des produits correspondants pour ce coupon est %s"
-
 #: public/modules/bogo/bogo.php:567
 msgid "Coupon: "
 msgstr "Coupon: "
@@ -3793,11 +3595,6 @@ msgstr "Désolé, ce coupon n'est pas applicable pour votre rôle"
 #: public/modules/checkout_options/checkout_options.php:178
 msgid "Sorry, this coupon is not applicable to selected location"
 msgstr "Désolé, ce coupon n'est pas valable pour l'emplacement sélectionné"
-
-#: public/modules/coupon_restriction/coupon_restriction.php:91
-#, php-format
-msgid "The minimum quantity of %s for this coupon is %s."
-msgstr "La quantité minimale de %s pour ce coupon est %s"
 
 #: public/modules/coupon_restriction/coupon_restriction.php:94
 #, php-format
@@ -3877,13 +3674,6 @@ msgstr "La quantité maximale autorisée pour chaque article éligible est %s"
 msgid "Congratulations! You've got a freebie in your cart!"
 msgstr "Félicitations ! Vous avez un cadeau gratuit dans votre panier !"
 
-#: public/modules/giveaway_product/giveaway_product.php:510
-#, php-format
-msgid "Surprise! %s You've received a special giveaway product with %s Off!"
-msgstr ""
-"Surprise! %s Vous avez reçu un produit en cadeau spécial avec %s de "
-"réduction!"
-
 #: public/modules/giveaway_product/giveaway_product.php:605
 msgid "Lucky You! Your cart is now loaded with incredible giveaway goodies!"
 msgstr ""
@@ -3959,14 +3749,6 @@ msgstr "Ajouter tout au panier"
 msgid "Add to cart"
 msgstr "Ajouter au panier"
 
-#: public/modules/url_coupon/url_coupon.php:83
-#, php-format
-msgid ""
-"Oops your cart is empty! Add %s products %s to your cart to avail the offer."
-msgstr ""
-"Oups, votre panier est vide ! Ajoutez %s produits %s à votre panier pour "
-"profiter de l'offre."
-
 #: public/templates/myaccount/my-account-coupon-view.php:23
 msgid "Available Coupons"
 msgstr "Coupons Disponibles"
@@ -4037,15 +3819,6 @@ msgid "Switch to our new BOGO module for the latest features"
 msgstr ""
 "Passez à notre nouveau module BOGO pour les dernières fonctionnalités."
 
-#: admin/class-wt-smart-coupon-admin.php:667
-msgid ""
-"With %s WooCommerce Marketing Automation %s app, you can build signup forms,"
-" create popups, and run automated email campaigns with exclusive coupons."
-msgstr ""
-"Avec l'application %s WooCommerce Marketing Automation %s, vous pouvez créer"
-" des formulaires d'inscription, des popups et lancer des campagnes d'email "
-"automatisées avec des coupons exclusifs."
-
 #: admin/class-wt-smart-coupon-admin.php:671
 msgid "Sign Up for Free"
 msgstr "Inscrivez-vous gratuitement"
@@ -4053,16 +3826,6 @@ msgstr "Inscrivez-vous gratuitement"
 #: admin/class-wt-smart-coupon-admin.php:807
 msgid "Access denied"
 msgstr "Accès refusé"
-
-#. Translators: 1: Opening italics tag, 2: Opening a tag, 3: Closing a tag, 4:
-#. Closing italics tag.
-#: admin/class-wt-smart-coupon-admin.php:1029
-msgid ""
-"%s If you like Smart Coupons please leave us a %s ★★★★★ %s rating. A huge "
-"thanks in advance! %s"
-msgstr ""
-"%s Si vous aimez les Smart Coupons, veuillez nous laisser une %s ★★★★★ %s "
-"évaluation. Un grand merci d'avance ! %s"
 
 #: admin/class-wt-smart-coupon-admin.php:1047
 msgid "Version %s"
@@ -4155,14 +3918,6 @@ msgid "Failed to copy"
 msgstr "Échec de la copie"
 
 #. Translators: 1: span opening 2: span closing 3:span opening 4:span closing
-#. 5:span opening 6:span closing.
-#: admin/modules/bogo/bogo.php:1403
-msgid ""
-"Customer %s Spends %s between %s {min} %s and %s {max} %s on any products"
-msgstr ""
-"Le client %s dépense %s entre %s {min} %s et %s {max} %s sur tout produit"
-
-#. Translators: 1: span opening 2: span closing 3:span opening 4:span closing
 #. 5:span opening 6:span closing 7:span opening 8:span closing.
 #: admin/modules/bogo/bogo.php:1413
 msgid ""
@@ -4174,28 +3929,12 @@ msgstr ""
 
 #. Translators: 1: span opening 2: span closing 3: span opening 4: span
 #. closing 5: span opening 6: span closing.
-#: admin/modules/bogo/bogo.php:1425
-msgid "Customer %s Spends %s at least %s {min} %s on any products"
-msgstr "Le client %s dépense %s au moins %s {min} %s sur tous les produits"
-
-#. Translators: 1: span opening 2: span closing 3: span opening 4: span
-#. closing 5: span opening 6: span closing.
 #: admin/modules/bogo/bogo.php:1433
 msgid ""
 "Customer %s Spends %s at least %s {min} %s on %s Selected product(s) %s"
 msgstr ""
 "Client %s Dépense %s au moins %s {min} %s sur %s Produit(s) sélectionné(s) "
 "%s"
-
-#. Translators: 1: span opening 2: span closing 3: span opening 4: span
-#. closing 5: span opening 6: span closing.
-#: admin/modules/bogo/bogo.php:1443
-msgid ""
-"Customer %s Buys %s between %s {min} %s and %s {max} %s quantities of any "
-"products"
-msgstr ""
-"Le client %s achète %s entre %s {min} %s et %s {max} %s quantités de tout "
-"produit."
 
 #. Translators: 1: span opening 2: span closing 3: span opening 4: span
 #. closing 5: span opening 6: span closing 7: span opening 8: span closing.
@@ -4208,14 +3947,6 @@ msgstr ""
 "produit(s) sélectionné(s) %s"
 
 #. Translators: 1: span opening 2: span closing 3: span opening 4: span
-#. closing
-#: admin/modules/bogo/bogo.php:1465
-msgid "Customer %s Buys %s at least %s {min} %s quantities of any products"
-msgstr ""
-"Le client %s achète au moins %s {min} %s quantités de n'importe quels "
-"produits"
-
-#. Translators: 1: span opening 2: span closing 3: span opening 4: span
 #. closing 5: span opening 6: span closing.
 #: admin/modules/bogo/bogo.php:1473
 msgid ""
@@ -4224,10 +3955,6 @@ msgid ""
 msgstr ""
 "Le client %s achète %s au moins %s {min} %s quantités de produit(s) "
 "sélectionné(s) %s"
-
-#: admin/modules/bogo/views/---edit-general.php:82
-msgid "Automatically %s %s %s"
-msgstr "Automatiquement %s %s %s"
 
 #: admin/modules/bogo/views/---edit-general.php:84
 msgid "copy code"
@@ -4320,17 +4047,9 @@ msgstr "Afficher l'offre activée"
 msgid "Choose where shoppers will see the coupon offer"
 msgstr "Choisissez où les acheteurs verront l'offre de coupon"
 
-#: admin/modules/bogo/views/--bogo-bulk-general.php:200
-msgid "Coupon(s) can be used by"
-msgstr "Le(s) coupon(s) peut(vent) être utilisé(s) par"
-
 #: admin/modules/bogo/views/--bogo-bulk-general.php:214
 msgid "Email recipients"
 msgstr "Destinataires de l'email"
-
-#: admin/modules/bogo/views/--bogo-bulk-general.php:219
-msgid "Anyone"
-msgstr "N'importe qui"
 
 #: admin/modules/bogo/views/--bogo-bulk-general.php:234
 msgid "Schedule offer"
@@ -4379,13 +4098,6 @@ msgstr "Combinez la livraison gratuite avec l'offre"
 msgid "Caution"
 msgstr "Attention"
 
-#: admin/modules/bogo/views/-step1.php:233
-msgid ""
-"Enable free shipping in WooCommerce %s shipping zones %s to use this option!"
-msgstr ""
-"Activez la livraison gratuite dans les zones d'expédition WooCommerce %s %s "
-"pour utiliser cette option !"
-
 #: admin/modules/bogo/views/-step3.php:82
 msgid "How about some additional features?"
 msgstr "Que diriez-vous de quelques fonctionnalités supplémentaires ?"
@@ -4405,16 +4117,6 @@ msgid ""
 msgstr ""
 "Activez pour appliquer le coupon uniquement lorsque le panier respecte les "
 "restrictions de produit spécifiées."
-
-#: admin/modules/coupon_restriction/coupon_restriction.php:191
-msgid ""
-"%s %s Did You Know? %s You can now get full control over coupon "
-"stacking—choose which discounts can and cannot be combined with Smart "
-"Coupons Pro!"
-msgstr ""
-"%s %s Le Saviez-Vous ? %s Vous pouvez désormais avoir le contrôle total sur "
-"l'empilement des coupons—choisissez quelles réductions peuvent être "
-"combinées ou non avec Smart Coupons Pro !"
 
 #: admin/modules/coupon_restriction/coupon_restriction.php:201
 msgid "Check out plugin %s"
@@ -4540,15 +4242,6 @@ msgstr "Analyses approfondies pour suivre et optimiser vos performances."
 #: admin/modules/premium_upgrade/views/page_content.php:120
 msgid "INTRODUCING 🔥"
 msgstr "PRÉSENTATION 🔥"
-
-#: common/modules/coupon_category/coupon_category.php:228
-msgid ""
-"%s Unlock more ways to reward customers! %s Create first order, next order, "
-"milestone discounts, and more!"
-msgstr ""
-"%s Déverrouillez plus de façons de récompenser les clients ! %s Créez des "
-"réductions sur la première commande, la commande suivante, des jalons, et "
-"plus encore !"
 
 #: common/modules/coupon_category/coupon_category.php:237
 msgid "Upgrade to Pro"
@@ -4726,3 +4419,634 @@ msgstr "Opérations liées aux coupons de tirage au sort."
 #: blocks/build/main/block.json blocks/src/main/block.json
 msgid "Smart coupon blocks"
 msgstr "Blocs de coupons intelligents"
+
+#. translators: %1$s: br tag, %2$s: a tag, %3$s: a tag closing.
+#: admin/class-wt-smart-coupon-admin.php:246
+msgid ""
+"Unable to update settings due to an internal error. %1$s To troubleshoot "
+"please click %2$s here. %3$s"
+msgstr ""
+"Impossible de mettre à jour les paramètres en raison d'une erreur interne. "
+"%1$s Pour résoudre le problème, cliquez %2$s ici. %3$s"
+
+#. translators: 1: a tag opening, 2: a tag closing.
+#: admin/class-wt-smart-coupon-admin.php:699
+msgid ""
+"With the %1$s Smart Coupons %2$s plugin, you can create Buy One Get One "
+"offers and advanced coupons that boost sales during BFCM."
+msgstr ""
+"Avec le plugin %1$s Smart Coupons %2$s, vous pouvez créer des offres Achetez"
+" un et obtenez un et des coupons avancés qui augmentent les ventes pendant "
+"le BFCM."
+
+#: admin/class-wt-smart-coupon-admin.php:704
+msgid "Get Plugin Now"
+msgstr "Obtenez le plugin maintenant"
+
+#: admin/class-wt-smart-coupon-admin.php:726
+msgid "Security check failed. Please try again."
+msgstr "La vérification de sécurité a échoué. Veuillez réessayer."
+
+#. translators: %1$d: migrated count, %2$d: total count.
+#: admin/class-wt-smart-coupon-admin.php:808
+msgid "Progress: %1$d out of %2$d"
+msgstr "Progression : %1$d sur %2$d"
+
+#. Translators: 1: Opening italics tag, 2: Opening a tag, 3: Closing a tag, 4:
+#. Closing italics tag.
+#: admin/class-wt-smart-coupon-admin.php:1083
+msgid ""
+"%1$s If you like Smart Coupons please leave us a %2$s ★★★★★ %3$s rating. A "
+"huge thanks in advance! %4$s"
+msgstr ""
+"%1$s Si vous aimez les Smart Coupons, veuillez nous laisser une évaluation "
+"de %2$s ★★★★★ %3$s. Un grand merci d'avance! %4$s"
+
+#: admin/cross-promotion-banners/class-wt-invoice-cta-banner.php:135
+#: admin/cross-promotion-banners/class-wt-p-iew-cta-banner.php:148
+#: admin/cross-promotion-banners/class-wt-smart-coupon-cta-banner.php:149
+msgid "upgrade box icon"
+msgstr "icône de mise à niveau de la boîte"
+
+#: admin/cross-promotion-banners/class-wt-invoice-cta-banner.php:143
+msgid "Automatically generate PDF invoices, packing slips, and credit notes"
+msgstr ""
+"Générer automatiquement des factures PDF, des bordereaux d'expédition et des"
+" notes de crédit"
+
+#: admin/cross-promotion-banners/class-wt-invoice-cta-banner.php:144
+msgid "Use ready-made, customizable templates to match your brand"
+msgstr ""
+"Utilisez des modèles prêts à l'emploi et personnalisables pour correspondre "
+"à votre marque."
+
+#: admin/cross-promotion-banners/class-wt-invoice-cta-banner.php:145
+msgid "Print or download invoices individually or in bulk"
+msgstr "Imprimer ou télécharger les factures individuellement ou en lot."
+
+#: admin/cross-promotion-banners/class-wt-invoice-cta-banner.php:146
+msgid "Set custom invoice numbering for better organization"
+msgstr ""
+"Définir une numérotation de factures personnalisée pour une meilleure "
+"organisation."
+
+#: admin/cross-promotion-banners/class-wt-invoice-cta-banner.php:147
+msgid "Customize documents fully with visual or code editors"
+msgstr ""
+"Personnalisez entièrement vos documents avec des éditeurs visuels ou de "
+"code."
+
+#: admin/cross-promotion-banners/class-wt-invoice-cta-banner.php:148
+msgid "Include VAT, GST, ABN, and other tax details"
+msgstr "Incluez les détails de la TVA, GST, ABN et autres taxes."
+
+#: admin/cross-promotion-banners/class-wt-invoice-cta-banner.php:149
+msgid "Add \"Pay Now\" link on invoices"
+msgstr "Ajouter un lien \"Payer maintenant\" sur les factures"
+
+#: admin/cross-promotion-banners/class-wt-invoice-cta-banner.php:150
+msgid "Add custom fields to any order document with ease"
+msgstr ""
+"Ajoutez des champs personnalisés à tout document de commande avec facilité"
+
+#: admin/cross-promotion-banners/class-wt-invoice-cta-banner.php:158
+#: admin/cross-promotion-banners/class-wt-p-iew-cta-banner.php:171
+#: admin/cross-promotion-banners/class-wt-smart-coupon-cta-banner.php:181
+msgid "Dismiss"
+msgstr "Fermer"
+
+#: admin/cross-promotion-banners/class-wt-p-iew-cta-banner.php:108
+#: admin/cross-promotion-banners/class-wt-p-iew-cta-banner.php:149
+msgid "Product Import Export for WooCommerce"
+msgstr "Importation et Exportation de Produits pour WooCommerce"
+
+#: admin/cross-promotion-banners/class-wt-p-iew-cta-banner.php:156
+msgid "Import, export, or update WooCommerce products"
+msgstr "Importer, exporter ou mettre à jour les produits WooCommerce"
+
+#: admin/cross-promotion-banners/class-wt-p-iew-cta-banner.php:157
+msgid ""
+"Supports all types of products (Simple, variable, subscription grouped, and "
+"external)"
+msgstr ""
+"Prend en charge tous les types de produits (Simple, variable, abonnement "
+"groupé et externe)"
+
+#: admin/cross-promotion-banners/class-wt-p-iew-cta-banner.php:158
+msgid "Multiple file formats - CSV, XML, Excel, and TSV"
+msgstr "Formats de fichiers multiples - CSV, XML, Excel et TSV"
+
+#: admin/cross-promotion-banners/class-wt-p-iew-cta-banner.php:159
+msgid "Advanced filters and customizations for better control"
+msgstr "Filtres avancés et personnalisations pour un meilleur contrôle"
+
+#: admin/cross-promotion-banners/class-wt-p-iew-cta-banner.php:160
+msgid "Bulk update WooCommerce product data"
+msgstr "Mise à jour en masse des données produit WooCommerce"
+
+#: admin/cross-promotion-banners/class-wt-p-iew-cta-banner.php:161
+msgid "Import via FTP/SFTP and URL"
+msgstr "Importer via FTP/SFTP et URL"
+
+#: admin/cross-promotion-banners/class-wt-p-iew-cta-banner.php:162
+msgid "Schedule automated import & export"
+msgstr "Programmer l'importation et l'exportation automatisées"
+
+#: admin/cross-promotion-banners/class-wt-p-iew-cta-banner.php:163
+msgid "Export and Import custom fields and third-party plugin fields"
+msgstr ""
+"Exporter et importer des champs personnalisés et des champs de plugins tiers"
+
+#: admin/data/data-hooks-help.php:91
+msgid "Alter the giveaway product price."
+msgstr "Modifier le prix du produit cadeau."
+
+#: admin/data/data-hooks-help.php:92
+msgid ""
+"Alter the giveaway product price. The code below will change the giveaway "
+"product price to 100 for the product with ID 123. This price is used to give"
+" discount on the giveaway product. This hook can be used to alter the price "
+"of a custom product which price not get from woocommerce methods like "
+"get_price, get_sale_price, get_regular_price, etc."
+msgstr ""
+"Modifiez le prix du produit en cadeau. Le code ci-dessous changera le prix "
+"du produit en cadeau à 100 pour le produit avec ID 123. Ce prix sert à "
+"offrir une remise sur le produit en cadeau. Ce hook peut être utilisé pour "
+"modifier le prix d'un produit personnalisé dont le prix n'est pas obtenu par"
+" les méthodes wooCommerce comme get_price, get_sale_price, "
+"get_regular_price, etc."
+
+#: admin/data/data-hooks-help.php:104
+msgid "Alter the cart amount for validation."
+msgstr "Modifiez le montant du panier pour la validation."
+
+#: admin/data/data-hooks-help.php:105
+msgid ""
+"Alter the cart amount for validation. It can be used if site used "
+"multicurrency plugin."
+msgstr ""
+"Modifiez le montant du panier pour la validation. Cela peut être utilisé si "
+"le site utilise un plugin multidevise."
+
+#: admin/data/data-hooks-help.php:113
+msgid "Change giveaway product IDs for specific product BOGO type."
+msgstr ""
+"Changez les ID des produits en cadeau pour un type de produit BOGO "
+"spécifique."
+
+#: admin/data/data-hooks-help.php:114
+msgid "This hook can be used when using the multi-language plugin."
+msgstr ""
+"Ce hook peut être utilisé lors de l'utilisation du plugin multilingue."
+
+#: admin/data/data-hooks-help.php:123
+msgid "Alter the BOGO cart item data before adding to cart."
+msgstr ""
+"Modifiez les données de l'article BOGO avant de les ajouter au panier."
+
+#: admin/data/data-hooks-help.php:124
+msgid ""
+"The code below will add a special meta to the cart item for the product with"
+" ID 123."
+msgstr ""
+"Le code ci-dessous ajoutera un méta spécial à l'article du panier pour le "
+"produit avec l'ID 123."
+
+#: admin/data/data-hooks-help.php:136
+msgid "Alter the allowed product types for auto add."
+msgstr "Modifiez les types de produits autorisés pour l'ajout automatique."
+
+#: admin/data/data-hooks-help.php:137
+msgid ""
+"By default simple and variation product types are allowed for automatically "
+"adding to cart. This hook can be used to alter the allowed product types for"
+" auto add."
+msgstr ""
+"Par défaut, les types de produits simples et variables sont autorisés pour "
+"l'ajout automatique au panier. Ce crochet peut être utilisé pour modifier "
+"les types de produits autorisés pour l'ajout automatique."
+
+#: admin/data/data-hooks-help.php:149
+msgid "Alter the giveaway cart lineitem text."
+msgstr "Modifiez le texte de l'article du panier cadeau."
+
+#: admin/data/data-hooks-help.php:150
+msgid ""
+"Alter the giveaway cart lineitem text. The code below will change the text "
+"for the product with ID 123."
+msgstr ""
+"Modifiez le texte de l'article du panier cadeau. Le code ci-dessous changera"
+" le texte pour le produit avec l'ID 123."
+
+#: admin/data/data-hooks-help.php:162
+msgid "Alter the user can change the free product quantity."
+msgstr "Permettre à l'utilisateur de modifier la quantité du produit gratuit."
+
+#: admin/data/data-hooks-help.php:163
+msgid ""
+"The code below restricts users from changing the free product quantity for "
+"the coupon with ID 123."
+msgstr ""
+"Le code ci-dessous limite les utilisateurs à modifier la quantité de produit"
+" gratuit pour le coupon avec l'ID 123."
+
+#: admin/data/data-hooks-help.php:175
+msgid "Alter cart item price for BOGO validation."
+msgstr "Modifier le prix de l'article du panier pour la validation BOGO."
+
+#: admin/data/data-hooks-help.php:176
+msgid ""
+"Alter the cart item price for BOGO validation. Can be used for third-party "
+"products whose prices are not obtained from WooCommerce methods like "
+"get_price, get_sale_price, get_regular_price, etc."
+msgstr ""
+"Modifiez le prix de l'article du panier pour la validation BOGO. Peut être "
+"utilisé pour des produits tiers dont les prix ne sont pas obtenus par des "
+"méthodes WooCommerce telles que get_price, get_sale_price, "
+"get_regular_price, etc."
+
+#: admin/data/data-hooks-help.php:188
+msgid "Alter the BOGO products and categories IDs for validation."
+msgstr ""
+"Modifiez les identifiants des produits et des catégories BOGO pour la "
+"validation."
+
+#: admin/data/data-hooks-help.php:189
+msgid ""
+"Hooks, which help when using a multilingual plugin. These hooks can be used "
+"to return translated product or category IDs for BOGO validation."
+msgstr ""
+"Hooks, qui aident lors de l'utilisation d'un plugin multilingue. Ces hooks "
+"peuvent être utilisés pour renvoyer des identifiants de produits ou de "
+"catégories traduits pour la validation BOGO."
+
+#: admin/modules/banner/class-wbte-ema-banner.php:158
+msgid ""
+"You can boost your store revenue and recover lost sales with automated email"
+" campaigns, cart recovery, and upsell popups using the WebToffee Marketing "
+"Automation App."
+msgstr ""
+"Vous pouvez augmenter les revenus de votre magasin et récupérer les ventes "
+"perdues avec des campagnes email automatisées, la récupération de panier et "
+"des popups de vente incitative en utilisant l'application d'automatisation "
+"marketing WebToffee."
+
+#: admin/modules/banner/class-wbte-ema-banner.php:163
+msgid "Dismiss this notice."
+msgstr "Ignorer cet avis."
+
+#: admin/modules/banner/class-wt-bfcm-twenty-twenty-five.php:114
+msgid "Black Friday Cyber Monday 2025"
+msgstr "Black Friday Cyber Monday 2025"
+
+#: admin/modules/banner/class-wt-bfcm-twenty-twenty-five.php:118
+msgid "Never Miss This Deal"
+msgstr "Ne manquez pas cette offre"
+
+#. translators: 1: Discount text with span wrapper, e.g. <span>30% OFF</span>.
+#: admin/modules/banner/class-wt-bfcm-twenty-twenty-five.php:125
+msgid ""
+"Your Last Chance to Avail %1$s on WebToffee Plugins. Grab the deal before "
+"it`s gone!"
+msgstr ""
+"Votre dernière chance de profiter de %1$s sur les plugins WebToffee. "
+"Saisissez l'offre avant qu'elle ne disparaisse!"
+
+#. translators: 1: Discount text with span wrapper, e.g. <span>30% OFF</span>.
+#: admin/modules/banner/class-wt-bfcm-twenty-twenty-five.php:126
+msgid "OFF"
+msgstr "ÉTEINT"
+
+#: admin/modules/banner/class-wt-bfcm-twenty-twenty-five.php:132
+msgid "View plugins"
+msgstr "Voir les plugins"
+
+#. Translators: 1: Free qty 2: span opening for customer gets 3: span closing
+#. 4: span opening 5: span closing.
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1393
+msgid "%1$s quantities of %2$s Specific product(s) %3$s for %4$s Free %5$s"
+msgstr ""
+"%1$s quantités de %2$s Produit(s) spécifique(s) %3$s pour %4$s Gratuit %5$s"
+
+#. Translators: 1: Free qty 2: span opening for customer gets 3: span closing
+#. 4: span opening 5: span closing 6: Discount amount.
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1402
+msgid ""
+"%1$s quantities of %2$s Specific product(s) %3$s with %4$s Discount %5$s "
+"each"
+msgstr ""
+"Quantités de %1$s du produit spécifique %2$s %3$s avec %4$s Remise %5$s "
+"chacune"
+
+#. Translators: 1: span opening 2: span closing 3:span opening 4:span closing
+#. 5:span opening 6:span closing.
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1412
+msgid ""
+"Customer %1$s Spends %2$s between %3$s {min} %4$s and %5$s {max} %6$s on any"
+" products"
+msgstr ""
+"Le client %1$s dépense %2$s entre %3$s {min} %4$s et %5$s {max} %6$s sur "
+"n'importe quels produits."
+
+#. Translators: 1: span opening 2: span closing 3:span opening 4:span closing
+#. 5:span opening 6:span closing 7:span opening 8:span closing.
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1422
+msgid ""
+"Customer %1$s Spends %2$s between %3$s {min} %4$s and %5$s {max} %6$s on "
+"%7$s Selected product(s) %8$s"
+msgstr ""
+"Client %1$s dépense %2$s entre %3$s {min} %4$s et %5$s {max} %6$s sur %7$s "
+"Produit(s) sélectionné(s) %8$s"
+
+#. Translators: 1: span opening 2: span closing 3: span opening 4: span
+#. closing 5: span opening 6: span closing.
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1434
+msgid "Customer %1$s Spends %2$s at least %3$s {min} %4$s on any products"
+msgstr ""
+"Le client %1$s dépense %2$s au moins %3$s {min} %4$s sur n'importe quel "
+"produit"
+
+#. Translators: 1: span opening 2: span closing 3: span opening 4: span
+#. closing 5: span opening 6: span closing.
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1442
+msgid ""
+"Customer %1$s Spends %2$s at least %3$s {min} %4$s on %5$s Selected "
+"product(s) %6$s"
+msgstr ""
+"Client %1$s dépense %2$s au moins %3$s {min} %4$s sur %5$s produit(s) "
+"sélectionné(s) %6$s"
+
+#. Translators: 1: span opening 2: span closing 3: span opening 4: span
+#. closing 5: span opening 6: span closing.
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1452
+msgid ""
+"Customer %1$s Buys %2$s between %3$s {min} %4$s and %5$s {max} %6$s "
+"quantities of any products"
+msgstr ""
+"Le client %1$s achète %2$s entre %3$s {min} %4$s et %5$s {max} %6$s "
+"quantités de n'importe quels produits."
+
+#. Translators: 1: span opening 2: span closing 3: span opening 4: span
+#. closing 5: span opening 6: span closing 7: span opening 8: span closing.
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1462
+msgid ""
+"Customer %1$s Buys %2$s between %3$s {min} %4$s and %5$s {max} %6$s "
+"quantities of %7$s Selected product(s) %8$s"
+msgstr ""
+"Le client %1$s achète %2$s entre %3$s {min} %4$s et %5$s {max} %6$s "
+"quantités de produit(s) sélectionné(s) %7$s %8$s"
+
+#. Translators: 1: span opening 2: span closing 3: span opening 4: span
+#. closing.
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1474
+msgid ""
+"Customer %1$s Buys %2$s at least %3$s {min} %4$s quantities of any products"
+msgstr ""
+"Le client %1$s achète %2$s au moins %3$s {min} %4$s quantités de n'importe "
+"quel produit"
+
+#. Translators: 1: span opening 2: span closing 3: span opening 4: span
+#. closing 5: span opening 6: span closing.
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1482
+msgid ""
+"Customer %1$s Buys %2$s at least %3$s {min} %4$s quantities of %5$s Selected"
+" product(s) %6$s"
+msgstr ""
+"Client %1$s achète %2$s au moins %3$s {min} %4$s quantités de produit(s) "
+"sélectionné(s) %5$s %6$s"
+
+#. Translators: 1: Minimum qty 2: Maximum qty 3: Span opening 4: Span closing
+#. 5: Free qty.
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1493
+msgid "Buy %1$s to %2$s items, Get %3$s Specific product(s) %4$s x %5$s"
+msgstr ""
+"Achetez de %1$s à %2$s articles, obtenez %3$s produit(s) spécifique(s) %4$s "
+"x %5$s"
+
+#. Translators: 1: Minimum spend 2: Maximum spend 3: Span opening 4: Span
+#. closing 5: Selected customer gets 6: Free qty.
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1502
+msgid "Spend %1$s to %2$s on items, Get %3$s Specific product(s) %4$s x %5$s"
+msgstr ""
+"Dépensez %1$s pour %2$s sur des articles, Obtenez %3$s produit(s) "
+"spécifique(s) %4$s x %5$s"
+
+#. Translators: 1: min qty 2: Span opening 3: Span closing 4: Customer gets
+#. qty .
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1511
+msgid "Buy %1$s , Get %2$s Specific product(s) %3$s x %4$s"
+msgstr "Acheter %1$s , Obtenez %2$s Produit(s) spécifique(s) %3$s x %4$s"
+
+#. Translators: 1: min spend 2: span opening 3: span closing 4: Customer gets
+#. qty .
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1519
+msgid "Spend %1$s , Get %2$s Specific product(s) %3$s x %4$s"
+msgstr "Dépensez %1$s, Obtenez des produits spécifiques %2$s %3$s x %4$s"
+
+#. Translators: 1: Additional minimum qty 2: Additional maximum qty.
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1553
+msgid "Minimum %1$s and maximum %2$s quantity of any item."
+msgstr "Quantité minimale %1$s et maximale %2$s de tout article."
+
+#. Translators: 1: Additional minimum qty each 2: Additional maximum qty each.
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1559
+msgid "Minimum %1$s and maximum %2$s quantity of each item."
+msgstr "Quantité minimale de %1$s et maximale de %2$s pour chaque article."
+
+#. translators: 1: Tool tip. 2: Copy button. 3: help text.
+#: admin/modules/bogo-admin/views/---edit-general.php:84
+msgid "Automatically %1$s %2$s %3$s"
+msgstr "Automatiquement %1$s %2$s %3$s"
+
+#. translators: 1: count 2: limit
+#: admin/modules/bogo-admin/views/--bogo-listing.php:389
+msgid "%1$s / %2$s"
+msgstr "%1$s / %2$s"
+
+#. Translators: 1: Premium icon, 2: Tooltip.
+#: admin/modules/bogo-admin/views/--bogo-main-general.php:61
+msgid "Original price %1$s %2$s"
+msgstr "Prix original %1$s %2$s"
+
+#: admin/modules/bogo-admin/views/--bogo-main-general.php:89
+msgid "\"Choose product\" title"
+msgstr "Titre \"Choisir un produit\""
+
+#. translators: 1: Link to shipping zones, 2: Closing link tag.
+#: admin/modules/bogo-admin/views/-step1.php:240
+msgid ""
+"Enable free shipping in WooCommerce %1$s shipping zones %2$s to use this "
+"option!"
+msgstr ""
+"Activez la livraison gratuite dans les zones de livraison WooCommerce %1$s "
+"%2$s pour utiliser cette option !"
+
+#. Translators: 1: Apply repeatedly limit. 2: premium crown img.
+#: admin/modules/bogo-admin/views/-step3.php:69
+msgid "Limit for applying repeatedly %1$s time(s) %2$s"
+msgstr "Limite pour postuler à plusieurs reprises %1$s fois %2$s"
+
+#: admin/modules/freevspro/views/comparison-table.php:73
+msgid "Pincode restriction"
+msgstr "Restriction du code PIN"
+
+#. translators: %1$s: <b> tag, %2$s: </b> tag.
+#: admin/modules/giveaway-product-admin/class-wt-smart-coupon-giveaway-product-admin.php:238
+msgid ""
+"%1$s Apply once: %2$s If cart is eligible or conditions are met, coupon "
+"applies once. ie: If you set the coupon to offer Buy 2 Get 1, you get one "
+"free product. Moving more items to the cart will not make it eligible to get"
+" more free products."
+msgstr ""
+"%1$s Appliquer une fois : %2$s Si le panier est éligible ou si les "
+"conditions sont remplies, le coupon s'applique une fois. Par exemple : si "
+"vous configurez le coupon pour offrir Achetez 2 Obtenez 1, vous obtenez un "
+"produit gratuit. Ajouter plus d'articles au panier ne le rendra pas éligible"
+" pour recevoir plus de produits gratuits."
+
+#. translators: %1$s: <b> tag, %2$s: </b> tag.
+#: admin/modules/giveaway-product-admin/class-wt-smart-coupon-giveaway-product-admin.php:243
+msgid ""
+"%1$s Apply repeatedly: %2$s The coupon applies repeatedly whenever the cart "
+"is eligible or if conditions are met. ie: If you set the coupon to offer Buy"
+" 2 Get 1 then the coupon works repeatedly for Buy 4 Get 2 and so on."
+msgstr ""
+"%1$s Appliquer à plusieurs reprises: %2$s Le coupon s'applique à plusieurs "
+"reprises chaque fois que le panier est admissible ou si les conditions sont "
+"remplies. Par exemple : Si vous configurez le coupon pour offrir Achetez 2 "
+"Obtenez 1, alors le coupon fonctionne à plusieurs reprises pour Achetez 4 "
+"Obtenez 2, et ainsi de suite."
+
+#: admin/modules/other-solutions/views/other-solutions-content.php:199
+msgid ""
+"Accessibility Tool Kit: WP Accessibility Plugin for WCAG, Section 508, ADA, "
+"EAA Compliance"
+msgstr ""
+"Kit d'outils d'accessibilité : Plugin WP Accessibility pour la conformité "
+"WCAG, Section 508, ADA, EAA"
+
+#: admin/modules/other-solutions/views/other-solutions-content.php:200
+msgid ""
+"Build an accessible WordPress site that works for everyone. Scan for "
+"accessibility issues, get fix recommendations, and ensure WCAG compliance, "
+"all without writing code. Inclusive web design made simple."
+msgstr ""
+"Créez un site WordPress accessible qui fonctionne pour tout le monde. "
+"Scannez pour détecter les problèmes d'accessibilité, obtenez des "
+"recommandations de réparation, et assurez la conformité WCAG, le tout sans "
+"écrire de code. Conception web inclusive simplifiée."
+
+#. translators: 1: lightbulb icon, 2: span tag opening, 3: span tag closing.
+#: admin/modules/restriction-admin/class-wt-smart-coupon-restriction-admin.php:224
+msgid ""
+"%1$s %2$s Did You Know? %3$s You can now get full control over coupon "
+"stacking—choose which discounts can and cannot be combined with Smart "
+"Coupons Pro!"
+msgstr ""
+"%1$s %2$s Saviez-vous? %3$s Vous pouvez maintenant avoir un contrôle total "
+"sur la combinaison des coupons—choisissez quels rabais peuvent et ne peuvent"
+" pas être combinés avec Smart Coupons Pro!"
+
+#. translators: 1: bold tag opening, 2: bold tag closing.
+#: admin/modules/restriction-admin/class-wt-smart-coupon-restriction-admin.php:279
+msgid ""
+"%1$s Any: %2$s Applies coupon if any of the products from the below is "
+"available in the cart."
+msgstr ""
+"%1$s Tout: %2$s Applique le coupon si l'un des produits ci-dessous est "
+"disponible dans le panier."
+
+#. translators: 1: bold tag opening, 2: bold tag closing.
+#: admin/modules/restriction-admin/class-wt-smart-coupon-restriction-admin.php:284
+msgid ""
+"%1$s All: %2$s Applies coupon if the cart contains all of the listed "
+"products."
+msgstr ""
+"%1$s Tout: %2$s Applique le coupon si le panier contient tous les produits "
+"listés."
+
+#. translators: 1: bold tag opening, 2: bold tag closing.
+#: admin/modules/restriction-admin/class-wt-smart-coupon-restriction-admin.php:307
+msgid ""
+"%1$s Any: %2$s Applies coupon if the eligible quantity of products from any "
+"of the below selected categories are available in the cart."
+msgstr ""
+"%1$s N'importe quel: %2$s Applique le coupon si la quantité éligible de "
+"produits de l'une des catégories sélectionnées ci-dessous est disponible "
+"dans le panier."
+
+#. translators: 1: bold tag opening, 2: bold tag closing.
+#: admin/modules/restriction-admin/class-wt-smart-coupon-restriction-admin.php:312
+msgid ""
+"%1$s All: %2$s Applies coupon if the cart contains the eligible quantity of "
+"products from all of the below listed categories."
+msgstr ""
+"%1$s Tout: %2$s Applique le coupon si le panier contient la quantité "
+"éligible de produits de toutes les catégories listées ci-dessous."
+
+#: admin/modules/restriction-admin/class-wt-smart-coupon-restriction-admin.php:331
+#: admin/modules/restriction-admin/class-wt-smart-coupon-restriction-admin.php:355
+msgid "No minimum"
+msgstr "Pas de minimum"
+
+#: admin/modules/restriction-admin/class-wt-smart-coupon-restriction-admin.php:343
+#: admin/modules/restriction-admin/class-wt-smart-coupon-restriction-admin.php:367
+msgid "No maximum"
+msgstr "Aucun maximum"
+
+#: admin/views/-premium-features-sidebar.php:11
+msgid "Crown"
+msgstr "Couronne"
+
+#. translators: 1: span opening tag, 2: span closing tag.
+#: common/modules/category-common/class-wt-smart-coupon-category-common.php:260
+msgid ""
+"%1$s Unlock more ways to reward customers! %2$s Create first order, next "
+"order, milestone discounts, and more!"
+msgstr ""
+"%1$s Déverrouillez plus de façons de récompenser les clients ! %2$s Créez "
+"des réductions pour la première commande, la prochaine commande, les étapes "
+"importantes et plus encore !"
+
+#. translators: %1$s: opening bold tag, %2$s: closing bold tag, %3$s: table
+#. name.
+#: includes/class-wt-smart-coupon.php:775
+msgid ""
+"An error occurred while activating %1$s Smart Coupons For WooCommerce "
+"Coupons %2$s: Unable to create database table. %3$s"
+msgstr ""
+"Une erreur s'est produite lors de l'activation de %1$s Coupons Intelligents "
+"Pour Coupons WooCommerce %2$s : Impossible de créer la table de la base de "
+"données. %3$s"
+
+#. translators: 1$s is 'minimum' or 'maximum', 2$s is 'quantity' or
+#. 'subtotal', 3$s is min/max values of amount, quantity or additional qty.
+#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:379
+msgid "The %1$s %2$s of matching products for this coupon is %3$s."
+msgstr "Le %1$s %2$s des produits correspondants pour ce coupon est %3$s."
+
+#: public/modules/giveaway-product-public/class-wt-smart-coupon-giveaway-product-public.php:549
+msgid ""
+"Surprise! %1$s You've received a special giveaway product with %2$s Off!"
+msgstr ""
+"Surprise! %1$s Vous avez reçu un produit cadeau spécial avec %2$s de "
+"réduction!"
+
+#. translators: %1$s: Item name. %2$s: Quantity.
+#: public/modules/restriction-public/class-wt-smart-coupon-restriction-public.php:141
+msgid "The minimum quantity of %1$s for this coupon is %2$s."
+msgstr "La quantité minimale de %1$s pour ce coupon est %2$s."
+
+#. translators: %1$s: Item name. %2$s: Quantity.
+#: public/modules/restriction-public/class-wt-smart-coupon-restriction-public.php:144
+msgid "The maximum quantity of %1$s for this coupon is %2$s."
+msgstr "La quantité maximale de %1$s pour ce coupon est %2$s."
+
+#. translators: %1$s: shop page url, %2$s: closing anchor tag.
+#: public/modules/url-coupon-public/class-wt-smart-coupon-url-coupon-public.php:118
+msgid ""
+"Oops your cart is empty! Add %1$s products %2$s to your cart to avail the "
+"offer."
+msgstr ""
+"Oups, votre panier est vide ! Ajoutez %1$s produits %2$s à votre panier pour"
+" profiter de l'offre."

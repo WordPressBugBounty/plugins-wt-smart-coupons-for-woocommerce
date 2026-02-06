@@ -1,6 +1,12 @@
 <?php
+/**
+ * Go to Pro page.
+ *
+ * @package Wt_Smart_Coupon
+ */
+
 if ( ! defined( 'WPINC' ) ) {
-    die;
+	die;
 }
 ?>
 <style>
@@ -29,86 +35,86 @@ if ( ! defined( 'WPINC' ) ) {
 
 
 @media screen and (max-width:1210px) {
-    .wt_smcpn_settings_left{ width:100%;}
+	.wt_smcpn_settings_left{ width:100%;}
 }
 
 @media (max-width:1200px) {
-  .wt-sc-tab-container, .wt-sc-tab-head{ width:65%; }
+	.wt-sc-tab-container, .wt-sc-tab-head{ width:65%; }
 }
 
 @media (max-width:768px) {
-  .wt-sc-tab-head, .wt-sc-tab-container, .wt_smart_coupon_admin_form_right_box{ width:100%; }
+	.wt-sc-tab-head, .wt-sc-tab-container, .wt_smart_coupon_admin_form_right_box{ width:100%; }
 }
 
 html[dir="rtl"] .wt_smcpn_settings_left{ float:right; }
 
 </style>
 <script type="text/javascript">
-    function wt_sc_freevspro_sidebar_switch(href)
-    {
-        if('#wt-sc-freevspro' === href)
-        {
-            jQuery('.wt-sc-tab-container, .wt-sc-tab-head').css({'width': '100%'});
-            jQuery('.wt_smart_coupon_pro_features').hide();
+	function wt_sc_freevspro_sidebar_switch(href)
+	{
+		if('#wt-sc-freevspro' === href)
+		{
+			jQuery('.wt-sc-tab-container, .wt-sc-tab-head').css({'width': '100%'});
+			jQuery('.wt_smart_coupon_pro_features').hide();
 
-        }else
-        {
-            jQuery('.wt-sc-tab-container, .wt-sc-tab-head').css({'width': '73%', });
-            jQuery('.wt_smart_coupon_pro_features').show(); 
-        }
-        if('#wt-sc-help' === href)
-        {
-            jQuery('.wt_smart_coupon_admin_form_right_box').css({'border-top':'1px solid #c3c4c7'});
-        }else{
-            jQuery('.wt_smart_coupon_admin_form_right_box').css({'border-top':'none'});
-        }
-
-
-        /**
-         *  Show setup video only in Help guide tab
-         *  
-         *  @since 1.4.7
-         */
-        if('#wt-sc-help' === href)
-        {
-            jQuery('.wt_smart_coupon_setup_video').show();
-
-        }else
-        {
-            jQuery('.wt_smart_coupon_setup_video').hide();
-        }
+		}else
+		{
+			jQuery('.wt-sc-tab-container, .wt-sc-tab-head').css({'width': '73%', });
+			jQuery('.wt_smart_coupon_pro_features').show(); 
+		}
+		if('#wt-sc-help' === href)
+		{
+			jQuery('.wt_smart_coupon_admin_form_right_box').css({'border-top':'1px solid #c3c4c7'});
+		}else{
+			jQuery('.wt_smart_coupon_admin_form_right_box').css({'border-top':'none'});
+		}
 
 
-    }
-    jQuery(document).ready(function(){
-        
-        wt_sc_freevspro_sidebar_switch(jQuery('.wbte_sc_header_nav a.active').attr('href'));
+		/**
+		 *  Show setup video only in Help guide tab
+		 *  
+		 *  @since 1.4.7
+		 */
+		if('#wt-sc-help' === href)
+		{
+			jQuery('.wt_smart_coupon_setup_video').show();
 
-        jQuery('.wbte_sc_header_nav a').on('click', function(){
-            wt_sc_freevspro_sidebar_switch(jQuery(this).attr('href'));
-        });
+		}else
+		{
+			jQuery('.wt_smart_coupon_setup_video').hide();
+		}
 
-        jQuery('.wt_sc_freevspro_table_hd_tr').on('click', function () {
-            data_index = jQuery(this).data('index');
-            data_state = jQuery(this).data('state');
-            if('hidden' === data_state){
-                jQuery('.wt_sc_freevspro_table_details_body' + data_index).fadeIn('slow');
-                jQuery(this).data('state', 'visible');
-                jQuery(".wt_sc_freevspro_table_hd_tr_dashicon" + data_index).removeClass("dashicons-arrow-down-alt2");
-                jQuery(".wt_sc_freevspro_table_hd_tr_dashicon" + data_index).addClass("dashicons-arrow-up-alt2");
-            }else{
-                jQuery('.wt_sc_freevspro_table_details_body' + data_index).fadeOut('slow');
-                jQuery(this).data('state', 'hidden');
-                jQuery(".wt_sc_freevspro_table_hd_tr_dashicon" + data_index).removeClass("dashicons-arrow-up-alt2");
-                jQuery(".wt_sc_freevspro_table_hd_tr_dashicon" + data_index).addClass("dashicons-arrow-down-alt2");
-            }
-        });
-    });
+
+	}
+	jQuery(document).ready(function(){
+		
+		wt_sc_freevspro_sidebar_switch(jQuery('.wbte_sc_header_nav a.active').attr('href'));
+
+		jQuery('.wbte_sc_header_nav a').on('click', function(){
+			wt_sc_freevspro_sidebar_switch(jQuery(this).attr('href'));
+		});
+
+		jQuery('.wt_sc_freevspro_table_hd_tr').on('click', function () {
+			data_index = jQuery(this).data('index');
+			data_state = jQuery(this).data('state');
+			if('hidden' === data_state){
+				jQuery('.wt_sc_freevspro_table_details_body' + data_index).fadeIn('slow');
+				jQuery(this).data('state', 'visible');
+				jQuery(".wt_sc_freevspro_table_hd_tr_dashicon" + data_index).removeClass("dashicons-arrow-down-alt2");
+				jQuery(".wt_sc_freevspro_table_hd_tr_dashicon" + data_index).addClass("dashicons-arrow-up-alt2");
+			}else{
+				jQuery('.wt_sc_freevspro_table_details_body' + data_index).fadeOut('slow');
+				jQuery(this).data('state', 'hidden');
+				jQuery(".wt_sc_freevspro_table_hd_tr_dashicon" + data_index).removeClass("dashicons-arrow-up-alt2");
+				jQuery(".wt_sc_freevspro_table_hd_tr_dashicon" + data_index).addClass("dashicons-arrow-down-alt2");
+			}
+		});
+	});
 </script>
 <div class="wt_smcpn_settings_left">
-    <div class="wt_smcpn_tab_container">
-        <?php
-        include plugin_dir_path( __FILE__ ).'comparison-table.php';
-        ?>
-    </div> 
+	<div class="wt_smcpn_tab_container">
+		<?php
+		require plugin_dir_path( __FILE__ ) . 'comparison-table.php';
+		?>
+	</div> 
 </div>
