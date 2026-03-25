@@ -15,7 +15,7 @@
  * Plugin Name:       Smart Coupons For WooCommerce Coupons
  * Plugin URI:
  * Description:       Smart Coupons For WooCommerce Coupons plugin adds advanced coupon features to your store to strengthen your marketing efforts and boost sales.
- * Version:           2.2.7
+ * Version:           2.2.8
  * Author:            WebToffee
  * Author URI:        https://www.webtoffee.com/
  * License:           GPLv3
@@ -23,7 +23,7 @@
  * Text Domain:       wt-smart-coupons-for-woocommerce
  * Domain Path:       /languages
  * Requires PHP:      5.6
- * WC tested up to:   10.4
+ * WC tested up to:   10.6
  * Requires Plugins:  woocommerce
  */
 
@@ -149,7 +149,7 @@ if ( /**
  */
 
 if ( ! defined( 'WEBTOFFEE_SMARTCOUPON_VERSION' ) ) {
-	define( 'WEBTOFFEE_SMARTCOUPON_VERSION', '2.2.7' );
+	define( 'WEBTOFFEE_SMARTCOUPON_VERSION', '2.2.8' );
 }
 
 if ( ! defined( 'WT_SMARTCOUPON_FILE_NAME' ) ) {
@@ -181,7 +181,7 @@ if ( ! defined( 'WT_SC_PLUGIN_NAME' ) ) {
 
 if ( ! defined( 'WBTE_SC_CROSS_PROMO_BANNER_VERSION' ) ) {
 	// This constant must be unique for each plugin. Update this value when updating to a new banner.
-	define( 'WBTE_SC_CROSS_PROMO_BANNER_VERSION', '1.0.1' );
+	define( 'WBTE_SC_CROSS_PROMO_BANNER_VERSION', '1.0.2' );
 }
 
 if ( ! function_exists( 'wbte_activate_wt_smart_coupon_basic' ) ) {
@@ -191,10 +191,6 @@ if ( ! function_exists( 'wbte_activate_wt_smart_coupon_basic' ) ) {
 	 */
 	function wbte_activate_wt_smart_coupon_basic() {
 
-		if ( ! class_exists( 'WooCommerce' ) ) {
-			deactivate_plugins( WT_SMARTCOUPON_BASE_NAME );
-			wp_die( esc_html__( 'WooCommerce is required for this plugin to work properly. Please activate WooCommerce.', 'wt-smart-coupons-for-woocommerce' ), '', array( 'back_link' => 1 ) );
-		}
 		require_once plugin_dir_path( __FILE__ ) . 'includes/class-wbte-smart-coupon-activator.php';
 		Wbte_Smart_Coupon_Activator::activate();
 	}

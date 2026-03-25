@@ -679,11 +679,6 @@ msgstr "dipilih"
 msgid "Are you sure you want to disable the old BOGO coupons?"
 msgstr "Adakah anda pasti mahu menyahdayakan kupon BOGO lama?"
 
-#: admin/modules/bogo/bogo.php:213
-#, php-format
-msgid "%s quantities of %s Specific product(s) %s with %s Discount %s each"
-msgstr "%s kuantiti %s Produk tertentu %s dengan %s Diskaun %s setiap"
-
 #: admin/modules/bogo/bogo.php:248
 #, php-format
 msgid "Customer %s Spends %s at least %s on %s Selected product(s) %s"
@@ -691,23 +686,11 @@ msgstr ""
 "Pelanggan %s Membelanjakan %s sekurang-kurangnya %s pada %s Produk terpilih "
 "%s"
 
-#: admin/modules/bogo/bogo.php:282
-#, php-format
-msgid ""
-"Customer %s Buys %s at least %s quantities of %s Selected product(s) %s"
-msgstr ""
-"Pelanggan %s Membeli %s sekurang-kurangnya %s kuantiti %s Produk terpilih %s"
-
 #: admin/modules/bogo/bogo.php:301
 #, php-format
 msgid "Spend %s to %s on items, Get %s Specific product(s) %s x %s"
 msgstr ""
 "Belanja %s hingga %s pada barangan, Dapatkan %s Produk tertentu %s x %s"
-
-#: admin/modules/bogo/bogo.php:318
-#, php-format
-msgid "Spend %s , Get %s Specific product(s) %s x %s"
-msgstr "Belanja %s, dapatkan produk spesifik %s %s x %s"
 
 #: admin/modules/bogo/bogo.php:326
 msgid "Enter a number greater than or equal to 1"
@@ -769,11 +752,6 @@ msgstr "Had penggunaan %s bagi setiap pengguna"
 #, php-format
 msgid "Usage limit of %s per offer."
 msgstr "Had penggunaan sebanyak %s setiap tawaran"
-
-#: admin/modules/bogo/bogo.php:358
-#, php-format
-msgid "Minimum %s and maximum %s quantity of each item."
-msgstr "Kuantiti setiap item minimum %s dan maksimum %s"
 
 #: admin/modules/bogo/bogo.php:364
 #, php-format
@@ -1709,26 +1687,9 @@ msgstr "Mana-mana dari pilihan di bawah ini"
 msgid "All from below selection"
 msgstr "Semua dari pilihan di bawah"
 
-#: admin/modules/coupon_restriction/coupon_restriction.php:212
-#, php-format
-msgid ""
-"%s All: %s Applies coupon if the cart contains all of the listed products."
-msgstr ""
-"%s Semua: %s Memohon kupon jika bakul mengandungi semua produk yang "
-"disenaraikan"
-
 #: admin/modules/coupon_restriction/coupon_restriction.php:226
 msgid "Category condition:"
 msgstr "Syarat kategori:"
-
-#: admin/modules/coupon_restriction/coupon_restriction.php:232
-#, php-format
-msgid ""
-"%s All: %s Applies coupon if the cart contains the eligible quantity of "
-"products from all of the below listed categories."
-msgstr ""
-"%s Semua: %s Mengaplikasikan kupon jika kereta mengandungi kuantiti produk "
-"yang layak dari semua kategori yang disenaraikan di bawah."
 
 #: admin/modules/coupon_restriction/coupon_restriction.php:247
 msgid "Minimum quantity of matching products"
@@ -2161,18 +2122,6 @@ msgstr "Memohon sekali"
 msgid "Apply repeatedly"
 msgstr "Sapukan berulang kali"
 
-#: admin/modules/giveaway_product/giveaway_product.php:207
-#, php-format
-msgid ""
-"%s Apply repeatedly: %s The coupon applies repeatedly whenever the cart is "
-"eligible or if conditions are met. ie: If you set the coupon to offer Buy 2 "
-"Get 1 then the coupon works repeatedly for Buy 4 Get 2 and so on."
-msgstr ""
-"%s Sapukan berulang kali: %s Kupon digunakan secara berulang apabila troli "
-"layak atau jika syarat dipenuhi. maksudnya: Jika anda menetapkan kupon untuk"
-" menawarkan Beli 2 Dapatkan 1 maka kupon bekerja berulang kali untuk Beli 4 "
-"Dapatkan 2 dan seterusnya"
-
 #: admin/modules/giveaway_product/giveaway_product.php:216
 msgid "Giveaway products"
 msgstr "Produk percuma"
@@ -2429,10 +2378,6 @@ msgstr ""
 "pengurus kedai untuk membalasnya. Sembunyikan harga produk, tetapkan "
 "makluman e-mel, dan banyak lagi"
 
-#: admin/modules/other_solutions/views/other_solutions_content.php:131
-msgid "Frequently Bought Together for WooCommerce"
-msgstr "Selalu Dibeli Bersama untuk WooCommerce"
-
 #: admin/modules/other_solutions/views/other_solutions_content.php:132
 msgid ""
 "Boost the visibility of the products by displaying them as ‘Frequently "
@@ -2513,17 +2458,6 @@ msgstr ""
 "Plugin serba lengkap untuk mengimport dan mengeksport data kedai "
 "WooCommerce. Anda boleh mengimport dan mengeksport produk, ulasan produk, "
 "pesanan, pelanggan, kupon diskaun, dan langganan menggunakan plugin ini."
-
-#: admin/modules/other_solutions/views/other_solutions_content.php:199
-msgid ""
-"Ensure a fast and secure checkout experience for your users with WooCommerce"
-" Stripe Payment Gateway. Stripe accepts credit/debit cards and offers "
-"integrations with Apple Pay, SEPA, Alipay, and more."
-msgstr ""
-"Pastikan pengalaman daftar keluar yang pantas dan selamat untuk pengguna "
-"anda dengan WooCommerce Stripe Payment Gateway. Stripe menerima kad "
-"kredit/debit dan menawarkan integrasi dengan Apple Pay, SEPA, Alipay, dan "
-"banyak lagi"
 
 #: admin/modules/other_solutions/views/other_solutions_content.php:216
 msgid "Sequential Order Numbers for WooCommerce"
@@ -2609,10 +2543,6 @@ msgstr "Pamerkan sepanduk kupon dan widget"
 #: admin/modules/premium_upgrade/views/page_content.php:96
 msgid "Import coupons from CSV"
 msgstr "Import kupon daripada CSV"
-
-#: admin/modules/premium_upgrade/views/page_content.php:110
-msgid "Scan your website to identify cookies"
-msgstr "Imbas tapak web anda untuk mengenal pasti kuki"
 
 #: admin/modules/premium_upgrade/views/page_content.php:116
 msgid "Show cookie notice based on Geo IP"
@@ -3296,10 +3226,6 @@ msgstr ""
 msgid "Oops! Woocommerce not activated.."
 msgstr "Oops! Woocommerce tidak diaktifkan.."
 
-#: includes/class-wt-smart-coupon-review_request.php:80
-msgid "Not interested"
-msgstr "Tidak berminat"
-
 #: includes/class-wt-smart-coupon.php:696
 msgid "Go to plugins page"
 msgstr "Pergi ke halaman pemalam"
@@ -3498,10 +3424,6 @@ msgstr "Permintaan tidak sah"
 msgid "Sorry! this product is not available for giveaway."
 msgstr "Maaf! produk ini tidak tersedia untuk pemberian percuma"
 
-#: public/modules/bogo/views/-cart-giveaway-products.php:127
-msgid "Quantity : "
-msgstr "Kuantiti : "
-
 #: public/modules/bogo/views/-cart-giveaway-products.php:211
 #: public/modules/giveaway_product/views/_cart_giveaway_products.php:198
 msgid "Choose an option"
@@ -3528,11 +3450,6 @@ msgstr "Maaf, kupon ini tidak boleh digunakan untuk Peranan anda"
 #: public/modules/checkout_options/checkout_options.php:178
 msgid "Sorry, this coupon is not applicable to selected location"
 msgstr "Maaf, kupon ini tidak boleh digunakan di lokasi yang dipilih"
-
-#: public/modules/coupon_restriction/coupon_restriction.php:94
-#, php-format
-msgid "The maximum quantity of %s for this coupon is %s."
-msgstr "Kuantiti maksimum %s untuk kupon ini adalah %s"
 
 #: public/modules/coupon_restriction/coupon_restriction.php:97
 msgid ""
@@ -3717,14 +3634,6 @@ msgstr "Kupon Luput"
 msgid "Sorry, you don't have any expired coupons"
 msgstr "Maaf, anda tidak mempunyai sebarang kupon yang telah tamat tempoh"
 
-#: wt-smart-coupon.php:141
-msgid ""
-"WooCommerce is required for this plugin to work properly. Please activate "
-"WooCommerce."
-msgstr ""
-"WooCommerce diperlukan untuk plugin ini berfungsi dengan betul. Sila "
-"aktifkan WooCommerce"
-
 #. Plugin Name of the plugin/theme
 msgid "Smart Coupons For WooCommerce Coupons"
 msgstr "Kupon Pintar Untuk Kupon WooCommerce"
@@ -3842,16 +3751,6 @@ msgstr "Salin kod kupon untuk kegunaan pentadbir"
 msgid "Failed to copy"
 msgstr "Gagal menyalin"
 
-#. Translators: 1: span opening 2: span closing 3:span opening 4:span closing
-#. 5:span opening 6:span closing 7:span opening 8:span closing.
-#: admin/modules/bogo/bogo.php:1413
-msgid ""
-"Customer %s Spends %s between %s {min} %s and %s {max} %s on %s Selected "
-"product(s) %s"
-msgstr ""
-"Pelanggan %s membelanjakan %s antara %s {min} %s dan %s {max} %s pada %s "
-"produk terpilih %s"
-
 #. Translators: 1: span opening 2: span closing 3: span opening 4: span
 #. closing 5: span opening 6: span closing.
 #: admin/modules/bogo/bogo.php:1433
@@ -3859,16 +3758,6 @@ msgid ""
 "Customer %s Spends %s at least %s {min} %s on %s Selected product(s) %s"
 msgstr ""
 "Pelanggan %s Membelanjakan %s sekurang-kurangnya %s {min} %s pada %s Produk "
-"terpilih %s"
-
-#. Translators: 1: span opening 2: span closing 3: span opening 4: span
-#. closing 5: span opening 6: span closing 7: span opening 8: span closing.
-#: admin/modules/bogo/bogo.php:1453
-msgid ""
-"Customer %s Buys %s between %s {min} %s and %s {max} %s quantities of %s "
-"Selected product(s) %s"
-msgstr ""
-"Pelanggan %s Membeli %s antara %s {min} %s dan %s {max} %s kuantiti produk "
 "terpilih %s"
 
 #. Translators: 1: span opening 2: span closing 3: span opening 4: span
@@ -3971,10 +3860,6 @@ msgstr "Papar Tawaran Pada"
 #: admin/modules/bogo/views/--bogo-bulk-general.php:166
 msgid "Choose where shoppers will see the coupon offer"
 msgstr "Pilih di mana pembeli akan melihat tawaran kupon"
-
-#: admin/modules/bogo/views/--bogo-bulk-general.php:214
-msgid "Email recipients"
-msgstr "Penerima e-mel"
 
 #: admin/modules/bogo/views/--bogo-bulk-general.php:234
 msgid "Schedule offer"
@@ -4946,3 +4831,199 @@ msgid ""
 msgstr ""
 "Oops, troli anda kosong! Tambahkan %1$s produk %2$s ke dalam troli anda "
 "untuk mendapatkan tawaran."
+
+#: admin/class-wt-smart-coupon-admin.php:1074
+msgid "Reset lookup table"
+msgstr "Tetapkan semula jadual carian"
+
+#: admin/class-wt-smart-coupon-admin.php:1099
+msgid "Failed to reset lookup table."
+msgstr "Gagal untuk menetapkan semula jadual carian."
+
+#: admin/class-wt-smart-coupon-admin.php:1102
+msgid "Lookup table reset successfully."
+msgstr "Jadual carian telah diset semula dengan berjaya."
+
+#: admin/class-wt-smart-coupon-admin.php:1234
+msgid "Newsletter subscription successful"
+msgstr "Langganan surat berita berjaya"
+
+#: admin/cross-promotion-banners/class-wbte-accessibility-banner.php:236
+msgid "Activation failed."
+msgstr "Pengaktifan gagal."
+
+#: admin/cross-promotion-banners/class-wbte-accessibility-banner.php:256
+msgid "Accessibility Widget"
+msgstr "Gajet Aksesibiliti"
+
+#. translators: 1: a tag opening, 2: a tag closing
+#: admin/cross-promotion-banners/class-wbte-accessibility-banner.php:262
+msgid ""
+"Make your site inclusive with %1$s AccessYes accessibility widget. %2$s"
+msgstr ""
+"Jadikan laman anda inklusif dengan widget aksesibiliti AccessYes %1$s. %2$s"
+
+#: admin/cross-promotion-banners/class-wbte-accessibility-banner.php:270
+msgid ""
+"A lightweight accessibility widget to improve accessibility and usability "
+"for every users. Set it up in minutes for free."
+msgstr ""
+"Widget kebolehcapaian ringan untuk meningkatkan kebolehcapaian dan "
+"kebolehgunaan bagi setiap pengguna. Siapkannya dalam beberapa minit secara "
+"percuma."
+
+#: admin/cross-promotion-banners/class-wbte-accessibility-banner.php:279
+msgid "Install & activate"
+msgstr "Pasang & aktifkan"
+
+#: admin/cross-promotion-banners/class-wbte-accessibility-banner.php:283
+msgid "Remind me later"
+msgstr "Ingatkan saya nanti"
+
+#: admin/cross-promotion-banners/class-wbte-accessibility-banner.php:342
+msgid "Installing..."
+msgstr "Memasang..."
+
+#: admin/cross-promotion-banners/class-wbte-accessibility-banner.php:436
+msgid "Plugin installed successfully."
+msgstr "Plugin berjaya dipasang."
+
+#: admin/modules/banner/class-wbte-cta-banner.php:203
+msgid "Update pending ⚠️"
+msgstr "Kemas kini tertunda ⚠️"
+
+#: admin/modules/banner/class-wbte-cta-banner.php:204
+msgid ""
+"It looks like you haven't updated the Smart Coupons plugin in a while. We "
+"release new features and security improvements with every update. Keep it "
+"up-to-date to ensure better performance, compatibility, and protection."
+msgstr ""
+"Nampaknya anda belum mengemas kini pemalam Kupon Pintar untuk seketika. Kami"
+" mengeluarkan ciri baru dan penambahbaikan keselamatan dengan setiap kemas "
+"kini. Pastikan ia sentiasa terkini untuk prestasi, keserasian, dan "
+"perlindungan yang lebih baik."
+
+#: admin/modules/banner/class-wbte-cta-banner.php:205
+msgid "Update Now"
+msgstr "Kemas kini sekarang"
+
+#: admin/modules/banner/class-wbte-cta-banner.php:298
+msgid "Haven't created any new coupons recently?"
+msgstr "Tidak membuat kupon baru baru-baru ini?"
+
+#: admin/modules/banner/class-wbte-cta-banner.php:299
+msgid ""
+"You may be missing simple ways to bring customers back and increase "
+"conversions. Try different coupon types and usage rules to build a smarter "
+"discount strategy."
+msgstr ""
+"Anda mungkin terlepas cara mudah untuk menarik pelanggan kembali dan "
+"meningkatkan penukaran. Cuba jenis kupon yang berbeza dan peraturan "
+"penggunaan untuk membina strategi diskaun yang lebih bijak."
+
+#: admin/modules/banner/class-wbte-cta-banner.php:301
+msgid "Add new coupon"
+msgstr "Tambah kupon baharu"
+
+#: admin/modules/banner/class-wbte-cta-banner.php:303
+#: admin/modules/banner/class-wbte-cta-banner.php:369
+msgid "Refer to Documentation"
+msgstr "Rujuk kepada Dokumentasi"
+
+#: admin/modules/banner/class-wbte-cta-banner.php:329
+msgid ""
+"Congratulations! You've been using the free WebToffee Smart Coupons plugin "
+"for a while, and we'd love to reward you."
+msgstr ""
+"Tahniah! Anda telah menggunakan plugin WebToffee Smart Coupons secara "
+"percuma untuk seketika, dan kami ingin memberi ganjaran kepada anda."
+
+#. translators: 1: br tag, b tag opening, 2: b tag closing.
+#: admin/modules/banner/class-wbte-cta-banner.php:332
+msgid ""
+"Enjoy exclusive 30%% off Smart Coupons Premium and unlock powerful coupon "
+"features designed to boost conversions and repeat purchases.%1$s Coupon "
+"code: %2$s SMLOYAL30"
+msgstr ""
+"Nikmati diskaun eksklusif 30%% untuk Smart Coupons Premium dan buka ciri "
+"kupon yang berkuasa yang direka untuk meningkatkan penukaran dan pembelian "
+"berulang.%1$s Kod kupon: %2$s SMLOYAL30"
+
+#: admin/modules/banner/class-wbte-cta-banner.php:364
+msgid "BOGO Coupons Not Used ⚠️"
+msgstr "Kupon BOGO Tidak Digunakan ⚠️"
+
+#: admin/modules/banner/class-wbte-cta-banner.php:365
+msgid ""
+"BOGO deals are one of the highest-converting coupon strategies, and you "
+"haven't tried them yet. Create your first BOGO offer and increase cart value"
+" with ease."
+msgstr ""
+"Tawaran BOGO adalah salah satu strategi kupon yang paling tinggi penukaran, "
+"dan anda belum mencubanya lagi. Ciptakan tawaran BOGO pertama anda dan "
+"tingkatkan nilai troli dengan mudah."
+
+#: admin/modules/banner/class-wbte-cta-banner.php:367
+msgid "Create BOGO Coupon"
+msgstr "Buat Kupon BOGO"
+
+#. translators: 1: formatted amount e.g. $1,000+.
+#: admin/modules/banner/class-wbte-cta-banner.php:520
+msgid ""
+"Congratulations! 🎉 You've generated %1$s in sales using WooCommerce coupons "
+"with the WebToffee Smart Coupons plugin."
+msgstr ""
+"Tahniah! 🎉 Anda telah menjana %1$s dalam jualan menggunakan kupon "
+"WooCommerce dengan plugin WebToffee Smart Coupons."
+
+#: admin/modules/banner/class-wbte-cta-banner.php:523
+msgid ""
+"Ready to take it further? Upgrade to Smart Coupons Premium to unlock "
+"advanced coupon rules, BOGO deals, store credits, and more ways to increase "
+"revenue."
+msgstr ""
+"Bersedia untuk mengambil langkah seterusnya? Tingkatkan kepada Smart Coupons"
+" Premium untuk membuka kunci peraturan kupon lanjutan, tawaran BOGO, kredit "
+"kedai, dan lebih banyak cara untuk meningkatkan pendapatan."
+
+#: admin/modules/banner/class-wbte-cta-banner.php:525
+msgid "Upgrade to Premium"
+msgstr "Naik taraf ke Premium"
+
+#: admin/modules/bogo-admin/views/--bogo-main-general.php:55
+msgid "Primary color for BOGO product display"
+msgstr "Warna utama untuk paparan produk BOGO"
+
+#: admin/views/-wbte-newsletter-sidebar.php:28
+msgid "Subscribe to our newsletter for exclusive offers & updates"
+msgstr "Langgan surat berita kami untuk tawaran eksklusif dan kemas kini."
+
+#: admin/views/-wbte-newsletter-sidebar.php:35
+msgid "Enter your email address"
+msgstr "Masukkan alamat e-mel anda"
+
+#. translators: %1$s: Privacy Policy link, %2$s: a tag closing.
+#: admin/views/-wbte-newsletter-sidebar.php:43
+msgid ""
+"I consent to receive newsletters and exclusive offers from WebToffee and "
+"agree to the %1$s Privacy Policy %2$s."
+msgstr ""
+"Saya bersetuju untuk menerima buletin dan tawaran eksklusif daripada "
+"WebToffee dan bersetuju dengan %1$s Dasar Privasi %2$s."
+
+#: admin/views/-wbte-newsletter-sidebar.php:61
+msgid "Subscribe"
+msgstr "Langgan"
+
+#: common/modules/bogo-common/class-wbte-smart-coupon-bogo-common.php:296
+msgid "Choose product {qty_counter}"
+msgstr "Pilih produk {qty_counter}"
+
+#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:1674
+#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:1677
+msgid "Failed to add product to cart."
+msgstr "Gagal menambah produk ke dalam troli."
+
+#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:2372
+msgid "No products selected."
+msgstr "Tiada produk dipilih."

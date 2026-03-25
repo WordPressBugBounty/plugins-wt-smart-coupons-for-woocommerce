@@ -1,5 +1,5 @@
 h4.giveaway-title {
-  float:left; font-size:18px; margin-top:25px;
+  float:left; font-size:18px; margin-top: 0;
 }
 h4.giveaway-title span {
   font-weight: 500;
@@ -26,6 +26,7 @@ button.wt_choose_free_product{ padding-left:10px; padding-right:10px; }
 table.variations.wt_variations td {
     padding: 3px 2px;
     margin-bottom: 2px;
+    background-color: transparent !important;
 }
 table.variations, .wt_give_away_product_attr{ width:100%; }
 .wt_add_to_cart_all{ margin-top:15px; clear:both; }

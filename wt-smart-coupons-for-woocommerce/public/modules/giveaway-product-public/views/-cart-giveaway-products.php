@@ -83,7 +83,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<?php
 							if ( $image && is_array( $image ) && isset( $image[0] ) ) {
 								?>
-								<img src="<?php echo esc_attr( $image[0] ); ?>" data-id="<?php echo esc_attr( $product_id ); ?>" />
+								<img src="<?php echo esc_attr( $image[0] ); ?>" data-id="<?php echo esc_attr( $product_id ); ?>" alt="<?php echo esc_attr( $_product->get_name() ); ?>" />
 								<?php
 							} else {
 								?>
@@ -92,19 +92,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 							}
 							if ( $is_purchasable ) {
 								?>
-															<div class="wt_product_discount">
+								<div class="wt_product_discount">
 									<?php
 									if ( ! $_product->is_type( 'variable' ) ) {
-										?>
+									?>
 										<div>
 											<?php esc_html_e( 'Price: ', 'wt-smart-coupons-for-woocommerce' ); ?>
-											<?php echo wp_kses_post( $_product->get_price_html() ); ?>                        
+											<?php echo wp_kses_post( $_product->get_price_html() ); ?>
 										</div>
-										<?php
+									<?php
 									}
 									?>
 									<div>
-										<?php esc_html_e( 'Discount: ', 'wt-smart-coupons-for-woocommerce' ); ?> 
+										<?php esc_html_e( 'Discount: ', 'wt-smart-coupons-for-woocommerce' ); ?>
 										<?php
 										echo wp_kses_post( $this->get_give_away_discount_text( 0, $product_data ) );
 										?>
@@ -125,98 +125,98 @@ if ( ! defined( 'ABSPATH' ) ) {
 						</div>
 						<div class="wt_choose_button_box">
 						<?php
-						if ( $_product->is_type( 'variable' ) ) {
-							if ( $is_purchasable ) {
-								?>
-								<table class="variations wt_variations" cellspacing="0">
-									<tbody>
-									<?php
-									foreach ( $_product->get_variation_attributes() as $attribute_name => $options ) {
-										?>
-										<tr>
-											<td class="value">
-												<label for="<?php echo esc_attr( sanitize_title( $attribute_name ) ); ?>"><?php echo esc_html( wc_attribute_label( $attribute_name ) ); ?></label>
-												<?php
-													wc_dropdown_variation_attribute_options(
-														array(
-															'options'           => $options,
-															'attribute'         => $attribute_name,
-															'product'           => $_product,
-															'selected'          => $variation_attributes[ 'attribute_' . sanitize_title( $attribute_name ) ],
-															'class'             => 'wt_give_away_product_attr',
-															'show_option_none'  => false,
-														)
-													);
-
-												?>
-											</td>
-										</tr>
-										<?php
-									}
+						if ( $_product->is_type( 'variable' ) && $is_purchasable ) {
+							?>
+							<table class="variations wt_variations" cellspacing="0">
+								<tbody>
+								<?php
+								foreach ( $_product->get_variation_attributes() as $attribute_name => $options ) {
 									?>
-									</tbody>
-								</table>
-								<?php
-								$selected_variation_id = $is_purchasable;
-								?>
-								<input type="hidden" name="variation_id" value="<?php echo esc_attr( $selected_variation_id ); ?>" />
-								<input type="hidden" name="wt_product_id" value="<?php echo esc_attr( $product_id ); ?>" />
-								<input type="hidden" name="wt_variation_options" value='<?php echo esc_attr( wp_json_encode( $variation_attributes ) ); ?>' />
-								<?php
-							}
-						}
-						if ( $_product->is_type( 'variation' ) && $variation_without_attributes ) {
-							if ( $is_purchasable ) {
-								$variation_id = $product_id;
-								$product_id   = $_product->get_parent_id();
-								?>
-								<input type="hidden" name="variation_id" value="<?php echo esc_attr( $variation_id ); ?>">
-								<input type="hidden" name="wt_product_id" value="<?php echo esc_attr( $product_id ); ?>" />
-								<input type="hidden" name="wt_variation_options" value='<?php echo esc_attr( wp_json_encode( $variation_attributes ) ); ?>' />
-								<?php
-								$parent_product       = wc_get_product( $product_id );
-								$variation_attributes = $_product->get_variation_attributes();
-								foreach ( $variation_attributes as $attribute_name => $options ) {
-									if ( '' === $options ) {
-										$variation_attributes[ $attribute_name ] = explode( ', ', $parent_product->get_attribute( str_replace( 'attribute_', '', $attribute_name ) ) );
-									} else {
-										$variation_attributes[ $attribute_name ] = array( $options );
-									}
-								}
-								?>
-									<table class="variations wt_variations" cellspacing="0">
-										<tbody>
-										<?php
-										foreach ( $variation_attributes as $attribute_name => $options ) {
-											?>
-											<tr>
-												<td class="value">
-													<label for="<?php echo esc_attr( sanitize_title( $attribute_name ) ); ?>"><?php echo esc_html( wc_attribute_label( str_replace( 'attribute_', '', $attribute_name ) ) ); ?></label>
-													<select id=<?php echo esc_attr( $attribute_name ); ?> class="wt_give_away_product_attr" name=<?php echo esc_attr( $attribute_name ); ?> data-attribute_name=<?php echo esc_attr( $attribute_name ); ?> data-show_option_none="no">
-													<option value=""><?php esc_html_e( 'Choose an option', 'wt-smart-coupons-for-woocommerce' ); ?></option>
-													<?php
-													foreach ( $options as $key => $value ) {
-														?>
-																<option value="<?php echo esc_attr( $value ); ?>"><?php echo esc_html( $value ); ?></option>
-															<?php
-													}
-
-													?>
-													</select>
-												</td>
-											</tr>
+									<tr>
+										<td class="value">
+											<label for="<?php echo esc_attr( sanitize_title( $attribute_name ) ); ?>"><?php echo esc_html( wc_attribute_label( $attribute_name ) ); ?></label>
 											<?php
-										}
-										?>
-										</tbody>
-									</table>
-								
-								<?php
-								if ( $single_add_to_cart && $is_purchasable ) {
-									?>
-										<button class="wt_choose_free_product button" prod-id="<?php echo esc_attr( $product_id ); ?>" variation="<?php echo esc_attr( $variation_id ); ?>" type="button"><?php esc_html_e( 'Choose Product', 'wt-smart-coupons-for-woocommerce' ); ?></button>
+												wc_dropdown_variation_attribute_options(
+													array(
+														'options'           => $options,
+														'attribute'         => $attribute_name,
+														'product'           => $_product,
+														'selected'          => $variation_attributes[ 'attribute_' . sanitize_title( $attribute_name ) ],
+														'class'             => 'wt_give_away_product_attr',
+														'show_option_none'  => false,
+													)
+												);
+
+											?>
+										</td>
+									</tr>
 									<?php
 								}
+								?>
+								</tbody>
+							</table>
+							<?php
+							$selected_variation_id = $is_purchasable;
+							?>
+							<input type="hidden" name="variation_id" value="<?php echo esc_attr( $selected_variation_id ); ?>" />
+							<input type="hidden" name="wt_product_id" value="<?php echo esc_attr( $product_id ); ?>" />
+							<input type="hidden" name="wt_variation_options" value='<?php echo esc_attr( wp_json_encode( $variation_attributes ) ); ?>' />
+							<?php
+						}
+						if ( ( $single_add_to_cart || $variation_without_attributes ) && $is_purchasable ) {
+                            $variation_id = 0;
+                            if ( $_product->is_type( 'variation' ) ) {
+                                $variation_id         = $product_id;
+                                $product_id           = $_product->get_parent_id();
+                                $variation_attributes = isset( $product_data['attributes'] ) ? $product_data['attributes'] : array();
+
+                                ?>
+                                <input type="hidden" name="variation_id" value="<?php echo esc_attr( $variation_id ); ?>">
+                                <input type="hidden" name="wt_product_id" value="<?php echo esc_attr( $product_id ); ?>" />
+                                <input type="hidden" name="wt_variation_options" value='<?php echo esc_attr( wp_json_encode( $variation_attributes ) ); ?>' />
+                                <?php
+                                if ( empty( $variation_attributes ) && $variation_without_attributes ) {
+                                    $parent_product       = wc_get_product( $product_id );
+                                    $variation_attributes = $_product->get_variation_attributes();
+                                    foreach ( $variation_attributes as $attribute_name => $options ) {
+                                        $variation_attributes[ $attribute_name ] = '' === $options ? explode( ', ', $parent_product->get_attribute( str_replace( 'attribute_', '', $attribute_name ) ) ) : array( $options );
+                                    }
+
+                                    ?>
+                                    <table class="variations wt_variations" cellspacing="0">
+                                        <tbody>
+                                        <?php
+                                        foreach ( $variation_attributes as $attribute_name => $options ) {
+                                            ?>
+                                            <tr>
+                                                <td class="value">
+                                                    <label for="<?php echo esc_attr( sanitize_title( $attribute_name ) ); ?>"><?php echo esc_html( wc_attribute_label( str_replace( 'attribute_', '', $attribute_name ) ) ); ?></label>
+                                                    <select id=<?php echo esc_attr( $attribute_name ); ?> class="wt_give_away_product_attr" name=<?php echo esc_attr( $attribute_name ); ?> data-attribute_name=<?php echo esc_attr( $attribute_name ); ?> data-show_option_none="no">
+                                                    <option value=""><?php esc_html_e( 'Choose an option', 'wt-smart-coupons-for-woocommerce' ); ?></option>
+                                                    <?php
+                                                    foreach ( $options as $key => $value ) {
+                                                    ?>
+                                                        <option value="<?php echo esc_attr( $value ); ?>"><?php echo esc_html( $value ); ?></option>
+                                                    <?php
+                                                    }
+
+                                                    ?>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        }
+                                        ?>
+                                        </tbody>
+                                    </table>
+                                    <?php
+                                }
+                            }
+
+							if ( $single_add_to_cart && $is_purchasable ) {
+							?>
+								<button class="wt_choose_free_product button" prod-id="<?php echo esc_attr( $product_id ); ?>" variation="<?php echo esc_attr( $variation_id ); ?>" type="button"><?php esc_html_e( 'Choose Product', 'wt-smart-coupons-for-woocommerce' ); ?></button>
+							<?php
 							}
 						}
 						?>

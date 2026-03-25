@@ -139,20 +139,22 @@
 			wbte_sc_bogo_add_new();
 
 			/** Bogo general settings click */
-			$( '.wbte_sc_bogo_general_settings_button' ).on(
+			$( document ).on(
 				'click',
+				'.wbte_sc_bogo_general_settings_button',
 				function (e) {
 					e.preventDefault();
-					$( '#wbte_sc_bogo_general_settings' ).css( { 'width' : '367px', 'padding' : '26px 29px 0 29px' } );
+					$( '#wbte_sc_bogo_general_settings' ).addClass( 'is-open' );
 					wbte_sc_bogo_show_overlay();
 				}
 			);
 
-			$( '.wbte_sc_bogo_general_settings_close' ).on(
+			$( document ).on(
 				'click',
+				'.wbte_sc_bogo_general_settings_close',
 				function (e) {
 					e.preventDefault();
-					$( '#wbte_sc_bogo_general_settings' ).css( { 'width' : '0', 'padding' : '26px 0px' } );
+					$( '#wbte_sc_bogo_general_settings' ).removeClass( 'is-open' );
 					wbte_sc_bogo_remove_overlay();
 				}
 			);
@@ -180,7 +182,7 @@
 			$( document ).on(
 				'click', '.wbte_sc_blanket',
 				function () {
-					$( '#wbte_sc_bogo_general_settings' ).css( { 'width' : '0', 'padding' : '26px 0px' } );
+					$( '#wbte_sc_bogo_general_settings' ).removeClass( 'is-open' );
 					$( '.wbte_sc_bogo_add_new_popup' ).hide();
 					wbte_sc_bogo_remove_overlay();
 				}
@@ -838,7 +840,7 @@
 						},
 						success:function ( data ) {
 							if ( data.status ) {
-								$( '.wbte_sc_bogo_general_settings' ).css( { 'width' : '0', 'padding' : '26px 0px' } );
+								$( '.wbte_sc_bogo_general_settings' ).removeClass( 'is-open' );
 								wbte_sc_bogo_remove_overlay();
 								wbte_sc_notify_msg.success( data.msg );
 							}

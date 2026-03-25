@@ -11,7 +11,7 @@ if ( ! defined( 'WPINC' ) ) {
 ?>
 <style>
 /* hide default sidebar */
-.wt-sc-tab-container, .wt-sc-tab-head{ width: 73%; }
+.wt-sc-tab-container{ width: 73%; }
 .wt_smart_coupon_admin_form_right_box{ width:calc(27% - 25px); }
 
 .wt_smcpn_upgrade_to_premium_hd_block{ float:left; width:100%; padding:25px; box-sizing:border-box; background:rgba(233, 245, 255, 0.67); }
@@ -39,11 +39,11 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 @media (max-width:1200px) {
-	.wt-sc-tab-container, .wt-sc-tab-head{ width:65%; }
+	.wt-sc-tab-container{ width:65%; }
 }
 
 @media (max-width:768px) {
-	.wt-sc-tab-head, .wt-sc-tab-container, .wt_smart_coupon_admin_form_right_box{ width:100%; }
+	.wt-sc-tab-container, .wt_smart_coupon_admin_form_right_box{ width:100%; }
 }
 
 html[dir="rtl"] .wt_smcpn_settings_left{ float:right; }
@@ -52,20 +52,17 @@ html[dir="rtl"] .wt_smcpn_settings_left{ float:right; }
 <script type="text/javascript">
 	function wt_sc_freevspro_sidebar_switch(href)
 	{
-		if('#wt-sc-freevspro' === href)
-		{
-			jQuery('.wt-sc-tab-container, .wt-sc-tab-head').css({'width': '100%'});
-			jQuery('.wt_smart_coupon_pro_features').hide();
+		jQuery('.wt-sc-tab-container').attr('data-tab', href.replace('#', ''));
+		if ('#wt-sc-freevspro' === href ) {
+			jQuery('.wt_smart_coupon_pro_features, .wt_sc_newsletter_subscription_box').hide();
 
-		}else
-		{
-			jQuery('.wt-sc-tab-container, .wt-sc-tab-head').css({'width': '73%', });
-			jQuery('.wt_smart_coupon_pro_features').show(); 
+		} else {
+			jQuery('.wt_smart_coupon_pro_features, .wt_sc_newsletter_subscription_box').show();
 		}
-		if('#wt-sc-help' === href)
-		{
+
+		if ( '#wt-sc-help' === href ) {
 			jQuery('.wt_smart_coupon_admin_form_right_box').css({'border-top':'1px solid #c3c4c7'});
-		}else{
+		} else {
 			jQuery('.wt_smart_coupon_admin_form_right_box').css({'border-top':'none'});
 		}
 

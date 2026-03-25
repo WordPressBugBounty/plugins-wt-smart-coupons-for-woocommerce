@@ -32,7 +32,7 @@ $wbte_old_bogo_coupon_count = $wpdb->get_var( // phpcs:ignore WordPress.DB.Direc
 	</div>
 	<?php if ( 0 < $wbte_old_bogo_coupon_count ) { ?>
 	<div class="wbte_sc_bogo_switching_warning">
-		<span style="height: 24px;"><?php echo wp_kses_post( $ds_obj->render_html( array( 'html' => '{{wbte-ds-icon-exclamation-mark-1}}' ) ) ); ?></span>
+		<span style="height: 24px;"><?php echo wp_kses_post( $wbte_ds_obj->render_html( array( 'html' => '{{wbte-ds-icon-exclamation-mark-1}}' ) ) ); ?></span>
 		<p>
 			<?php
 			// translators: 1: Number of BOGO coupons.

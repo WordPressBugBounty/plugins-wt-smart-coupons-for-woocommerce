@@ -194,11 +194,7 @@ div#wt_store_credit_coupon_top span:before {
 .wt_smart_coupon_setup_video{ box-sizing:border-box; background:#fff; padding:15px 22px; padding-bottom:0px; display:none; margin-bottom: 10px;}
 .wt_smart_coupon_setup_video_hd{ font-weight:600; color:#000; margin-bottom:15px; margin-top:11px; text-align:center; }
 .wt_smart_coupon_setup_video_box{ padding-bottom:15px; }
-/* .wt_smart_coupon_premium{
-  width: 100%;
-  height: auto;
-  border-radius: 11px;
-} */
+
 .wt_smart_coupon_premium ul {
   padding-left:15px;
   padding-right:15px;
@@ -334,9 +330,9 @@ ul.wt_sub_tab li:last-child {
 
 .wt_sc_upgrade_pro_main{ width:100%; height:auto; padding:25px 17px; text-align:center; box-sizing:border-box; background: #F9FCFF; border-radius: 11px 11px 0px 0px; border-bottom: dashed 1px #CDE1F5; display: flex; gap: 10px; position: relative; align-items: center; }
 .wt_sc_upgrade_pro_main_hd{ font-weight:600; font-size:13px; line-height:20px; color:#000000; text-align: left;}
-.wt_sc_upgrade_pro_content{ float:left; width: 100%; padding:24px 15px 50px 15px; background: #FFFFFF; box-sizing:border-box; box-shadow: 0px 2px 2px #ccc; }
+.wt_sc_upgrade_pro_content{ width: 100%; padding:24px 15px 50px 15px; background: #FFFFFF; box-sizing:border-box; box-shadow: 0px 2px 2px #ccc; }
 .wt_sc_upgrade_pro_content_head{ text-align:left; font-size:13px; font-weight:700; padding-left:10px; margin:0; color: #4750CB; }
-.wt_sc_upgrade_pro_lower_green{ float:left; width:100%; background:#F9FCFF; padding:50px 26px 26px 26px; box-sizing:border-box; border-radius: 0px 0px 11px 11px; position: relative; box-shadow: 0px 2px 2px #ccc; }
+.wt_sc_upgrade_pro_lower_green{ width:100%; background:#F9FCFF; padding:50px 26px 26px 26px; box-sizing:border-box; border-radius: 0px 0px 11px 11px; position: relative; box-shadow: 0px 2px 2px #ccc; }
 .wt_sc_upgrade_pro_icon_box{ display: flex; align-items: center; gap: 7px; margin-bottom: 5px; }
 .wt_sc_upgrade_pro_icon_box p{ margin: 0; font-weight: 600; font-size: 12px; }
 .wt_smart_coupon_premium .wt-sc-pro-features-all-features{ display:none;}
@@ -406,11 +402,8 @@ td.wt_sc_order_used_coupons ul.wc_coupon_list li.code .tips{ cursor:default; }
 /**
  *  @since 1.4.4
  */
-.wt-sc-tab-head{ margin-right:0px; margin-top:20px; clear:both; width:65%;}
 .wt-sc-tab-container{ padding:15px; background:#fff; box-shadow:0px 2px 10px #ccc; float:left; box-sizing:border-box; width:65%; height:auto; border-radius: 12px; margin-bottom: 25px; }
-.wt-sc-tab-head .nav-tab{ border-top-left-radius:3px; border-top-right-radius:3px; }
-.wt-sc-tab-head .nav-tab-active{ background: #fff; border-bottom: solid 1px #fff; }
-.wt-sc-tab-head .nav-tab:focus{ box-shadow:none;}
+.wt-sc-tab-container[data-tab="wt-sc-freevspro"]{ width:100%; }
 .wt-sc-tab-content{ display:none; float:left; width:100%; height:auto; }
 .wt_sc_sub_tab_container{float:left; width:100%; height:auto;}
 .wt_sc_sub_tab{ display:inline-block; margin:0px;}
@@ -520,19 +513,10 @@ td.wt_sc_order_used_coupons ul.wc_coupon_list li.code .tips{ cursor:default; }
 .wt-sc-form-settings-group-heading{ border-bottom:dashed 1px #ccc; padding-bottom:5px; }
 .wt_sc_badge { display:inline-block; padding:2px 6px; font-size:12px; border-radius:3px; background:#ccc; color:#fff; text-align:center; }
 
-/* popup */
-.wt_sc_cst_overlay{ position:fixed; z-index:100000000; width:100%; height:100%; background-color:rgba(0,0,0,.5); left:0px; top:0px; display:none;}
-.wt_sc_popup{position:fixed; z-index:100000001; background:#fff; border:solid 1px #eee; text-align:center; box-shadow:0px 2px 5px #333; left:50%; display:none;}
-.wt_sc_popup_hd{display:inline-block; width:100%; box-sizing:border-box; font-weight:bold; background-color:#f3f3f3; height:40px; text-align:left; line-height:40px; padding:0px 20px;}
-.wt_sc_popup_title{ float:left; }
-.wt_sc_popup_close{float:right; width:40px; height:40px; text-align:right; line-height:40px; cursor:pointer;}
-.wt_sc_popup_footer{width:100%; text-align:right; margin-top:10px;}
-
 .wt-sc-form-preview-popover{ cursor:pointer; font-size:80%; display:inline-block; }
 
 @media (max-width:768px) {
-  .wt-sc-tab-head, .wt-sc-tab-container, .wt_smart_coupon_admin_form_right_box{ width:100%; }
-  .wt_smart_coupon_admin_form_right_box{ margin:auto; margin-top:30px; }
+  .wt_smart_coupon_admin_form_right_box{ width:100%; margin:auto; margin-top:30px; }
 }
 
 fieldset.form-field._wt_need_check_location_in_field .wc-radios li { display:inline-block !important; margin-right:5px; }
@@ -561,10 +545,47 @@ fieldset.form-field._wt_need_check_location_in_field .wc-radios li { display:inl
 /* Hide CTA banners on coupon edit page if coupons are not created yet */
 .wrap:has(.woocommerce-BlankState) .wbte_sc_promotion_banner_div, .wrap:has(.woocommerce-BlankState) #wbte_sc_gc_promo_banner, .wrap:has(.woocommerce-BlankState) .wt-gdpr-promotion-banner { display: none !important; }
 .wbte_sc_promotion_banner_content{ display: flex; align-items: center; justify-content: space-between; margin-top: 10px; }
-.wbte_sc_promotion_banner_later{ height: 30px; background: #E3E3FF !important; color: #5454A5 !important; border: 1px solid #5454A5 !important; }
-.wbte_sc_promotion_banner_link_btn{ height: 30px; background: #5454A5 !important; color: #fff !important; border: none !important; display: flex !important; align-items: center; justify-content: space-between; }
+.wbte_sc_promotion_banner_secondary_btn{ height: 30px; background: #E3E3FF !important; color: #5454A5 !important; border: 1px solid #5454A5 !important; }
+.wbte_sc_promotion_banner_primary_btn{ height: 30px; background: #5454A5 !important; color: #fff !important; border: none !important; display: flex !important; align-items: center; justify-content: space-between; }
 .wbte_sc_promotion_banner_actions{ display: flex; align-items: center; margin-left: 10px; }
 @media (max-width: 650px) {
   .wbte_sc_promotion_banner_content{ flex-direction: column; align-items: flex-start; }
   .wbte_sc_promotion_banner_actions{ width: 100%; margin-top: 10px; margin-left: 0px; }
 }
+
+.wbte_sc_color_picker_container{ border: 1.5px solid #BDC1C6; border-radius: 6px; padding: 8px 10px; background: white; box-sizing: border-box; min-width: 110px; max-width: 120px; min-height: 38px; }
+.wbte_sc_color_picker_container .wp-color-result.button{ margin: 0 !important; }
+
+.wbte_sc_color_picker_field{ display:inline-block; }
+.wbte_sc_color_picker_field .wp-picker-container{ position:relative; }
+.wbte_sc_color_picker_field .wp-color-result-text{ display:none; }
+.wbte_sc_color_picker_field .wp-color-result,
+.wbte_sc_color_picker_field .wp-color-result.button{ width:25px !important; height:18px !important; padding:0 !important; border:1px solid #ddd; border-radius:4px; min-width:25px !important; min-height:18px !important; box-sizing:border-box !important; margin:0; }
+.wp-picker-container.wp-picker-active + .wbte_sc_color_picker_container_value_span { display: none; }
+
+/* Webtoffee Newsletter sidebar */
+.wt_sc_newsletter_subscription_box { position: relative; border: 1px solid #e8e8e8; background-color: #fff; border-radius: 10px; padding: 20px 16px; box-shadow: 0px 2px 2px #ccc; margin-top: 12px; }
+.wt_sc_newsletter_subscription_box.wt_sc_newsletter_loading .wt_sc_newsletter_loader { position: absolute; inset: 0; background: rgba( 255, 255, 255, 0.85 ); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+.wt_sc_newsletter_subscription_box.wt_sc_newsletter_loading .wt_sc_newsletter_loader .spinner { margin: 0; float: none; visibility: visible; }
+
+.wt_sc_newsletter_header { display: flex; align-items: center; margin-bottom: 18px; gap: 16px; }
+.wt_sc_newsletter_header > svg { flex-shrink: 0; }
+.wt_sc_newsletter_title_text{ font-size: 15px; font-weight: 600; line-height: 1.4; text-align: left; color: #212121; }
+
+.wt_sc_newsletter_subscription_box .mc-field-group label { display: none; }
+
+.wbte-sc-newsletter-email input{ border: 1px solid #BFCBE3; width: 100%; padding: 8px 12px; }
+.wbte-sc-newsletter-email input:focus{ border-color: #4750CB; outline: none; }
+.wbte-sc-newsletter-email, .wbte-newsletter-consent-checkbox{ margin-bottom: 16px; }
+.wbte-newsletter-consent-checkbox input[type="checkbox"]{ border: 1px solid #BFCBE3; }
+.wbte-newsletter-consent-checkbox label{ font-size: 14px; font-weight: 400; line-height: 1.4; color: #212121; }
+.wbte-newsletter-consent-checkbox label a{ color: #212121; }
+
+.wbte-sc-newsletter-subscribe-button{ width: 100%; border: 1px solid #4750CB; color: #4750CB; font-size: 14px; font-weight: 600; background-color: white; line-height: 1.1; padding: 16px; border-radius: 6px; cursor: pointer; }
+.wbte-sc-newsletter-subscribe-button:hover{ background-color: white; color: #4750CB; border: 1px solid #4750CB; }
+
+.wt_sc_newsletter_subscription_box #mc_embed_signup #mc-embedded-subscribe-form div.mce_inline_error { margin:2px 0 1em 0; padding:3px; background-color: transparent; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; font-size:14px; font-weight:normal; z-index:1; color:#e85c41;}
+.wt_sc_newsletter_subscription_box #mc_embed_signup #mc-embedded-subscribe-form input.mce_inline_error {border:1px solid #e85c41;}
+.wt_sc_newsletter_subscription_box .response { font-size: 13px; padding: 8px 12px; border-radius: 4px; margin-bottom: 8px; }
+.wt_sc_newsletter_subscription_box #mce-error-response { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+.wt_sc_newsletter_subscription_box #mce-success-response { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; margin-bottom: 24px; }

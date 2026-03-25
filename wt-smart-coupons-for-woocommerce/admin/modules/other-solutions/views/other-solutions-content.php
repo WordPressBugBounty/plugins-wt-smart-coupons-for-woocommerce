@@ -128,15 +128,6 @@ if ( ! defined( 'WPINC' ) ) {
 					'pro_plugin'   => 'wt-woo-request-quote/wt-woo-request-quote.php',
 					'basic_plugin' => '',
 				),
-				'fbt_plugins'                    => array(
-					'title'        => __( 'Frequently Bought Together for WooCommerce', 'wt-smart-coupons-for-woocommerce' ),
-					'description'  => __( 'Boost the visibility of the products by displaying them as ‘Frequently bought together’ items in your store. You may also set up discounts for Frequently Bought Together bundles with this plugin.', 'wt-smart-coupons-for-woocommerce' ),
-					'image_url'    => 'fbt_plugin.png',
-					'premium_url'  => 'https://www.webtoffee.com/product/woocommerce-frequently-bought-together/?utm_source=other_solution_page&utm_medium=free_plugin&utm_campaign=Frequently_Bought_Together',
-					'basic_url'    => '',
-					'pro_plugin'   => 'wt-frequently-bought-together/wt-frequently-bought-together.php',
-					'basic_plugin' => '',
-				),
 				'gdpr_cookie_consent_plugin'     => array(
 					'title'        => __( 'GDPR Cookie Consent Plugin (CCPA Ready)', 'wt-smart-coupons-for-woocommerce' ),
 					'description'  => __( 'The plugin helps you get compliant with GDPR, CCPA, and other major cookie laws. You can create and manage cookie consent banners, scan website cookies, and generate cookie policies with this plugin.', 'wt-smart-coupons-for-woocommerce' ),
@@ -144,7 +135,7 @@ if ( ! defined( 'WPINC' ) ) {
 					'premium_url'  => 'https://www.webtoffee.com/product/gdpr-cookie-consent/?utm_source=other_solution_page&utm_medium=_free_plugin_&utm_campaign=GDPR',
 					'basic_url'    => 'https://wordpress.org/plugins/cookie-law-info/',
 					'pro_plugin'   => 'webtoffee-gdpr-cookie-consent/cookie-law-info.php',
-					'basic_plugin' => 'cookie-law-info/cookie-law-info.php',
+					'basic_plugin' => '',
 				),
 				'product_import_export_plugin'   => array(
 					'title'        => __( 'Product Import Export Plugin For WooCommerce', 'wt-smart-coupons-for-woocommerce' ),

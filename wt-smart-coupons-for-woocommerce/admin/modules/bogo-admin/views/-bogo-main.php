@@ -45,9 +45,6 @@ $wbte_all_bogo_coupon_count = self::get_total_bogo_counts();
 ?>
 <div class="wbte_sc_bogo_body">
 	<div class="wbte_sc_bogo_outer_box <?php echo ( 0 >= $wbte_all_bogo_coupon_count ) ? '' : 'wbte_sc_bogo_outer_box_listing'; ?>">
-		<div class="wbte_sc_bogo_general_settings_button">
-			<img src="<?php echo esc_url( $admin_img_path ); ?>settings_gear.svg" alt="<?php esc_attr_e( 'Settings', 'wt-smart-coupons-for-woocommerce' ); ?>" title="<?php esc_attr_e( 'General settings', 'wt-smart-coupons-for-woocommerce' ); ?>">
-		</div>
 		<?php
 		if ( 0 >= $wbte_all_bogo_coupon_count ) {
 			include_once plugin_dir_path( __FILE__ ) . '--first-bogo-campaign.php';
@@ -59,10 +56,18 @@ $wbte_all_bogo_coupon_count = self::get_total_bogo_counts();
 	<?php
 
 	if ( 0 < $wbte_all_bogo_coupon_count ) {
-		echo '<div class="wbte_sc_bogo_premium_features">';
-		$wbte_premium_url = esc_url( 'https://www.webtoffee.com/product/smart-coupons-for-woocommerce/?utm_source=free_plugin_bogo_sidebar&utm_medium=smart_coupons_basic&utm_campaign=smart_coupons&utm_content=' . WEBTOFFEE_SMARTCOUPON_VERSION );
-		include_once WT_SMARTCOUPON_MAIN_PATH . 'admin/views/-premium-features-sidebar.php';
-		echo '</div>';
+		?>
+		<div class="wbte_sc_bogo_sidebar">
+			<?php
+			$wbte_premium_url = esc_url( 'https://www.webtoffee.com/product/smart-coupons-for-woocommerce/?utm_source=free_plugin_bogo_sidebar&utm_medium=smart_coupons_basic&utm_campaign=smart_coupons&utm_content=' . WEBTOFFEE_SMARTCOUPON_VERSION );
+			include_once WT_SMARTCOUPON_MAIN_PATH . 'admin/views/-premium-features-sidebar.php';
+
+			// Newsletter sidebar.
+			include_once WT_SMARTCOUPON_MAIN_PATH . 'admin/views/-wbte-newsletter-sidebar.php';
+			?>
+		</div>
+		<?php
+
 	}
 
 	echo $wbte_ds_obj->get_component( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

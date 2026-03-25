@@ -699,23 +699,10 @@ msgid "Are you sure you want to disable the old BOGO coupons?"
 msgstr ""
 "Sind Sie sicher, dass Sie die alten BOGO-Gutscheine deaktivieren möchten?"
 
-#: admin/modules/bogo/bogo.php:213
-#, php-format
-msgid "%s quantities of %s Specific product(s) %s with %s Discount %s each"
-msgstr "%s Mengen von %s Spezifischem Produkt %s mit %s Rabatt %s jeweils"
-
 #: admin/modules/bogo/bogo.php:248
 #, php-format
 msgid "Customer %s Spends %s at least %s on %s Selected product(s) %s"
 msgstr "Kunde %s Gibt %s mindestens %s für %s Ausgewählte Produkt(e) %s aus"
-
-#: admin/modules/bogo/bogo.php:282
-#, php-format
-msgid ""
-"Customer %s Buys %s at least %s quantities of %s Selected product(s) %s"
-msgstr ""
-"Kunde %s kauft %s mindestens %s Mengen von %s Ausgewähltem "
-"Produkt/Ausgewählten Produkten %s"
 
 #: admin/modules/bogo/bogo.php:301
 #, php-format
@@ -723,11 +710,6 @@ msgid "Spend %s to %s on items, Get %s Specific product(s) %s x %s"
 msgstr ""
 "Geben Sie %s bis %s für Artikel aus, Erhalten Sie %s bestimmtes Produkt(e) "
 "%s x %s"
-
-#: admin/modules/bogo/bogo.php:318
-#, php-format
-msgid "Spend %s , Get %s Specific product(s) %s x %s"
-msgstr "Gib %s aus, erhalte %s spezifische Produkt(e) %s x %s"
 
 #: admin/modules/bogo/bogo.php:326
 msgid "Enter a number greater than or equal to 1"
@@ -789,11 +771,6 @@ msgstr "Nutzungsgrenze von %s pro Benutzer"
 #, php-format
 msgid "Usage limit of %s per offer."
 msgstr "Nutzungslimit von %s pro Angebot"
-
-#: admin/modules/bogo/bogo.php:358
-#, php-format
-msgid "Minimum %s and maximum %s quantity of each item."
-msgstr "Mindestmenge %s und Höchstmenge %s für jeden Artikel"
 
 #: admin/modules/bogo/bogo.php:364
 #, php-format
@@ -1741,26 +1718,9 @@ msgstr "Eines aus der untenstehenden Auswahl"
 msgid "All from below selection"
 msgstr "Alles aus der untenstehenden Auswahl"
 
-#: admin/modules/coupon_restriction/coupon_restriction.php:212
-#, php-format
-msgid ""
-"%s All: %s Applies coupon if the cart contains all of the listed products."
-msgstr ""
-"%s Alle: %s Wendet Gutschein an, wenn der Warenkorb alle aufgeführten "
-"Produkte enthält"
-
 #: admin/modules/coupon_restriction/coupon_restriction.php:226
 msgid "Category condition:"
 msgstr "Kategoriebedingung:"
-
-#: admin/modules/coupon_restriction/coupon_restriction.php:232
-#, php-format
-msgid ""
-"%s All: %s Applies coupon if the cart contains the eligible quantity of "
-"products from all of the below listed categories."
-msgstr ""
-"%s Alle: %s Wendet einen Gutschein an, wenn der Warenkorb die berechtigte "
-"Menge an Produkten aus allen unten aufgeführten Kategorien enthält."
 
 #: admin/modules/coupon_restriction/coupon_restriction.php:247
 msgid "Minimum quantity of matching products"
@@ -2197,18 +2157,6 @@ msgstr "Einmal bewerben"
 msgid "Apply repeatedly"
 msgstr "Mehrfach anwenden"
 
-#: admin/modules/giveaway_product/giveaway_product.php:207
-#, php-format
-msgid ""
-"%s Apply repeatedly: %s The coupon applies repeatedly whenever the cart is "
-"eligible or if conditions are met. ie: If you set the coupon to offer Buy 2 "
-"Get 1 then the coupon works repeatedly for Buy 4 Get 2 and so on."
-msgstr ""
-"%s Wiederholt anwenden: %s Der Gutschein wird wiederholt angewendet, sofern "
-"der Warenkorb berechtigt ist oder die Bedingungen erfüllt sind. Das "
-"bedeutet: Wenn Sie den Gutschein auf Kaufen 2 Erhalten 1 setzen, "
-"funktioniert der Gutschein wiederholt für Kaufen 4 Erhalten 2 und so weiter"
-
 #: admin/modules/giveaway_product/giveaway_product.php:216
 msgid "Giveaway products"
 msgstr "Werbeartikel"
@@ -2472,10 +2420,6 @@ msgstr ""
 "Angebote anzufordern und Ladenmanager darauf zu antworten. Verbergen Sie "
 "Produktpreise, richten Sie E-Mail-Benachrichtigungen ein und mehr"
 
-#: admin/modules/other_solutions/views/other_solutions_content.php:131
-msgid "Frequently Bought Together for WooCommerce"
-msgstr "Häufig Zusammen Gekauft für WooCommerce"
-
 #: admin/modules/other_solutions/views/other_solutions_content.php:132
 msgid ""
 "Boost the visibility of the products by displaying them as ‘Frequently "
@@ -2558,17 +2502,6 @@ msgstr ""
 "Daten. Sie können Produkte, Produktbewertungen, Bestellungen, Kunden, "
 "Rabattcoupons und Abonnements mit diesem einzigen Plugin importieren und "
 "exportieren."
-
-#: admin/modules/other_solutions/views/other_solutions_content.php:199
-msgid ""
-"Ensure a fast and secure checkout experience for your users with WooCommerce"
-" Stripe Payment Gateway. Stripe accepts credit/debit cards and offers "
-"integrations with Apple Pay, SEPA, Alipay, and more."
-msgstr ""
-"Stellen Sie ein schnelles und sicheres Checkout-Erlebnis für Ihre Nutzer mit"
-" dem WooCommerce Stripe Payment Gateway sicher. Stripe akzeptiert "
-"Kredit-/Debitkarten und bietet Integrationen mit Apple Pay, SEPA, Alipay und"
-" mehr"
 
 #: admin/modules/other_solutions/views/other_solutions_content.php:216
 msgid "Sequential Order Numbers for WooCommerce"
@@ -2656,10 +2589,6 @@ msgstr "Gutscheinbanner und Widgets anzeigen"
 #: admin/modules/premium_upgrade/views/page_content.php:96
 msgid "Import coupons from CSV"
 msgstr "Gutscheine aus CSV importieren"
-
-#: admin/modules/premium_upgrade/views/page_content.php:110
-msgid "Scan your website to identify cookies"
-msgstr "Scannen Sie Ihre Website, um Cookies zu identifizieren"
 
 #: admin/modules/premium_upgrade/views/page_content.php:116
 msgid "Show cookie notice based on Geo IP"
@@ -3357,10 +3286,6 @@ msgstr ""
 msgid "Oops! Woocommerce not activated.."
 msgstr "Ups! Woocommerce nicht aktiviert.."
 
-#: includes/class-wt-smart-coupon-review_request.php:80
-msgid "Not interested"
-msgstr "Nicht interessiert"
-
 #: includes/class-wt-smart-coupon.php:696
 msgid "Go to plugins page"
 msgstr "Zur Plugin-Seite gehen"
@@ -3568,10 +3493,6 @@ msgid "Sorry! this product is not available for giveaway."
 msgstr ""
 "Entschuldigung! Dieses Produkt ist nicht für eine Gratis-Aktion verfügbar"
 
-#: public/modules/bogo/views/-cart-giveaway-products.php:127
-msgid "Quantity : "
-msgstr "Menge : "
-
 #: public/modules/bogo/views/-cart-giveaway-products.php:211
 #: public/modules/giveaway_product/views/_cart_giveaway_products.php:198
 msgid "Choose an option"
@@ -3602,11 +3523,6 @@ msgstr "Entschuldigung, dieser Gutschein ist nicht für Ihre Rolle anwendbar"
 msgid "Sorry, this coupon is not applicable to selected location"
 msgstr ""
 "Entschuldigung, dieser Gutschein ist am gewählten Standort nicht gültig"
-
-#: public/modules/coupon_restriction/coupon_restriction.php:94
-#, php-format
-msgid "The maximum quantity of %s for this coupon is %s."
-msgstr "Die maximale Menge von %s für diesen Gutschein ist %s"
 
 #: public/modules/coupon_restriction/coupon_restriction.php:97
 msgid ""
@@ -3799,14 +3715,6 @@ msgstr "Abgelaufene Gutscheine"
 msgid "Sorry, you don't have any expired coupons"
 msgstr "Entschuldigung, Sie haben keine abgelaufenen Gutscheine"
 
-#: wt-smart-coupon.php:141
-msgid ""
-"WooCommerce is required for this plugin to work properly. Please activate "
-"WooCommerce."
-msgstr ""
-"WooCommerce ist erforderlich, damit dieses Plugin ordnungsgemäß "
-"funktioniert. Bitte WooCommerce aktivieren"
-
 #. Plugin Name of the plugin/theme
 msgid "Smart Coupons For WooCommerce Coupons"
 msgstr "Intelligente Gutscheine für WooCommerce-Gutscheine"
@@ -3924,16 +3832,6 @@ msgstr "Gutscheincode für die Admin-Nutzung kopieren"
 msgid "Failed to copy"
 msgstr "Kopieren fehlgeschlagen"
 
-#. Translators: 1: span opening 2: span closing 3:span opening 4:span closing
-#. 5:span opening 6:span closing 7:span opening 8:span closing.
-#: admin/modules/bogo/bogo.php:1413
-msgid ""
-"Customer %s Spends %s between %s {min} %s and %s {max} %s on %s Selected "
-"product(s) %s"
-msgstr ""
-"Kunde %s gibt %s zwischen %s {min} %s und %s {max} %s für %s ausgewählte(s) "
-"Produkt(e) %s aus"
-
 #. Translators: 1: span opening 2: span closing 3: span opening 4: span
 #. closing 5: span opening 6: span closing.
 #: admin/modules/bogo/bogo.php:1433
@@ -3942,16 +3840,6 @@ msgid ""
 msgstr ""
 "Kunde %s Gibt %s mindestens %s {min} %s aus auf %s Ausgewähltes Produkt(e) "
 "%s"
-
-#. Translators: 1: span opening 2: span closing 3: span opening 4: span
-#. closing 5: span opening 6: span closing 7: span opening 8: span closing.
-#: admin/modules/bogo/bogo.php:1453
-msgid ""
-"Customer %s Buys %s between %s {min} %s and %s {max} %s quantities of %s "
-"Selected product(s) %s"
-msgstr ""
-"Kunde %s kauft %s zwischen %s {min} %s und %s {max} %s Mengen der "
-"ausgewählten Produkte %s"
 
 #. Translators: 1: span opening 2: span closing 3: span opening 4: span
 #. closing 5: span opening 6: span closing.
@@ -4054,10 +3942,6 @@ msgstr "Angebot anzeigen aktiviert"
 #: admin/modules/bogo/views/--bogo-bulk-general.php:166
 msgid "Choose where shoppers will see the coupon offer"
 msgstr "Wählen Sie, wo Käufer das Gutscheinangebot sehen"
-
-#: admin/modules/bogo/views/--bogo-bulk-general.php:214
-msgid "Email recipients"
-msgstr "E-Mail-Empfänger"
 
 #: admin/modules/bogo/views/--bogo-bulk-general.php:234
 msgid "Schedule offer"
@@ -5049,3 +4933,202 @@ msgid ""
 msgstr ""
 "Ups, Ihr Warenkorb ist leer! Fügen Sie %1$s Produkte %2$s Ihrem Warenkorb "
 "hinzu, um das Angebot zu nutzen."
+
+#: admin/class-wt-smart-coupon-admin.php:1074
+msgid "Reset lookup table"
+msgstr "Nachschlagetabelle zurücksetzen"
+
+#: admin/class-wt-smart-coupon-admin.php:1099
+msgid "Failed to reset lookup table."
+msgstr "Zurücksetzen der Nachschlagetabelle fehlgeschlagen."
+
+#: admin/class-wt-smart-coupon-admin.php:1102
+msgid "Lookup table reset successfully."
+msgstr "Nachschlagetabelle erfolgreich zurückgesetzt."
+
+#: admin/class-wt-smart-coupon-admin.php:1234
+msgid "Newsletter subscription successful"
+msgstr "Newsletter-Abonnement erfolgreich"
+
+#: admin/cross-promotion-banners/class-wbte-accessibility-banner.php:236
+msgid "Activation failed."
+msgstr "Aktivierung fehlgeschlagen."
+
+#: admin/cross-promotion-banners/class-wbte-accessibility-banner.php:256
+msgid "Accessibility Widget"
+msgstr "Barrierefreiheits-Widget"
+
+#. translators: 1: a tag opening, 2: a tag closing
+#: admin/cross-promotion-banners/class-wbte-accessibility-banner.php:262
+msgid ""
+"Make your site inclusive with %1$s AccessYes accessibility widget. %2$s"
+msgstr ""
+"Machen Sie Ihre Website inklusiv mit dem AccessYes-Widget für "
+"Barrierefreiheit von %1$s. %2$s"
+
+#: admin/cross-promotion-banners/class-wbte-accessibility-banner.php:270
+msgid ""
+"A lightweight accessibility widget to improve accessibility and usability "
+"for every users. Set it up in minutes for free."
+msgstr ""
+"Ein leichtgewichtiges Barrierefreiheits-Widget zur Verbesserung der "
+"Zugänglichkeit und Benutzerfreundlichkeit für alle Nutzer. Richten Sie es in"
+" wenigen Minuten kostenlos ein."
+
+#: admin/cross-promotion-banners/class-wbte-accessibility-banner.php:279
+msgid "Install & activate"
+msgstr "Installieren & aktivieren"
+
+#: admin/cross-promotion-banners/class-wbte-accessibility-banner.php:283
+msgid "Remind me later"
+msgstr "Erinnere mich später"
+
+#: admin/cross-promotion-banners/class-wbte-accessibility-banner.php:342
+msgid "Installing..."
+msgstr "Installation..."
+
+#: admin/cross-promotion-banners/class-wbte-accessibility-banner.php:436
+msgid "Plugin installed successfully."
+msgstr "Plugin erfolgreich installiert."
+
+#: admin/modules/banner/class-wbte-cta-banner.php:203
+msgid "Update pending ⚠️"
+msgstr "Update ausstehend ⚠️"
+
+#: admin/modules/banner/class-wbte-cta-banner.php:204
+msgid ""
+"It looks like you haven't updated the Smart Coupons plugin in a while. We "
+"release new features and security improvements with every update. Keep it "
+"up-to-date to ensure better performance, compatibility, and protection."
+msgstr ""
+"Es sieht so aus, als hätten Sie das Smart Coupons-Plugin schon länger nicht "
+"mehr aktualisiert. Wir veröffentlichen neue Funktionen und "
+"Sicherheitsverbesserungen mit jedem Update. Halten Sie es auf dem neuesten "
+"Stand, um bessere Leistung, Kompatibilität und Schutz zu gewährleisten."
+
+#: admin/modules/banner/class-wbte-cta-banner.php:205
+msgid "Update Now"
+msgstr "Jetzt aktualisieren"
+
+#: admin/modules/banner/class-wbte-cta-banner.php:298
+msgid "Haven't created any new coupons recently?"
+msgstr "Haben Sie kürzlich keine neuen Gutscheine erstellt?"
+
+#: admin/modules/banner/class-wbte-cta-banner.php:299
+msgid ""
+"You may be missing simple ways to bring customers back and increase "
+"conversions. Try different coupon types and usage rules to build a smarter "
+"discount strategy."
+msgstr ""
+"Möglicherweise verpassen Sie einfache Möglichkeiten, Kunden zurückzugewinnen"
+" und die Konvertierungsrate zu erhöhen. Probieren Sie verschiedene "
+"Gutscheintypen und Nutzungsregeln aus, um eine intelligentere "
+"Rabattstrategie zu entwickeln."
+
+#: admin/modules/banner/class-wbte-cta-banner.php:301
+msgid "Add new coupon"
+msgstr "Neuen Gutschein hinzufügen"
+
+#: admin/modules/banner/class-wbte-cta-banner.php:303
+#: admin/modules/banner/class-wbte-cta-banner.php:369
+msgid "Refer to Documentation"
+msgstr "Dokumentation nachschlagen"
+
+#: admin/modules/banner/class-wbte-cta-banner.php:329
+msgid ""
+"Congratulations! You've been using the free WebToffee Smart Coupons plugin "
+"for a while, and we'd love to reward you."
+msgstr ""
+"Herzlichen Glückwunsch! Sie verwenden das kostenlose WebToffee Smart Coupons"
+" Plugin schon eine Weile, und wir möchten Sie belohnen."
+
+#. translators: 1: br tag, b tag opening, 2: b tag closing.
+#: admin/modules/banner/class-wbte-cta-banner.php:332
+msgid ""
+"Enjoy exclusive 30%% off Smart Coupons Premium and unlock powerful coupon "
+"features designed to boost conversions and repeat purchases.%1$s Coupon "
+"code: %2$s SMLOYAL30"
+msgstr ""
+"Genießen Sie exklusive 30%% Rabatt auf Smart Coupons Premium und schalten "
+"Sie leistungsstarke Gutscheinfunktionen frei, die zur Steigerung von "
+"Konversionen und Wiederholungskäufen entwickelt wurden.%1$s Gutscheincode: "
+"%2$s SMLOYAL30"
+
+#: admin/modules/banner/class-wbte-cta-banner.php:364
+msgid "BOGO Coupons Not Used ⚠️"
+msgstr "BOGO-Gutscheine nicht verwendet ⚠️"
+
+#: admin/modules/banner/class-wbte-cta-banner.php:365
+msgid ""
+"BOGO deals are one of the highest-converting coupon strategies, and you "
+"haven't tried them yet. Create your first BOGO offer and increase cart value"
+" with ease."
+msgstr ""
+"BOGO-Angebote sind eine der konversionsstärksten Coupon-Strategien, und Sie "
+"haben sie noch nicht ausprobiert. Erstellen Sie Ihr erstes BOGO-Angebot und "
+"erhöhen Sie den Warenkorbwert mühelos."
+
+#: admin/modules/banner/class-wbte-cta-banner.php:367
+msgid "Create BOGO Coupon"
+msgstr "BOGO-Gutschein erstellen"
+
+#. translators: 1: formatted amount e.g. $1,000+.
+#: admin/modules/banner/class-wbte-cta-banner.php:520
+msgid ""
+"Congratulations! 🎉 You've generated %1$s in sales using WooCommerce coupons "
+"with the WebToffee Smart Coupons plugin."
+msgstr ""
+"Herzlichen Glückwunsch! 🎉 Sie haben %1$s Umsatz mit WooCommerce-Gutscheinen "
+"und dem WebToffee Smart Coupons Plugin generiert."
+
+#: admin/modules/banner/class-wbte-cta-banner.php:523
+msgid ""
+"Ready to take it further? Upgrade to Smart Coupons Premium to unlock "
+"advanced coupon rules, BOGO deals, store credits, and more ways to increase "
+"revenue."
+msgstr ""
+"Bereit, es weiter zu treiben? Upgrade auf Smart Coupons Premium, um "
+"erweiterte Gutscheinregeln, BOGO-Angebote, Store-Guthaben und weitere "
+"Möglichkeiten zur Umsatzsteigerung freizuschalten."
+
+#: admin/modules/banner/class-wbte-cta-banner.php:525
+msgid "Upgrade to Premium"
+msgstr "Auf Premium upgraden"
+
+#: admin/modules/bogo-admin/views/--bogo-main-general.php:55
+msgid "Primary color for BOGO product display"
+msgstr "Primärfarbe für BOGO-Produktanzeige"
+
+#: admin/views/-wbte-newsletter-sidebar.php:28
+msgid "Subscribe to our newsletter for exclusive offers & updates"
+msgstr "Abonnieren Sie unseren Newsletter für exklusive Angebote und Updates."
+
+#: admin/views/-wbte-newsletter-sidebar.php:35
+msgid "Enter your email address"
+msgstr "Geben Sie Ihre E-Mail-Adresse ein"
+
+#. translators: %1$s: Privacy Policy link, %2$s: a tag closing.
+#: admin/views/-wbte-newsletter-sidebar.php:43
+msgid ""
+"I consent to receive newsletters and exclusive offers from WebToffee and "
+"agree to the %1$s Privacy Policy %2$s."
+msgstr ""
+"Ich stimme zu, Newsletter und exklusive Angebote von WebToffee zu erhalten "
+"und akzeptiere die %1$s Datenschutzrichtlinie %2$s."
+
+#: admin/views/-wbte-newsletter-sidebar.php:61
+msgid "Subscribe"
+msgstr "Abonnieren"
+
+#: common/modules/bogo-common/class-wbte-smart-coupon-bogo-common.php:296
+msgid "Choose product {qty_counter}"
+msgstr "Produkt auswählen {qty_counter}"
+
+#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:1674
+#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:1677
+msgid "Failed to add product to cart."
+msgstr "Produkt konnte nicht zum Warenkorb hinzugefügt werden."
+
+#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:2372
+msgid "No products selected."
+msgstr "Keine Produkte ausgewählt."

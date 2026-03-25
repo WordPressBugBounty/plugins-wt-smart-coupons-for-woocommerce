@@ -289,10 +289,11 @@ class Wbte_Smart_Coupon_Bogo_Common {
 		$default_fields = array(
 			'wbte_sc_bogo_auto_add_giveaway'              => 'wbte_sc_bogo_auto_add_full_giveaway',
 			'wbte_sc_bogo_apply_tax_on'                   => 'wbte_sc_bogo_apply_tax_on_discount',
+			'wbte_sc_bogo_prod_select_theme_color'        => '#4F46E5',
 			'wbte_sc_bogo_general_discount_apply_message' => __( '{bogo_title} applied!', 'wt-smart-coupons-for-woocommerce' ),
 			'wbte_sc_bogo_general_product_added_message'  => __( 'Giveaway added to cart!', 'wt-smart-coupons-for-woocommerce' ),
 			'wbte_sc_bogo_general_discount_under_product_msg' => '{bogo_title}',
-			'wbte_sc_bogo_general_apply_choose_product_title' => __( 'Choose product', 'wt-smart-coupons-for-woocommerce' ),
+			'wbte_sc_bogo_general_apply_choose_product_title' => __( 'Choose product {qty_counter}', 'wt-smart-coupons-for-woocommerce' ),
 		);
 
 		return self::$general_settings_arr[ $field_name ] ?? ( $default_fields[ $field_name ] ?? '' );

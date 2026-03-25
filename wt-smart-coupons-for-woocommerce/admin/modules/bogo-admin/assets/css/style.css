@@ -21,12 +21,13 @@ body{ background-color: #f2f8ff; }
 .wbte_sc_bogo_body{ width: 100%; height: 100%; direction: ltr; display: flex; }
 
 /* Common container for first campaign and coupon listing */
-.wbte_sc_bogo_outer_box{ background-color: white;  margin: 32px 10vw 0px 10vw;  padding: 50px 190px; border-radius: 10px; position: relative; box-shadow: 0px 0px 10px 1px #545f6f2e; display: flex; flex-direction: column; align-items: center; }
+.wbte_sc_bogo_outer_box{ background-color: white;  margin: 32px 10vw 0px 10vw;  padding: 50px 190px; border-radius: 10px; position: relative; box-shadow: 0px 0px 10px 1px #545f6f2e; display: flex; flex-direction: column; align-items: center; margin-left: 5vw; margin-right: 5vw; }
 .wbte_sc_bogo_outer_box h2{ font-size: 20px; font-weight: 600; margin: 0px; }
-.wbte_sc_bogo_general_settings_button{ position: absolute; right: 27px; top: 30px; cursor: pointer; margin: 0px; }
 
 /* General settings */
-.wbte_sc_bogo_general_settings { width: 0; position: fixed; z-index: 100000001; top: 66px; right: 0; bottom: 0; background-color: white; overflow-x: hidden; transition: 0.5s; box-shadow: 0px 0px 10px 0px #545f6f2e; padding: 26px 0px; clip-path: inset(0px -10px -10px -10px); margin-top: 31px; text-wrap: nowrap; direction: ltr; }
+.wbte_sc_bogo_general_settings { width: 367px; position: fixed; z-index: 100000001; top: 66px; right: 0; bottom: 0; background-color: white; overflow-x: hidden; transition: 0.5s; box-shadow: 0px 0px 10px 0px #545f6f2e; padding: 26px 29px 0 29px; clip-path: inset(0px -10px -10px -10px); margin-top: 31px; text-wrap: nowrap; direction: ltr; transform: translateX(100%); box-sizing: border-box; }
+.wbte_sc_bogo_general_settings.is-open { transform: translateX(0); }
+
 .wbte_sc_bogo_general_settings_head{ display: flex; justify-content: space-between; align-items: center; }
 .wbte_sc_bogo_general_settings_close { font-size: 25px; color: #6E7681; margin: 0px; cursor: pointer; }
 .wbte_sc_bogo_general_settings_body{ margin-top: 25px; padding-bottom: 80px; position: relative; white-space: initial; }
@@ -319,16 +320,14 @@ p.wbte_sc_bogo_repeatedly_custom_range_btn{ display: flex; gap: 4px; color: #056
 .wbte_sc_custom_title:hover::after { content: attr(data-title); position: absolute; top: 30px; left: 0; background-color: #4d5152; color: white; padding: 4px; z-index: 1000; opacity: 1; pointer-events: none; font-size: 11px; line-height: 11px; }
 
 /* BOGO listings head */
-.wbte_sc_bogo_outer_box{ margin-left: 5vw; margin-right: 5vw;}
 .wbte_sc_bogo_outer_box.wbte_sc_bogo_outer_box_listing{ padding: 35px 30px; margin: 26px 0 50px 22px; width: 73%; height: fit-content; }
 .wbte_sc_bogo_listings_head{ display: flex; width: 100%; justify-content: space-between; }
 .wbte_sc_bogo_listings_head_left, .wbte_sc_bogo_listings_head_right{ display: flex; gap: 9px; align-items: center; }
-.wbte_sc_bogo_listings_head_right{ gap: 12px; }
+.wbte_sc_bogo_listings_head_right{ gap: 12px; position: relative; }
 .wbte_sc_bogo_listings_head_left > p{ font-size: 12px; font-weight: 700; padding: 2px 6px; background-color: #EAEBED; border-radius: 3px; }
-.wbte_sc_bogo_listings_head_right{ margin-right: 50px; position: relative; }
 .wbte_sc_bogo_listings_head_search{ width: 214px; height: 0px; background-color: #FAFDFF; border-radius: 50px; display: flex; align-items: center; padding: 20px; border: 1px solid #BFCBE3; margin-left: 11px; }
 .wbte_sc_bogo_listings_head_search input{	border: none;	outline: none;	font-size: 14px;	padding-left: 10px; background-color: transparent; }
-.wbte_sc_bogo_listings_head_search input:focus{ border-width: 0px; border: none;	 }
+.wbte_sc_bogo_listings_head_search input:focus{ border: none; border-width: 0px; }
 #wbte_bogo_search{ width: 100%; }
 #wbte_bogo_search:focus{ box-shadow: none; }
 .wbte_bogo_search_icon{ cursor: pointer; }
@@ -451,7 +450,10 @@ p.wbte_sc_bogo_repeatedly_custom_range_btn{ display: flex; gap: 4px; color: #056
 	.wbte_sc_bogo_listings_head_search{ width: 100%; }
 	.wbte_sc_bogo_hide_sm{ display: none; }
 	.wbte_sc_bogo_body{ display: block; }
-	.wbte_sc_bogo_premium_features{ width: 90% !important; }
+	.wbte_sc_bogo_sidebar{ width: 90% !important; }
+
+	.wbte_sc_bogo_general_settings{ max-width: 100%; width: 100%; padding: 20px 15px 0 15px; }
+	.wbte_sc_bogo_general_settings_btn_div{ padding: 15px 15px; margin-left: -15px; }
 }
 
 @media (max-width: 960px) {
@@ -471,7 +473,7 @@ p.wbte_sc_bogo_repeatedly_custom_range_btn{ display: flex; gap: 4px; color: #056
 .wbte_sc_cheap_exp_promo_detail_div{ background-color: #FFF7D6; padding: 10px; margin-top: 14px; margin-bottom: 20px; border-radius: 6px; }
 .wbte_sc_cheap_exp_promo_detail_div p{ margin: 0; color: #2A3646; font-size: 14px; font-weight: 400; }
 
-.wbte_sc_bogo_premium_features{ width: 27%; margin: 20px; border: 1px solid #CDE1F5; height: max-content; border-radius: 11px; margin-top: 26px; }
+.wbte_sc_bogo_sidebar{ width: 27%; margin: 20px; display: flex; flex-direction: column; gap: 16px; }
 
 .wbte_sc_bogo_prem_crown_disabled{ opacity: 0.5; }
 

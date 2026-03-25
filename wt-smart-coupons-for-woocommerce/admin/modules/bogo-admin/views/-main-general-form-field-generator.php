@@ -53,9 +53,9 @@ if ( is_array( $args ) ) {
 			foreach ( $radio_fields as $rad_vl => $rad_label ) {
 
 				$radio_fields_array[] = array(
-					'label'      => wp_kses_post( $rad_label ),
-					'value'      => esc_attr( $rad_vl ),
-					'is_checked' => esc_attr( $rad_vl === $vl ),
+					'label'       => wp_kses_post( $rad_label ),
+					'value'       => esc_attr( $rad_vl ),
+					'is_checked'  => esc_attr( $rad_vl === $vl ),
 					'is_disabled' => isset( $value['disabled_items'] ) && in_array( $rad_vl, $value['disabled_items'], true ),
 				);
 			}
@@ -71,6 +71,17 @@ if ( is_array( $args ) ) {
 					'attr'   => $data_attr, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				)
 			);
+		} elseif ( 'color' === $field_type ) {
+			?>
+			<div class="wbte_sc_color_picker_container wbte_sc_color_picker_field">
+				<input class="wt_sc_color_picker_field"
+					id="<?php echo esc_attr( $option_name ); ?>"
+					name="<?php echo esc_attr( $option_name ); ?>"
+					value="<?php echo esc_attr( $vl ); ?>"
+				>
+				<span class="wbte_sc_color_picker_container_value_span"><?php echo esc_html( $vl ); ?></span>
+			</div>
+			<?php
 		} else {
 			?>
 			<input type="text" id="<?php echo esc_attr( $option_name ); ?>" name="<?php echo esc_attr( $option_name ); ?>" class="wbte_sc_bogo_text_input" <?php echo wp_kses_post( $value['attr'] ); ?> value="<?php echo esc_attr( $vl ); ?>"> <!-- //NOSONAR -->

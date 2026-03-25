@@ -222,6 +222,30 @@
 			container.find(target).fadeIn().addClass('active');
 		});
 
+		/** Reset lookup table */
+		$( document ).on( 'click', '.wbte_sc_reset_lookup_table', function(e) {
+			e.preventDefault();
+			$.ajax({
+				url: WTSmartCouponAdminOBJ.ajaxurl,
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					action: 'wbte_sc_reset_lookup_table',
+					_wpnonce: WTSmartCouponAdminOBJ.nonce
+				},
+				success: function(response) {
+					if ( response.success ) {
+						wbte_sc_notify_msg.success( response.data );
+					} else {
+						wbte_sc_notify_msg.error( response.data );
+					}
+				},
+				error: function() {
+					wbte_sc_notify_msg.error( WTSmartCouponAdminOBJ.msgs.error );
+				}
+			});
+		} );
+
 		wt_sc_popup.Set();
 		wt_sc_form_toggler.Set();
 		wt_sc_conditional_help_text.Set();
@@ -230,6 +254,88 @@
 		wt_sc_settings_form.Set();
 
 		$(".wt-sc-tips").tipTip({'attribute': 'data-wt-sc-tip'});
+
+		$('.wt_sc_color_picker_field').wpColorPicker({});
+		$('.wt_sc_color_picker_field').wpColorPicker({
+			'change':function(event, ui) { 
+				$(this).closest('.wbte_sc_color_picker_container').find( '.wbte_sc_color_picker_container_value_span' ).html( ui.color.toString() );
+			}
+		});
+
+		/** Newsletter: show spinner on successful form submit; on success call our AJAX to hide banner. */
+		const newsletterBoxSelector = '.wt_sc_newsletter_subscription_box';
+		let newsletterHideRequestInProgress = false;
+
+		function showNewsletterLoader( $box ) {
+			if ( $box.hasClass( 'wt_sc_newsletter_loading' ) ) {
+				return;
+			}
+			$box.addClass( 'wt_sc_newsletter_loading' ).append(
+				'<div class="wt_sc_newsletter_loader"><span class="spinner"></span></div>'
+			);
+			$box.find( '.wt_sc_newsletter_loader .spinner' ).css( 'visibility', 'visible' );
+		}
+
+		function removeNewsletterLoader( $box ) {
+			$box.removeClass( 'wt_sc_newsletter_loading' ).find( '.wt_sc_newsletter_loader' ).remove();
+		}
+
+		function checkForNewsletterSuccess() {
+			const $box = $( newsletterBoxSelector );
+			const successResponse = $box.find( '#mce-success-response' );
+			const errorResponse   = $box.find( '#mce-error-response' );
+			const successHasContent = successResponse.length && successResponse.text().trim().length > 0;
+			const errorHasContent   = errorResponse.length && errorResponse.text().trim().length > 0;
+			const isErrorVisible    = errorHasContent && errorResponse.is( ':visible' );
+			const isSuccessVisible = successHasContent && successResponse.is( ':visible' );
+
+			if ( isErrorVisible ) {
+				removeNewsletterLoader( $box );
+			}
+
+			if ( newsletterHideRequestInProgress || ! isSuccessVisible || errorHasContent ) {
+				return;
+			}
+			newsletterHideRequestInProgress = true;
+			$.ajax({
+				url: WTSmartCouponAdminOBJ.ajaxurl,
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					action: 'wt_sc_hide_newsletter_banner',
+					_wpnonce: WTSmartCouponAdminOBJ.nonce
+				},
+				success: function( response ) {
+					if ( response && response.success ) {
+						removeNewsletterLoader( $box );
+						setTimeout(() => {
+							$box.fadeOut( 500, function() {
+								$( this ).remove();
+							} );
+						}, 3000);
+					}
+				},
+				error: function() {
+					removeNewsletterLoader( $box );
+					wbte_sc_notify_msg.error( WTSmartCouponAdminOBJ.msgs.error );
+				}
+			});
+		}
+
+		if ( -1 !== window.location.href.indexOf( 'wt-smart-coupon-for-woo' ) && $( newsletterBoxSelector ).length ) {
+			const $box = $( newsletterBoxSelector );
+			$box.on( 'submit', '#mc-embedded-subscribe-form', function() {
+				showNewsletterLoader( $box );
+			} );
+			checkForNewsletterSuccess();
+			const newsletterCheckInterval = setInterval( function() {
+				if ( ! $( newsletterBoxSelector ).length ) {
+					clearInterval( newsletterCheckInterval );
+					return;
+				}
+				checkForNewsletterSuccess();
+			}, 1000 );
+		}
 
 	});
 	

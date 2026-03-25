@@ -1932,12 +1932,14 @@ class Wt_Smart_Coupon_Giveaway_Product_Public extends Wt_Smart_Coupon_Giveaway_P
 		/**
 		 *  Alter BOGO product ids for cart (Only applicable for frontend functionalities)
 		 *
-		 * @since 1.4.5
+		 *  @since 1.4.5
 		 *  @param  array $free_products Array of giveaway product ids. Product ids of this array was converted to current language ids if any multi lang plugin(WPML) exists.
 		 *  @param  int $post_id Id of coupon.
 		 *  @param  array $free_products_original Array of giveaway product ids. Here the product ids are the ids configured by admin from backend.
 		 */
-		return apply_filters( 'wt_sc_alter_bogo_giveaway_product_ids_for_cart', $free_products, $post_id, $free_products_original ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+		$free_products = apply_filters( 'wt_sc_alter_bogo_giveaway_product_ids_for_cart', $free_products, $post_id, $free_products_original ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+		
+		return is_array( $free_products ) ? array_map( 'intval', $free_products ) : array();
 	}
 
 
@@ -2180,7 +2182,7 @@ class Wt_Smart_Coupon_Giveaway_Product_Public extends Wt_Smart_Coupon_Giveaway_P
 			// Giveaway products.
 			$out = '';
 			ob_start();
-			$this->display_giveaway_products( true );
+			$this->display_giveaway_products();
 			$out = ob_get_clean();
 
 			if ( ! empty( $out ) ) {

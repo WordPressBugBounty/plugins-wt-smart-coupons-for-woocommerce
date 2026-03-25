@@ -566,27 +566,33 @@ class Wt_Smart_Coupon_Auto_Coupon_Admin extends Wt_Smart_Coupon_Auto_Coupon_Comm
 		$reset_url = wp_nonce_url( admin_url( 'admin.php?page=' . WT_SC_PLUGIN_NAME . '&debug&wbte_sc_reset_auto_coupon_priority' ), 'wt_smart_coupons_admin_nonce' );
 		$add_url   = wp_nonce_url( admin_url( 'admin.php?page=' . WT_SC_PLUGIN_NAME . '&debug&wbte_sc_add_auto_coupon_priority' ), 'wt_smart_coupons_admin_nonce' );
 		?>
-		<div style="margin-top:40px; margin-bottom:50px;">
-			<div style="margin-bottom:15px;">
-				<label><?php esc_html_e( 'Reset auto coupon priority', 'wt-smart-coupons-for-woocommerce' ); ?></label> :
-				<a class="button button-primary" onclick="return wbte_sc_confirm_auto_coupon_priority_reset('<?php echo esc_url( $reset_url ); ?>')">
-					<?php esc_html_e( 'Reset now', 'wt-smart-coupons-for-woocommerce' ); ?>
-				</a>
-			</div>
-			<div>
-				<label><?php esc_html_e( 'Set priority to missing auto coupons', 'wt-smart-coupons-for-woocommerce' ); ?></label> :
-				<a class="button button-primary" href="<?php echo esc_url( $add_url ); ?>">
-					<?php esc_html_e( 'Set now', 'wt-smart-coupons-for-woocommerce' ); ?>
-				</a>
-			</div>
-			<script type="text/javascript">
-				function wbte_sc_confirm_auto_coupon_priority_reset( url ) {
-					if ( confirm( '<?php esc_html_e( 'Are you sure? All custom priorities will be reset.', 'wt-smart-coupons-for-woocommerce' ); ?>' ) ) {
-						window.location.href = url + '#wt-sc-debug';
-					}
-				}
-			</script>
-		</div>
+		<table class="wt-sc-form-table" style="padding-top: 10px; padding-bottom: 10px; border-top: dashed 1px #ccc;">
+            <tbody>
+                <tr>
+                    <th><?php esc_html_e( 'Reset auto coupon priority', 'wt-smart-coupons-for-woocommerce' ); ?></th>
+                    <td style="width: 100%">
+                        <button type="button" class="button-primary" onclick="return wbte_sc_confirm_auto_coupon_priority_reset('<?php echo esc_url( $reset_url ); ?>')">
+                            <?php esc_html_e( 'Reset now', 'wt-smart-coupons-for-woocommerce' ); ?>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <th><?php esc_html_e( 'Set priority to missing auto coupons', 'wt-smart-coupons-for-woocommerce' ); ?></th>
+                    <td style="width: 100%">
+                        <a class="button-primary" href="<?php echo esc_url( $add_url ); ?>">
+                            <?php esc_html_e( 'Set now', 'wt-smart-coupons-for-woocommerce' ); ?>
+                        </a>
+                    </td>
+                </tr>
+                <script type="text/javascript">
+                    function wbte_sc_confirm_auto_coupon_priority_reset( url ) {
+                        if ( confirm( '<?php esc_html_e( 'Are you sure? All custom priorities will be reset.', 'wt-smart-coupons-for-woocommerce' ); ?>' ) ) {
+                            window.location.href = url + '#wt-sc-debug';
+                        }
+                    }
+                </script>
+            </tbody>
+        </table>
 		<?php
 	}
 

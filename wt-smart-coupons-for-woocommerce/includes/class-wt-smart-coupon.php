@@ -121,7 +121,7 @@ if ( ! class_exists( 'Wt_Smart_Coupon' ) ) {
 			if ( defined( 'WEBTOFFEE_SMARTCOUPON_VERSION' ) ) {
 				$this->version = WEBTOFFEE_SMARTCOUPON_VERSION;
 			} else {
-				$this->version = '2.2.7';
+				$this->version = '2.2.8';
 			}
 			$this->plugin_name = WT_SC_PLUGIN_NAME;
 
@@ -230,6 +230,13 @@ if ( ! class_exists( 'Wt_Smart_Coupon' ) ) {
 			 * @since 2.2.5
 			 */
 			require_once plugin_dir_path( __DIR__ ) . 'admin/modules/banner/class-wbte-ema-banner.php';
+
+			/**
+			 * CTA banner added in coupons page
+			 *
+			 * @since 2.2.8
+			 */
+			require_once plugin_dir_path( __DIR__ ) . 'admin/modules/banner/class-wbte-cta-banner.php';
 
 			$this->loader = new Wt_Smart_Coupon_Loader();
 		}
@@ -451,6 +458,17 @@ if ( ! class_exists( 'Wt_Smart_Coupon' ) ) {
 			 *  @since 2.2.4
 			 */
 			$this->loader->add_filter( 'wt_bfcm_banner_screens', $this->plugin_admin, 'wt_bfcm_banner_screens' );
+
+			$this->loader->add_action( 'wt_sc_module_settings_debug', $this->plugin_admin, 'render_reset_lookup_table_in_debug_tab' );
+
+			$this->loader->add_action( 'wp_ajax_wbte_sc_reset_lookup_table', $this->plugin_admin, 'reset_lookup_table_ajax' );
+
+			/**
+			 *  Webtoffee Newsletter sidebar
+			 */
+			$this->loader->add_action( 'wt_smart_coupon_admin_form_right_box', $this->plugin_admin, 'wbte_newsletter_sidebar', 12 );
+
+			$this->loader->add_action( 'wp_ajax_wt_sc_hide_newsletter_banner', $this->plugin_admin, 'hide_wt_newsletter_banner' );
 		}
 
 		/**

@@ -149,6 +149,18 @@ $all_bogo_count   = self::get_total_bogo_counts( array( 'is_trash' => false ) );
 		
 			<span class="wbte_bogo_search_icon" style="height: 14px;" title="<?php esc_attr_e( 'Search BOGO', 'wt-smart-coupons-for-woocommerce' ); ?>"><?php echo wp_kses_post( $wbte_ds_obj->render_html( array( 'html' => '{{wbte-ds-icon-search}}' ) ) ); ?></span>
 		</div>
+		<?php
+		echo $wbte_ds_obj->get_component( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			'button outlined small',
+			array(
+				'values' => array(
+					'button_title' => esc_html__( 'Settings', 'wt-smart-coupons-for-woocommerce' ),
+					'icon_left'    => 'setting',
+				),
+				'class'  => array( 'wbte_sc_bogo_general_settings_button' ),
+			)
+		);
+		?>
 	</div>
 </div>
 

@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: Smart Coupons For WooCommerce Coupons 2.2.6\n"
+"Project-Id-Version: Smart Coupons For WooCommerce Coupons 2.2.7\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wt-smart-coupons-for-woocommerce\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-01-15T11:16:11+00:00\n"
+"POT-Creation-Date: 2026-03-23T04:19:53+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: wt-smart-coupons-for-woocommerce\n"
@@ -58,7 +58,7 @@ msgid "Post creation failed, could not find original post: %s"
 msgstr ""
 
 #: admin/class-wt-duplicate-shop-coupon.php:92
-#: admin/modules/bogo-admin/views/--bogo-listing.php:403
+#: admin/modules/bogo-admin/views/--bogo-listing.php:415
 msgid "Duplicate"
 msgstr ""
 
@@ -85,7 +85,7 @@ msgid "Copied!"
 msgstr ""
 
 #: admin/class-wt-smart-coupon-admin.php:249
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1374
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1433
 #: admin/modules/style-admin/class-wt-smart-coupon-style-admin.php:95
 msgid "Error"
 msgstr ""
@@ -125,7 +125,7 @@ msgid "Failed to copy"
 msgstr ""
 
 #: admin/class-wt-smart-coupon-admin.php:291
-#: admin/modules/bogo-admin/views/-bogo-main.php:49
+#: admin/modules/bogo-admin/views/--bogo-listing.php:157
 msgid "Settings"
 msgstr ""
 
@@ -189,8 +189,7 @@ msgstr ""
 #: admin/class-wt-smart-coupon-admin.php:534
 #: admin/class-wt-smart-coupon-admin.php:561
 #: admin/class-wt-smart-coupon-admin.php:562
-#: admin/modules/bogo-admin/views/--bogo-main-general.php:30
-#: admin/modules/bogo-admin/views/-bogo-main.php:49
+#: admin/modules/bogo-admin/views/--bogo-main-general.php:16
 msgid "General settings"
 msgstr ""
 
@@ -212,55 +211,58 @@ msgstr ""
 msgid "Smart coupon settings"
 msgstr ""
 
-#: admin/class-wt-smart-coupon-admin.php:696
-#: admin/modules/banner/class-wbte-ema-banner.php:157
-#: admin/modules/bogo-admin/views/-step1.php:252
-msgid "Did you know?"
-msgstr ""
-
-#. translators: 1: a tag opening, 2: a tag closing.
 #: admin/class-wt-smart-coupon-admin.php:699
-msgid "With the %1$s Smart Coupons %2$s plugin, you can create Buy One Get One offers and advanced coupons that boost sales during BFCM."
-msgstr ""
-
-#: admin/class-wt-smart-coupon-admin.php:704
-msgid "Get Plugin Now"
-msgstr ""
-
-#: admin/class-wt-smart-coupon-admin.php:705
-#: admin/modules/restriction-admin/class-wt-smart-coupon-restriction-admin.php:245
-msgid "Maybe later"
-msgstr ""
-
-#: admin/class-wt-smart-coupon-admin.php:726
 msgid "Security check failed. Please try again."
 msgstr ""
 
-#: admin/class-wt-smart-coupon-admin.php:798
+#: admin/class-wt-smart-coupon-admin.php:771
 msgid "Smart coupon database update in progress"
 msgstr ""
 
-#: admin/class-wt-smart-coupon-admin.php:799
+#: admin/class-wt-smart-coupon-admin.php:772
 msgid "The site may experience a slow response for few minutes."
 msgstr ""
 
 #. translators: %1$d: migrated count, %2$d: total count.
-#: admin/class-wt-smart-coupon-admin.php:808
+#: admin/class-wt-smart-coupon-admin.php:781
 msgid "Progress: %1$d out of %2$d"
 msgstr ""
 
-#: admin/class-wt-smart-coupon-admin.php:844
+#: admin/class-wt-smart-coupon-admin.php:817
+#: admin/class-wt-smart-coupon-admin.php:1095
+#: admin/class-wt-smart-coupon-admin.php:1229
 msgid "Access denied"
 msgstr ""
 
 #. Translators: 1: Opening italics tag, 2: Opening a tag, 3: Closing a tag, 4: Closing italics tag.
-#: admin/class-wt-smart-coupon-admin.php:1083
+#: admin/class-wt-smart-coupon-admin.php:1008
 msgid "%1$s If you like Smart Coupons please leave us a %2$s ★★★★★ %3$s rating. A huge thanks in advance! %4$s"
 msgstr ""
 
 #. translators: %s: plugin version.
-#: admin/class-wt-smart-coupon-admin.php:1102
+#: admin/class-wt-smart-coupon-admin.php:1027
 msgid "Version %s"
+msgstr ""
+
+#: admin/class-wt-smart-coupon-admin.php:1074
+msgid "Reset lookup table"
+msgstr ""
+
+#: admin/class-wt-smart-coupon-admin.php:1077
+#: admin/modules/auto-coupon-admin/class-wt-smart-coupon-auto-coupon-admin.php:575
+msgid "Reset now"
+msgstr ""
+
+#: admin/class-wt-smart-coupon-admin.php:1099
+msgid "Failed to reset lookup table."
+msgstr ""
+
+#: admin/class-wt-smart-coupon-admin.php:1102
+msgid "Lookup table reset successfully."
+msgstr ""
+
+#: admin/class-wt-smart-coupon-admin.php:1234
+msgid "Newsletter subscription successful"
 msgstr ""
 
 #: admin/coupon-start-date/class-wt-smart-coupon-start-date.php:52
@@ -270,6 +272,68 @@ msgstr ""
 #. translators: %s: start date.
 #: admin/coupon-start-date/class-wt-smart-coupon-start-date.php:124
 msgid "Sorry, this coupon is only available after %s"
+msgstr ""
+
+#: admin/cross-promotion-banners/class-wbte-accessibility-banner.php:157
+#: admin/cross-promotion-banners/class-wbte-accessibility-banner.php:302
+#: admin/modules/giftcard-banner/class-wbte-smart-coupon-giftcard-banner.php:167
+#: admin/modules/giftcard-banner/class-wbte-smart-coupon-giftcard-banner.php:266
+msgid "Something went wrong. Please try again."
+msgstr ""
+
+#: admin/cross-promotion-banners/class-wbte-accessibility-banner.php:161
+#: admin/modules/giftcard-banner/class-wbte-smart-coupon-giftcard-banner.php:171
+msgid "You do not have sufficient permissions to install plugins."
+msgstr ""
+
+#: admin/cross-promotion-banners/class-wbte-accessibility-banner.php:179
+#: admin/modules/giftcard-banner/class-wbte-smart-coupon-giftcard-banner.php:189
+msgid "Plugin download link not found."
+msgstr ""
+
+#: admin/cross-promotion-banners/class-wbte-accessibility-banner.php:228
+#: admin/modules/giftcard-banner/class-wbte-smart-coupon-giftcard-banner.php:239
+msgid "You do not have sufficient permissions to activate plugins."
+msgstr ""
+
+#: admin/cross-promotion-banners/class-wbte-accessibility-banner.php:236
+msgid "Activation failed."
+msgstr ""
+
+#: admin/cross-promotion-banners/class-wbte-accessibility-banner.php:256
+msgid "Accessibility Widget"
+msgstr ""
+
+#. translators: 1: a tag opening, 2: a tag closing
+#: admin/cross-promotion-banners/class-wbte-accessibility-banner.php:262
+msgid "Make your site inclusive with %1$s AccessYes accessibility widget. %2$s"
+msgstr ""
+
+#: admin/cross-promotion-banners/class-wbte-accessibility-banner.php:270
+msgid "A lightweight accessibility widget to improve accessibility and usability for every users. Set it up in minutes for free."
+msgstr ""
+
+#: admin/cross-promotion-banners/class-wbte-accessibility-banner.php:279
+msgid "Install & activate"
+msgstr ""
+
+#: admin/cross-promotion-banners/class-wbte-accessibility-banner.php:283
+msgid "Remind me later"
+msgstr ""
+
+#: admin/cross-promotion-banners/class-wbte-accessibility-banner.php:287
+#: admin/cross-promotion-banners/class-wt-invoice-cta-banner.php:158
+#: admin/cross-promotion-banners/class-wt-p-iew-cta-banner.php:171
+#: admin/cross-promotion-banners/class-wt-smart-coupon-cta-banner.php:181
+msgid "Dismiss"
+msgstr ""
+
+#: admin/cross-promotion-banners/class-wbte-accessibility-banner.php:342
+msgid "Installing..."
+msgstr ""
+
+#: admin/cross-promotion-banners/class-wbte-accessibility-banner.php:436
+msgid "Plugin installed successfully."
 msgstr ""
 
 #: admin/cross-promotion-banners/class-wt-invoice-cta-banner.php:95
@@ -334,12 +398,6 @@ msgstr ""
 #: admin/cross-promotion-banners/class-wt-p-iew-cta-banner.php:169
 #: admin/cross-promotion-banners/class-wt-smart-coupon-cta-banner.php:179
 msgid "Get the plugin"
-msgstr ""
-
-#: admin/cross-promotion-banners/class-wt-invoice-cta-banner.php:158
-#: admin/cross-promotion-banners/class-wt-p-iew-cta-banner.php:171
-#: admin/cross-promotion-banners/class-wt-smart-coupon-cta-banner.php:181
-msgid "Dismiss"
 msgstr ""
 
 #: admin/cross-promotion-banners/class-wt-p-iew-cta-banner.php:108
@@ -466,7 +524,7 @@ msgstr ""
 #: admin/data/data-hooks-help.php:16
 #: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:145
 #: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:146
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1387
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1446
 #: admin/modules/bogo-admin/views/--bogo-bulk-general.php:54
 #: common/modules/bogo-common/class-wbte-smart-coupon-bogo-common.php:261
 msgid "BOGO"
@@ -825,48 +883,129 @@ msgstr ""
 msgid "Priority"
 msgstr ""
 
-#: admin/modules/auto-coupon-admin/class-wt-smart-coupon-auto-coupon-admin.php:571
+#: admin/modules/auto-coupon-admin/class-wt-smart-coupon-auto-coupon-admin.php:572
 msgid "Reset auto coupon priority"
 msgstr ""
 
-#: admin/modules/auto-coupon-admin/class-wt-smart-coupon-auto-coupon-admin.php:573
-msgid "Reset now"
-msgstr ""
-
-#: admin/modules/auto-coupon-admin/class-wt-smart-coupon-auto-coupon-admin.php:577
+#: admin/modules/auto-coupon-admin/class-wt-smart-coupon-auto-coupon-admin.php:580
 msgid "Set priority to missing auto coupons"
 msgstr ""
 
-#: admin/modules/auto-coupon-admin/class-wt-smart-coupon-auto-coupon-admin.php:579
+#: admin/modules/auto-coupon-admin/class-wt-smart-coupon-auto-coupon-admin.php:583
 msgid "Set now"
 msgstr ""
 
-#: admin/modules/auto-coupon-admin/class-wt-smart-coupon-auto-coupon-admin.php:584
+#: admin/modules/auto-coupon-admin/class-wt-smart-coupon-auto-coupon-admin.php:589
 msgid "Are you sure? All custom priorities will be reset."
 msgstr ""
 
-#: admin/modules/auto-coupon-admin/class-wt-smart-coupon-auto-coupon-admin.php:612
+#: admin/modules/auto-coupon-admin/class-wt-smart-coupon-auto-coupon-admin.php:618
 msgid "Success !!!"
 msgstr ""
 
-#: admin/modules/auto-coupon-admin/class-wt-smart-coupon-auto-coupon-admin.php:614
+#: admin/modules/auto-coupon-admin/class-wt-smart-coupon-auto-coupon-admin.php:620
 msgid "Goto dashboard"
 msgstr ""
 
-#: admin/modules/auto-coupon-admin/class-wt-smart-coupon-auto-coupon-admin.php:655
+#: admin/modules/auto-coupon-admin/class-wt-smart-coupon-auto-coupon-admin.php:661
 msgid "The cart will apply the selected number of auto apply coupons based on priority"
 msgstr ""
 
-#: admin/modules/auto-coupon-admin/class-wt-smart-coupon-auto-coupon-admin.php:656
+#: admin/modules/auto-coupon-admin/class-wt-smart-coupon-auto-coupon-admin.php:662
 msgid "The chosen quantity of coupons will undergo eligibility verification among the entire pool of auto-apply coupons based on priority. If the limit is set to 100, any coupon with a priority of 101 or lower, will not be considered to apply to the cart, even if eligible"
 msgstr ""
 
-#: admin/modules/auto-coupon-admin/class-wt-smart-coupon-auto-coupon-admin.php:678
+#: admin/modules/auto-coupon-admin/class-wt-smart-coupon-auto-coupon-admin.php:684
 msgid "Unauthorized"
 msgstr ""
 
-#: admin/modules/auto-coupon-admin/class-wt-smart-coupon-auto-coupon-admin.php:699
+#: admin/modules/auto-coupon-admin/class-wt-smart-coupon-auto-coupon-admin.php:705
 msgid "Settings Updated"
+msgstr ""
+
+#: admin/modules/banner/class-wbte-cta-banner.php:203
+msgid "Update pending ⚠️"
+msgstr ""
+
+#: admin/modules/banner/class-wbte-cta-banner.php:204
+msgid "It looks like you haven't updated the Smart Coupons plugin in a while. We release new features and security improvements with every update. Keep it up-to-date to ensure better performance, compatibility, and protection."
+msgstr ""
+
+#: admin/modules/banner/class-wbte-cta-banner.php:205
+msgid "Update Now"
+msgstr ""
+
+#: admin/modules/banner/class-wbte-cta-banner.php:298
+msgid "Haven't created any new coupons recently?"
+msgstr ""
+
+#: admin/modules/banner/class-wbte-cta-banner.php:299
+msgid "You may be missing simple ways to bring customers back and increase conversions. Try different coupon types and usage rules to build a smarter discount strategy."
+msgstr ""
+
+#: admin/modules/banner/class-wbte-cta-banner.php:301
+msgid "Add new coupon"
+msgstr ""
+
+#: admin/modules/banner/class-wbte-cta-banner.php:303
+#: admin/modules/banner/class-wbte-cta-banner.php:369
+msgid "Refer to Documentation"
+msgstr ""
+
+#: admin/modules/banner/class-wbte-cta-banner.php:329
+msgid "Congratulations! You've been using the free WebToffee Smart Coupons plugin for a while, and we'd love to reward you."
+msgstr ""
+
+#. translators: 1: br tag, b tag opening, 2: b tag closing.
+#: admin/modules/banner/class-wbte-cta-banner.php:332
+msgid "Enjoy exclusive 30%% off Smart Coupons Premium and unlock powerful coupon features designed to boost conversions and repeat purchases.%1$s Coupon code: %2$s SMLOYAL30"
+msgstr ""
+
+#: admin/modules/banner/class-wbte-cta-banner.php:337
+#: admin/modules/banner/class-wbte-cta-banner.php:405
+msgid "Get Plugin Now"
+msgstr ""
+
+#: admin/modules/banner/class-wbte-cta-banner.php:364
+msgid "BOGO Coupons Not Used ⚠️"
+msgstr ""
+
+#: admin/modules/banner/class-wbte-cta-banner.php:365
+msgid "BOGO deals are one of the highest-converting coupon strategies, and you haven't tried them yet. Create your first BOGO offer and increase cart value with ease."
+msgstr ""
+
+#: admin/modules/banner/class-wbte-cta-banner.php:367
+msgid "Create BOGO Coupon"
+msgstr ""
+
+#: admin/modules/banner/class-wbte-cta-banner.php:396
+#: admin/modules/banner/class-wbte-ema-banner.php:157
+#: admin/modules/bogo-admin/views/-step1.php:252
+msgid "Did you know?"
+msgstr ""
+
+#. translators: 1: a tag opening, 2: a tag closing.
+#: admin/modules/banner/class-wbte-cta-banner.php:400
+msgid "With the %1$s Smart Coupons %2$s plugin, you can create Buy One Get One offers and advanced coupons that boost sales during BFCM."
+msgstr ""
+
+#: admin/modules/banner/class-wbte-cta-banner.php:406
+#: admin/modules/banner/class-wbte-cta-banner.php:527
+#: admin/modules/restriction-admin/class-wt-smart-coupon-restriction-admin.php:245
+msgid "Maybe later"
+msgstr ""
+
+#. translators: 1: formatted amount e.g. $1,000+.
+#: admin/modules/banner/class-wbte-cta-banner.php:520
+msgid "Congratulations! 🎉 You've generated %1$s in sales using WooCommerce coupons with the WebToffee Smart Coupons plugin."
+msgstr ""
+
+#: admin/modules/banner/class-wbte-cta-banner.php:523
+msgid "Ready to take it further? Upgrade to Smart Coupons Premium to unlock advanced coupon rules, BOGO deals, store credits, and more ways to increase revenue."
+msgstr ""
+
+#: admin/modules/banner/class-wbte-cta-banner.php:525
+msgid "Upgrade to Premium"
 msgstr ""
 
 #: admin/modules/banner/class-wbte-ema-banner.php:158
@@ -930,255 +1069,255 @@ msgstr ""
 msgid "Certified Partner"
 msgstr ""
 
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:367
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:411
 msgid "General settings updated successfully!"
 msgstr ""
 
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:549
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:593
 msgid "Enter a valid coupon code"
 msgstr ""
 
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:554
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:598
 msgid "Coupon code already exists"
 msgstr ""
 
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:576
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:620
 msgid "Your BOGO offer saved successfully!"
 msgstr ""
 
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:582
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:626
 msgid "Your BOGO offer is now live!"
 msgstr ""
 
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:720
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:765
 msgid "BOGO promotion removed successfully!"
 msgstr ""
 
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:820
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:874
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:865
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:919
 #: admin/modules/bogo-admin/views/---edit-general.php:41
-#: admin/modules/bogo-admin/views/--bogo-listing.php:267
-#: admin/modules/bogo-admin/views/--bogo-listing.php:308
+#: admin/modules/bogo-admin/views/--bogo-listing.php:279
+#: admin/modules/bogo-admin/views/--bogo-listing.php:320
 msgid "Active"
 msgstr ""
 
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:822
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:867
 msgid "BOGO promotion enabled successfully!"
 msgstr ""
 
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:830
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:916
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:875
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:962
 #: admin/modules/bogo-admin/views/---edit-general.php:53
-#: admin/modules/bogo-admin/views/--bogo-listing.php:268
-#: admin/modules/bogo-admin/views/--bogo-listing.php:309
+#: admin/modules/bogo-admin/views/--bogo-listing.php:280
+#: admin/modules/bogo-admin/views/--bogo-listing.php:321
 msgid "Inactive"
 msgstr ""
 
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:832
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:877
 msgid "BOGO promotion disabled successfully!"
 msgstr ""
 
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:877
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:922
 msgid "BOGO promotions enabled successfully!"
 msgstr ""
 
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:919
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:965
 msgid "BOGO promotions disabled successfully!"
 msgstr ""
 
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1093
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1149
 msgid "Update"
 msgstr ""
 
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1375
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1434
 msgid "Buy"
 msgstr ""
 
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1376
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1435
 msgid "Spend"
 msgstr ""
 
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1377
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1436
 msgid "And so on"
 msgstr ""
 
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1379
-#: admin/modules/bogo-admin/views/--bogo-listing.php:182
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1438
+#: admin/modules/bogo-admin/views/--bogo-listing.php:194
 msgid "selected"
 msgstr ""
 
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1380
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1439
 msgid "Are you sure you want to disable the old BOGO coupons?"
 msgstr ""
 
 #. Translators: 1: Success tick icon.
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1383
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1442
 msgid "Code '{coupon_code}' copied %s"
 msgstr ""
 
 #. Translators: 1: Success tick icon.
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1384
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1443
 msgid "success"
 msgstr ""
 
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1386
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1445
 #: admin/modules/bogo-admin/views/---edit-general.php:86
 msgid "Copy coupon code for admin use"
 msgstr ""
 
 #. Translators: 1: Free qty 2: span opening for customer gets 3: span closing 4: span opening 5: span closing.
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1393
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1452
 msgid "%1$s quantities of %2$s Specific product(s) %3$s for %4$s Free %5$s"
 msgstr ""
 
 #. Translators: 1: Free qty 2: span opening for customer gets 3: span closing 4: span opening 5: span closing 6: Discount amount.
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1402
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1461
 msgid "%1$s quantities of %2$s Specific product(s) %3$s with %4$s Discount %5$s each"
 msgstr ""
 
 #. Translators: 1: span opening 2: span closing 3:span opening 4:span closing 5:span opening 6:span closing.
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1412
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1471
 msgid "Customer %1$s Spends %2$s between %3$s {min} %4$s and %5$s {max} %6$s on any products"
 msgstr ""
 
 #. Translators: 1: span opening 2: span closing 3:span opening 4:span closing 5:span opening 6:span closing 7:span opening 8:span closing.
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1422
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1481
 msgid "Customer %1$s Spends %2$s between %3$s {min} %4$s and %5$s {max} %6$s on %7$s Selected product(s) %8$s"
 msgstr ""
 
 #. Translators: 1: span opening 2: span closing 3: span opening 4: span closing 5: span opening 6: span closing.
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1434
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1493
 msgid "Customer %1$s Spends %2$s at least %3$s {min} %4$s on any products"
 msgstr ""
 
 #. Translators: 1: span opening 2: span closing 3: span opening 4: span closing 5: span opening 6: span closing.
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1442
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1501
 msgid "Customer %1$s Spends %2$s at least %3$s {min} %4$s on %5$s Selected product(s) %6$s"
 msgstr ""
 
 #. Translators: 1: span opening 2: span closing 3: span opening 4: span closing 5: span opening 6: span closing.
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1452
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1511
 msgid "Customer %1$s Buys %2$s between %3$s {min} %4$s and %5$s {max} %6$s quantities of any products"
 msgstr ""
 
 #. Translators: 1: span opening 2: span closing 3: span opening 4: span closing 5: span opening 6: span closing 7: span opening 8: span closing.
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1462
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1521
 msgid "Customer %1$s Buys %2$s between %3$s {min} %4$s and %5$s {max} %6$s quantities of %7$s Selected product(s) %8$s"
 msgstr ""
 
 #. Translators: 1: span opening 2: span closing 3: span opening 4: span closing.
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1474
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1533
 msgid "Customer %1$s Buys %2$s at least %3$s {min} %4$s quantities of any products"
 msgstr ""
 
 #. Translators: 1: span opening 2: span closing 3: span opening 4: span closing 5: span opening 6: span closing.
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1482
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1541
 msgid "Customer %1$s Buys %2$s at least %3$s {min} %4$s quantities of %5$s Selected product(s) %6$s"
 msgstr ""
 
 #. Translators: 1: Minimum qty 2: Maximum qty 3: Span opening 4: Span closing 5: Free qty.
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1493
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1552
 msgid "Buy %1$s to %2$s items, Get %3$s Specific product(s) %4$s x %5$s"
 msgstr ""
 
 #. Translators: 1: Minimum spend 2: Maximum spend 3: Span opening 4: Span closing 5: Selected customer gets 6: Free qty.
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1502
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1561
 msgid "Spend %1$s to %2$s on items, Get %3$s Specific product(s) %4$s x %5$s"
 msgstr ""
 
 #. Translators: 1: min qty 2: Span opening 3: Span closing 4: Customer gets qty .
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1511
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1570
 msgid "Buy %1$s , Get %2$s Specific product(s) %3$s x %4$s"
 msgstr ""
 
 #. Translators: 1: min spend 2: span opening 3: span closing 4: Customer gets qty .
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1519
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1578
 msgid "Spend %1$s , Get %2$s Specific product(s) %3$s x %4$s"
 msgstr ""
 
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1527
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1586
 msgid "Enter a number greater than or equal to 1"
 msgstr ""
 
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1528
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1587
 msgid "Enter a number greater than the minimum value."
 msgstr ""
 
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1529
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1588
 msgid "Enter a value greater than 0."
 msgstr ""
 
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1530
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1589
 msgid "Select at least one product"
 msgstr ""
 
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1531
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1590
 msgid "Select at least one product to exclude."
 msgstr ""
 
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1532
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1591
 msgid "Enter a valid input"
 msgstr ""
 
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1533
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1592
 msgid "Enter a value not greater than 100"
 msgstr ""
 
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1534
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1593
 msgid "Enter a valid email address"
 msgstr ""
 
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1535
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1594
 msgid "Enter a valid input (letters or numbers)."
 msgstr ""
 
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1536
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1595
 msgid "Are you sure you want to leave this page? Your changes will not be saved."
 msgstr ""
 
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1537
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1596
 msgid "Please select a schedule"
 msgstr ""
 
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1540
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1599
 msgid "Additional conditions:"
 msgstr ""
 
 #. Translators: 1: Usage limit per user.
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1543
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1602
 msgid "Usage limit of %s per user."
 msgstr ""
 
 #. Translators: 1: Usage limit per coupon.
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1548
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1607
 msgid "Usage limit of %s per offer."
 msgstr ""
 
 #. Translators: 1: Additional minimum qty 2: Additional maximum qty.
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1553
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1612
 msgid "Minimum %1$s and maximum %2$s quantity of any item."
 msgstr ""
 
 #. Translators: 1: Additional minimum qty each 2: Additional maximum qty each.
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1559
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1618
 msgid "Minimum %1$s and maximum %2$s quantity of each item."
 msgstr ""
 
 #. Translators: 1: Minimum qty.
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1565
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1624
 msgid "Minimum %s quantity of any item."
 msgstr ""
 
 #. Translators: 1: Minimum qty each.
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1570
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1629
 msgid "Minimum %s quantity of each item."
 msgstr ""
 
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1573
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1632
 msgid "Allowed emails:"
 msgstr ""
 
-#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1685
+#: admin/modules/bogo-admin/class-wbte-smart-coupon-bogo-admin.php:1744
 msgid "Available placeholders: "
 msgstr ""
 
@@ -1279,7 +1418,7 @@ msgstr ""
 #: admin/modules/bogo-admin/views/---edit-general.php:67
 #: admin/modules/bogo-admin/views/---edit-general.php:70
 #: admin/modules/bogo-admin/views/--bogo-listing.php:115
-#: admin/modules/bogo-admin/views/--bogo-listing.php:255
+#: admin/modules/bogo-admin/views/--bogo-listing.php:267
 #: admin/modules/bogo-admin/views/--first-bogo-campaign.php:102
 #: admin/modules/bogo-admin/views/--first-bogo-campaign.php:103
 msgid "Description"
@@ -1340,12 +1479,12 @@ msgid "The available BOGO offers will be listed on the selected pages"
 msgstr ""
 
 #: admin/modules/bogo-admin/views/---edit-general.php:140
-#: admin/modules/bogo-admin/views/--bogo-listing.php:401
+#: admin/modules/bogo-admin/views/--bogo-listing.php:413
 msgid "Edit"
 msgstr ""
 
 #: admin/modules/bogo-admin/views/---edit-general.php:166
-#: admin/modules/bogo-admin/views/--bogo-listing.php:292
+#: admin/modules/bogo-admin/views/--bogo-listing.php:304
 msgid "Schedule"
 msgstr ""
 
@@ -1378,13 +1517,13 @@ msgstr ""
 #: admin/modules/bogo-admin/views/---single-dlt-popup.php:23
 #: admin/modules/bogo-admin/views/--bogo-listing.php:101
 #: admin/modules/bogo-admin/views/--bogo-listing.php:124
-#: includes/class-wt-smartcoupon-uninstall-feedback.php:122
+#: includes/class-wt-smartcoupon-uninstall-feedback.php:127
 msgid "Cancel"
 msgstr ""
 
 #: admin/modules/bogo-admin/views/---multiple-dlt-popup.php:33
 #: admin/modules/bogo-admin/views/---single-dlt-popup.php:33
-#: admin/modules/bogo-admin/views/--bogo-listing.php:222
+#: admin/modules/bogo-admin/views/--bogo-listing.php:234
 msgid "Delete permanently"
 msgstr ""
 
@@ -1592,7 +1731,7 @@ msgstr ""
 
 #. Translators: 1: Premium icon, 2: Tooltip.
 #: admin/modules/bogo-admin/views/--bogo-listing.php:74
-#: admin/modules/bogo-admin/views/--bogo-main-general.php:62
+#: admin/modules/bogo-admin/views/--bogo-main-general.php:48
 #: admin/modules/bogo-admin/views/--first-bogo-campaign.php:76
 #: admin/modules/bogo-admin/views/-step1.php:46
 #: admin/modules/bogo-admin/views/-step1.php:52
@@ -1627,161 +1766,163 @@ msgid "Search BOGO"
 msgstr ""
 
 #. Translators: 1: all coupon count.
-#: admin/modules/bogo-admin/views/--bogo-listing.php:162
+#: admin/modules/bogo-admin/views/--bogo-listing.php:174
 msgid "All ( %d )"
 msgstr ""
 
 #. Translators: 1: trash coupon count.
-#: admin/modules/bogo-admin/views/--bogo-listing.php:175
+#: admin/modules/bogo-admin/views/--bogo-listing.php:187
 msgid "Trash ( %d )"
 msgstr ""
 
-#: admin/modules/bogo-admin/views/--bogo-listing.php:189
+#: admin/modules/bogo-admin/views/--bogo-listing.php:201
 msgid "Enable all"
 msgstr ""
 
-#: admin/modules/bogo-admin/views/--bogo-listing.php:199
+#: admin/modules/bogo-admin/views/--bogo-listing.php:211
 msgid "Disable all"
 msgstr ""
 
-#: admin/modules/bogo-admin/views/--bogo-listing.php:212
+#: admin/modules/bogo-admin/views/--bogo-listing.php:224
 msgid "Restore"
 msgstr ""
 
-#: admin/modules/bogo-admin/views/--bogo-listing.php:254
+#: admin/modules/bogo-admin/views/--bogo-listing.php:266
 msgid "Bogo name"
 msgstr ""
 
-#: admin/modules/bogo-admin/views/--bogo-listing.php:258
+#: admin/modules/bogo-admin/views/--bogo-listing.php:270
 msgid "Status"
 msgstr ""
 
-#: admin/modules/bogo-admin/views/--bogo-listing.php:269
-#: admin/modules/bogo-admin/views/--bogo-listing.php:310
-#: common/modules/style/data/data-template-classic-ticket.php:11
-#: common/modules/style/data/data-template-default.php:11
-#: common/modules/style/data/data-template-minimal-outline.php:29
-#: common/modules/style/data/data-template-plain-coupon.php:14
-#: common/modules/style/data/data-template-stitched-edge.php:11
-#: common/modules/style/data/data-template-stitched-padding.php:11
-#: common/modules/style/data/data-template-ticket-style.php:22
+#: admin/modules/bogo-admin/views/--bogo-listing.php:281
+#: admin/modules/bogo-admin/views/--bogo-listing.php:322
+#: common/modules/style/data/data-template-classic-ticket.php:16
+#: common/modules/style/data/data-template-default.php:16
+#: common/modules/style/data/data-template-minimal-outline.php:34
+#: common/modules/style/data/data-template-plain-coupon.php:19
+#: common/modules/style/data/data-template-stitched-edge.php:16
+#: common/modules/style/data/data-template-stitched-padding.php:16
+#: common/modules/style/data/data-template-ticket-style.php:26
 #: public/class-wt-smart-coupon-public.php:313
 #: public/class-wt-smart-coupon-public.php:479
 msgid "Expired"
 msgstr ""
 
-#: admin/modules/bogo-admin/views/--bogo-listing.php:291
+#: admin/modules/bogo-admin/views/--bogo-listing.php:303
 msgid "Conversion"
 msgstr ""
 
-#: admin/modules/bogo-admin/views/--bogo-listing.php:293
+#: admin/modules/bogo-admin/views/--bogo-listing.php:305
 msgid "Actions"
 msgstr ""
 
-#: admin/modules/bogo-admin/views/--bogo-listing.php:303
+#: admin/modules/bogo-admin/views/--bogo-listing.php:315
 msgid "No BOGO offers found"
 msgstr ""
 
-#: admin/modules/bogo-admin/views/--bogo-listing.php:350
+#: admin/modules/bogo-admin/views/--bogo-listing.php:362
 msgid "Buy X, get X/Y"
 msgstr ""
 
 #. translators: 1: count 2: limit
-#: admin/modules/bogo-admin/views/--bogo-listing.php:389
+#: admin/modules/bogo-admin/views/--bogo-listing.php:401
 msgid "%1$s / %2$s"
 msgstr ""
 
-#: admin/modules/bogo-admin/views/--bogo-listing.php:405
+#: admin/modules/bogo-admin/views/--bogo-listing.php:417
 msgid "Delete"
 msgstr ""
 
-#: admin/modules/bogo-admin/views/--bogo-listing.php:493
+#: admin/modules/bogo-admin/views/--bogo-listing.php:505
 msgid "Delete BOGO offers"
 msgstr ""
 
-#: admin/modules/bogo-admin/views/--bogo-listing.php:494
+#: admin/modules/bogo-admin/views/--bogo-listing.php:506
 msgid "Are you sure you want to delete selected BOGO offers?"
 msgstr ""
 
-#: admin/modules/bogo-admin/views/--bogo-listing.php:507
+#: admin/modules/bogo-admin/views/--bogo-listing.php:519
 msgid "Delete BOGO offer"
 msgstr ""
 
 #. Translators: %s: BOGO title.
-#: admin/modules/bogo-admin/views/--bogo-listing.php:509
+#: admin/modules/bogo-admin/views/--bogo-listing.php:521
 msgid "Are you sure you want to delete \"%s\""
 msgstr ""
 
-#: admin/modules/bogo-admin/views/--bogo-main-general.php:39
+#: admin/modules/bogo-admin/views/--bogo-main-general.php:25
 msgid "Auto add products for Buy X Get X/Y giveaways"
 msgstr ""
 
-#: admin/modules/bogo-admin/views/--bogo-main-general.php:44
+#: admin/modules/bogo-admin/views/--bogo-main-general.php:30
 msgid "Add only free products to cart"
 msgstr ""
 
-#: admin/modules/bogo-admin/views/--bogo-main-general.php:45
+#: admin/modules/bogo-admin/views/--bogo-main-general.php:31
 msgid "Add all discounted products to cart"
 msgstr ""
 
-#: admin/modules/bogo-admin/views/--bogo-main-general.php:49
+#: admin/modules/bogo-admin/views/--bogo-main-general.php:35
 msgid "Apply tax on"
 msgstr ""
 
 #. Translators: 1: Tooltip.
-#: admin/modules/bogo-admin/views/--bogo-main-general.php:56
+#: admin/modules/bogo-admin/views/--bogo-main-general.php:42
 msgid "Discounted price %s"
 msgstr ""
 
 #. Translators: 1: Tooltip.
-#: admin/modules/bogo-admin/views/--bogo-main-general.php:57
+#: admin/modules/bogo-admin/views/--bogo-main-general.php:43
 msgid "Tax is calculated based on the price after the offer is applied"
 msgstr ""
 
 #. Translators: 1: Premium icon, 2: Tooltip.
-#: admin/modules/bogo-admin/views/--bogo-main-general.php:61
+#: admin/modules/bogo-admin/views/--bogo-main-general.php:47
 msgid "Original price %1$s %2$s"
 msgstr ""
 
-#: admin/modules/bogo-admin/views/--bogo-main-general.php:63
+#: admin/modules/bogo-admin/views/--bogo-main-general.php:49
 msgid "Tax is calculated on the original price before the offer is applied."
 msgstr ""
 
-#: admin/modules/bogo-admin/views/--bogo-main-general.php:69
+#: admin/modules/bogo-admin/views/--bogo-main-general.php:55
+msgid "Primary color for BOGO product display"
+msgstr ""
+
+#: admin/modules/bogo-admin/views/--bogo-main-general.php:60
 msgid "Offer applied message"
 msgstr ""
 
-#: admin/modules/bogo-admin/views/--bogo-main-general.php:72
+#: admin/modules/bogo-admin/views/--bogo-main-general.php:63
 msgid "Apply discount"
 msgstr ""
 
-#: admin/modules/bogo-admin/views/--bogo-main-general.php:76
+#: admin/modules/bogo-admin/views/--bogo-main-general.php:67
 msgid "Product added message"
 msgstr ""
 
-#: admin/modules/bogo-admin/views/--bogo-main-general.php:79
+#: admin/modules/bogo-admin/views/--bogo-main-general.php:70
 msgid "Product added..."
 msgstr ""
 
-#: admin/modules/bogo-admin/views/--bogo-main-general.php:83
+#: admin/modules/bogo-admin/views/--bogo-main-general.php:74
 msgid "Discount info under each item in cart"
 msgstr ""
 
-#: admin/modules/bogo-admin/views/--bogo-main-general.php:85
+#: admin/modules/bogo-admin/views/--bogo-main-general.php:76
 msgid "Discount..."
 msgstr ""
 
-#: admin/modules/bogo-admin/views/--bogo-main-general.php:89
+#: admin/modules/bogo-admin/views/--bogo-main-general.php:80
 msgid "\"Choose product\" title"
 msgstr ""
 
-#: admin/modules/bogo-admin/views/--bogo-main-general.php:91
-#: common/modules/bogo-common/class-wbte-smart-coupon-bogo-common.php:295
-#: public/modules/bogo-public/views/-cart-giveaway-products.php:247
+#: admin/modules/bogo-admin/views/--bogo-main-general.php:82
 msgid "Choose product"
 msgstr ""
 
-#: admin/modules/bogo-admin/views/--bogo-main-general.php:104
+#: admin/modules/bogo-admin/views/--bogo-main-general.php:95
 msgid "Update settings"
 msgstr ""
 
@@ -1852,17 +1993,17 @@ msgstr ""
 msgid "Discount tag"
 msgstr ""
 
-#: admin/modules/bogo-admin/views/-bogo-main.php:74
+#: admin/modules/bogo-admin/views/-bogo-main.php:79
 #: admin/views/general-settings.php:145
 msgid "Setup Guide"
 msgstr ""
 
-#: admin/modules/bogo-admin/views/-bogo-main.php:80
+#: admin/modules/bogo-admin/views/-bogo-main.php:85
 #: admin/views/general-settings.php:151
 msgid "Contact support"
 msgstr ""
 
-#: admin/modules/bogo-admin/views/-bogo-main.php:86
+#: admin/modules/bogo-admin/views/-bogo-main.php:91
 #: admin/views/general-settings.php:157
 msgid "Help"
 msgstr ""
@@ -1913,7 +2054,7 @@ msgid "Discount type "
 msgstr ""
 
 #: admin/modules/bogo-admin/views/-step1.php:143
-#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:649
+#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:661
 msgid "Free"
 msgstr ""
 
@@ -2334,23 +2475,6 @@ msgstr ""
 msgid "Not Interested"
 msgstr ""
 
-#: admin/modules/giftcard-banner/class-wbte-smart-coupon-giftcard-banner.php:167
-#: admin/modules/giftcard-banner/class-wbte-smart-coupon-giftcard-banner.php:266
-msgid "Something went wrong. Please try again."
-msgstr ""
-
-#: admin/modules/giftcard-banner/class-wbte-smart-coupon-giftcard-banner.php:171
-msgid "You do not have sufficient permissions to install plugins."
-msgstr ""
-
-#: admin/modules/giftcard-banner/class-wbte-smart-coupon-giftcard-banner.php:189
-msgid "Plugin download link not found."
-msgstr ""
-
-#: admin/modules/giftcard-banner/class-wbte-smart-coupon-giftcard-banner.php:239
-msgid "You do not have sufficient permissions to activate plugins."
-msgstr ""
-
 #: admin/modules/giftcard-banner/class-wbte-smart-coupon-giftcard-banner.php:249
 msgid "Activation failed. Please try again."
 msgstr ""
@@ -2565,78 +2689,70 @@ msgid "Configure a fully optimized WooCommerce quote request set up in your stor
 msgstr ""
 
 #: admin/modules/other-solutions/views/other-solutions-content.php:132
-msgid "Frequently Bought Together for WooCommerce"
-msgstr ""
-
-#: admin/modules/other-solutions/views/other-solutions-content.php:133
-msgid "Boost the visibility of the products by displaying them as ‘Frequently bought together’ items in your store. You may also set up discounts for Frequently Bought Together bundles with this plugin."
-msgstr ""
-
-#: admin/modules/other-solutions/views/other-solutions-content.php:141
 msgid "GDPR Cookie Consent Plugin (CCPA Ready)"
 msgstr ""
 
-#: admin/modules/other-solutions/views/other-solutions-content.php:142
+#: admin/modules/other-solutions/views/other-solutions-content.php:133
 msgid "The plugin helps you get compliant with GDPR, CCPA, and other major cookie laws. You can create and manage cookie consent banners, scan website cookies, and generate cookie policies with this plugin."
 msgstr ""
 
-#: admin/modules/other-solutions/views/other-solutions-content.php:150
+#: admin/modules/other-solutions/views/other-solutions-content.php:141
 msgid "Product Import Export Plugin For WooCommerce"
 msgstr ""
 
-#: admin/modules/other-solutions/views/other-solutions-content.php:151
+#: admin/modules/other-solutions/views/other-solutions-content.php:142
 msgid "Seamlessly import/export your WooCommerce products including simple, variable, custom products and subscriptions. You may also import and export product images, tags, categories, reviews, and ratings."
 msgstr ""
 
-#: admin/modules/other-solutions/views/other-solutions-content.php:159
+#: admin/modules/other-solutions/views/other-solutions-content.php:150
 msgid "WordPress Users & WooCommerce Customers Import Export"
 msgstr ""
 
-#: admin/modules/other-solutions/views/other-solutions-content.php:160
+#: admin/modules/other-solutions/views/other-solutions-content.php:151
 msgid "Easily import and export your WordPress users and WooCommerce customers using the Import Export plugin for WooCommerce. The plugin supports the use of CSV, XML, TSV, XLS, and XLSX file formats."
 msgstr ""
 
-#: admin/modules/other-solutions/views/other-solutions-content.php:168
+#: admin/modules/other-solutions/views/other-solutions-content.php:159
 msgid "Order, Coupon, Subscription Export Import for WooCommerce"
 msgstr ""
 
-#: admin/modules/other-solutions/views/other-solutions-content.php:169
+#: admin/modules/other-solutions/views/other-solutions-content.php:160
 msgid "Export and Import your WooCommerce orders, subscriptions, and discount coupons using a single Import Export plugin. You may customize the export and import files with advanced filters and settings."
 msgstr ""
 
-#: admin/modules/other-solutions/views/other-solutions-content.php:177
+#: admin/modules/other-solutions/views/other-solutions-content.php:168
 msgid "Import Export Suite for WooCommerce"
 msgstr ""
 
-#: admin/modules/other-solutions/views/other-solutions-content.php:178
+#: admin/modules/other-solutions/views/other-solutions-content.php:169
 msgid "An all-in-one plugin to import and export WooCommerce store data. You can import and export products, product reviews, orders, customers, discount coupons, and subscriptions using this single plugin."
 msgstr ""
 
-#: admin/modules/other-solutions/views/other-solutions-content.php:190
+#: admin/modules/other-solutions/views/other-solutions-content.php:181
 msgid "Sequential Order Numbers for WooCommerce"
 msgstr ""
 
-#: admin/modules/other-solutions/views/other-solutions-content.php:191
+#: admin/modules/other-solutions/views/other-solutions-content.php:182
 msgid "Number your WooCommerce orders in a custom, sequential & manageable format. The Sequential Order Number plugin lets your orders follow a custom & unique numbering sequence suitable for your business."
 msgstr ""
 
-#: admin/modules/other-solutions/views/other-solutions-content.php:199
+#: admin/modules/other-solutions/views/other-solutions-content.php:190
 msgid "Accessibility Tool Kit: WP Accessibility Plugin for WCAG, Section 508, ADA, EAA Compliance"
 msgstr ""
 
-#: admin/modules/other-solutions/views/other-solutions-content.php:200
+#: admin/modules/other-solutions/views/other-solutions-content.php:191
 msgid "Build an accessible WordPress site that works for everyone. Scan for accessibility issues, get fix recommendations, and ensure WCAG compliance, all without writing code. Inclusive web design made simple."
 msgstr ""
 
-#: admin/modules/other-solutions/views/other-solutions-content.php:243
+#: admin/modules/other-solutions/views/other-solutions-content.php:234
 msgid " Get Premium"
 msgstr ""
 
-#: admin/modules/other-solutions/views/other-solutions-content.php:251
+#: admin/modules/other-solutions/views/other-solutions-content.php:242
 msgid "Installed"
 msgstr ""
 
-#: admin/modules/other-solutions/views/other-solutions-content.php:261
+#: admin/modules/other-solutions/views/other-solutions-content.php:252
 msgid "Get Free Plugin"
 msgstr ""
 
@@ -3078,7 +3194,7 @@ msgid "Shortcode"
 msgstr ""
 
 #: admin/modules/style-admin/class-wt-smart-coupon-style-admin.php:129
-#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:1947
+#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:1920
 #: public/modules/giveaway-product-public/class-wt-smart-coupon-giveaway-product-public.php:401
 msgid "Success"
 msgstr ""
@@ -3304,6 +3420,23 @@ msgstr ""
 msgid "Watch setup video"
 msgstr ""
 
+#: admin/views/-wbte-newsletter-sidebar.php:28
+msgid "Subscribe to our newsletter for exclusive offers & updates"
+msgstr ""
+
+#: admin/views/-wbte-newsletter-sidebar.php:35
+msgid "Enter your email address"
+msgstr ""
+
+#. translators: %1$s: Privacy Policy link, %2$s: a tag closing.
+#: admin/views/-wbte-newsletter-sidebar.php:43
+msgid "I consent to receive newsletters and exclusive offers from WebToffee and agree to the %1$s Privacy Policy %2$s."
+msgstr ""
+
+#: admin/views/-wbte-newsletter-sidebar.php:61
+msgid "Subscribe"
+msgstr ""
+
 #: admin/views/admin-help.php:16
 msgid "Help links"
 msgstr ""
@@ -3366,12 +3499,16 @@ msgstr ""
 msgid "coupon_code"
 msgstr ""
 
-#: common/modules/bogo-common/class-wbte-smart-coupon-bogo-common.php:292
+#: common/modules/bogo-common/class-wbte-smart-coupon-bogo-common.php:293
 msgid "{bogo_title} applied!"
 msgstr ""
 
-#: common/modules/bogo-common/class-wbte-smart-coupon-bogo-common.php:293
+#: common/modules/bogo-common/class-wbte-smart-coupon-bogo-common.php:294
 msgid "Giveaway added to cart!"
+msgstr ""
+
+#: common/modules/bogo-common/class-wbte-smart-coupon-bogo-common.php:296
+msgid "Choose product {qty_counter}"
 msgstr ""
 
 #: common/modules/category-common/class-wt-smart-coupon-category-common.php:99
@@ -3535,13 +3672,13 @@ msgstr ""
 msgid "Click to apply coupon"
 msgstr ""
 
-#: common/modules/style/data/data-template-classic-ticket.php:10
-#: common/modules/style/data/data-template-default.php:10
-#: common/modules/style/data/data-template-minimal-outline.php:28
-#: common/modules/style/data/data-template-plain-coupon.php:13
-#: common/modules/style/data/data-template-stitched-edge.php:10
-#: common/modules/style/data/data-template-stitched-padding.php:10
-#: common/modules/style/data/data-template-ticket-style.php:21
+#: common/modules/style/data/data-template-classic-ticket.php:15
+#: common/modules/style/data/data-template-default.php:15
+#: common/modules/style/data/data-template-minimal-outline.php:33
+#: common/modules/style/data/data-template-plain-coupon.php:18
+#: common/modules/style/data/data-template-stitched-edge.php:15
+#: common/modules/style/data/data-template-stitched-padding.php:15
+#: common/modules/style/data/data-template-ticket-style.php:25
 msgid "Click to apply coupon code [wt_sc_coupon_code_attr]"
 msgstr ""
 
@@ -3607,107 +3744,107 @@ msgid "I already did"
 msgstr ""
 
 #. translators: %1$s: opening bold tag, %2$s: closing bold tag, %3$s: table name.
-#: includes/class-wt-smart-coupon.php:775
+#: includes/class-wt-smart-coupon.php:793
 msgid "An error occurred while activating %1$s Smart Coupons For WooCommerce Coupons %2$s: Unable to create database table. %3$s"
 msgstr ""
 
-#: includes/class-wt-smart-coupon.php:779
+#: includes/class-wt-smart-coupon.php:797
 msgid "Go to plugins page"
 msgstr ""
 
-#: includes/class-wt-smartcoupon-uninstall-feedback.php:33
+#: includes/class-wt-smartcoupon-uninstall-feedback.php:38
 msgid "Used it successfully. Don't need anymore."
 msgstr ""
 
-#: includes/class-wt-smartcoupon-uninstall-feedback.php:35
+#: includes/class-wt-smartcoupon-uninstall-feedback.php:40
 msgid "Have used it successfully and aint in need of it anymore"
 msgstr ""
 
-#: includes/class-wt-smartcoupon-uninstall-feedback.php:39
+#: includes/class-wt-smartcoupon-uninstall-feedback.php:44
 msgid "I couldn't understand how to make it work"
 msgstr ""
 
-#: includes/class-wt-smartcoupon-uninstall-feedback.php:41
+#: includes/class-wt-smartcoupon-uninstall-feedback.php:46
 msgid "Would you like us to assist you?"
 msgstr ""
 
-#: includes/class-wt-smartcoupon-uninstall-feedback.php:45
+#: includes/class-wt-smartcoupon-uninstall-feedback.php:50
 msgid "I found a better plugin"
 msgstr ""
 
-#: includes/class-wt-smartcoupon-uninstall-feedback.php:47
+#: includes/class-wt-smartcoupon-uninstall-feedback.php:52
 msgid "Which plugin?"
 msgstr ""
 
-#: includes/class-wt-smartcoupon-uninstall-feedback.php:51
+#: includes/class-wt-smartcoupon-uninstall-feedback.php:56
 msgid "The plugin is great, but I need specific feature that you don't support"
 msgstr ""
 
-#: includes/class-wt-smartcoupon-uninstall-feedback.php:53
+#: includes/class-wt-smartcoupon-uninstall-feedback.php:58
 msgid "Could you tell us more about that feature?"
 msgstr ""
 
-#: includes/class-wt-smartcoupon-uninstall-feedback.php:57
+#: includes/class-wt-smartcoupon-uninstall-feedback.php:62
 msgid "The plugin is not working"
 msgstr ""
 
-#: includes/class-wt-smartcoupon-uninstall-feedback.php:59
+#: includes/class-wt-smartcoupon-uninstall-feedback.php:64
 msgid "Could you tell us a bit more whats not working?"
 msgstr ""
 
-#: includes/class-wt-smartcoupon-uninstall-feedback.php:63
+#: includes/class-wt-smartcoupon-uninstall-feedback.php:68
 msgid "It's not what I was looking for"
 msgstr ""
 
-#: includes/class-wt-smartcoupon-uninstall-feedback.php:69
+#: includes/class-wt-smartcoupon-uninstall-feedback.php:74
 msgid "The plugin didn't work as expected"
 msgstr ""
 
-#: includes/class-wt-smartcoupon-uninstall-feedback.php:71
+#: includes/class-wt-smartcoupon-uninstall-feedback.php:76
 msgid "What did you expect?"
 msgstr ""
 
-#: includes/class-wt-smartcoupon-uninstall-feedback.php:75
+#: includes/class-wt-smartcoupon-uninstall-feedback.php:80
 msgid "Upgraded to premium version"
 msgstr ""
 
-#: includes/class-wt-smartcoupon-uninstall-feedback.php:81
+#: includes/class-wt-smartcoupon-uninstall-feedback.php:86
 msgid "Other"
 msgstr ""
 
-#: includes/class-wt-smartcoupon-uninstall-feedback.php:83
+#: includes/class-wt-smartcoupon-uninstall-feedback.php:88
 msgid "Could you tell us a bit more?"
 msgstr ""
 
-#: includes/class-wt-smartcoupon-uninstall-feedback.php:103
+#: includes/class-wt-smartcoupon-uninstall-feedback.php:108
 msgid "If you have a moment, please let us know why you are deactivating:"
 msgstr ""
 
-#: includes/class-wt-smartcoupon-uninstall-feedback.php:114
+#: includes/class-wt-smartcoupon-uninstall-feedback.php:119
 msgid "We do not collect any personal data when you submit this form. It's your feedback that we value."
 msgstr ""
 
-#: includes/class-wt-smartcoupon-uninstall-feedback.php:115
+#: includes/class-wt-smartcoupon-uninstall-feedback.php:120
 msgid "Privacy Policy"
 msgstr ""
 
-#: includes/class-wt-smartcoupon-uninstall-feedback.php:119
+#: includes/class-wt-smartcoupon-uninstall-feedback.php:124
 msgid "I rather wouldn't say"
 msgstr ""
 
-#: includes/class-wt-smartcoupon-uninstall-feedback.php:120
+#: includes/class-wt-smartcoupon-uninstall-feedback.php:125
 msgid "Contact Support"
 msgstr ""
 
-#: includes/class-wt-smartcoupon-uninstall-feedback.php:121
+#: includes/class-wt-smartcoupon-uninstall-feedback.php:126
 msgid "Submit & Deactivate"
 msgstr ""
 
-#: includes/class-wt-smartcoupon-uninstall-feedback.php:204
+#: includes/class-wt-smartcoupon-uninstall-feedback.php:209
 msgid "Deactivate and leave a review"
 msgstr ""
 
-#: includes/class-wt-smartcoupon-uninstall-feedback.php:206
+#: includes/class-wt-smartcoupon-uninstall-feedback.php:211
 msgid "Let our support team help you"
 msgstr ""
 
@@ -3771,73 +3908,82 @@ msgstr ""
 msgid "Free shipping coupon"
 msgstr ""
 
-#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:294
+#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:306
 msgid "Sorry, this coupon is not applicable to selected products."
 msgstr ""
 
 #. translators: %s: Minimum quantity.
-#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:330
+#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:342
 msgid "The minimum quantity of each product for this coupon is %s."
 msgstr ""
 
 #. translators: %s: Maximum quantity.
-#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:336
+#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:348
 msgid "The maximum quantity of each product for this coupon is %s."
 msgstr ""
 
 #. translators: 1$s is 'minimum' or 'maximum', 2$s is 'quantity' or 'subtotal', 3$s is min/max values of amount, quantity or additional qty.
-#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:379
+#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:391
 msgid "The %1$s %2$s of matching products for this coupon is %3$s."
 msgstr ""
 
-#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:627
+#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:639
 msgid "Coupon: "
 msgstr ""
 
-#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:643
+#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:655
 msgid "Buy X Get X/Y"
 msgstr ""
 
 #. translators: %s: Discount percentage.
-#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:660
+#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:672
 msgid "%s%% off"
 msgstr ""
 
 #. translators: %s: Discount price.
-#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:665
+#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:677
 msgid "%s off"
 msgstr ""
 
-#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:1374
-#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:2064
+#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:1386
+#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:2037
 msgid "Discounted price: "
 msgstr ""
 
-#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:1706
+#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:1671
 #: public/modules/giveaway-product-public/class-wt-smart-coupon-giveaway-product-public.php:711
 #: public/modules/giveaway-product-public/class-wt-smart-coupon-giveaway-product-public.php:729
 msgid "Oops! It seems like you've made an invalid request. Please try again."
 msgstr ""
 
-#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:1926
+#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:1674
+#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:1677
+msgid "Failed to add product to cart."
+msgstr ""
+
+#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:1899
 #: public/modules/giveaway-product-public/class-wt-smart-coupon-giveaway-product-public.php:387
 msgid "Invalid request"
 msgstr ""
 
-#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:1951
-#: public/modules/bogo-public/views/-cart-giveaway-products.php:145
+#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:1924
 #: public/modules/giveaway-product-public/class-wt-smart-coupon-giveaway-product-public.php:404
 #: public/modules/giveaway-product-public/views/-cart-giveaway-products.php:116
 msgid "Sorry! this product is not available for giveaway."
 msgstr ""
 
-#: public/modules/bogo-public/views/-cart-giveaway-products.php:137
-msgid "Quantity : "
+#: public/modules/bogo-public/class-wbte-smart-coupon-bogo-public.php:2372
+msgid "No products selected."
 msgstr ""
 
-#: public/modules/bogo-public/views/-cart-giveaway-products.php:221
-#: public/modules/giveaway-product-public/views/-cart-giveaway-products.php:196
+#: public/modules/bogo-public/views/-cart-giveaway-products.php:231
+#: public/modules/giveaway-product-public/views/-cart-giveaway-products.php:195
 msgid "Choose an option"
+msgstr ""
+
+#: public/modules/bogo-public/views/-cart-giveaway-products.php:267
+#: public/modules/giveaway-product-public/views/-cart-giveaway-products.php:231
+msgid "Add to cart"
 msgstr ""
 
 #: public/modules/checkout-options-public/class-wt-smart-coupon-checkout-options-public.php:134
@@ -3862,7 +4008,7 @@ msgid "Sorry, this coupon is not applicable for selected products."
 msgstr ""
 
 #: public/modules/giveaway-product-public/class-wt-smart-coupon-giveaway-product-public.php:545
-#: public/modules/giveaway-product-public/class-wt-smart-coupon-giveaway-product-public.php:2128
+#: public/modules/giveaway-product-public/class-wt-smart-coupon-giveaway-product-public.php:2130
 msgid "Congratulations! You've got a freebie in your cart!"
 msgstr ""
 
@@ -3903,7 +4049,7 @@ msgid "Free gift"
 msgstr ""
 
 #. translators: %s is the discount text.
-#: public/modules/giveaway-product-public/class-wt-smart-coupon-giveaway-product-public.php:2133
+#: public/modules/giveaway-product-public/class-wt-smart-coupon-giveaway-product-public.php:2135
 msgid "Surprise! You've received a special giveaway product with %s Off!"
 msgstr ""
 
@@ -3919,16 +4065,12 @@ msgstr ""
 msgid "Discount: "
 msgstr ""
 
-#: public/modules/giveaway-product-public/views/-cart-giveaway-products.php:217
+#: public/modules/giveaway-product-public/views/-cart-giveaway-products.php:218
 msgid "Choose Product"
 msgstr ""
 
 #: public/modules/giveaway-product-public/views/-cart-giveaway-products.php:231
 msgid "Add all to cart"
-msgstr ""
-
-#: public/modules/giveaway-product-public/views/-cart-giveaway-products.php:231
-msgid "Add to cart"
 msgstr ""
 
 #. translators: %1$s: Item name. %2$s: Quantity.
@@ -4036,10 +4178,6 @@ msgstr ""
 
 #: wt-smart-coupon.php:112
 msgid "Review"
-msgstr ""
-
-#: wt-smart-coupon.php:196
-msgid "WooCommerce is required for this plugin to work properly. Please activate WooCommerce."
 msgstr ""
 
 #. translators: %s coupon code.

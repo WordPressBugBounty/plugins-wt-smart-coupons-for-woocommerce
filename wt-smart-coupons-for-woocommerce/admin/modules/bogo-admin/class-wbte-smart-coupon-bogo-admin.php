@@ -317,6 +317,14 @@ class Wbte_Smart_Coupon_Bogo_Admin extends Wbte_Smart_Coupon_Bogo_Common {
 	}
 
 	/**
+	 * Transient cache key prefix for BOGO counts.
+	 *
+	 * @since 2.2.8
+	 * @var string
+	 */
+	const BOGO_COUNT_CACHE_PREFIX = 'wbte_sc_bogo_count_';
+
+	/**
 	 * To get the total count of BOGO coupons.
 	 * If $args has 'is_trash' set to true, it will return the count of trashed coupons, otherwise it will return the count of publish and draft BOGO coupons. If $args is empty, it will return the count of all BOGO coupons.
 	 * IDE showing 0 references to this method, but it is used.
@@ -325,7 +333,13 @@ class Wbte_Smart_Coupon_Bogo_Admin extends Wbte_Smart_Coupon_Bogo_Common {
 	 * @param  array $args Optional arguments to filter the count.
 	 * @return int         Total count of BOGO coupons.
 	 */
-	private static function get_total_bogo_counts( $args = array() ) {
+	public static function get_total_bogo_counts( $args = array() ) {
+		$cache_key = self::get_bogo_count_cache_key( $args );
+		$cached    = get_transient( $cache_key );
+		if ( false !== $cached ) {
+			return (int) $cached;
+		}
+
 		global $wpdb;
 		$lookup_table    = Wt_Smart_Coupon::get_lookup_table_name();
 		$sql_placeholder = array( self::$bogo_coupon_type_name );
@@ -337,7 +351,37 @@ class Wbte_Smart_Coupon_Bogo_Admin extends Wbte_Smart_Coupon_Bogo_Common {
 		if ( ! empty( $args ) ) {
 			$sql .= " AND post_status IN {$status}";
 		}
-		return (int) $wpdb->get_var( $wpdb->prepare( $sql, $sql_placeholder ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter 
+		$count = (int) $wpdb->get_var( $wpdb->prepare( $sql, $sql_placeholder ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter
+
+		set_transient( $cache_key, $count, HOUR_IN_SECONDS );
+
+		return $count;
+	}
+
+	/**
+	 * Get the cache key for BOGO count transients.
+	 *
+	 * @since 2.2.8
+	 * @param  array $args Optional arguments passed to get_total_bogo_counts().
+	 * @return string      Transient key.
+	 */
+	private static function get_bogo_count_cache_key( $args = array() ) {
+		$suffix = 'all';
+		if ( ! empty( $args ) ) {
+			$suffix = ( isset( $args['is_trash'] ) && true === $args['is_trash'] ) ? 'trash' : 'active';
+		}
+		return self::BOGO_COUNT_CACHE_PREFIX . $suffix;
+	}
+
+	/**
+	 * Delete cached BOGO counts. Call when BOGO coupons are created, updated, or trashed.
+	 *
+	 * @since 2.2.8
+	 */
+	private static function delete_bogo_count_cache() {
+		delete_transient( self::BOGO_COUNT_CACHE_PREFIX . 'all' );
+		delete_transient( self::BOGO_COUNT_CACHE_PREFIX . 'trash' );
+		delete_transient( self::BOGO_COUNT_CACHE_PREFIX . 'active' );
 	}
 
 	/**
@@ -583,6 +627,7 @@ class Wbte_Smart_Coupon_Bogo_Admin extends Wbte_Smart_Coupon_Bogo_Common {
 			}
 			wp_update_post( $post_data );
 			$return['status'] = true;
+			self::delete_bogo_count_cache();
 		}
 		echo wp_json_encode( $return );
 		die();
@@ -699,7 +744,6 @@ class Wbte_Smart_Coupon_Bogo_Admin extends Wbte_Smart_Coupon_Bogo_Common {
 
 		// Prepare and execute the final SQL query.
 		return $wpdb->get_col( $wpdb->prepare( $sql, $sql_placeholder ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter 
-
 	}
 
 	/**
@@ -716,6 +760,7 @@ class Wbte_Smart_Coupon_Bogo_Admin extends Wbte_Smart_Coupon_Bogo_Common {
 		);
 		if ( isset( $_POST['coupon_id'] ) ) {
 			wp_trash_post( absint( wp_unslash( $_POST['coupon_id'] ) ) );
+			self::delete_bogo_count_cache();
 			$return['status'] = true;
 			$return['msg']    = __( 'BOGO promotion removed successfully!', 'wt-smart-coupons-for-woocommerce' );
 		}
@@ -911,6 +956,7 @@ class Wbte_Smart_Coupon_Bogo_Admin extends Wbte_Smart_Coupon_Bogo_Common {
 				);
 				$changed_arrs[] = $coupon_id;
 			}
+			self::delete_bogo_count_cache();
 			$return = array(
 				'status'              => true,
 				'transition_to'       => __( 'Inactive', 'wt-smart-coupons-for-woocommerce' ),
@@ -938,6 +984,7 @@ class Wbte_Smart_Coupon_Bogo_Admin extends Wbte_Smart_Coupon_Bogo_Common {
 			foreach ( $_coupon_ids as $coupon_id ) {
 				wp_trash_post( intval( $coupon_id ) );
 			}
+			self::delete_bogo_count_cache();
 			$return = true;
 		}
 		echo wp_json_encode( $return );
@@ -960,6 +1007,9 @@ class Wbte_Smart_Coupon_Bogo_Admin extends Wbte_Smart_Coupon_Bogo_Common {
 				'post_status' => 'publish',
 			);
 			$return        = wp_update_post( $coupon_update );
+			if ( $return ) {
+				self::delete_bogo_count_cache();
+			}
 		}
 		echo wp_json_encode( $return );
 		die();
@@ -1003,7 +1053,11 @@ class Wbte_Smart_Coupon_Bogo_Admin extends Wbte_Smart_Coupon_Bogo_Common {
 		check_ajax_referer( 'wbte_sc_bogo_admin_nonce', '_wpnonce' );
 
 		if ( isset( $_POST['coupon_id'] ) ) {
-			return wp_delete_post( absint( wp_unslash( $_POST['coupon_id'] ) ), true );
+			$result = wp_delete_post( absint( wp_unslash( $_POST['coupon_id'] ) ), true );
+			if ( $result ) {
+				self::delete_bogo_count_cache();
+			}
+			return $result;
 		}
 		echo false;
 		die();
@@ -1028,6 +1082,7 @@ class Wbte_Smart_Coupon_Bogo_Admin extends Wbte_Smart_Coupon_Bogo_Common {
 				);
 				wp_update_post( $coupon_update );
 			}
+			self::delete_bogo_count_cache();
 			$return = true;
 		}
 		echo wp_json_encode( $return );
@@ -1049,6 +1104,7 @@ class Wbte_Smart_Coupon_Bogo_Admin extends Wbte_Smart_Coupon_Bogo_Common {
 			foreach ( $_coupon_ids as $coupon_id ) {
 				wp_delete_post( $coupon_id, true );
 			}
+			self::delete_bogo_count_cache();
 			$return = true;
 		}
 		echo wp_json_encode( $return );
@@ -1254,15 +1310,18 @@ class Wbte_Smart_Coupon_Bogo_Admin extends Wbte_Smart_Coupon_Bogo_Common {
 	}
 
 	/**
-	 * Delete BOGO coupon ids transient when new BOGO coupon is created.
+	 * Delete BOGO-related transients when new BOGO coupon is created.
+	 * Clears: BOGO coupon IDs (used to hide BOGO from main coupon list) and BOGO count cache.
 	 *
 	 * @since 2.0.0
-	 * @param  int $coupon_id   Coupon ID.
+	 * @param int $coupon_id Coupon ID.
 	 */
 	public static function delete_bogo_ids_transient( $coupon_id ) {
-		if ( ! empty( $coupon_id ) ) {
-			delete_transient( 'wbte_sc_bogo_coupon_ids' );
+		if ( empty( $coupon_id ) ) {
+			return;
 		}
+		delete_transient( 'wbte_sc_bogo_coupon_ids' );
+		self::delete_bogo_count_cache();
 	}
 
 	/**
@@ -1668,7 +1727,7 @@ class Wbte_Smart_Coupon_Bogo_Admin extends Wbte_Smart_Coupon_Bogo_Common {
 	 * @param array $args Arguments.
 	 */
 	public static function generate_main_general_settings_form_field( $args ) {
-		require_once plugin_dir_path( __FILE__ ) . 'views/-main-general-form-field-generator.php'; // NOSONAR
+		require_once plugin_dir_path( __FILE__ ) . 'views/-main-general-form-field-generator.php'; // NOSONAR.
 	}
 
 	/**
@@ -1678,7 +1737,7 @@ class Wbte_Smart_Coupon_Bogo_Admin extends Wbte_Smart_Coupon_Bogo_Common {
 	 *
 	 * @param string $field_name Field name.
 	 */
-	public static function render_general_settings_placeholders( $field_name ){
+	public static function render_general_settings_placeholders( $field_name ) {
 
 		$placeholders = self::get_general_settings_placeholders();
 		if ( isset( $placeholders[ $field_name ] ) ) {
@@ -1696,14 +1755,14 @@ class Wbte_Smart_Coupon_Bogo_Admin extends Wbte_Smart_Coupon_Bogo_Common {
 	 *
 	 * @return array General settings placeholders.
 	 */
-	public static function get_general_settings_placeholders(){
+	public static function get_general_settings_placeholders() {
 		$title_placeholder = '{bogo_title}';
 
 		return array(
-			'wbte_sc_bogo_general_discount_apply_message'     => array(
+			'wbte_sc_bogo_general_discount_apply_message' => array(
 				$title_placeholder,
 			),
-			'wbte_sc_bogo_general_product_added_message'      => array(
+			'wbte_sc_bogo_general_product_added_message'  => array(
 				$title_placeholder,
 			),
 			'wbte_sc_bogo_general_discount_under_product_msg' => array(
@@ -1711,6 +1770,7 @@ class Wbte_Smart_Coupon_Bogo_Admin extends Wbte_Smart_Coupon_Bogo_Common {
 			),
 			'wbte_sc_bogo_general_apply_choose_product_title' => array(
 				$title_placeholder,
+				'{qty_counter}',
 			),
 		);
 	}

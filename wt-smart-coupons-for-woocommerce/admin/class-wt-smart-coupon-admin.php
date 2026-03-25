@@ -667,7 +667,7 @@ if ( ! class_exists( 'Wt_Smart_Coupon_Admin' ) ) {
 		 * Smart coupon settings button on coupons page
 		 *
 		 *  @since 1.4.4
-		 *  @since 1.4.8    Added bulk generate info bar on coupons admin page
+		 *  @since 2.2.8   Moved banners to a separate function.
 		 */
 		public function coupon_page_settings_button() {
 			global $current_screen;
@@ -682,33 +682,6 @@ if ( ! class_exists( 'Wt_Smart_Coupon_Admin' ) ) {
 			<script type="text/javascript">
 				jQuery(document).ready(function($){
 					jQuery( '.page-title-action' ).after( '<a href="<?php echo esc_url( admin_url( 'admin.php?page=' . WT_SC_PLUGIN_NAME ) ); ?>" class="page-title-action wt_sc_plugin_settings_btn"><?php esc_html_e( 'Smart coupon settings', 'wt-smart-coupons-for-woocommerce' ); ?></a>' );
-					
-					<?php
-					$hidden_banners = get_option( 'wbte_sc_hidden_promotion_banners', array() );
-					if ( ! defined( 'WBTE_BFCM_SC_COUPONS_PAGE' ) && ! in_array( 'sc_cpns_page', $hidden_banners, true ) ) {
-						define( 'WBTE_BFCM_SC_COUPONS_PAGE', true );
-
-						$campaign_url = 'https://www.webtoffee.com/product/smart-coupons-for-woocommerce/?utm_source=free_plugin_add_coupon_menu&utm_medium=smart_coupon_basic&utm_campaign=smart_coupons';
-
-						$bulk_plugin_text = sprintf(
-							'<div data-wbte-sc-promotion-banner-id="sc_cpns_page" class="wbte_sc_promotion_banner_div"><span><img src="%s" style="width: 16px;" /></span>&nbsp;<span class="wbte_sc_promotion_banner_title">%s</span><div class="wbte_sc_promotion_banner_content"><p style="margin: 0; font-size: 14px;"> %s </p><div class="wbte_sc_promotion_banner_actions"> <a class="button button-secondary wbte_sc_promotion_banner_link_btn" href="%s" target="_blank"> %s <span class="dashicons dashicons-arrow-right-alt" style="font-size: 14px; line-height: 1.5;"></span> </a>&ensp;<button type="button" class="button button-secondary wbte_sc_promotion_banner_close wbte_sc_promotion_banner_later"> %s </button></div></div><span class="dashicons dashicons-no-alt wbte_sc_promotion_banner_close wbte_sc_promotion_banner_close_btn"></span></div>',
-							esc_url( WT_SMARTCOUPON_MAIN_URL . 'admin/images/idea_bulb_purple.svg' ),
-							esc_html__( 'Did you know?', 'wt-smart-coupons-for-woocommerce' ),
-							sprintf(
-								// translators: 1: a tag opening, 2: a tag closing.
-								__( 'With the %1$s Smart Coupons %2$s plugin, you can create Buy One Get One offers and advanced coupons that boost sales during BFCM.', 'wt-smart-coupons-for-woocommerce' ),
-								'<a href="' . esc_url( $campaign_url ) . '" target="_blank"><b>',
-								'</b></a>'
-							),
-							esc_url( $campaign_url ),
-							esc_html__( 'Get Plugin Now', 'wt-smart-coupons-for-woocommerce' ),
-							esc_html__( 'Maybe later', 'wt-smart-coupons-for-woocommerce' )
-						);
-						?>
-						jQuery( '.page-title-action.wt_sc_plugin_settings_btn' ).after( '<?php echo wp_kses_post( $bulk_plugin_text ); ?>' );
-						<?php
-					}
-					?>
 				});
 			</script>
 			<?php
@@ -1011,57 +984,9 @@ if ( ! class_exists( 'Wt_Smart_Coupon_Admin' ) ) {
 		 */
 		public function delete_coupon_from_lookup_table() {
 
-			if ( get_option( 'wbte_sc_basic_removed_non_existing_coupons_lookup_tb' ) ) {
-				return;
-			}
-
-			$lookup_tb = Wt_Smart_Coupon::get_lookup_table_name();
-
-			if ( ! Wt_Smart_Coupon::is_table_exists( $lookup_tb ) ) {
-				update_option( 'wbte_sc_basic_removed_non_existing_coupons_lookup_tb', 1 );
-				return;
-			}
-
-			global $wpdb;
-
-			$lookup_table_coupon_ids = $wpdb->get_col( "SELECT coupon_id FROM `{$lookup_tb}`" ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter
-
-			if ( empty( $lookup_table_coupon_ids ) ) {
-				update_option( 'wbte_sc_basic_removed_non_existing_coupons_lookup_tb', 1 );
-				return;
-			}
-
-			$lookup_table_coupon_ids = array_map( 'absint', (array) $lookup_table_coupon_ids );
-			$placeholders            = implode( ',', array_fill( 0, count( $lookup_table_coupon_ids ), '%d' ) );
-
-			$existing_coupon_ids = $wpdb->get_col( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-				$wpdb->prepare(
-					"SELECT ID FROM {$wpdb->posts} WHERE post_type = %s AND ID IN ($placeholders)", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-					array_merge( array( 'shop_coupon' ), $lookup_table_coupon_ids )
-				)
-			);
-
-			$existing_coupon_ids = array_map( 'absint', (array) $existing_coupon_ids );
-
-			$ids_to_remove = array_diff( $lookup_table_coupon_ids, $existing_coupon_ids );
-
-			if ( empty( $ids_to_remove ) ) {
-				update_option( 'wbte_sc_basic_removed_non_existing_coupons_lookup_tb', 1 );
-				return;
-			}
-
-			$placeholders = implode( ',', array_fill( 0, count( $ids_to_remove ), '%d' ) );
-
-			$deleted_count = $wpdb->query( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter	
-				$wpdb->prepare(
-					"DELETE FROM `{$lookup_tb}` WHERE coupon_id IN ($placeholders)", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders, PluginCheck.Security.DirectDB.UnescapedDBParameter
-					$ids_to_remove
-				)
-			);
-
-			if ( false !== $deleted_count ) {
-				update_option( 'wbte_sc_basic_removed_non_existing_coupons_lookup_tb', 1 );
-			}
+			if ( ! get_option( 'wbte_sc_basic_removed_non_existing_coupons_lookup_tb', false ) && self::reset_lookup_table() ) {
+                update_option( 'wbte_sc_basic_removed_non_existing_coupons_lookup_tb', 1 );
+            }
 		}
 
 		/**
@@ -1135,5 +1060,179 @@ if ( ! class_exists( 'Wt_Smart_Coupon_Admin' ) ) {
 			}
 			return true;
 		}
+
+		/**
+         * Render reset lookup table option in debug tab
+         *
+         * @since 2.2.8
+         */
+        public static function render_reset_lookup_table_in_debug_tab() {
+            ?>
+            <table class="wt-sc-form-table" style="padding-top: 10px; padding-bottom: 10px; border-top: dashed 1px #ccc;">
+                <tbody>
+                    <tr>
+                        <th><?php esc_html_e( 'Reset lookup table', 'wt-smart-coupons-for-woocommerce' ); ?></th>
+                        <td style="width: 100%">
+                            <button type="button" class="button-primary wbte_sc_reset_lookup_table">
+                                <?php esc_html_e( 'Reset now', 'wt-smart-coupons-for-woocommerce' ); ?>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <?php
+        }
+
+		/**
+         * Reset lookup table ajax
+         *
+         * @since 2.2.8
+         */
+		public static function reset_lookup_table_ajax() {
+            check_ajax_referer( 'wt_smart_coupons_admin_nonce', '_wpnonce' );
+
+            if ( ! Wt_Smart_Coupon_Security_Helper::check_role_access( 'smart_coupons' ) ) {
+                wp_send_json_error( __( 'Access denied', 'wt-smart-coupons-for-woocommerce' ) );
+            }
+
+            if ( ! self::reset_lookup_table() ) {
+                wp_send_json_error( __( 'Failed to reset lookup table.', 'wt-smart-coupons-for-woocommerce' ) );
+            }
+
+            wp_send_json_success( __( 'Lookup table reset successfully.', 'wt-smart-coupons-for-woocommerce' ) );
+        }
+
+		/**
+         * Reset lookup table
+         *
+         * @since 2.2.8
+         */
+		private static function reset_lookup_table() {
+
+            $reset_success = true;
+            
+            $lookup_tb = Wt_Smart_Coupon::get_lookup_table_name();
+
+            if ( ! Wt_Smart_Coupon::is_table_exists( $lookup_tb ) ) {
+                return false;
+            }
+
+            global $wpdb;
+
+            // phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery, PluginCheck.Security.DirectDB.UnescapedDBParameter
+            $lookup_table_data = $wpdb->get_results( "SELECT coupon_id, post_status FROM $lookup_tb", ARRAY_A );
+
+            if ( empty( $lookup_table_data ) ) {
+                return $reset_success;
+            }
+
+            $lookup_table_coupon_ids = array();
+            $lookup_status_map       = array();
+            foreach ( $lookup_table_data as $lookup_row ) {
+				$coupon_id = isset( $lookup_row['coupon_id'] ) ? absint( $lookup_row['coupon_id'] ) : 0;
+				if ( $coupon_id ) {
+					$lookup_table_coupon_ids[]       = $coupon_id;
+					$lookup_status_map[ $coupon_id ] = isset( $lookup_row['post_status'] ) ? $lookup_row['post_status'] : '';
+				}
+            }
+
+            $placeholders     = implode( ',', array_fill( 0, count( $lookup_table_coupon_ids ), '%d' ) );
+            $existing_coupons = $wpdb->get_results(
+                $wpdb->prepare( "SELECT ID, post_status FROM {$wpdb->posts} WHERE post_type = %s AND ID IN ($placeholders)", array_merge( array( 'shop_coupon' ), $lookup_table_coupon_ids ) ),
+                ARRAY_A
+            );
+
+            $existing_coupon_ids = array_map( 'absint', array_column( $existing_coupons, 'ID' ) );
+
+            if ( ! self::remove_non_existent_coupons( $lookup_tb, $lookup_table_coupon_ids, $existing_coupon_ids ) ) {
+                $reset_success = false;
+            }
+
+            if ( $reset_success && ! empty( $existing_coupons ) && ! self::update_mismatched_statuses( $lookup_tb, $existing_coupons, $lookup_status_map ) ) {
+                $reset_success = false;
+            }
+            // phpcs:enable
+
+            return $reset_success;
+        }
+
+		/**
+         * Remove non-existent coupons from lookup table.
+         *
+         * @since 2.2.8
+         * @param string $lookup_tb Lookup table name.
+         * @param array  $lookup_table_coupon_ids All coupon IDs from lookup table.
+         * @param array  $existing_coupon_ids Existing coupon IDs from posts table.
+         * @return bool True on success, false on failure.
+         */
+        private static function remove_non_existent_coupons( $lookup_tb, $lookup_table_coupon_ids, $existing_coupon_ids ) {
+            $ids_to_remove = array_diff( $lookup_table_coupon_ids, $existing_coupon_ids );
+
+            if ( empty( $ids_to_remove ) ) {
+                return true;
+            }
+
+            global $wpdb;
+            $placeholders  = implode( ',', array_fill( 0, count( $ids_to_remove ), '%d' ) );
+            $deleted_count = $wpdb->query( $wpdb->prepare( "DELETE FROM $lookup_tb WHERE coupon_id IN ($placeholders)", $ids_to_remove ) ); // phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
+
+            return false !== $deleted_count;
+        }
+
+        /**
+         * Update mismatched post_status in lookup table.
+         *
+         * @since 2.2.8
+         * @param string $lookup_tb Lookup table name.
+         * @param array  $existing_coupons Existing coupons from posts table.
+         * @param array  $lookup_status_map Lookup status map.
+         * @return bool True on success, false on failure.
+         */
+        private static function update_mismatched_statuses( $lookup_tb, $existing_coupons, $lookup_status_map ) {
+            $posts_status_map = array();
+            foreach ( $existing_coupons as $coupon ) {
+                $posts_status_map[ absint( $coupon['ID'] ) ] = $coupon['post_status'];
+            }
+
+            global $wpdb;
+            $update_success = true;
+
+            foreach ( $posts_status_map as $coupon_id => $post_status ) {
+                if ( isset( $lookup_status_map[ $coupon_id ] ) && $lookup_status_map[ $coupon_id ] !== $post_status ) {
+                    $updated = $wpdb->update( $lookup_tb, array( 'post_status' => $post_status ), array( 'coupon_id' => $coupon_id ), array( '%s' ), array( '%d' ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+
+                    if ( false === $updated ) {
+                        $update_success = false;
+                    }
+                }
+            }
+
+            return $update_success;
+        }
+
+		/**
+		 * Render newsletter sidebar
+		 * @since 2.2.8
+		 */
+		public function wbte_newsletter_sidebar() {
+			include WT_SMARTCOUPON_MAIN_PATH . '/admin/views/-wbte-newsletter-sidebar.php';
+		}
+
+		/**
+		 * AJAX handler to hide newsletter banner permanently
+		 * @since 2.2.8
+		 */
+		public function hide_wt_newsletter_banner() {
+			check_ajax_referer( 'wt_smart_coupons_admin_nonce', '_wpnonce' );
+			
+			if ( ! Wt_Smart_Coupon_Security_Helper::check_role_access( 'smart_coupons' ) ) {
+				wp_send_json_error( __( 'Access denied', 'wt-smart-coupons-for-woocommerce' ) );
+			}
+			
+			update_option('wt_newsletter_banner_hidden', true);
+			
+			wp_send_json_success( __( 'Newsletter subscription successful', 'wt-smart-coupons-for-woocommerce' ) );
+		}
+
 	}
 }
