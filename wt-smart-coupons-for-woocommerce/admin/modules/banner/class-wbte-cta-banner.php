@@ -57,15 +57,6 @@ if ( ! class_exists( 'Wbte_Cta_Banner' ) ) {
 			if ( ! $order instanceof WC_Order ) {
 				return;
 			}
-			$plugin_start = absint( get_option( 'wt_smart_coupon_start_date', time() ) );
-			$date_created = is_callable( array( $order, 'get_date_created' ) ) ? $order->get_date_created() : null;
-			if ( ! $date_created ) {
-				return;
-			}
-			$order_ts = $date_created->getTimestamp();
-			if ( $order_ts < $plugin_start ) {
-				return;
-			}
 			if ( 'completed' === $new_status ) {
 				$codes = is_callable( array( $order, 'get_coupon_codes' ) ) ? $order->get_coupon_codes() : array();
 				if ( ! empty( $codes ) ) {
@@ -106,11 +97,6 @@ if ( ! class_exists( 'Wbte_Cta_Banner' ) ) {
 				$order = wc_get_order( $order_id );
 			}
 			if ( ! $order || 'completed' !== $order->get_status() ) {
-				return;
-			}
-			$plugin_start = absint( get_option( 'wt_smart_coupon_start_date', time() ) );
-			$date_created = is_callable( array( $order, 'get_date_created' ) ) ? $order->get_date_created() : null;
-			if ( ! $date_created || $date_created->getTimestamp() < $plugin_start ) {
 				return;
 			}
 			$order_ids = (array) get_option( 'wbte_sc_order_milestone_order_ids', array() );
@@ -456,56 +442,11 @@ if ( ! class_exists( 'Wbte_Cta_Banner' ) ) {
 		 */
 		private static function order_milestone_banner() {
 			$hidden_banners = get_option( 'wbte_sc_hidden_promotion_banners', array() );
-			if ( in_array( 'sc_order_page_milestone', $hidden_banners, true ) || ! function_exists( 'wc_get_orders' ) ) {
+			if ( in_array( 'sc_order_page_milestone', $hidden_banners, true ) ) {
 				return false;
 			}
 
-			$stored_total = get_option( 'wbte_sc_order_milestone_total', null );
-
-			if ( null !== $stored_total && is_numeric( $stored_total ) ) {
-				$total_sales = (float) $stored_total;
-			} else {
-				$total_sales  = 0.0;
-				$plugin_start = absint( get_option( 'wt_smart_coupon_start_date', time() ) );
-				$cursor_date  = gmdate( 'Y-m-d H:i:s', $plugin_start );
-				$batch_size   = 200;
-				$first_batch  = true;
-				$order_ids    = array();
-
-				do {
-					$date_arg = $first_batch ? '>=' . $cursor_date : '>' . $cursor_date;
-					$orders   = wc_get_orders(
-						array(
-							'status'       => array( 'wc-completed' ),
-							'date_created' => $date_arg,
-							'limit'        => $batch_size,
-							'orderby'      => 'date_created',
-							'order'        => 'ASC',
-							'return'       => 'objects',
-						)
-					);
-
-					foreach ( $orders as $order ) {
-						$codes = is_callable( array( $order, 'get_coupon_codes' ) ) ? $order->get_coupon_codes() : array();
-						if ( ! empty( $codes ) ) {
-							$total_sales += (float) $order->get_total();
-							$order_ids[] = $order->get_id();
-						}
-					}
-
-					if ( ! empty( $orders ) ) {
-						$first_batch  = false;
-						$last_order   = end( $orders );
-						$date_created = is_callable( array( $last_order, 'get_date_created' ) ) ? $last_order->get_date_created() : null;
-						if ( $date_created ) {
-							$cursor_date = $date_created->format( 'Y-m-d H:i:s' );
-						}
-					}
-				} while ( count( $orders ) === $batch_size );
-
-				update_option( 'wbte_sc_order_milestone_total', $total_sales );
-				update_option( 'wbte_sc_order_milestone_order_ids', array_unique( array_map( 'intval', $order_ids ) ) );
-			}
+			$total_sales = (float) get_option( 'wbte_sc_order_milestone_total', 0 );
 
 			if ( $total_sales < 1000 ) {
 				return false;

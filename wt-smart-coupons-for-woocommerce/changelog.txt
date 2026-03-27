@@ -1,6 +1,9 @@
 
 == Changelog ==
 
+= 2.2.9 - 2026-03-27 =
+* [Fix] Memory exhaust issue on order page.
+
 = 2.2.8 - 2026-03-25 =
 * [Add] Reset button in Debug screen to clean up invalid coupons in the lookup table.
 * [Fix] Incorrect order totals in block checkout when a percentage discount was used together with BOGO.
