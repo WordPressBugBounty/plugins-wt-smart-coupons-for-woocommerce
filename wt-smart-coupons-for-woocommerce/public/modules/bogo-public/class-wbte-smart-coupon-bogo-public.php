@@ -1659,6 +1659,8 @@ class Wbte_Smart_Coupon_Bogo_Public extends Wbte_Smart_Coupon_Bogo_Common {
 	 *  Error/Validation messages when giveaway products are adding to cart.
 	 *
 	 *  @since 2.0.0
+	 *  @since 2.3.0 Blocks adding a non-bogo product to cart on http request.
+	 *
 	 *  @param string $reason reason string.
 	 *  @param array  $extra_args extra arguments to process the message.
 	 *  @param string $coupon_type coupon type.
@@ -1668,6 +1670,7 @@ class Wbte_Smart_Coupon_Bogo_Public extends Wbte_Smart_Coupon_Bogo_Common {
 		switch ( $reason ) {
 			case 'product_id_missing':
 			case 'coupon_id_missing':
+			case 'invalid_giveaway_request':
 				$out = __( "Oops! It seems like you've made an invalid request. Please try again.", 'wt-smart-coupons-for-woocommerce' );
 				break;
 			case 'product_not_added':
@@ -2356,9 +2359,10 @@ class Wbte_Smart_Coupon_Bogo_Public extends Wbte_Smart_Coupon_Bogo_Common {
 	}
 
 	/**
-	 * Ajax function to add multiple free products to cart
+	 * Ajax handler that validates and adds the customer's chosen free products to the cart for applied BOGO coupons.
 	 *
 	 * @since 2.2.8
+	 * @since 2.3.0 Blocks adding a non-bogo product to cart on http request.
 	 */
 	public function add_choosed_free_products_to_cart() {
 		check_ajax_referer( 'wt_smart_coupons_public', '_wpnonce' );
@@ -2366,17 +2370,15 @@ class Wbte_Smart_Coupon_Bogo_Public extends Wbte_Smart_Coupon_Bogo_Common {
 		$products = isset( $_POST['products'] ) ? wc_clean( wp_unslash( $_POST['products'] ) ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
 		if ( empty( $products ) ) {
-			wp_send_json(
-				array(
-					'success' => false,
-					'message' => __( 'No products selected.', 'wt-smart-coupons-for-woocommerce' ),
-				)
-			);
-			return;
+			wp_send_json_error( array( 'message' => __( 'No products selected.', 'wt-smart-coupons-for-woocommerce' ) ) );
 		}
 
 		$added_to_cart            = false;
 		$free_products_coupon_ids = array();
+		$coupon_eligibility_cache = array();
+		$coupon_used_qty          = array();
+		$product_used_qty         = array();
+		$validated                = array();
 
 		foreach ( $products as $product_data ) {
 			$product_id   = isset( $product_data['product_id'] ) ? absint( $product_data['product_id'] ) : 0;
@@ -2384,37 +2386,96 @@ class Wbte_Smart_Coupon_Bogo_Public extends Wbte_Smart_Coupon_Bogo_Common {
 			$quantity     = isset( $product_data['free_qty'] ) ? absint( $product_data['free_qty'] ) : 0;
 			$coupon_id    = isset( $product_data['coupon_id'] ) ? absint( $product_data['coupon_id'] ) : 0;
 
-			$coupon_code = wc_get_coupon_code_by_id( $coupon_id );
-
-			$variation_attributes = isset( $product_data['attributes'] ) ? Wt_Smart_Coupon_Security_Helper::sanitize_item( $product_data['attributes'], 'text_arr' ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Already sanitized with helper function.
-
 			if ( 0 === $coupon_id ) {
 				self::set_add_to_cart_messages( 'coupon_id_missing' );
-			} elseif ( 0 === $product_id ) {
+				wp_send_json_error();
+			}
+			if ( 0 === $product_id ) {
 				self::set_add_to_cart_messages( 'product_id_missing', array( 'coupon_id' => $coupon_id ) );
-			} else {
-				try {
-					$args = array(
-						'variation_attributes' => $variation_attributes,
-						'variation_id'         => $variation_id,
-					);
+				wp_send_json_error();
+			}
+			if ( 0 === $quantity ) {
+				continue;
+			}
 
-					$item_id       = $variation_id > 0 ? $variation_id : $product_id;
-					$cart_item_key = $this->add_item_to_cart( $item_id, $quantity, $coupon_code, $args );
+			if ( ! array_key_exists( $coupon_id, $coupon_eligibility_cache ) ) {
+				$coupon_eligibility_cache[ $coupon_id ] = self::get_giveaway_eligibility_map( $coupon_id );
+			}
+			$eligibility = $coupon_eligibility_cache[ $coupon_id ];
 
-					if ( $cart_item_key ) {
-						$added_to_cart = true;
-						if ( ! in_array( $coupon_id, $free_products_coupon_ids, true ) ) {
-							$free_products_coupon_ids[] = $coupon_id;
-						}
-					} else {
-						self::set_add_to_cart_messages( 'product_not_added' );
-						wp_die();
-					}
-				} catch ( Exception $e ) {
-					self::set_add_to_cart_messages( 'exception_error', array( 'err_msg' => $e->getMessage() ) );
-					wp_die();
+			if ( null === $eligibility ) {
+				self::set_add_to_cart_messages( 'invalid_giveaway_request' );
+				wp_send_json_error();
+			}
+
+			$item_id   = $variation_id > 0 ? $variation_id : $product_id;
+			$lookup_id = isset( $eligibility['products'][ $item_id ] ) ? $item_id : ( ( $variation_id > 0 && isset( $eligibility['products'][ $product_id ] ) ) ? $product_id : 0 );
+
+			if ( 0 === $lookup_id || $quantity > (int) $eligibility['products'][ $lookup_id ] ) {
+				self::set_add_to_cart_messages( 'invalid_giveaway_request' );
+				wp_send_json_error();
+			}
+
+			if ( $variation_id > 0 && $lookup_id === $product_id ) {
+				$variation_obj = wc_get_product( $variation_id );
+				if ( ! $variation_obj || ! $variation_obj->is_type( 'variation' ) || (int) $variation_obj->get_parent_id() !== $product_id ) {
+					self::set_add_to_cart_messages( 'invalid_giveaway_request' );
+					wp_send_json_error();
 				}
+			}
+
+			// Accumulate per-product qty across all entries to prevent split-entry bypass.
+			$product_used_qty[ $lookup_id ] = ( isset( $product_used_qty[ $lookup_id ] ) ? $product_used_qty[ $lookup_id ] : 0 ) + $quantity;
+			if ( $product_used_qty[ $lookup_id ] > (int) $eligibility['products'][ $lookup_id ] ) {
+				self::set_add_to_cart_messages( 'invalid_giveaway_request' );
+				wp_send_json_error();
+			}
+
+			$coupon_used_qty[ $coupon_id ] = ( isset( $coupon_used_qty[ $coupon_id ] ) ? $coupon_used_qty[ $coupon_id ] : 0 ) + $quantity;
+			if ( $coupon_used_qty[ $coupon_id ] > (int) $eligibility['total_maximum_quantity'] ) {
+				self::set_add_to_cart_messages( 'invalid_giveaway_request' );
+				wp_send_json_error();
+			}
+
+			$validated[] = array(
+				'product_id'   => $product_id,
+				'variation_id' => $variation_id,
+				'item_id'      => $item_id,
+				'quantity'     => $quantity,
+				'coupon_id'    => $coupon_id,
+				'raw'          => $product_data,
+			);
+		}
+
+		if ( empty( $validated ) ) {
+			wp_send_json_error( array( 'message' => __( 'No valid products to add.', 'wt-smart-coupons-for-woocommerce' ) ) );
+		}
+
+		foreach ( $validated as $entry ) {
+			$coupon_code = wc_get_coupon_code_by_id( $entry['coupon_id'] );
+
+			$variation_attributes = isset( $entry['raw']['attributes'] ) ? Wt_Smart_Coupon_Security_Helper::sanitize_item( $entry['raw']['attributes'], 'text_arr' ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Already sanitized with helper function.
+
+			try {
+				$args = array(
+					'variation_attributes' => $variation_attributes,
+					'variation_id'         => $entry['variation_id'],
+				);
+
+				$cart_item_key = $this->add_item_to_cart( $entry['item_id'], $entry['quantity'], $coupon_code, $args );
+
+				if ( $cart_item_key ) {
+					$added_to_cart = true;
+					if ( ! in_array( $entry['coupon_id'], $free_products_coupon_ids, true ) ) {
+						$free_products_coupon_ids[] = $entry['coupon_id'];
+					}
+				} else {
+					self::set_add_to_cart_messages( 'product_not_added' );
+					wp_send_json_error();
+				}
+			} catch ( Exception $e ) {
+				self::set_add_to_cart_messages( 'exception_error', array( 'err_msg' => $e->getMessage() ) );
+				wp_send_json_error();
 			}
 		}
 
@@ -2422,24 +2483,83 @@ class Wbte_Smart_Coupon_Bogo_Public extends Wbte_Smart_Coupon_Bogo_Common {
 			foreach ( $free_products_coupon_ids as $coupon_id ) {
 				self::show_product_added_msg( $coupon_id );
 			}
-			echo true;
-			wp_die();
+			wp_send_json_success();
 		} else {
-			$notices = wc_get_notices( 'error' );
-			if ( 0 < count( $notices ) ) {
-				$last_error = end( $notices );
-				if ( isset( $last_error['notice'] ) ) {
-					echo '<ul class="woocommerce-error" role="alert">
-							<li>' . wp_kses_post( $last_error['notice'] ) . '</li>
-					</ul>';
-					wc_clear_notices(); /* to avoid notice printing on page refresh */
-					wp_die();
-				}
-			} else {
-				echo false;
-				wp_die();
-			}
+			wp_send_json_error();
 		}
+	}
+
+	/**
+	 * Returns the allowed giveaway products and per-product/total quantity caps for an applied BOGO coupon, or null if not eligible.
+	 *
+	 * @since 2.3.0
+	 * @param int $coupon_id Coupon ID.
+	 * @return array|null    [ 'products' => [ id => max_qty ], 'total_maximum_quantity' => int ] or null.
+	 */
+	private static function get_giveaway_eligibility_map( $coupon_id ) {
+		if ( $coupon_id <= 0 || is_null( WC()->cart ) ) {
+			return null;
+		}
+
+		$coupon_code = wc_get_coupon_code_by_id( $coupon_id );
+		if ( ! $coupon_code ) {
+			return null;
+		}
+
+		$applied = array_map( 'wc_format_coupon_code', WC()->cart->get_applied_coupons() );
+		if ( ! in_array( wc_format_coupon_code( $coupon_code ), $applied, true ) ) {
+			return null;
+		}
+
+		if ( ! self::is_bogo( $coupon_id ) ) {
+			return null;
+		}
+
+		$bogo_customer_gets = self::get_coupon_meta_value( $coupon_id, 'wbte_sc_bogo_customer_gets' );
+		if ( 'specific_product' !== $bogo_customer_gets ) {
+			return null;
+		}
+
+		$bogo_eligible_qty = (int) self::get_bogo_eligible_qty( $coupon_id );
+		if ( $bogo_eligible_qty <= 0 ) {
+			return null;
+		}
+
+		$bogo_product_condition = self::get_coupon_meta_value( $coupon_id, 'wbte_sc_bogo_gets_product_condition' );
+		$bogo_products          = self::get_giveaway_products( $coupon_id );
+		$bogo_products          = self::unset_no_discount_product_from_free_products( $bogo_products, $coupon_id );
+
+		$can_change_qty = self::is_user_can_change_free_product_qty( $coupon_id );
+
+		if ( $can_change_qty ) {
+			$per_product_quantity = $bogo_eligible_qty;
+			if ( 'all' === $bogo_product_condition ) {
+				$per_product_quantity = $bogo_eligible_qty * count( $bogo_products );
+			}
+			$per_product_quantity = (int) self::alter_giveaway_eligible_qty_based_on_cart( $coupon_code, $per_product_quantity );
+			if ( $per_product_quantity <= 0 ) {
+				return null;
+			}
+			$total_maximum_quantity = $per_product_quantity;
+		} else {
+			$bogo_products          = self::alter_free_products_display_arr( $coupon_code, $bogo_products, $bogo_customer_gets, array( 'product_condition' => $bogo_product_condition ) );
+			$per_product_quantity   = $bogo_eligible_qty;
+			$total_maximum_quantity = ( 'all' === $bogo_product_condition ) ? $bogo_eligible_qty * count( $bogo_products ) : $bogo_eligible_qty;
+		}
+
+		$product_qty_map = array();
+		foreach ( $bogo_products as $product_id ) {
+			$product_qty_map[ (int) $product_id ] = $per_product_quantity;
+		}
+
+		if ( empty( $product_qty_map ) || $total_maximum_quantity <= 0 ) {
+			return null;
+		}
+
+		return array(
+			'products'               => $product_qty_map,
+			'total_maximum_quantity' => (int) $total_maximum_quantity,
+		);
 	}
 }
 Wbte_Smart_Coupon_Bogo_Public::get_instance();

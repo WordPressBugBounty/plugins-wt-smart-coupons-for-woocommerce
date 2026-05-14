@@ -1,6 +1,11 @@
 
 == Changelog ==
 
+= 2.3.0 - 2026-05-14 =
+* [Fix] Vulnerability fix for Broken Access Control in Patchstack.
+* [Compatibility] Tested OK with WooCommerce 10.7
+* [Compatibility] Tested OK with Wordpress 7
+
 = 2.2.9 - 2026-03-27 =
 * [Fix] Memory exhaust issue on order page.
 

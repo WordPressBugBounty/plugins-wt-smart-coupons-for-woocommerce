@@ -383,7 +383,7 @@ if ( ! class_exists( 'Wbte_Cta_Banner' ) ) {
 				),
 				'content'            => sprintf(
 					// translators: 1: a tag opening, 2: a tag closing.
-					__( 'With the %1$s Smart Coupons %2$s plugin, you can create Buy One Get One offers and advanced coupons that boost sales during BFCM.', 'wt-smart-coupons-for-woocommerce' ),
+					__( 'With the %1$s Smart Coupons %2$s plugin, you can create advanced coupons and Buy One Get One Offers for your WooCommerce store.', 'wt-smart-coupons-for-woocommerce' ),
 					'<a href="' . esc_url( $campaign_url ) . '" target="_blank"><b>',
 					'</b></a>'
 				),
@@ -442,10 +442,11 @@ if ( ! class_exists( 'Wbte_Cta_Banner' ) ) {
 		 */
 		private static function order_milestone_banner() {
 			$hidden_banners = get_option( 'wbte_sc_hidden_promotion_banners', array() );
-			if ( in_array( 'sc_order_page_milestone', $hidden_banners, true ) ) {
+			if ( defined( 'WBTE_MILESTONE_BANNER' ) || in_array( 'sc_order_page_milestone', $hidden_banners, true ) ) {
 				return false;
 			}
 
+			define( 'WBTE_MILESTONE_BANNER', true );
 			$total_sales = (float) get_option( 'wbte_sc_order_milestone_total', 0 );
 
 			if ( $total_sales < 1000 ) {

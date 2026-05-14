@@ -121,7 +121,7 @@ if ( ! class_exists( 'Wt_Smart_Coupon' ) ) {
 			if ( defined( 'WEBTOFFEE_SMARTCOUPON_VERSION' ) ) {
 				$this->version = WEBTOFFEE_SMARTCOUPON_VERSION;
 			} else {
-				$this->version = '2.2.9';
+				$this->version = '2.3.0';
 			}
 			$this->plugin_name = WT_SC_PLUGIN_NAME;
 

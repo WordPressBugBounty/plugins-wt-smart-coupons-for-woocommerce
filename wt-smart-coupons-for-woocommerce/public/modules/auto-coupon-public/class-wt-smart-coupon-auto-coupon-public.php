@@ -209,6 +209,7 @@ class Wt_Smart_Coupon_Auto_Coupon_Public extends Wt_Smart_Coupon_Auto_Coupon_Com
 		}
 
 		$coupon_ids = $this->prepare_auto_coupons_list( $offset, $auto_coupon_check_count );
+		$coupon_ids = array_map( 'intval', $coupon_ids ); // Convert to integers so each coupon loads by ID.
 		$discounts  = new WC_Discounts( $cart );
 		$coupon_arr = array();
 
@@ -726,6 +727,18 @@ class Wt_Smart_Coupon_Auto_Coupon_Public extends Wt_Smart_Coupon_Auto_Coupon_Com
 	public function maybe_auto_apply_on_wp_loaded() {
 		if ( ( isset( $_GET['wc-ajax'] ) && 'update_order_review' === sanitize_text_field( wp_unslash( $_GET['wc-ajax'] ) ) ) || isset( $_REQUEST['update_cart'] ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			return; // this is to prevent caching of auto-apply list before processing the updated checkout values. Now auto apply list only prepared after checkout options are prepared.
+		}
+
+		/**
+		 * Filter to restrict auto-apply coupon execution to cart and checkout pages only.
+		 * @since 2.3.0
+		 * @param bool $restrict Default false (runs on all pages).
+		 * @return bool
+		 */
+		$restrict_to_cart_checkout = apply_filters( 'wt_sc_restrict_auto_apply_to_cart_checkout', false ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+
+		if ( $restrict_to_cart_checkout && ! is_cart() && ! is_checkout()  ) {
+			return;
 		}
 
 		$this->auto_apply_coupons();

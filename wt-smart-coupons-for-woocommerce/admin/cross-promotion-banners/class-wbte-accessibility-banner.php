@@ -259,7 +259,7 @@ if ( ! class_exists( 'Wbte_Accessibility_Banner' ) ) {
 							<?php
 							printf(
 								/* translators: 1: a tag opening, 2: a tag closing */
-								esc_html__( 'Make your site inclusive with %1$s AccessYes accessibility widget. %2$s', 'wt-smart-coupons-for-woocommerce' ),
+								esc_html__( 'Make your site inclusive with %1$s AccessiYes accessibility widget. %2$s', 'wt-smart-coupons-for-woocommerce' ),
 								'<a href="' . esc_url( $plugin_modal_link ) . '" class="thickbox" style="text-decoration: none;">',
 								'</a>'
 							);

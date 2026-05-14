@@ -145,7 +145,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 										<?php
 									} else {
 										?>
-										<p class="wt_sc_product_out_of_stock stock out-of-stock"><?php echo wp_kses_post( self::get_customized_text( 'non_purchasable_giveaway_varaition' ) ); ?></p>
+										<p class="wt_sc_product_out_of_stock stock out-of-stock"><?php esc_html_e( 'Sorry! this product is not available for giveaway.', 'wt-smart-coupons-for-woocommerce' ); ?></p>
 										<?php
 									}
 									?>
