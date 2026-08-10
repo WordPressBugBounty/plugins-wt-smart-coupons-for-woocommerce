@@ -1,6 +1,10 @@
 
 == Changelog ==
 
+= 2.3.1 - 2026-08-10 =
+* [Fix] PHP warning: when a coupon has country restrictions.
+* [Compatibility] Tested OK with WooCommerce 11.0
+
 = 2.3.0 - 2026-05-14 =
 * [Fix] Vulnerability fix for Broken Access Control in Patchstack.
 * [Compatibility] Tested OK with WooCommerce 10.7

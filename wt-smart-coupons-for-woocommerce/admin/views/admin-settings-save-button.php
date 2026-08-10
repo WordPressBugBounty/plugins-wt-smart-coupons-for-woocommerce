@@ -10,11 +10,11 @@
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
-$wbte_settings_button_title = isset( $wbte_settings_button_title ) && '' !== $wbte_settings_button_title ? $wbte_settings_button_title : __( 'Save settings', 'wt-smart-coupons-for-woocommerce' );
+$wbte_settings_button_title = isset( $wbte_settings_button_title ) && '' !== $wbte_settings_button_title ? $wbte_settings_button_title : __( 'Save settings', 'wt-smart-coupons-for-woocommerce' );  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 
 // left and right HTML for settings footer.
-$wbte_settings_footer_left  = isset( $wbte_settings_footer_left ) ? $wbte_settings_footer_left : '';
-$wbte_settings_footer_right = isset( $wbte_settings_footer_right ) ? $wbte_settings_footer_right : '';
+$wbte_settings_footer_left  = isset( $wbte_settings_footer_left ) ? $wbte_settings_footer_left : '';  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+$wbte_settings_footer_right = isset( $wbte_settings_footer_right ) ? $wbte_settings_footer_right : '';  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 ?>
 <div style="clear: both;"></div>
 <div class="bottom">

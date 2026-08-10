@@ -121,7 +121,7 @@ if ( ! class_exists( 'Wt_Smart_Coupon' ) ) {
 			if ( defined( 'WEBTOFFEE_SMARTCOUPON_VERSION' ) ) {
 				$this->version = WEBTOFFEE_SMARTCOUPON_VERSION;
 			} else {
-				$this->version = '2.3.0';
+				$this->version = '2.3.1';
 			}
 			$this->plugin_name = WT_SC_PLUGIN_NAME;
 
@@ -225,11 +225,12 @@ if ( ! class_exists( 'Wt_Smart_Coupon' ) ) {
 			require_once plugin_dir_path( __DIR__ ) . 'admin/modules/banner/class-wt-bfcm-twenty-twenty-five.php';
 
 			/**
-			 * EMA promotion banner added in Analytics page
+			 * Smart Coupons promotion banner added in Analytics page
 			 *
 			 * @since 2.2.5
+			 * @since 2.3.1 Renamed from class-wbte-ema-banner.php.
 			 */
-			require_once plugin_dir_path( __DIR__ ) . 'admin/modules/banner/class-wbte-ema-banner.php';
+			require_once plugin_dir_path( __DIR__ ) . 'admin/modules/banner/class-wbte-smart-coupon-analytics-banner.php';
 
 			/**
 			 * CTA banner added in coupons page

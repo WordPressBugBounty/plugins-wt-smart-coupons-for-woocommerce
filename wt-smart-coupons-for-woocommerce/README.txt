@@ -1,12 +1,12 @@
 === Smart Coupons For WooCommerce Coupons ===
 Contributors: WebToffee
-Version: 2.2.9
-Donate link:https://www.webtoffee.com/plugins/
+Version: 2.3.1
+Donate link:https://www.webtoffee.com/product/smart-coupons-for-woocommerce/
 Tags: WooCommerce coupons, WooCommerce discounts, BOGO, smart coupons, advanced coupons
 Requires at least: 5.3
-Tested up to: 7
+Tested up to: 7.0
 Requires PHP: 5.6
-Stable tag: 2.3.0
+Stable tag: 2.3.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -19,6 +19,8 @@ Smart Coupons for WooCommerce is an advanced WooCommerce coupon plugin that give
 With this free WooCommerce coupon plugin, you can set up Buy One Get One (BOGO) offers, bulk and quantity-based discounts, auto-apply coupons, and WooCommerce discount rules tailored to your sales goals. Whether you’re running limited-time campaigns or ongoing promotional offers, everything can be managed from an all-in-one coupon plugin for WordPress.
 
 **See how the WooCommerce Smart Coupon plugin works: <a rel="nofollow" href="https://tastewp.com/new?pre-installed-plugin-slug=woocommerce&pre-installed-plugin-slug=wt-smart-coupons-for-woocommerce&redirect=admin.php%3Fpage%3Dwt-smart-coupon-for-woo&ni=true">Try out demo</a>** 
+
+Check out the premium version of [WebToffee Smart Coupons plugin](https://www.webtoffee.com/product/smart-coupons-for-woocommerce/).
 
 ### Key Features of WooCommerce Smart Coupons Plugin ###
 
@@ -36,7 +38,7 @@ With this free WooCommerce coupon plugin, you can set up Buy One Get One (BOGO) 
 
 * <strong>View WordPress discount codes from My-Account page</strong>: Make the WooCommerce discount coupons available in the user’s account so that they can view applicable coupons from My Account > My Coupon.
 
-* <strong>Categorize discount codes</strong>: Organize your WooCommerce discounts using coupon categories.
+* <strong>Categorize discount codes</strong>: Organize your WooCommerce discounts using coupon categories for easier coupon management.
 
 * <strong>Coupon customization</strong>: Customize coupon appearance with categorized coupon styling options for expired, used, and active coupons.
 
@@ -64,6 +66,12 @@ This free WooCommerce coupon plugin is the go-to coupon code plugin for setting 
 This BOGO coupon plugin includes separate settings for Buy X, Get Y offers, allowing you to configure how BOGO discounts apply. Besides these BOGO features, this BOGO coupon plugin lets you choose whether to apply the BOGO offer once or repeatedly, enabling tiered BOGO discounts like Buy 2, Get 1 Free, Buy 4, Get 2 Free, and more. The coupon is automatically applied when the cart meets the set BOGO coupon criteria.
 
 You can also customize BOGO offers to provide quantity-based discounts (e.g., Buy 2, Get 1 Free) or price-based and percentage discounts (e.g., Buy 1, Get $10 Off or Buy 2, Get 5% Off). This WooCommerce coupon plugin covers both use cases, making WooCommerce Smart Coupons a versatile WooCommerce discount codes plugin solution.
+
+### Set Up WooCommerce Discount Rules for Any Campaign ###
+
+Smart Coupons works as a complete discount rules plugin for WooCommerce, letting you define exactly when and how a discount applies. Build WooCommerce discount rules based on cart subtotal, product quantity, specific products or categories, and more.
+
+Combine multiple conditions to create precise offers, such as a 10% discount when the cart subtotal crosses a set amount, or a free product when a customer buys from a specific category. Since the discount rules are managed through coupons, you can keep every offer organized, scheduled, and easy to track from a single dashboard.
 
 ### WooCommerce Coupon Usage Restrictions ###
 Smart Coupons for WooCommerce lets you control exactly how your WooCommerce coupons are applied with advanced usage restrictions. Set minimum and maximum spend limits, allow individual use only, exclude sale items, and apply coupons based on specific products, categories, brands, quantities, or cart subtotal conditions. You can choose whether the discount works when any or all selected items are in the cart.
@@ -106,8 +114,7 @@ The following video explains the setup and workflow of the WooCommerce Smart Cou
 * Ability to impose coupon **usage restrictions on the basis of the country/location** precisely with shipping or billing address apart from the default restrictions.
 * Provision to **upload and import coupons** by simultaneously emailing them directly to the recipients.
 * Create and design **gift vouchers** of any amount range by associating a store credit product.
-* **Manage store credits** – create/purchase/transaction history/issue refunds/email.
-* Display applicable coupons on the **Cart** page. 
+* **Manage WooCommerce store credits** – create store credit, allow customers to purchase store credit, track transaction history, issue refunds as store credit, and email credits directly to customers.
 * Provision to use **combo coupons** for purchase.
 * **Coupon shortcodes** for displaying all available WooCommerce coupon codes for individual users. You may use the shortcode [wt_sc_user_available_coupons] for this purpose.
 
@@ -138,8 +145,8 @@ See our [Privacy Policy](https://www.webtoffee.com/privacy-policy/) and [Terms &
 
 = Minimum Requirements =
 
-WordPress version 3.3 or higher
-PHP version5.6 or higher
+WordPress version 5.3 or higher
+PHP version 5.6 or higher
 
 = Steps to install the plugin =
 
@@ -225,17 +232,15 @@ Yes. You can create coupons that get applied as per the purchase amount of a cus
 
 == Changelog ==
 
-= 2.3.0 2026-05-14 =
-* [Fix] Vulnerability fix for Broken Access Control in Patchstack.
-* [Compatibility] Tested OK with WooCommerce 10.7
-* [Compatibility] Tested OK with Wordpress 7
+= 2.3.1 2026-08-10 =
+* [Fix] PHP warning: when a coupon has country restrictions.
+* [Compatibility] Tested OK with WooCommerce 11.0
 
 
 [See changelog for all versions](https://plugins.svn.wordpress.org/wt-smart-coupons-for-woocommerce/trunk/changelog.txt)
 
 == Upgrade Notice ==
 
-= 2.3.0 2026-05-14 =
-* [Fix] Vulnerability fix for Broken Access Control in Patchstack.
-* [Compatibility] Tested OK with WooCommerce 10.7
-* [Compatibility] Tested OK with Wordpress 7
+= 2.3.1 2026-08-10 =
+* [Fix] PHP warning: when a coupon has country restrictions.
+* [Compatibility] Tested OK with WooCommerce 11.0

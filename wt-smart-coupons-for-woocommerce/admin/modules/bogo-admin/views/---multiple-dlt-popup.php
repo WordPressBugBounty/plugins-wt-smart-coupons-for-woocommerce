@@ -9,9 +9,9 @@
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
-$wbte_ds_obj = Wbte\Sc\Ds\Wbte_Ds::get_instance( WEBTOFFEE_SMARTCOUPON_VERSION );
+$wbte_ds_obj = Wbte\Sc\Ds\Wbte_Ds::get_instance( WEBTOFFEE_SMARTCOUPON_VERSION );  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 
-$wbte_values = isset( $this->variables ) && is_array( $this->variables ) ? $this->variables : array();
+$wbte_values = isset( $this->variables ) && is_array( $this->variables ) ? $this->variables : array();  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 ?>
 <p><?php echo esc_html( $wbte_values['popup_content'] ); ?></p>
 <div data-class="popup-footer" style="text-align: right;">

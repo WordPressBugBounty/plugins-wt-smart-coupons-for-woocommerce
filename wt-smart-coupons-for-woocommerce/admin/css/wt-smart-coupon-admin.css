@@ -547,10 +547,24 @@ fieldset.form-field._wt_need_check_location_in_field .wc-radios li { display:inl
 .wbte_sc_promotion_banner_content{ display: flex; align-items: center; justify-content: space-between; margin-top: 10px; }
 .wbte_sc_promotion_banner_secondary_btn{ height: 30px; background: #E3E3FF !important; color: #5454A5 !important; border: 1px solid #5454A5 !important; }
 .wbte_sc_promotion_banner_primary_btn{ height: 30px; background: #5454A5 !important; color: #fff !important; border: none !important; display: flex !important; align-items: center; justify-content: space-between; }
-.wbte_sc_promotion_banner_actions{ display: flex; align-items: center; margin-left: 10px; }
+.wbte_sc_promotion_banner_actions{ display: flex; align-items: center; margin-left: 10px; margin-bottom: 15px; }
 @media (max-width: 650px) {
   .wbte_sc_promotion_banner_content{ flex-direction: column; align-items: flex-start; }
   .wbte_sc_promotion_banner_actions{ width: 100%; margin-top: 10px; margin-left: 0px; }
+}
+
+/* Smart Coupons CTA banner on the coupons page - orange theme */
+.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page"]{ background: #FCEADA; border-left: solid 4px #E97900; padding: 7px 17px; }
+.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page"] .wbte_sc_promotion_banner_title{ display: inline-flex; align-items: center; gap: 6px; color: #E97900; font-size: 14px; font-weight: 600; margin-top: 12px;}
+.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page"] .wbte_sc_promotion_banner_content{ margin-top: 0px; }
+.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page"] .wbte_sc_promotion_banner_content p{ color: #1D2327; }
+.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page"] .wbte_sc_promotion_banner_primary_btn{ height: auto; padding: 0px 16px; gap: 11px; background: #E97900 !important; color: #fff !important; border: none !important; border-radius: 4px; font-weight: 500; box-shadow: none !important; text-shadow: none; }
+.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page"] .wbte_sc_promotion_banner_primary_btn:hover,
+.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page"] .wbte_sc_promotion_banner_primary_btn:focus{ background: #CC6A00 !important; color: #fff !important; }
+.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page"] .wbte_sc_promotion_banner_actions{ margin-right: 47px; }
+.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page"] .wbte_sc_promotion_banner_close_btn{ color: #1D2327; }
+@media (max-width: 650px) {
+  .wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page"] .wbte_sc_promotion_banner_actions{ margin-right: 0px; }
 }
 
 .wbte_sc_color_picker_container{ border: 1.5px solid #BDC1C6; border-radius: 6px; padding: 8px 10px; background: white; box-sizing: border-box; min-width: 110px; max-width: 120px; min-height: 38px; }

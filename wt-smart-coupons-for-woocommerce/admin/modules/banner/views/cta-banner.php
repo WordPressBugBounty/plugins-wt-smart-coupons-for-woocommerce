@@ -11,13 +11,13 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-$wbte_banner_id          = isset( $args['banner_id'] ) ? $args['banner_id'] : '';
-$wbte_banner_title       = isset( $args['title'] ) ? $args['title'] : '';
-$wbte_content            = isset( $args['content'] ) ? $args['content'] : '';
-$wbte_primary_btn_url    = isset( $args['primary_btn_url'] ) ? $args['primary_btn_url'] : '';
-$wbte_primary_btn_text   = isset( $args['primary_btn_text'] ) ? $args['primary_btn_text'] : '';
-$wbte_secondary_btn_url  = isset( $args['secondary_btn_url'] ) ? $args['secondary_btn_url'] : '';
-$wbte_secondary_btn_text = isset( $args['secondary_btn_text'] ) ? $args['secondary_btn_text'] : '';
+$wbte_banner_id          = isset( $args['banner_id'] ) ? $args['banner_id'] : '';  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+$wbte_banner_title       = isset( $args['title'] ) ? $args['title'] : '';  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+$wbte_content            = isset( $args['content'] ) ? $args['content'] : '';  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+$wbte_primary_btn_url    = isset( $args['primary_btn_url'] ) ? $args['primary_btn_url'] : '';  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+$wbte_primary_btn_text   = isset( $args['primary_btn_text'] ) ? $args['primary_btn_text'] : '';  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+$wbte_secondary_btn_url  = isset( $args['secondary_btn_url'] ) ? $args['secondary_btn_url'] : '';  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+$wbte_secondary_btn_text = isset( $args['secondary_btn_text'] ) ? $args['secondary_btn_text'] : '';  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 
 ?>
 

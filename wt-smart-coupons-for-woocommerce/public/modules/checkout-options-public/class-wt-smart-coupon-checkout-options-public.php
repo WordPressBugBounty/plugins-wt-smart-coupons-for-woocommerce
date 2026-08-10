@@ -178,6 +178,7 @@ class Wt_Smart_Coupon_Checkout_Options_Public extends Wt_Smart_Coupon_Checkout_O
 		 *  Validate billing/shipping country
 		 *
 		 *  @since 1.4.6
+		 *  @since 2.3.1 Guard against a null session customer.
 		 */
 		$available_locations = self::get_processed_coupon_meta_value( $coupon_id, '_wt_coupon_available_location' );
 
@@ -185,10 +186,13 @@ class Wt_Smart_Coupon_Checkout_Options_Public extends Wt_Smart_Coupon_Checkout_O
 
 			$_wt_need_check_location_in = self::get_coupon_meta_value( $coupon_id, '_wt_need_check_location_in' ); // check in billing address or shipping address.
 
+			$session_customer = WC()->session->customer;
+			$session_customer = is_array( $session_customer ) ? $session_customer : array();
+
 			if ( 'billing' === $_wt_need_check_location_in ) {
-				$choosed_location = WC()->session->customer['country']; // billing country.
+				$choosed_location = isset( $session_customer['country'] ) ? $session_customer['country'] : ''; // billing country.
 			} else {
-				$choosed_location = WC()->session->customer['shipping_country']; // shipping country.
+				$choosed_location = isset( $session_customer['shipping_country'] ) ? $session_customer['shipping_country'] : ''; // shipping country.
 			}
 
 			if ( ! in_array( $choosed_location, $available_locations, true ) ) {

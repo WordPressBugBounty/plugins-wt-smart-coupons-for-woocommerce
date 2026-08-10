@@ -354,7 +354,7 @@ if ( ! class_exists( 'Wt_Smart_Coupon_Admin' ) ) {
 				<tr>
 					<td style="padding:15px; background:#EFFFE8;">
 						<div style="width:100%; font-size:16px; font-weight:bold; color:#1E6200;"><span><img src="<?php echo esc_url( WT_SMARTCOUPON_MAIN_URL . 'admin/images/idea_bulb_green.svg' ); ?>" style="width:16px;"></span>&nbsp;<?php esc_html_e( 'Did You Know?', 'wt-smart-coupons-for-woocommerce' ); ?></div>
-						<div style="width:100%; font-size:14px; color:#555555;"><?php esc_html_e( 'You can create advanced Buy One Get One (BOGO) offers in WooCommerce.', 'wt-smart-coupons-for-woocommerce' ); ?></div>
+						<div style="width:100%; font-size:14px; color:#555555; margin-top:10px;"><?php esc_html_e( 'With WebToffee Smart Coupons, you can create BOGO Coupons, gift cards, giveaways, and store credits.', 'wt-smart-coupons-for-woocommerce' ); ?></div>
 					</td>
 					<td style="width:100px; vertical-align:middle; padding:15px 15px 15px 5px; background:#EFFFE8;">
 						<a style="background:#299A42; color:#fff; border:none;" class="button button-secondary" href="<?php echo esc_attr( 'https://www.webtoffee.com/product/smart-coupons-for-woocommerce/?utm_source=free_plugin_marketing_bottom&utm_medium=smart_coupons_basic&utm_campaign=smart_coupons&utm_content=' . WEBTOFFEE_SMARTCOUPON_VERSION ); ?>" target="_blank"><?php esc_html_e( 'Check out this plugin', 'wt-smart-coupons-for-woocommerce' ); ?> <span class="dashicons dashicons-arrow-right-alt" style="margin-top:8px;font-size:14px;"></span> </a>

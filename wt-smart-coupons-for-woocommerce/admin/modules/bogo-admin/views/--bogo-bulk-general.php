@@ -9,9 +9,9 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-$wbte_ds_obj = Wbte\Sc\Ds\Wbte_Ds::get_instance( WEBTOFFEE_SMARTCOUPON_VERSION );
+$wbte_ds_obj = Wbte\Sc\Ds\Wbte_Ds::get_instance( WEBTOFFEE_SMARTCOUPON_VERSION );  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 
-$wbte_today_date = gmdate( 'Y-m-d' );
+$wbte_today_date = gmdate( 'Y-m-d' );  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 ?>
 <style>
 	/* Bulk BOGO */
@@ -56,8 +56,8 @@ $wbte_today_date = gmdate( 'Y-m-d' );
 					</div>
 					<div class="wbte_sc_bogo_edit_custom_drop_down" style="z-index: 4;">
 						<?php
-						$wbte_discount_types = wc_get_coupon_types();
-						foreach ( $wbte_discount_types as $wbte_discount_type => $wbte_label ) {
+						$wbte_discount_types = wc_get_coupon_types();  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+						foreach ( $wbte_discount_types as $wbte_discount_type => $wbte_label ) {  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 							printf(
 								'<p data-val="%s" class="wbte_sc_bogo_edit_custom_drop_down_sub_btn">%s</p>',
 								esc_attr( $wbte_discount_type ),
@@ -165,14 +165,14 @@ $wbte_today_date = gmdate( 'Y-m-d' );
 				<?php
 				echo '<span style="margin-top: -1px;">' . wp_kses_post( wc_help_tip( __( 'Choose where shoppers will see the coupon offer', 'wt-smart-coupons-for-woocommerce' ) ) ) . '</span>';
 
-				$wbte_make_coupon_available = array(
+				$wbte_make_coupon_available = array(  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 					'my_account' => esc_html__( 'My Account', 'wt-smart-coupons-for-woocommerce' ),
 					'checkout'   => esc_html__( 'Checkout', 'wt-smart-coupons-for-woocommerce' ),
 					'cart'       => esc_html__( 'Cart', 'wt-smart-coupons-for-woocommerce' ),
 				);
 
 				echo '<div class="wbte_sc_bulk_bogo_display_checkbox_div">';
-				foreach ( $wbte_make_coupon_available as $wbte_display_slug => $wbte_display_title ) {
+				foreach ( $wbte_make_coupon_available as $wbte_display_slug => $wbte_display_title ) {  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 
 					echo $wbte_ds_obj->get_component( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						'checkbox normal',

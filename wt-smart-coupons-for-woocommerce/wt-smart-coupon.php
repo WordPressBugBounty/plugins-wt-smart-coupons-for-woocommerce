@@ -15,7 +15,7 @@
  * Plugin Name:       Smart Coupons For WooCommerce Coupons
  * Plugin URI:
  * Description:       Smart Coupons For WooCommerce Coupons plugin adds advanced coupon features to your store to strengthen your marketing efforts and boost sales.
- * Version:           2.3.0
+ * Version:           2.3.1
  * Author:            WebToffee
  * Author URI:        https://www.webtoffee.com/
  * License:           GPLv3
@@ -23,7 +23,7 @@
  * Text Domain:       wt-smart-coupons-for-woocommerce
  * Domain Path:       /languages
  * Requires PHP:      5.6
- * WC tested up to:   10.7
+ * WC tested up to:   11.0
  * Requires Plugins:  woocommerce
  */
 
@@ -98,7 +98,7 @@ add_action(
 );
 
 if ( ! defined( 'WT_SMARTCOUPON_BASIC_BASE_NAME' ) ) {
-	define( 'WT_SMARTCOUPON_BASIC_BASE_NAME', plugin_basename( __FILE__ ) );
+	define( 'WT_SMARTCOUPON_BASIC_BASE_NAME', plugin_basename( __FILE__ ) );  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
 }
 
 if ( ! function_exists( 'wbte_sc_basic_add_plugin_links_wt_smartcoupon' ) ) {
@@ -149,34 +149,34 @@ if ( /**
  */
 
 if ( ! defined( 'WEBTOFFEE_SMARTCOUPON_VERSION' ) ) {
-	define( 'WEBTOFFEE_SMARTCOUPON_VERSION', '2.3.0' );
+	define( 'WEBTOFFEE_SMARTCOUPON_VERSION', '2.3.1' );  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
 }
 
 if ( ! defined( 'WT_SMARTCOUPON_FILE_NAME' ) ) {
-	define( 'WT_SMARTCOUPON_FILE_NAME', __FILE__ );
+	define( 'WT_SMARTCOUPON_FILE_NAME', __FILE__ );  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
 }
 
 if ( ! defined( 'WT_SMARTCOUPON_BASE_NAME' ) ) {
-	define( 'WT_SMARTCOUPON_BASE_NAME', plugin_basename( __FILE__ ) );
+	define( 'WT_SMARTCOUPON_BASE_NAME', plugin_basename( __FILE__ ) );  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
 }
 
 if ( ! defined( 'WT_SMARTCOUPON_MAIN_PATH' ) ) {
-	define( 'WT_SMARTCOUPON_MAIN_PATH', plugin_dir_path( __FILE__ ) );
+	define( 'WT_SMARTCOUPON_MAIN_PATH', plugin_dir_path( __FILE__ ) );  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
 }
 
 if ( ! defined( 'WT_SMARTCOUPON_MAIN_URL' ) ) {
-	define( 'WT_SMARTCOUPON_MAIN_URL', plugin_dir_url( __FILE__ ) );
+	define( 'WT_SMARTCOUPON_MAIN_URL', plugin_dir_url( __FILE__ ) );  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
 }
 
 
 if ( ! defined( 'WT_SMARTCOUPON_INSTALLED_VERSION' ) ) {
-	define( 'WT_SMARTCOUPON_INSTALLED_VERSION', 'BASIC' );
+	define( 'WT_SMARTCOUPON_INSTALLED_VERSION', 'BASIC' );  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
 }
 
 if ( ! defined( 'WT_SC_PLUGIN_NAME' ) ) {
-	define( 'WT_SC_PLUGIN_NAME', 'wt-smart-coupon-for-woo' );
-	define( 'WT_SC_PLUGIN_ID', 'wt_smart_coupon_for_woo' );
-	define( 'WT_SC_SETTINGS_FIELD', WT_SC_PLUGIN_NAME ); /* option name to store settings */
+	define( 'WT_SC_PLUGIN_NAME', 'wt-smart-coupon-for-woo' );  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
+	define( 'WT_SC_PLUGIN_ID', 'wt_smart_coupon_for_woo' );  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
+	define( 'WT_SC_SETTINGS_FIELD', WT_SC_PLUGIN_NAME ); /* option name to store settings */  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
 }
 
 if ( ! defined( 'WBTE_SC_CROSS_PROMO_BANNER_VERSION' ) ) {
@@ -189,7 +189,7 @@ if ( ! function_exists( 'wbte_activate_wt_smart_coupon_basic' ) ) {
 	 * The code that runs during plugin activation.
 	 * This action is documented in includes/class-wt-smart-coupon-activator.php
 	 */
-	function wbte_activate_wt_smart_coupon_basic() {
+	function wbte_activate_wt_smart_coupon_basic() {  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 
 		require_once plugin_dir_path( __FILE__ ) . 'includes/class-wbte-smart-coupon-activator.php';
 		Wbte_Smart_Coupon_Activator::activate();
@@ -202,7 +202,7 @@ if ( ! function_exists( 'wbte_deactivate_wt_smart_coupon_basic' ) ) {
 	 * The code that runs during plugin deactivation.
 	 * This action is documented in includes/class-wt-smart-coupon-deactivator.php
 	 */
-	function wbte_deactivate_wt_smart_coupon_basic() {
+	function wbte_deactivate_wt_smart_coupon_basic() {  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 		require_once plugin_dir_path( __FILE__ ) . 'includes/class-wbte-smart-coupon-deactivator.php';
 		Wbte_Smart_Coupon_Deactivator::deactivate();
 	}
@@ -234,7 +234,7 @@ if ( ! function_exists( 'wbte_run_smart_coupon_basic' ) ) {
 	 *
 	 * @since    1.0.0
 	 */
-	function wbte_run_smart_coupon_basic() {
+	function wbte_run_smart_coupon_basic() {  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 		$plugin = Wt_Smart_Coupon::get_instance();
 		$plugin->run();
 	}

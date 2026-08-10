@@ -1,6 +1,6 @@
 <?php
 /**
- * EMA Banner
+ * Smart Coupons CTA banners
  *
  * @since 2.2.8
  *
@@ -18,6 +18,7 @@ if ( ! class_exists( 'Wbte_Cta_Banner' ) ) {
 	 *
 	 * @since 2.2.8
 	 */
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound
 	class Wbte_Cta_Banner {
 
 		/**
@@ -369,27 +370,28 @@ if ( ! class_exists( 'Wbte_Cta_Banner' ) ) {
 				return false;
 			}
 
-			define( 'WBTE_BFCM_SC_COUPONS_PAGE', true );
+			define( 'WBTE_BFCM_SC_COUPONS_PAGE', true );  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
 
 			$campaign_url = 'https://www.webtoffee.com/product/smart-coupons-for-woocommerce/?utm_source=free_plugin_add_coupon_menu&utm_medium=smart_coupon_basic&utm_campaign=smart_coupons';
 
 			$sc_pro_cta_args = array(
-				'banner_id'          => 'sc_cpns_page',
-				'title'              => sprintf(
+				'banner_id'        => 'sc_cpns_page',
+				'title'            => sprintf(
 					// translators: 1: image URL, 2: title.
-					'<img src="%1$s" style="width: 16px;" />&nbsp;<span >%2$s</span>',
-					esc_url( WT_SMARTCOUPON_MAIN_URL . 'admin/images/idea_bulb_purple.svg' ),
-					esc_html__( 'Did you know?', 'wt-smart-coupons-for-woocommerce' )
+					'<img src="%1$s" style="width: 14px;" /><span>%2$s</span>',
+					esc_url( WT_SMARTCOUPON_MAIN_URL . 'admin/images/idea_bulb_orange.svg' ),
+					esc_html__( 'Did you know', 'wt-smart-coupons-for-woocommerce' )
 				),
-				'content'            => sprintf(
-					// translators: 1: a tag opening, 2: a tag closing.
-					__( 'With the %1$s Smart Coupons %2$s plugin, you can create advanced coupons and Buy One Get One Offers for your WooCommerce store.', 'wt-smart-coupons-for-woocommerce' ),
-					'<a href="' . esc_url( $campaign_url ) . '" target="_blank"><b>',
-					'</b></a>'
+				'content'          => sprintf(
+					// translators: 1: b tag opening, 2: b tag closing, 3: b tag opening, 4: b tag closing.
+					__( 'WebToffee Smart Coupons lets you create advanced %1$sBOGO offers%2$s and %3$scondition-based coupons%4$s to boost sales and revenue.', 'wt-smart-coupons-for-woocommerce' ),
+					'<b>',
+					'</b>',
+					'<b>',
+					'</b>'
 				),
-				'primary_btn_url'    => esc_url( $campaign_url ),
-				'primary_btn_text'   => __( 'Get Plugin Now', 'wt-smart-coupons-for-woocommerce' ),
-				'secondary_btn_text' => __( 'Maybe later', 'wt-smart-coupons-for-woocommerce' ),
+				'primary_btn_url'  => esc_url( $campaign_url ),
+				'primary_btn_text' => __( 'Get Plugin Now', 'wt-smart-coupons-for-woocommerce' ),
 			);
 			return self::render_cta_banner( $sc_pro_cta_args );
 		}
@@ -446,7 +448,7 @@ if ( ! class_exists( 'Wbte_Cta_Banner' ) ) {
 				return false;
 			}
 
-			define( 'WBTE_MILESTONE_BANNER', true );
+			define( 'WBTE_MILESTONE_BANNER', true );  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
 			$total_sales = (float) get_option( 'wbte_sc_order_milestone_total', 0 );
 
 			if ( $total_sales < 1000 ) {

@@ -12,19 +12,19 @@
 defined( 'ABSPATH' ) || exit;
 
 if ( ! defined( 'WT_SC_FREE_BLOCKS_FILE' ) ) {
-	define( 'WT_SC_FREE_BLOCKS_FILE', __FILE__ );
+	define( 'WT_SC_FREE_BLOCKS_FILE', __FILE__ );  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
 }
 
 if ( ! defined( 'WT_SC_FREE_BLOCKS_MAIN_PATH' ) ) {
-	define( 'WT_SC_FREE_BLOCKS_MAIN_PATH', plugin_dir_path( __FILE__ ) );
+	define( 'WT_SC_FREE_BLOCKS_MAIN_PATH', plugin_dir_path( __FILE__ ) );  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
 }
 
 if ( ! defined( 'WT_SC_FREE_BLOCKS_URL' ) ) {
-	define( 'WT_SC_FREE_BLOCKS_URL', plugin_dir_url( __FILE__ ) );
+	define( 'WT_SC_FREE_BLOCKS_URL', plugin_dir_url( __FILE__ ) );  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
 }
 
 if ( ! defined( 'WT_SC_FREE_BLOCKS_VERSION' ) ) {
-	define( 'WT_SC_FREE_BLOCKS_VERSION', '1.0.0' );
+	define( 'WT_SC_FREE_BLOCKS_VERSION', '1.0.0' );  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
 }
 
 use Automattic\WooCommerce\StoreApi\Schemas\V1\CheckoutSchema;
@@ -40,6 +40,7 @@ if ( ! class_exists( 'Wt_Sc_Free_Blocks' ) ) {
 	 *
 	 * @package  Wt_Smart_Coupon
 	 */
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound
 	class Wt_Sc_Free_Blocks {
 
 		/**
