@@ -1,12 +1,12 @@
 === Smart Coupons For WooCommerce Coupons ===
 Contributors: WebToffee
-Version: 2.3.1
+Version: 2.3.2
 Donate link:https://www.webtoffee.com/product/smart-coupons-for-woocommerce/
 Tags: WooCommerce coupons, WooCommerce discounts, BOGO, smart coupons, advanced coupons
-Requires at least: 5.3
-Tested up to: 7.0
-Requires PHP: 5.6
-Stable tag: 2.3.1
+Requires at least: 6.0
+Tested up to: 7.1
+Requires PHP: 7.0
+Stable tag: 2.3.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -145,8 +145,8 @@ See our [Privacy Policy](https://www.webtoffee.com/privacy-policy/) and [Terms &
 
 = Minimum Requirements =
 
-WordPress version 5.3 or higher
-PHP version 5.6 or higher
+WordPress version 6.0 or higher
+PHP version 7.0 or higher
 
 = Steps to install the plugin =
 
@@ -160,7 +160,7 @@ Step 5: After installation, click “Activate” to activate the plugin.
 
 = Can I offer WooCommerce coupons based on payment methods? =
 
-Yes.
+Yes. With Smart Coupons for WooCommerce, you can restrict or apply discounts based on the payment method a customer selects at checkout.
 
 = Does it support coupon duplication? =
 
@@ -232,15 +232,15 @@ Yes. You can create coupons that get applied as per the purchase amount of a cus
 
 == Changelog ==
 
-= 2.3.1 2026-08-10 =
-* [Fix] PHP warning: when a coupon has country restrictions.
-* [Compatibility] Tested OK with WooCommerce 11.0
+= 2.3.2 - 2026-08-25 =
+* [Compatibility] Tested OK with WordPress 7.1
+* [Compatibility] Tested OK with WooCommerce 11.1
 
 
 [See changelog for all versions](https://plugins.svn.wordpress.org/wt-smart-coupons-for-woocommerce/trunk/changelog.txt)
 
 == Upgrade Notice ==
 
-= 2.3.1 2026-08-10 =
-* [Fix] PHP warning: when a coupon has country restrictions.
-* [Compatibility] Tested OK with WooCommerce 11.0
+= 2.3.2 - 2026-08-25 =
+* [Compatibility] Tested OK with WordPress 7.1
+* [Compatibility] Tested OK with WooCommerce 11.1

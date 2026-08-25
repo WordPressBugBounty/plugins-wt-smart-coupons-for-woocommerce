@@ -6,6 +6,8 @@
  * @package Wt_Smart_Coupon
  */
 
+defined( 'ABSPATH' ) || exit;
+
 if ( ! class_exists( 'Wt_Security_Helper' ) ) {
 
 	/**

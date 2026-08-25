@@ -204,13 +204,13 @@ class Wt_Smart_Coupon_Url_Coupon_Admin {
 		foreach ( $arr as $k => $v ) {
 			$out_arr[ $k ] = $v;
 			if ( 'wt-sc-layouts' === $k && 0 === $added ) {
-				$out_arr[ 'wt-sc-' . $this->module_base ] = __( 'URL coupon', 'wt-smart-coupons-for-woocommerce' );
+				$out_arr[ 'wt-sc-' . $this->module_base ] = __( 'URL Coupon', 'wt-smart-coupons-for-woocommerce' );
 				$added                                    = 1;
 			}
 		}
 
 		if ( 0 === $added ) {
-			$out_arr[ 'wt-sc-' . $this->module_base ] = __( 'URL coupon', 'wt-smart-coupons-for-woocommerce' );
+			$out_arr[ 'wt-sc-' . $this->module_base ] = __( 'URL Coupon', 'wt-smart-coupons-for-woocommerce' );
 		}
 
 		return $out_arr;

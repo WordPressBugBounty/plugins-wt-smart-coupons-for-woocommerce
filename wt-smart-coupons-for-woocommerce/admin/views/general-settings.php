@@ -24,11 +24,14 @@ $admin_img_path        = WT_SMARTCOUPON_MAIN_URL . 'admin/images/';
 <style>
 	#wpbody-content{ margin-top: 130px; }
 	#wpcontent{ background-color: #F1F8FE; }
+	/* Hide admin notices on this page. Child selectors keep tab content untouched. */
+	.wrap > .notice, .wrap > .updated, .wrap > .error{ display:none; }
+	#wpbody-content > .notice, #wpbody-content > .updated, #wpbody-content > .error{ display:none; }
 </style>
 <div class="wrap">
 <?php
 	$header_arr = array(
-		'wt-sc-help'      => __( 'Help guide', 'wt-smart-coupons-for-woocommerce' ),
+		'wt-sc-help'      => __( 'Help Guide', 'wt-smart-coupons-for-woocommerce' ),
 		'wbte-sc-develop' => __( 'Develop', 'wt-smart-coupons-for-woocommerce' ),
 	);
 

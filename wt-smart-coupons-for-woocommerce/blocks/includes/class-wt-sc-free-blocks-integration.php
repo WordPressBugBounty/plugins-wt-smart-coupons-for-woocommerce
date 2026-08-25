@@ -191,10 +191,22 @@ class Wt_Sc_Free_Blocks_Integration implements IntegrationInterface {
 						'version'      => $this->get_file_version( $script_asset_path ),
 					);
 
+				$dependencies = isset( $script_asset['dependencies'] ) && is_array( $script_asset['dependencies'] )
+					? $script_asset['dependencies']
+					: array();
+
+				/**
+				 * These scripts use the `wc.blocksCheckout` global, which the build cannot
+				 * detect as a dependency. Declare it so load order is guaranteed.
+				 *
+				 * @since 2.3.3
+				 */
+				$dependencies = array_values( array_unique( array_merge( $dependencies, array( 'wc-blocks-checkout' ) ) ) );
+
 				wp_register_script(
 					'wt-sc-blocks-' . $block_data['block_dir'] . '-frontend',
 					$script_url,
-					$script_asset['dependencies'],
+					$dependencies,
 					$script_asset['version'],
 					true
 				);

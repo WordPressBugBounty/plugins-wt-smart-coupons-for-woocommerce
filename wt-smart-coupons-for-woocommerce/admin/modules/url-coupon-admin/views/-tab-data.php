@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 <div class="wt_section_title">
-	<h3><?php esc_html_e( 'URL coupon', 'wt-smart-coupons-for-woocommerce' ); ?></h3>
+	<h3><?php esc_html_e( 'URL Coupon', 'wt-smart-coupons-for-woocommerce' ); ?></h3>
 	<p><?php esc_html_e( 'The plugin auto generates a unique URL for all the coupons created in your store. Visiting the URL associated with a coupon will automatically redirect the users to the cart page by applying the coupon. You can embed a URL in a button, and your customer can click the button to apply the coupon.', 'wt-smart-coupons-for-woocommerce' ); ?></p>
 	<p>
 		<b><?php esc_html_e( 'Prerequisite:', 'wt-smart-coupons-for-woocommerce' ); ?> </b><?php esc_html_e( 'Ensure that you have created a coupon with the required configuration to use it as a URL coupon.', 'wt-smart-coupons-for-woocommerce' ); ?>

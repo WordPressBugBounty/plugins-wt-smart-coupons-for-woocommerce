@@ -1,6 +1,10 @@
 
 == Changelog ==
 
+= 2.3.2 - 2026-08-25 =
+* [Compatibility] Tested OK with WordPress 7.1
+* [Compatibility] Tested OK with WooCommerce 11.1
+
 = 2.3.1 - 2026-08-10 =
 * [Fix] PHP warning: when a coupon has country restrictions.
 * [Compatibility] Tested OK with WooCommerce 11.0

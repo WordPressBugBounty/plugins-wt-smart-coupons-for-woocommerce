@@ -52,6 +52,11 @@ html[dir="rtl"] .wt_smcpn_settings_left{ float:right; }
 <script type="text/javascript">
 	function wt_sc_freevspro_sidebar_switch(href)
 	{
+		// An unmatched tab hash leaves every nav link inactive, so href arrives undefined.
+		if ( ! href ) {
+			return;
+		}
+
 		jQuery('.wt-sc-tab-container').attr('data-tab', href.replace('#', ''));
 		if ('#wt-sc-freevspro' === href ) {
 			jQuery('.wt_smart_coupon_pro_features, .wt_sc_newsletter_subscription_box').hide();

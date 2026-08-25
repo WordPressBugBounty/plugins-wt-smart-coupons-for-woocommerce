@@ -114,6 +114,12 @@ $wt_sc_os_categories = array(  // phpcs:ignore WordPress.NamingConventions.Prefi
 			'price_sale'   => '$194',
 			'savings'      => __( 'Save up to 30% off', 'wt-smart-coupons-for-woocommerce' ),
 			'illustration' => 'promotion-bundle.png',
+			// One entry per pill above. The bundle is dropped only once the store runs all three.
+			'pro_plugin'   => array(
+				'wt-smart-coupon-pro/wt-smart-coupon-pro.php',
+				'wt-woocommerce-product-recommendations/wt-woocommerce-product-recommendations.php',
+				'wt-woocommerce-gift-cards/wt-woocommerce-gift-cards.php',
+			),
 		),
 		'standalone' => array(
 			'name'       => __( 'ECommerce Marketing Automation App', 'wt-smart-coupons-for-woocommerce' ),
@@ -143,7 +149,7 @@ $wt_sc_os_categories = array(  // phpcs:ignore WordPress.NamingConventions.Prefi
 			array(
 				'name'       => __( 'EU Order Withdrawal Button Plugin for WooCommerce', 'wt-smart-coupons-for-woocommerce' ),
 				'icon'       => 'eu-withdrawal-plugin.svg',
-				'image'      => 'eu-withdrawal-illustration.svg',
+				'image'      => 'eu-withdrawal-illustration.png',
 				'panel_bg'   => '#D6EAFB',
 				'image_fit'  => 'contain',
 				'desc'       => '',
@@ -385,6 +391,14 @@ $wt_sc_os_categories = array(  // phpcs:ignore WordPress.NamingConventions.Prefi
 			'price_sale'   => '$179',
 			'savings'      => __( 'Save up to 30% off', 'wt-smart-coupons-for-woocommerce' ),
 			'illustration' => 'invoice-bundle.png',
+			// The five products behind the eight pills above. Dropped only once the store runs all five.
+			'pro_plugin'   => array(
+				'wt-woocommerce-invoice-addon/wt-woocommerce-invoice-addon.php',
+				'wt-woocommerce-shippinglabel-addon/wt-woocommerce-shippinglabel-addon.php',
+				'wt-woocommerce-addresslabel-addon/wt-woocommerce-addresslabel-addon.php',
+				'wt-woocommerce-picklist-addon/wt-woocommerce-picklist-addon.php',
+				'wt-woocommerce-proforma-addon/wt-woocommerce-proforma-addon.php',
+			),
 		),
 		'standalone' => array(),
 	),
@@ -401,6 +415,12 @@ foreach ( $wt_sc_os_categories as $wt_sc_os_cat_id => $wt_sc_os_cat ) {  // phpc
 	$wt_sc_os_categories[ $wt_sc_os_cat_id ]['plugins'] = array_values(  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 		array_filter( $wt_sc_os_cat['plugins'], array( 'Wt_Smart_Coupon_Other_Solutions', 'is_promotable' ) )
 	);
+
+	// A bundle stops being an offer once every product in it is already active.
+	if ( ! empty( $wt_sc_os_cat['bundle'] )
+		&& ! Wt_Smart_Coupon_Other_Solutions::is_promotable( $wt_sc_os_cat['bundle'] ) ) {
+		$wt_sc_os_categories[ $wt_sc_os_cat_id ]['bundle'] = array();  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+	}
 
 	$wt_sc_os_kept = $wt_sc_os_categories[ $wt_sc_os_cat_id ];  // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 
@@ -425,7 +445,8 @@ $wt_sc_os_star_markup = str_repeat( '<span class="wt-sc-os-star">&#9733;</span>'
 <div class="wt-sc-os-page">
 
 	<div class="wt-sc-os-header">
-		<h1 class="wt-sc-os-page-title" id="wt-sc-os-cat-title"><?php echo esc_html( $wt_sc_os_first_cat['label'] ); ?></h1>
+		<?php // Heading level matched to the other settings tabs. An h1/h2 here collects the page's admin notices. ?>
+		<h3 class="wt-sc-os-page-title" id="wt-sc-os-cat-title"><?php echo esc_html( $wt_sc_os_first_cat['label'] ); ?></h3>
 		<p class="wt-sc-os-page-subtitle" id="wt-sc-os-cat-subtitle"><?php echo esc_html( $wt_sc_os_first_cat['subtitle'] ); ?></p>
 	</div>
 

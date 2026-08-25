@@ -9,6 +9,8 @@
  * @subpackage Wt_Smart_Coupon/includes
  */
 
+defined( 'ABSPATH' ) || exit;
+
 if ( ! class_exists( 'Wbte_Smart_Coupon_Activator' ) ) {
 
 	/**
