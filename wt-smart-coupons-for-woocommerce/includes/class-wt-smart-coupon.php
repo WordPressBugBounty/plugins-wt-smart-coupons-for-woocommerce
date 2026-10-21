@@ -121,7 +121,7 @@ if ( ! class_exists( 'Wt_Smart_Coupon' ) ) {
 			if ( defined( 'WEBTOFFEE_SMARTCOUPON_VERSION' ) ) {
 				$this->version = WEBTOFFEE_SMARTCOUPON_VERSION;
 			} else {
-				$this->version = '2.3.2';
+				$this->version = '2.3.3';
 			}
 			$this->plugin_name = WT_SC_PLUGIN_NAME;
 
@@ -220,9 +220,9 @@ if ( ! class_exists( 'Wt_Smart_Coupon' ) ) {
 			require_once plugin_dir_path( __DIR__ ) . 'blocks/class-wt-sc-free-blocks.php';
 
 			/**
-			 * Includes the Black Friday and Cyber Monday CTA banners for 2025
+			 * Includes the Black Friday and Cyber Monday CTA banners for 2026
 			 */
-			require_once plugin_dir_path( __DIR__ ) . 'admin/modules/banner/class-wt-bfcm-twenty-twenty-five.php';
+			require_once plugin_dir_path( __DIR__ ) . 'admin/modules/banner/class-wt-sc-bfcm-twenty-twenty-six.php';
 
 			/**
 			 * Smart Coupons promotion banner added in Analytics page
@@ -292,6 +292,13 @@ if ( ! class_exists( 'Wt_Smart_Coupon' ) ) {
 			 *  @since 1.8.1
 			 */
 			$this->loader->add_action( 'delete_post', $this->plugin_common, 'coupon_delete_from_lookup_table_when_deleted' );
+
+			/**
+			 *  Stop a cached coupon code from resolving to a deleted coupon, which makes WC_Coupon throw an exception.
+			 *
+			 *  @since 2.3.3
+			 */
+			$this->loader->add_filter( 'woocommerce_get_coupon_id_from_code', $this->plugin_common, 'skip_deleted_coupon_id', 10, 3 );
 		}
 
 		/**
@@ -449,16 +456,17 @@ if ( ! class_exists( 'Wt_Smart_Coupon' ) ) {
 			 */
 			require_once plugin_dir_path( __DIR__ ) . 'admin/cross-promotion-banners/class-wbte-cross-promotion-banners.php';
 
+			/**
+			 *  Show the premium features sidebar in the Smart Coupons Pro meta box on the coupon edit page.
+			 *
+			 *  @since 2.3.3
+			 */
+			$this->loader->add_action( 'add_meta_boxes_shop_coupon', $this->plugin_admin, 'coupon_pro_meta_box' );
+			$this->loader->add_filter( 'postbox_classes_shop_coupon_wbte-sc-upgrade-to-pro', $this->plugin_admin, 'coupon_pro_meta_box_classes' );
+
 			$this->loader->add_filter( 'admin_footer_text', $this->plugin_admin, 'sc_review_request_footer' );
 
 			$this->loader->add_filter( 'update_footer', $this->plugin_admin, 'sc_version_footer', 11 );
-
-			/**
-			 *  Set screens to show promotional banner
-			 *
-			 *  @since 2.2.4
-			 */
-			$this->loader->add_filter( 'wt_bfcm_banner_screens', $this->plugin_admin, 'wt_bfcm_banner_screens' );
 
 			$this->loader->add_action( 'wt_sc_module_settings_debug', $this->plugin_admin, 'render_reset_lookup_table_in_debug_tab' );
 

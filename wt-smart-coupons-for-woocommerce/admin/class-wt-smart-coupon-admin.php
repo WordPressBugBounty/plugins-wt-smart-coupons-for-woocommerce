@@ -143,6 +143,48 @@ if ( ! class_exists( 'Wt_Smart_Coupon_Admin' ) ) {
 		}
 
 		/**
+		 * Show the premium features sidebar inside the Smart Coupons Pro meta box on the coupon edit page.
+		 * The meta box is registered by the shared cross-promotion banners, which can come from any
+		 * WebToffee plugin, so only its content is replaced here.
+		 *
+		 * @since 2.3.3
+		 */
+		public function coupon_pro_meta_box() {
+			global $wp_meta_boxes;
+
+			if ( empty( $wp_meta_boxes['shop_coupon']['side']['core']['wbte-sc-upgrade-to-pro'] ) ) {
+				return;
+			}
+
+			// Swap the render callback in place; WordPress won't re-add a meta box id removed by remove_meta_box().
+			$wp_meta_boxes['shop_coupon']['side']['core']['wbte-sc-upgrade-to-pro']['callback'] = array( $this, 'render_coupon_pro_meta_box' );
+		}
+
+		/**
+		 * Add a class to the Smart Coupons Pro meta box, to drop the meta box chrome.
+		 *
+		 * @since 2.3.3
+		 * @param string[] $classes Meta box classes.
+		 * @return string[]
+		 */
+		public function coupon_pro_meta_box_classes( $classes ) {
+			$classes[] = 'wbte_sc_pro_box';
+			return $classes;
+		}
+
+		/**
+		 * Render the Smart Coupons Pro meta box. Uses the premium features sidebar layout all year,
+		 * with the BFCM deal strip during the season.
+		 *
+		 * @since 2.3.3
+		 */
+		public function render_coupon_pro_meta_box() {
+			$wbte_premium_url          = esc_url( 'https://www.webtoffee.com/product/smart-coupons-for-woocommerce/?utm_source=free_plugin_cross_promotion&utm_medium=marketing_coupons_tab&utm_campaign=Smart_coupons' );
+			$wbte_sc_always_new_layout = true;
+			include WT_SMARTCOUPON_MAIN_PATH . '/admin/views/-premium-features-sidebar.php';
+		}
+
+		/**
 		 * Help links metabox html
 		 *
 		 * @since 1.3.5
@@ -354,7 +396,7 @@ if ( ! class_exists( 'Wt_Smart_Coupon_Admin' ) ) {
 				<tr>
 					<td style="padding:15px; background:#EFFFE8;">
 						<div style="width:100%; font-size:16px; font-weight:bold; color:#1E6200;"><span><img src="<?php echo esc_url( WT_SMARTCOUPON_MAIN_URL . 'admin/images/idea_bulb_green.svg' ); ?>" style="width:16px;"></span>&nbsp;<?php esc_html_e( 'Did You Know?', 'wt-smart-coupons-for-woocommerce' ); ?></div>
-						<div style="width:100%; font-size:14px; color:#555555; margin-top:10px;"><?php esc_html_e( 'With WebToffee Smart Coupons, you can create BOGO Coupons, gift cards, giveaways, and store credits.', 'wt-smart-coupons-for-woocommerce' ); ?></div>
+						<div style="width:100%; font-size:14px; color:#555555; margin-top:10px;"><?php esc_html_e( 'You can display the available coupons for a product on the respective product page.', 'wt-smart-coupons-for-woocommerce' ); ?></div>
 					</td>
 					<td style="width:100px; vertical-align:middle; padding:15px 15px 15px 5px; background:#EFFFE8;">
 						<a style="background:#299A42; color:#fff; border:none;" class="button button-secondary" href="<?php echo esc_attr( 'https://www.webtoffee.com/product/smart-coupons-for-woocommerce/?utm_source=free_plugin_marketing_bottom&utm_medium=smart_coupons_basic&utm_campaign=smart_coupons&utm_content=' . WEBTOFFEE_SMARTCOUPON_VERSION ); ?>" target="_blank"><?php esc_html_e( 'Check out this plugin', 'wt-smart-coupons-for-woocommerce' ); ?> <span class="dashicons dashicons-arrow-right-alt" style="margin-top:8px;font-size:14px;"></span> </a>
@@ -1030,31 +1072,18 @@ if ( ! class_exists( 'Wt_Smart_Coupon_Admin' ) ) {
 		}
 
 		/**
-		 *  Screens to show Black Friday and Cyber Monday Banner.
-		 *
-		 *  @since 2.2.4
-		 *  @param array $screen_ids Array of screen ids.
-		 *  @return array            Array of screen ids.
-		 */
-		public function wt_bfcm_banner_screens( $screen_ids ) {
-			$screen_ids[] = 'toplevel_page_wt-smart-coupon-for-woo';
-			$screen_ids[] = 'smart-coupons_page_premium_upgrade';
-			$screen_ids[] = 'smart-coupons_page_wt-smart-coupon-for-woo_bogo';
-			return $screen_ids;
-		}
-
-		/**
-		 * To Check if the current date is on or between the start and end date of black friday and cyber monday banner for 2024.
+		 * To Check if the current date is on or between the start and end date of black friday and cyber monday banner for 2026.
 		 *
 		 * @since 2.2.4
+		 * @since 2.3.3 Updated the BFCM season dates for 2026.
 		 */
 		public static function is_bfcm_season() {
 
-			$start_date   = new DateTime( '17-NOV-2025, 12:00 AM', new DateTimeZone( 'Asia/Kolkata' ) ); // Start date.
+			$start_date   = new DateTime( '11-NOV-2026, 12:00 AM', new DateTimeZone( 'Asia/Kolkata' ) ); // Start date.
 			$current_date = new DateTime( 'now', new DateTimeZone( 'Asia/Kolkata' ) ); // Current date.
-			$end_date     = new DateTime( '04-DEC-2025, 11:59 PM', new DateTimeZone( 'Asia/Kolkata' ) ); // End date.
+			$end_date     = new DateTime( '04-DEC-2026, 11:59 PM', new DateTimeZone( 'Asia/Kolkata' ) ); // End date.
 
-			// Check if the date is on or between the start and end date of black friday and cyber monday banner for 2025.
+			// Check if the date is on or between the start and end date of black friday and cyber monday banner for 2026.
 			if ( $current_date < $start_date || $current_date > $end_date ) {
 				return false;
 			}

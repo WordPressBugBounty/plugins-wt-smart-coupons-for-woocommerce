@@ -1,12 +1,12 @@
 === Smart Coupons For WooCommerce Coupons ===
 Contributors: WebToffee
-Version: 2.3.2
+Version: 2.3.3
 Donate link:https://www.webtoffee.com/product/smart-coupons-for-woocommerce/
 Tags: WooCommerce coupons, WooCommerce discounts, BOGO, smart coupons, advanced coupons
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.0
-Stable tag: 2.3.2
+Stable tag: 2.3.3
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -232,15 +232,13 @@ Yes. You can create coupons that get applied as per the purchase amount of a cus
 
 == Changelog ==
 
-= 2.3.2 - 2026-08-25 =
-* [Compatibility] Tested OK with WordPress 7.1
-* [Compatibility] Tested OK with WooCommerce 11.1
+= 2.3.3 - 2026-10-21 =
+* [Compatibility] Tested OK with WooCommerce 11.2.1
 
 
 [See changelog for all versions](https://plugins.svn.wordpress.org/wt-smart-coupons-for-woocommerce/trunk/changelog.txt)
 
 == Upgrade Notice ==
 
-= 2.3.2 - 2026-08-25 =
-* [Compatibility] Tested OK with WordPress 7.1
-* [Compatibility] Tested OK with WooCommerce 11.1
+= 2.3.3 - 2026-10-21 =
+* [Compatibility] Tested OK with WooCommerce 11.2.1

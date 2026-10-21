@@ -24,9 +24,9 @@ $admin_img_path        = WT_SMARTCOUPON_MAIN_URL . 'admin/images/';
 <style>
 	#wpbody-content{ margin-top: 130px; }
 	#wpcontent{ background-color: #F1F8FE; }
-	/* Hide admin notices on this page. Child selectors keep tab content untouched. */
-	.wrap > .notice, .wrap > .updated, .wrap > .error{ display:none; }
-	#wpbody-content > .notice, #wpbody-content > .updated, #wpbody-content > .error{ display:none; }
+	/* Hide admin notices on this page, except the BFCM banner. Child selectors keep tab content untouched. */
+	.wrap > .notice:not(.wt-sc-bfcm-banner-2026), .wrap > .updated, .wrap > .error{ display:none; }
+	#wpbody-content > .notice:not(.wt-sc-bfcm-banner-2026), #wpbody-content > .updated, #wpbody-content > .error{ display:none; }
 </style>
 <div class="wrap">
 <?php

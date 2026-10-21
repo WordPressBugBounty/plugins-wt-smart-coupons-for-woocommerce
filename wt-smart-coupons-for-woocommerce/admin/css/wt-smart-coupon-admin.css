@@ -345,6 +345,31 @@ ul.wt_sub_tab li:last-child {
   font-weight: 500;
 }
 
+/* BFCM season sidebar. @since 2.3.3 */
+.wbte_sc_bfcm_sidebar{ box-sizing:border-box; background:#fff; border:0; border-radius:11px; box-shadow:0px 2px 2px #ccc; overflow:hidden; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; }
+.wbte_sc_bfcm_sidebar p{ margin:0; }
+.wbte_sc_bfcm_sidebar_deal{ display:flex; align-items:center; gap:14px; padding:0px 8px 14px 15px; background:#E3F6E7; border-bottom:1px solid #C9CCCF; }
+.wbte_sc_bfcm_sidebar_tag{ width:38px; height:50px; object-fit:cover; object-position:right top; flex-shrink:0; align-self:flex-start; } /* Crops the folded corner of the shared tag image. */
+.wbte_sc_bfcm_sidebar_deal_hd{ font-size:12px; font-weight:700; color:#000; line-height:18px; padding-top:16px; }
+.wbte_sc_bfcm_sidebar_deal_desc{ font-size:10px; color:#1E1E1E; line-height:18px; }
+.wbte_sc_bfcm_sidebar_intro{ display:flex; align-items:center; gap:13px; padding:20px 6px 18px 7px; background:#F4F6F5; border-bottom:1px solid #C9CCCF; }
+.wbte_sc_bfcm_sidebar_intro img{ width:52px; height:auto; flex-shrink:0; mix-blend-mode:multiply; }
+.wbte_sc_bfcm_sidebar_intro p{ font-size:14px; font-weight:700; color:#1E1E1E; line-height:21px; text-wrap:wrap; }
+.wbte_sc_bfcm_sidebar_content{ padding:20px 22px 26px 22px; text-align:center; }
+.wbte_sc_bfcm_sidebar_content_hd{ margin:0 0 14px 0; font-size:14px; font-weight:700; color:#2A65D3; text-align:left; }
+.wbte_sc_bfcm_sidebar_list{ margin:0 0 16px 0; padding:0; list-style:none; text-align:left; }
+.wbte_sc_bfcm_sidebar_list li{ position:relative; margin-bottom:10px; padding-left:20px; font-size:13px; font-weight:500; color:#1E1E1E; line-height:20px; }
+.wbte_sc_bfcm_sidebar_list li::before{ content:""; position:absolute; left:0; top:6px; width:10px; height:8px; background:url('../images/tick.svg') no-repeat center / contain; }
+.wbte_sc_bfcm_sidebar_view_more{ display:inline-block; margin:0 0 16px 0; padding:0; border:0; background:none; font-size:13px; color:#2A65D3; text-decoration:underline; cursor:pointer; }
+.wbte_sc_bfcm_sidebar_view_more:hover, .wbte_sc_bfcm_sidebar_view_more:focus{ color:#1D4FB0; }
+.wbte_sc_bfcm_sidebar_list .wbte_sc_bfcm_sidebar_more{ display:none; }
+.wbte_sc_bfcm_sidebar_expanded .wbte_sc_bfcm_sidebar_list .wbte_sc_bfcm_sidebar_more{ display:list-item; }
+.wbte_sc_bfcm_sidebar_btn{ display:block; padding:14px 10px; background:#2A65D3; border-radius:4px; color:#fff; font-size:14px; font-weight:500; text-decoration:none; text-align:center; }
+.wbte_sc_bfcm_sidebar_btn:hover, .wbte_sc_bfcm_sidebar_btn:focus{ background:#1D4FB0; color:#fff; }
+.wbte_sc_bfcm_sidebar_btn .dashicons{ font-size:16px; line-height:20px; vertical-align:middle; }
+.wbte_sc_bfcm_sidebar_dismiss{ display:block; margin-top:15px; color:#666; text-decoration:none; text-align:center; }
+.wbte_sc_bfcm_sidebar_dismiss:hover, .wbte_sc_bfcm_sidebar_dismiss:focus{ color:#1E1E1E; text-decoration:underline; }
+
 @media (max-width: 1332px) {
   .coupon_preview{
     position: relative;
@@ -553,19 +578,27 @@ fieldset.form-field._wt_need_check_location_in_field .wc-radios li { display:inl
   .wbte_sc_promotion_banner_actions{ width: 100%; margin-top: 10px; margin-left: 0px; }
 }
 
-/* Smart Coupons CTA banner on the coupons page - orange theme */
-.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page"]{ background: #FCEADA; border-left: solid 4px #E97900; padding: 7px 17px; }
-.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page"] .wbte_sc_promotion_banner_title{ display: inline-flex; align-items: center; gap: 6px; color: #E97900; font-size: 14px; font-weight: 600; margin-top: 12px;}
-.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page"] .wbte_sc_promotion_banner_content{ margin-top: 0px; }
-.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page"] .wbte_sc_promotion_banner_content p{ color: #1D2327; }
-.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page"] .wbte_sc_promotion_banner_primary_btn{ height: auto; padding: 0px 16px; gap: 11px; background: #E97900 !important; color: #fff !important; border: none !important; border-radius: 4px; font-weight: 500; box-shadow: none !important; text-shadow: none; }
-.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page"] .wbte_sc_promotion_banner_primary_btn:hover,
-.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page"] .wbte_sc_promotion_banner_primary_btn:focus{ background: #CC6A00 !important; color: #fff !important; }
-.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page"] .wbte_sc_promotion_banner_actions{ margin-right: 47px; }
-.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page"] .wbte_sc_promotion_banner_close_btn{ color: #1D2327; }
+/* Smart Coupons CTA banner on the coupons page - orange theme. The BFCM season version shares the layout. */
+.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page"], .wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page_bfcm"]{ background: #FCEADA; border-left: solid 4px #E97900; padding: 7px 17px; }
+.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page"] .wbte_sc_promotion_banner_title, .wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page_bfcm"] .wbte_sc_promotion_banner_title{ display: inline-flex; align-items: center; gap: 6px; color: #E97900; font-size: 14px; font-weight: 600; margin-top: 12px;}
+.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page"] .wbte_sc_promotion_banner_content, .wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page_bfcm"] .wbte_sc_promotion_banner_content{ margin-top: 0px; }
+.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page"] .wbte_sc_promotion_banner_content p, .wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page_bfcm"] .wbte_sc_promotion_banner_content p{ color: #1D2327; }
+.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page"] .wbte_sc_promotion_banner_primary_btn, .wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page_bfcm"] .wbte_sc_promotion_banner_primary_btn{ height: auto; padding: 0px 16px; gap: 11px; background: #E97900 !important; color: #fff !important; border: none !important; border-radius: 4px; font-weight: 500; box-shadow: none !important; text-shadow: none; }
+.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page"] .wbte_sc_promotion_banner_primary_btn:hover, .wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page_bfcm"] .wbte_sc_promotion_banner_primary_btn:hover,
+.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page"] .wbte_sc_promotion_banner_primary_btn:focus, .wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page_bfcm"] .wbte_sc_promotion_banner_primary_btn:focus{ background: #CC6A00 !important; color: #fff !important; }
+.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page"] .wbte_sc_promotion_banner_actions, .wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page_bfcm"] .wbte_sc_promotion_banner_actions{ margin-right: 47px; }
+.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page"] .wbte_sc_promotion_banner_close_btn, .wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page_bfcm"] .wbte_sc_promotion_banner_close_btn{ color: #1D2327; }
 @media (max-width: 650px) {
-  .wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page"] .wbte_sc_promotion_banner_actions{ margin-right: 0px; }
+  .wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page"] .wbte_sc_promotion_banner_actions, .wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page_bfcm"] .wbte_sc_promotion_banner_actions{ margin-right: 0px; }
 }
+/* BFCM season version - green theme. @since 2.3.3 */
+.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page_bfcm"]{ background: #F2FFEA; border-left-color: #4E984D; }
+.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page_bfcm"] .wbte_sc_promotion_banner_title{ color: #4E984D; }
+.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page_bfcm"] .wbte_sc_promotion_banner_content p{ color: #212121; }
+.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page_bfcm"] .wbte_sc_promotion_banner_primary_btn{ background: #4E984D !important; }
+.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page_bfcm"] .wbte_sc_promotion_banner_primary_btn:hover,
+.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page_bfcm"] .wbte_sc_promotion_banner_primary_btn:focus{ background: #3F7E3E !important; }
+.wbte_sc_promotion_banner_div[data-wbte-sc-promotion-banner-id="sc_cpns_page_bfcm"] .wbte_sc_promotion_banner_close_btn{ top: 50%; transform: translateY( -50% ); color: #505050; }
 
 .wbte_sc_color_picker_container{ border: 1.5px solid #BDC1C6; border-radius: 6px; padding: 8px 10px; background: white; box-sizing: border-box; min-width: 110px; max-width: 120px; min-height: 38px; }
 .wbte_sc_color_picker_container .wp-color-result.button{ margin: 0 !important; }
@@ -603,3 +636,18 @@ fieldset.form-field._wt_need_check_location_in_field .wc-radios li { display:inl
 .wt_sc_newsletter_subscription_box .response { font-size: 13px; padding: 8px 12px; border-radius: 4px; margin-bottom: 8px; }
 .wt_sc_newsletter_subscription_box #mce-error-response { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
 .wt_sc_newsletter_subscription_box #mce-success-response { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; margin-bottom: 24px; }
+
+/* Smart Coupons Pro meta box on the coupon edit page: keep it always expanded. It can be rendered by any WebToffee plugin's cross-promotion copy, so it is targeted here by its id. @since 2.3.3 */
+#wbte-sc-upgrade-to-pro .hndle{ pointer-events: none; }
+#wbte-sc-upgrade-to-pro .handlediv{ display: none; }
+#wbte-sc-upgrade-to-pro.closed .inside{ display: block; }
+/* Coupon edit page: the Pro meta box shows only the premium features sidebar. @since 2.3.3 */
+#wbte-sc-upgrade-to-pro.wbte_sc_pro_box .wbte_sc_bfcm_sidebar{ border-radius:0; box-shadow:none; } /* The meta box border and radius frame it, like the other side boxes. */
+#wbte-sc-upgrade-to-pro.wbte_sc_pro_box .postbox-header{ display:none; }
+#wbte-sc-upgrade-to-pro.wbte_sc_pro_box .inside{ margin:0; padding:0; }
+/* Smaller headings for the narrow (280px) side column. */
+#wbte-sc-upgrade-to-pro.wbte_sc_pro_box .wbte_sc_bfcm_sidebar_deal{ gap:10px; padding-left:14px; } /* Room for the larger deal text on one line. */
+#wbte-sc-upgrade-to-pro.wbte_sc_pro_box .wbte_sc_bfcm_sidebar_deal_hd{ font-size:11.5px; }
+#wbte-sc-upgrade-to-pro.wbte_sc_pro_box .wbte_sc_bfcm_sidebar_deal_desc{ font-size:10px; }
+#wbte-sc-upgrade-to-pro.wbte_sc_pro_box .wbte_sc_bfcm_sidebar_intro p{ font-size:12.5px; text-wrap:wrap; }
+#wbte-sc-upgrade-to-pro.wbte_sc_pro_box .wbte_sc_bfcm_sidebar_content_hd{ font-size:13px; }

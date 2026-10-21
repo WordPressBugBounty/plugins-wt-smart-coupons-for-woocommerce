@@ -178,8 +178,8 @@ class Wt_Smart_Coupon_Auto_Coupon_Public extends Wt_Smart_Coupon_Auto_Coupon_Com
 		// If this function is called when a coupon applied and the coupon is enabled 'Individual use only' then return an empty array.
 		if ( ( isset( $_POST['coupon'] ) && ! empty( $_POST['coupon'] ) ) || ( isset( $_POST['coupon_code'] ) && ! empty( $_POST['coupon_code'] ) ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Missing
 			$coupon_code = isset( $_POST['coupon'] ) ? sanitize_text_field( wp_unslash( $_POST['coupon'] ) ) : sanitize_text_field( wp_unslash( $_POST['coupon_code'] ) ); //phpcs:ignore WordPress.Security.NonceVerification.Missing
-			$coupon      = new WC_Coupon( $coupon_code );
-			if ( $coupon->get_individual_use() ) {
+			$coupon      = Wt_Smart_Coupon_Common::get_coupon( $coupon_code );
+			if ( $coupon && $coupon->get_individual_use() ) {
 				return array();
 			}
 		}
@@ -214,14 +214,23 @@ class Wt_Smart_Coupon_Auto_Coupon_Public extends Wt_Smart_Coupon_Auto_Coupon_Com
 		$coupon_arr = array();
 
 		$applied_coupons        = WC()->cart->get_applied_coupons();
-        $applied_coupon_objects = array();
+		$applied_coupon_objects = array();
 
-        foreach ( $applied_coupons as $code ) {
-            $applied_coupon_objects[ $code ] = new WC_Coupon( $code );
-        }
+		foreach ( $applied_coupons as $code ) {
+			$applied_coupon = Wt_Smart_Coupon_Common::get_coupon( $code );
+
+			// Skip codes that no longer point to a coupon.
+			if ( $applied_coupon ) {
+				$applied_coupon_objects[ $code ] = $applied_coupon;
+			}
+		}
 
 		foreach ( $coupon_ids as $coupon_id ) {
-			$coupon_obj = new WC_Coupon( $coupon_id );
+			$coupon_obj = Wt_Smart_Coupon_Common::get_coupon( $coupon_id );
+
+			if ( ! $coupon_obj ) {
+				continue;
+			}
 
 			// Check coupon is valid.
 			if ( is_wp_error( $discounts->is_coupon_valid( $coupon_obj ) ) ) {
@@ -415,7 +424,12 @@ class Wt_Smart_Coupon_Auto_Coupon_Public extends Wt_Smart_Coupon_Auto_Coupon_Com
 				continue;
 			}
 
-			$coupon         = new WC_Coupon( $coupon_code );
+			$coupon = Wt_Smart_Coupon_Common::get_coupon( $coupon_code );
+
+			if ( ! $coupon ) {
+				continue;
+			}
+
 			$is_auto_coupon = $this->is_auto_coupon( $coupon );
 
 			// Not an auto coupon.
@@ -640,8 +654,8 @@ class Wt_Smart_Coupon_Auto_Coupon_Public extends Wt_Smart_Coupon_Auto_Coupon_Com
 
 		$coupons = ( isset( $coupons ) && is_array( $coupons ) ) ? $coupons : array();
 		foreach ( $coupons as $code ) {
-			$coupon = new WC_Coupon( $code );
-			if ( $coupon->get_individual_use() ) {
+			$coupon = Wt_Smart_Coupon_Common::get_coupon( $code );
+			if ( $coupon && $coupon->get_individual_use() ) {
 				$applied = true;
 				break;
 			}

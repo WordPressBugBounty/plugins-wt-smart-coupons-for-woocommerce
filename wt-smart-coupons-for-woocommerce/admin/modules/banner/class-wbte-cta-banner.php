@@ -362,11 +362,14 @@ if ( ! class_exists( 'Wbte_Cta_Banner' ) ) {
 		 * Render pro BOGO CTA banner on coupons page.
 		 *
 		 * @since 2.2.8
+		 * @since 2.3.3 BFCM season version with its own text, colors and dismiss state.
 		 * @return bool|string Banner HTML or false if banner is not needed.
 		 */
 		private static function sc_pro_coupons_page_banner() {
+			$is_bfcm        = method_exists( 'Wt_Smart_Coupon_Admin', 'is_bfcm_season' ) && Wt_Smart_Coupon_Admin::is_bfcm_season();
+			$banner_id      = $is_bfcm ? 'sc_cpns_page_bfcm' : 'sc_cpns_page';
 			$hidden_banners = get_option( 'wbte_sc_hidden_promotion_banners', array() );
-			if ( defined( 'WBTE_BFCM_SC_COUPONS_PAGE' ) || in_array( 'sc_cpns_page', $hidden_banners, true ) ) {
+			if ( defined( 'WBTE_BFCM_SC_COUPONS_PAGE' ) || in_array( $banner_id, $hidden_banners, true ) ) {
 				return false;
 			}
 
@@ -374,22 +377,28 @@ if ( ! class_exists( 'Wbte_Cta_Banner' ) ) {
 
 			$campaign_url = 'https://www.webtoffee.com/product/smart-coupons-for-woocommerce/?utm_source=free_plugin_add_coupon_menu&utm_medium=smart_coupon_basic&utm_campaign=smart_coupons';
 
-			$sc_pro_cta_args = array(
-				'banner_id'        => 'sc_cpns_page',
-				'title'            => sprintf(
-					// translators: 1: image URL, 2: title.
-					'<img src="%1$s" style="width: 14px;" /><span>%2$s</span>',
-					esc_url( WT_SMARTCOUPON_MAIN_URL . 'admin/images/idea_bulb_orange.svg' ),
-					esc_html__( 'Did you know', 'wt-smart-coupons-for-woocommerce' )
-				),
-				'content'          => sprintf(
+			if ( $is_bfcm ) {
+				$content = __( 'You can boost your BFCM sales with advanced coupons, tiered BOGO deals, and targeted discounts using WebToffee Smart Coupons.', 'wt-smart-coupons-for-woocommerce' );
+			} else {
+				$content = sprintf(
 					// translators: 1: b tag opening, 2: b tag closing, 3: b tag opening, 4: b tag closing.
 					__( 'WebToffee Smart Coupons lets you create advanced %1$sBOGO offers%2$s and %3$scondition-based coupons%4$s to boost sales and revenue.', 'wt-smart-coupons-for-woocommerce' ),
 					'<b>',
 					'</b>',
 					'<b>',
 					'</b>'
+				);
+			}
+
+			$sc_pro_cta_args = array(
+				'banner_id'        => $banner_id,
+				'title'            => sprintf(
+					// translators: 1: image URL, 2: title.
+					'<img src="%1$s" style="width: 14px;" /><span>%2$s</span>',
+					esc_url( WT_SMARTCOUPON_MAIN_URL . 'admin/images/' . ( $is_bfcm ? 'idea_bulb_green.svg' : 'idea_bulb_orange.svg' ) ),
+					esc_html__( 'Did you know', 'wt-smart-coupons-for-woocommerce' )
 				),
+				'content'          => $content,
 				'primary_btn_url'  => esc_url( $campaign_url ),
 				'primary_btn_text' => __( 'Get Plugin Now', 'wt-smart-coupons-for-woocommerce' ),
 			);

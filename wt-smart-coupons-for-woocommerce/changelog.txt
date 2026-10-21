@@ -1,6 +1,9 @@
 
 == Changelog ==
 
+= 2.3.3 - 2026-10-21 =
+* [Compatibility] Tested OK with WooCommerce 11.2.1
+
 = 2.3.2 - 2026-08-25 =
 * [Compatibility] Tested OK with WordPress 7.1
 * [Compatibility] Tested OK with WooCommerce 11.1

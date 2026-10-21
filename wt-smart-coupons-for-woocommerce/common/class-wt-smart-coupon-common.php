@@ -225,6 +225,45 @@ if ( ! class_exists( 'Wt_Smart_Coupon_Common' ) ) {
 			return false;
 		}
 
+		/**
+		 * Get a coupon object without stopping the request when the coupon is invalid.
+		 * WC_Coupon throws an exception when the code or ID points to a coupon that no longer exists.
+		 *
+		 * @since 2.3.3
+		 * @param int|string|WC_Coupon $coupon Coupon ID, code or object.
+		 * @return WC_Coupon|null Coupon object, or null when the coupon is invalid.
+		 */
+		public static function get_coupon( $coupon ) {
+			try {
+				return new WC_Coupon( $coupon );
+			} catch ( Exception $e ) {
+				return null;
+			}
+		}
+
+		/**
+		 * Do not resolve a coupon code to a deleted coupon.
+		 *
+		 * @since 2.3.3
+		 * @param int    $coupon_id Coupon ID.
+		 * @param string $code      Coupon code.
+		 * @param int    $exclude   Coupon ID to exclude.
+		 * @return int Coupon ID, or 0 when no coupon exists for the code.
+		 */
+		public static function skip_deleted_coupon_id( $coupon_id, $code, $exclude = 0 ) {
+			if ( ! $coupon_id || 'shop_coupon' === get_post_type( $coupon_id ) ) {
+				return $coupon_id;
+			}
+
+			// Clear the stale cached ID and resolve the code again from the database.
+			wp_cache_delete( WC_Cache_Helper::get_cache_prefix( 'coupons' ) . 'coupon_id_from_code_' . md5( wc_strtolower( $code ) ), 'coupons' );
+
+			$ids = WC_Data_Store::load( 'coupon' )->get_ids_by_code( $code );
+			$ids = array_diff( array_filter( array_map( 'absint', (array) $ids ) ), array( $exclude ) );
+
+			return absint( current( $ids ) );
+		}
+
 
 		/**
 		 *  Insert existing coupon data to lookup table
